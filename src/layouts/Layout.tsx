@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import Navbar from '~/components/global/Navbar'
+import SideBar from '~/components/global/Sidebar'
 
 type Props = {
     children:React.ReactNode
@@ -8,8 +9,7 @@ type Props = {
 function Layout({children}: Props): ReactElement {
     return (
       <>
-      <Navbar/>
-      <main>{children}</main>
+      <SideBar children={children}/>
       </>
     )
 }

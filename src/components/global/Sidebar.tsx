@@ -20,7 +20,7 @@ const SideBar = observer(({ children }: Props) => {
         </div>
       </div>
       <div className="sidebar fixed top-14 left-0 z-10 flex h-full w-14 flex-col border-none bg-white text-black transition-all duration-300 hover:w-64 dark:bg-gray-900 md:w-64">
-        <div className="flex flex-grow flex-col justify-between overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-grow flex-col justify-between overflow-y-auto overflow-x-hidden bg-white">
           <ul className="flex flex-col space-y-1 py-4">
             {sidebar.map((header) => {
               return (

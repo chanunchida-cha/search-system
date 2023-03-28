@@ -1,10 +1,13 @@
 import React, { ReactElement, useState } from "react";
+import AddRemoveField from "~/ui/create-edit/AddRemoveField";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
+import SelectRanks from "~/ui/create-edit/SelectRanks";
 
 interface Props {}
 
 function HistoryForm({}: Props): ReactElement {
   const [name, setName] = useState("");
+
   return (
     <div>
       <div>ประวัติผู้ทรงคุณวุฒิ</div>
@@ -19,7 +22,7 @@ function HistoryForm({}: Props): ReactElement {
         <div>
           <div className="grid grid-cols-12 gap-5">
             <div>
-              <SelectPrefix /> 
+              <SelectPrefix />
             </div>
             <div>
               <input
@@ -34,8 +37,11 @@ function HistoryForm({}: Props): ReactElement {
             </div>
           </div>
         </div>
-        <div>
-          
+        <div className="grid grid-cols-6 gap-5 p-2">
+          <SelectRanks />
+        </div>
+        <div className="grid grid-cols-6 gap-5 p-2">
+          <AddRemoveField />
         </div>
       </div>
     </div>

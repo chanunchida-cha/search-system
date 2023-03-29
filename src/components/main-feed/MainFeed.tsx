@@ -20,7 +20,7 @@ function MainFeed({}: Props) {
             <div className="mt-2 w-2/5">
               <button className="flex w-full items-center justify-center rounded-lg bg-[#0265ff] p-1">
                 <Image
-                  src="/public/assets/images/icon-add.png"
+                  src="/assets/images/icon-add.png"
                   width={24}
                   height={24}
                   alt="add"
@@ -138,7 +138,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -146,7 +146,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"
@@ -179,7 +179,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -187,7 +187,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"
@@ -222,7 +222,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -230,7 +230,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"
@@ -263,7 +263,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -271,7 +271,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"
@@ -304,7 +304,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -312,7 +312,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"
@@ -347,7 +347,7 @@ function MainFeed({}: Props) {
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-update.png"
+                        src="/assets/images/icon-update.png"
                         width={24}
                         height={24}
                         alt="update"
@@ -355,7 +355,7 @@ function MainFeed({}: Props) {
                     </button>
                     <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
-                        src="/public/assets/images/icon-delete.png"
+                        src="/assets/images/icon-delete.png"
                         width={24}
                         height={24}
                         alt="delete"

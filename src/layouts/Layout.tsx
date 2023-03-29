@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import Navbar from '~/components/global/Navbar'
 import SideBar from '~/components/global/Sidebar'
@@ -7,9 +8,11 @@ type Props = {
 }
 
 function Layout({children}: Props): ReactElement {
+  const route = useRouter();
+  const pathLogin = route.pathname.startsWith("/login")
     return (
       <>
-      <SideBar children={children}/>
+      {pathLogin ? children : <SideBar children={children}/>}
       </>
     )
 }

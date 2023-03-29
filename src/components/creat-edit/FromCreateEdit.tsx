@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable react/jsx-key */
 import React, { ReactElement, useState } from "react";
 import HistoryForm from "./historyForm/HistoryForm";
 import AssessmentForm from "./assessmentForm/AssessmentForm";
@@ -16,14 +18,23 @@ const typeTab = [
 ];
 
 function FromCreateEdit({}: Props): ReactElement {
-const [type, settype] = useState("");
+  const [type, settype] = useState("");
   return (
     <div>
-      <div className=" grid grid-cols-10 gap-4">
+      <div className=" relative grid h-10 grid-cols-5 px-5">
         {typeTab.map((data) => {
-          return (
+          return type === data.type ? (
             <div
-              className="flex justify-center bg-blue-400"
+              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-blue-400 text-white shadow-sm"
+              onClick={() => {
+                settype(data.type);
+              }}
+            >
+              {data.i18n}
+            </div>
+          ) : (
+            <div
+              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-gray-200 text-black shadow-sm"
               onClick={() => {
                 settype(data.type);
               }}
@@ -33,7 +44,10 @@ const [type, settype] = useState("");
           );
         })}
       </div>
-      <div>{type === "history" ? <HistoryForm/> : <AssessmentForm/>}</div>
+      <div className="rounded-3xl bg-white p-5 shadow-lg">
+        {" "}
+        {type === "history" ? <HistoryForm /> : <AssessmentForm />}
+      </div>
     </div>
   );
 }

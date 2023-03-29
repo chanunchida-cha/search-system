@@ -5,7 +5,6 @@ interface Props {}
 function AssessmentForm({}: Props): ReactElement {
   return (
     <div>
-      <div>ggwp</div>
       <label
         htmlFor="price"
         className="block text-sm font-medium leading-6 text-gray-900"

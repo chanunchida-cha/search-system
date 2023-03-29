@@ -10,8 +10,8 @@ function loginMain({}: Props) {
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
-      <div className="rounded-lg bg-white p-2 shadow lg:h-[26rem] lg:w-[28rem]">
-        <div className="mt-2 p-4 text-center">
+      <div className="rounded-lg bg-white p-2 shadow lg:h-[30rem] lg:w-[35rem]">
+        <div className="mt-2 p-4 pt-14 text-center">
           <p className="text-2xl font-bold text-blue-800">System Name</p>
         </div>
 
@@ -44,6 +44,8 @@ function loginMain({}: Props) {
               Password
             </label>
             <input
+              min={6}
+              max={12}
               type="password"
               id="password"
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
@@ -56,8 +58,8 @@ function loginMain({}: Props) {
               required
             ></input>
           </div>
-          <div className="mb-6 flex items-center justify-center">
-            <div className="flex h-5 items-center">
+          <div className="mb-7 flex items-center justify-center">
+            <div className="flex h-5 items-center ">
               <button
                 type="submit"
                 className="mb-4  rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"

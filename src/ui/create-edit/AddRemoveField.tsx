@@ -20,7 +20,7 @@ const AddRemoveField = () => {
   return (
     <div className="list-data">
       {listData.map((data, index) => (
-        <div className="grid grid-cols-5 gap-4" key={index}>
+        <div className="grid grid-cols-5 gap-4 mt-3" key={index}>
           <input
             name="name"
             type="text"

@@ -6,42 +6,74 @@ import SelectRanks from "~/ui/create-edit/SelectRanks";
 interface Props {}
 
 function HistoryForm({}: Props): ReactElement {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
 
   return (
     <div>
       <div>ประวัติผู้ทรงคุณวุฒิ</div>
 
       <div>
-        <label
+        {/* <label
           htmlFor="price"
           className="block text-sm font-medium leading-6 text-gray-900"
         >
           ชื่อ-สกุล
-        </label>
-        <div>
-          <div className="grid grid-cols-12 gap-5">
-            <div>
-              <SelectPrefix />
-            </div>
-            <div>
-              <input
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-                type="text"
-                name="price"
-                id="price"
-                className="col-span-2   w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-              />
-            </div>
+        </label> */}
+        <div className="mt-5 flex flex-row">
+          <label
+            htmlFor="price"
+            className="items-center justify-center font-medium leading-6 text-gray-900"
+          >
+            ชื่อ :
+          </label>
+          <div className="ml-2 w-32">
+            <SelectPrefix />
+          </div>
+          <div>
+            <input
+              onChange={(event) => {
+                setFirstName(event.target.value);
+              }}
+              type="text"
+              name="price"
+              id="price"
+              className="ml-2 w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
+            />
+          </div>
+          <label
+            htmlFor="price"
+            className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
+          >
+            นามสกุล :
+          </label>
+          <div>
+            <input
+              onChange={(event) => {
+                setlastName(event.target.value);
+              }}
+              type="text"
+              name="price"
+              id="price"
+              className="ml-2 w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
+            />
           </div>
         </div>
-        <div className="grid grid-cols-6 gap-5 p-2">
-          <SelectRanks />
+        <div className="mt-3 flex flex-row">
+          <label
+            htmlFor="price"
+            className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
+          >
+            ตำแหน่งทางวิชาการ :
+          </label>
+          <div className="ml-2 w-56">
+            <SelectRanks />
+          </div>
         </div>
-        <div className="grid grid-cols-6 gap-5 p-2">
-          <AddRemoveField />
+        <div className="flex flex-row">
+          <div className="">
+            <AddRemoveField />
+          </div>
         </div>
       </div>
     </div>

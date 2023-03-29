@@ -24,7 +24,7 @@ function MainFeed({}: Props) {
                   width={24}
                   height={24}
                   alt="add"
-                  className="mt-2"
+                  className=""
                 />
                 <p className="ml-1  text-xl text-white">
                   เพิ่มข้อมูลผู้ทรงคุณวุฒิ

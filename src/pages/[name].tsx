@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { type ReactElement, useState } from "react";
+import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 
@@ -16,26 +16,17 @@ const typeTab = [
   },
 ];
 
-const toggles = [
-  {
-    tab: "01",
-    i18n: "ประวัติผู้ทรงคุณวุฒิ",
-  },
-  {
-    tab: "02",
-    i18n: "ข้อมูลผลการประเมิน",
-  },
-];
-
-function updateToggle(index: number, tab: string) {
-  console.log(index, tab);
-}
-
 export default function NameFeed({}: Props): ReactElement {
   const router = useRouter();
   const { name } = router.query;
   const [type, settype] = useState("");
-  const [toggle, setToggle] = useState("");
+  const updateToggle = () => {
+    settype("history");
+  };
+
+  useEffect(() => {
+    updateToggle();
+  }, []);
 
   return (
     <>

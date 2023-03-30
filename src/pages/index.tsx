@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
-import HistoryForm from '~/components/creat-edit/historyForm/HistoryForm'
-
+import FromCreateEdit from '~/components/creat-edit/FromCreateEdit'
 
 interface Props {
   
@@ -9,7 +8,7 @@ interface Props {
 function index({}: Props): ReactElement {
   return (
     <div>
-      <HistoryForm/>
+      <FromCreateEdit/>
     </div>
   )
 }

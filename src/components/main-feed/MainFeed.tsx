@@ -14,10 +14,12 @@ function MainFeed({}: Props) {
         {/* Heading and AddUserData */}
         <div className="mb-2 grid h-12 grid-cols-2">
           <div className="flex items-center justify-start">
-            <h1 className="text-2xl">ข้อมูลรายชื่อผู้วิจัย</h1>
+            <h1 className="sm:text-2 md:text-xl lg:text-2xl">
+              ข้อมูลรายชื่อผู้วิจัย
+            </h1>
           </div>
-          <div className="flex items-center justify-end">
-            <div className="mt-2 w-2/5">
+          <div className="flex items-center justify-end ">
+            <div className="mt-2  w-auto  md:w-3/5  lg:w-3/5 xl:w-2/5 ">
               <button className="flex w-full items-center justify-center rounded-lg bg-[#0265ff] p-1">
                 <Image
                   src="/assets/images/icon-add.png"
@@ -26,7 +28,7 @@ function MainFeed({}: Props) {
                   alt="add"
                   className=""
                 />
-                <p className="ml-1  text-xl text-white">
+                <p className=" ml-1 text-xs text-white md:text-lg lg:text-xl">
                   เพิ่มข้อมูลผู้ทรงคุณวุฒิ
                 </p>
               </button>
@@ -39,9 +41,9 @@ function MainFeed({}: Props) {
         <div className="mb-3 grid h-12">
           <div className="flex items-center justify-end">
             {/* SearchBar */}
-            <div className="relative w-2/5">
+            <div className="relative w-2/3 md:w-2/5 lg:w-2/5">
               <input
-                className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 pl-10 leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-[#0265ff] focus:outline-none focus:ring-[#0265ff]"
+                className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 pl-10 text-sm leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-[#0265ff] focus:outline-none focus:ring-[#0265ff] md:text-base lg:text-lg"
                 id="username"
                 type="text"
                 placeholder="ค้นหาข้อมูลรายชื่อผู้วิจัย"
@@ -66,8 +68,8 @@ function MainFeed({}: Props) {
             {/* END OF SearchBar */}
 
             {/* TypeSelection */}
-            <div className="relative ml-3 inline-block w-1/6">
-              <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none">
+            <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/6 ">
+              <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg">
                 {main_feed_heading.map((item) =>
                   item === "ลำดับ" || item === "จัดการาข้อมูล" ? null : (
                     <option
@@ -102,10 +104,10 @@ function MainFeed({}: Props) {
                 {main_feed_heading.map((item) => (
                   <th
                     key={item}
-                    className={`text-white ${
+                    className={`text-xs text-white md:text-sm ${
                       item === "ลำดับ"
-                        ? "p-3 text-center text-sm font-semibold tracking-wide"
-                        : "p-3 text-center text-sm font-semibold tracking-wide"
+                        ? "p-3 text-center font-semibold tracking-wide"
+                        : "p-3 text-center font-semibold tracking-wide"
                     } ${item === "ชื่อโครงการวิจัย" ? "" : "w-32"}`}
                   >
                     {item}
@@ -135,7 +137,7 @@ function MainFeed({}: Props) {
                   2023
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"
@@ -176,7 +178,7 @@ function MainFeed({}: Props) {
                   2022
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"
@@ -219,7 +221,7 @@ function MainFeed({}: Props) {
                   2022
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"
@@ -260,7 +262,7 @@ function MainFeed({}: Props) {
                   2023
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"
@@ -301,7 +303,7 @@ function MainFeed({}: Props) {
                   2022
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"
@@ -344,7 +346,7 @@ function MainFeed({}: Props) {
                   2022
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
                     <button className="rounded bg-[#f1d386] py-2 px-4 font-bold text-white hover:bg-yellow-700">
                       <Image
                         src="/assets/images/icon-update.png"

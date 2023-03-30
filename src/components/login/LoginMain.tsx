@@ -31,6 +31,7 @@ function loginMain({}: Props) {
                 setUserName(event.target.value);
                 console.log(event.target.value);
               }}
+              value={userName}
               required
             ></input>
           </div>
@@ -50,6 +51,7 @@ function loginMain({}: Props) {
                 setUserPassword(event.target.value);
                 console.log(event.target.value);
               }}
+              value={userPassword}
               required
             ></input>
           </div>

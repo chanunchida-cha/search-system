@@ -76,8 +76,8 @@ function MainFeed({}: Props) {
             {/* END OF SearchBar */}
 
             {/* TypeSelection */}
-            <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/6 ">
-              <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg">
+            <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/5 ">
+              <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight text-black shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg">
                 {main_feed_heading.map((item) =>
                   item === "ลำดับ" || item === "จัดการาข้อมูล" ? null : (
                     <option

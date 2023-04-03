@@ -48,7 +48,7 @@ export default function NameFeed({}: Props): ReactElement {
               </div>
             ) : (
               <div
-                className={`flex w-full items-center justify-center rounded-t-lg bg-[#d9e3f8] px-2 text-black shadow-lg`}
+                className={`mt-4 flex h-12 w-full items-center justify-center rounded-t-lg bg-[#d9e3f8] px-2 text-black shadow-lg`}
                 onClick={() => {
                   settype(data.type);
                 }}

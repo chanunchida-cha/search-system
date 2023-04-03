@@ -7,7 +7,7 @@ type Props = {};
 function FeedDetail({}: Props) {
   return (
     <>
-      <div className="mx-auto h-screen bg-gray-100 px-10 pb-10">
+      <div className="mx-auto h-full bg-gray-100 px-10 pb-10">
         <div className="align-center border-solid-900 flex h-full w-full rounded-lg bg-white ">
           {/* CONTENT */}
           <div className="w-full p-10">

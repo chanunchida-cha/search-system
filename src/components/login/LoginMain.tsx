@@ -53,6 +53,10 @@ function loginMain({ }: Props) {
               }}
               value={userPassword}
               required
+              pattern="[a-z0-9]{1,15}"
+              title="Password should be digits (0 to 9) or alphabets (a to z)."
+              maxLength={8}
+              minLength={8}
             />
           </div>
 

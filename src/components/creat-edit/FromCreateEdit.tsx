@@ -18,14 +18,14 @@ const typeTab = [
 ];
 
 function FromCreateEdit({}: Props): ReactElement {
-  const [type, settype] = useState("");
+  const [type, settype] = useState("history");
   return (
     <div>
       <div className=" relative grid h-10 grid-cols-5 px-5">
         {typeTab.map((data) => {
           return type === data.type ? (
             <div
-              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-blue-400 text-white shadow-sm"
+              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-blue-600 font-extrabold text-white shadow-sm"
               onClick={() => {
                 settype(data.type);
               }}

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  title:string
+  onClick: ()=> void
+};
 
-export default function ExpForWork() {
+export default function ExpForWork({title,onClick}:Props) {
   const [listData, setData] = useState([
     {
       name: "",
@@ -23,6 +26,7 @@ export default function ExpForWork() {
 
   return (
     <div>
+       {title}
       {listData.map((data, index) => (
         <div
           className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400"
@@ -30,6 +34,7 @@ export default function ExpForWork() {
         >
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
+             
               <input
                 onChange={(event) => {
                   //   setAffiliation(event.target.value);
@@ -105,7 +110,7 @@ export default function ExpForWork() {
               <div className="col-span-1">
                 <button
                   className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                  onClick={handleRemove}
+                  onClick={onClick}
                 >
                   -
                 </button>

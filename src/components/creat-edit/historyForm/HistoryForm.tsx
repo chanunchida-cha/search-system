@@ -14,6 +14,11 @@ function HistoryForm({}: Props): ReactElement {
   const [lastName, setlastName] = useState("");
   const [Affiliation, setAffiliation] = useState("");
 
+  const onClick = ()=>{
+    console.log("test");
+    
+  }
+
   return (
     <div>
       <div>ประวัติผู้ทรงคุณวุฒิ</div>
@@ -130,7 +135,7 @@ function HistoryForm({}: Props): ReactElement {
             </label>
           </div>
           <div>
-            <ExpForWork />
+            <ExpForWork title={"aaa"} onClick={onClick} />
           </div>
           <div className="mt-3">
             <label

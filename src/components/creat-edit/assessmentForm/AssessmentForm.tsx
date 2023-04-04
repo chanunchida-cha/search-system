@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
-import FeedbackInForm from "~/ui/create-edit/FeedbackInForm";
-import UploadFileInForm from "~/ui/create-edit/UploadFileInForm";
+import FeedbackInForm from "~/components/creat-edit/assessmentForm/FeedbackInForm";
+import UploadFileInForm from "~/components/creat-edit/assessmentForm/UploadFileInForm";
+import HeaderAssessment from "./HeaderAssessment";
 
 interface Props {}
 
@@ -112,40 +113,7 @@ function AssessmentForm({}: Props): ReactElement {
           </label>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-4">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            งบประมาณรายได้ / งบประมาณแผ่นดิน
-          </label>
-        </div>
-        <div className="col-span-2">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-        <div className="col-span-1">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            เรื่อง
-          </label>
-        </div>
-        <div className="col-span-5">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
+      <HeaderAssessment />
 
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-1">
@@ -180,46 +148,11 @@ function AssessmentForm({}: Props): ReactElement {
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-12">
           <label className="items-center justify-center font-extrabold leading-6 text-gray-900">
-          รายงานความก้าวหน้างานวิจัย
+            รายงานความก้าวหน้างานวิจัย
           </label>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-4">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            งบประมาณรายได้ / งบประมาณแผ่นดิน
-          </label>
-        </div>
-        <div className="col-span-2">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-1">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            เรื่อง
-          </label>
-        </div>
-        <div className="col-span-5">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
+      <HeaderAssessment />
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-2">
           <label className="items-center justify-center font-medium leading-6 text-gray-900">
@@ -235,46 +168,11 @@ function AssessmentForm({}: Props): ReactElement {
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-12">
           <label className="items-center justify-center font-extrabold leading-6 text-gray-900">
-          รายงานการวิจัย
+            รายงานการวิจัย
           </label>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-4">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            งบประมาณรายได้ / งบประมาณแผ่นดิน
-          </label>
-        </div>
-        <div className="col-span-2">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-1">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            เรื่อง
-          </label>
-        </div>
-        <div className="col-span-5">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
+      <HeaderAssessment />
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-2">
           <label className="items-center justify-center font-medium leading-6 text-gray-900">
@@ -290,46 +188,11 @@ function AssessmentForm({}: Props): ReactElement {
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-12">
           <label className="items-center justify-center font-extrabold leading-6 text-gray-900">
-          บทความวิจัย/บทความวิชาการ
+            บทความวิจัย/บทความวิชาการ
           </label>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-4">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            งบประมาณรายได้ / งบประมาณแผ่นดิน
-          </label>
-        </div>
-        <div className="col-span-2">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
-      <div className="mt-3 grid grid-cols-12 gap-2">
-        <div className="col-span-1">
-          <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
-            เรื่อง
-          </label>
-        </div>
-        <div className="col-span-5">
-          <input
-            // onChange={(event) => {
-            //   setAffiliation(event.target.value);
-            // }}
-            type="text"
-            name="price"
-            id="price"
-            className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          />
-        </div>
-      </div>
+      <HeaderAssessment />
       <div className="mt-3 grid grid-cols-12 gap-2">
         <div className="col-span-2">
           <label className="items-center justify-center font-medium leading-6 text-gray-900">

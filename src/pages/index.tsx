@@ -1,19 +1,15 @@
-import React, { ReactElement } from 'react'
-import HistoryForm from '~/components/creat-edit/historyForm/HistoryForm'
-import MainFeed from '~/components/main-feed/MainFeed'
+import React, { ReactElement } from "react";
+import HistoryForm from "~/components/creat-edit/historyForm/HistoryForm";
+import MainFeed from "~/components/main-feed/MainFeed";
 
-
-interface Props {
-  
-}
+interface Props {}
 
 function index({}: Props): ReactElement {
   return (
     <div>
-      <HistoryForm />
-      <MainFeed/>
+      <MainFeed />
     </div>
-  )
+  );
 }
 
-export default index
+export default index;

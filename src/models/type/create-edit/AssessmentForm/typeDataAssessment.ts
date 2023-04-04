@@ -1,5 +1,5 @@
 export type AssessmentResults = {
   from: string;
   to: string;
-  researchFile: File;
+  researchFile: File | null;
 };

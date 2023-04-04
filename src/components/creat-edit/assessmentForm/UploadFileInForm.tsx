@@ -1,32 +1,34 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
-type Props = {};
+type Props = {
+  state: AssessmentResults;
 
-const UploadFileInForm = (props: Props) => {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+};
+
+const UploadFileInForm = ({ state, onChange }: Props) => {
   return (
-
     <div className="grid grid-cols-12">
-    <div className="col-span-2">
-      <div>
-            <input
-            //   onChange={(event) => {
-            //     setAffiliation(event.target.value);
-            //   }}
-              type="file"
-            />
-          </div>
+      <div className="col-span-2">
+        <div>
+          <input
+            id="researchFile"
+            name="researchFile"
+            type="file"
+            onChange={onChange}
+          />
+        </div>
+      </div>
+      <div className="col-span-1">
+        <button
+          className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
+          // onClick={handleRemove}
+        >
+          -
+        </button>
+      </div>
     </div>
-    <div className="col-span-1">
-      <button
-        className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-        // onClick={handleRemove}
-      >
-        -
-      </button>
-    </div>
-  </div>
-
-    
   );
 };
 

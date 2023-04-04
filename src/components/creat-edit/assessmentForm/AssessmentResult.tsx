@@ -1,10 +1,20 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import UploadFileInForm from "./UploadFileInForm";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
+import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
+import { observer } from "mobx-react-lite";
 
 type Props = {};
 
-function AssessmentResult({}: Props) {
+const AssessmentResult = observer(({}: Props) => {
+  const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
+  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newAssessmentResults = {
+      ...assessmentResults,
+      [event.target.name]: event.target.value,
+    };
+    setAssessmentResult(newAssessmentResults);
+  };
   return (
     <BoxLayout title=" ผลการประเมิน">
       <>
@@ -16,9 +26,11 @@ function AssessmentResult({}: Props) {
           </div>
           <div className="... w-20 flex-initial">
             <input
+              value={assessmentResults.from}
+              onChange={handleFromChange}
               type="text"
-              name="yearbefor"
-              id="yearyearbefor"
+              name="from"
+              id="from"
               className=" w-full items-center rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
@@ -29,9 +41,11 @@ function AssessmentResult({}: Props) {
           </div>
           <div className="... w-20 flex-initial">
             <input
+              value={assessmentResults.to}
+              onChange={handleFromChange}
               type="text"
-              name="yearafter"
-              id="yearafter"
+              name="to"
+              id="to"
               className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
@@ -44,12 +58,15 @@ function AssessmentResult({}: Props) {
             </label>
           </div>
           <div className="col-span-8">
-            <UploadFileInForm />
+            <UploadFileInForm
+              state={assessmentResults}
+              onChange={handleFromChange}
+            />
           </div>
         </div>
       </>
     </BoxLayout>
   );
-}
+});
 
 export default AssessmentResult;

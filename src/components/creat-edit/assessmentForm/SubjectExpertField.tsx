@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
 
-const AddRemoveField = () => {
+const SubjectExpertField = () => {
   const [listData, setData] = useState([
     {
       name: "",
@@ -76,4 +76,4 @@ const AddRemoveField = () => {
   );
 };
 
-export default AddRemoveField;
+export default SubjectExpertField;

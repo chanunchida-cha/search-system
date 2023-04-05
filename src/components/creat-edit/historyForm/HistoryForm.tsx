@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import AddRemoveField from "~/components/creat-edit/assessmentForm/SubjectExpertField";
+import SubjectExpertField from "~/components/creat-edit/assessmentForm/SubjectExpertField";
 import ExpforResearch from "~/components/creat-edit/assessmentForm/ExpForResearch";
 import ExpForWork from "~/components/creat-edit/assessmentForm/ExpForWork";
 import LevelsField from "~/components/creat-edit/assessmentForm/LevelsField";
@@ -106,7 +106,7 @@ function HistoryForm({}: Props): ReactElement {
           </div>
 
           <div>
-            <AddRemoveField />
+            <SubjectExpertField />
           </div>
 
           <div className="mt-3">

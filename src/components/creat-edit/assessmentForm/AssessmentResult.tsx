@@ -1,12 +1,27 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import UploadFileInForm from "./UploadFileInForm";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
+import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
 type Props = {};
 
 const AssessmentResult = observer(({}: Props) => {
+  // const [data, setdata] = useState<AssessmentResults>({
+  //   to: "",
+  //   from: "",
+  //   researchFile: null,
+  // });
+
+  // const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const newData = {
+  //     ...data,
+  //     [event.target.name]: event.target.value,
+  //   };
+  //   setdata(newData);
+  // };
+
   const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
   const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newAssessmentResults = {
@@ -26,6 +41,7 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
+              // value={data.from}
               value={assessmentResults.from}
               onChange={handleFromChange}
               type="text"
@@ -41,6 +57,7 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
+              // value={data.to}
               value={assessmentResults.to}
               onChange={handleFromChange}
               type="text"
@@ -59,8 +76,8 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              state={assessmentResults}
-              onChange={handleFromChange}
+            // state={assessmentResults}
+            // onChange={handleFromChange}
             />
           </div>
         </div>

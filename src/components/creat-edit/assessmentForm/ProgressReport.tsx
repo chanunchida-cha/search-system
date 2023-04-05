@@ -18,7 +18,7 @@ function ProgressReport({}: Props) {
             </label>
           </div>
           <div className="col-span-8">
-            <UploadFileInForm />
+            <UploadFileInForm/>
           </div>
         </div>
         <FeedbackInForm />

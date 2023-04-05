@@ -2,9 +2,8 @@ import React, { ChangeEvent } from "react";
 import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
 type Props = {
-  state: AssessmentResults;
-
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  state?: AssessmentResults;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const UploadFileInForm = ({ state, onChange }: Props) => {

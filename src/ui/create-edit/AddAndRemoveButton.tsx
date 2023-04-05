@@ -3,9 +3,10 @@ import { useState } from "react";
 type Props = {
     onClickAdd: ()=> void
     onClickRemove: () => void
+    hidden:boolean
   };
 
-export default function AddAndRemoveButton({onClickAdd,onClickRemove}: Props) {
+export default function AddAndRemoveButton({onClickAdd,onClickRemove,hidden}: Props) {
   const [listData, setData] = useState([
     {
       name: "",
@@ -39,6 +40,7 @@ export default function AddAndRemoveButton({onClickAdd,onClickRemove}: Props) {
         <button
           className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
           onClick={() => onClickRemove()}
+          hidden={hidden}
         >
           -
         </button>

@@ -42,6 +42,7 @@ export default function LevelsField() {
   const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
     levels[0]!
   );
+  const hidden = listData.length === 1
   return (
     <div>
       {listData.map((data, index) => (
@@ -159,6 +160,7 @@ export default function LevelsField() {
           <AddAndRemoveButton
             onClickAdd={handleAdd}
             onClickRemove={() => handleRemove(index)}
+            hidden={hidden}
           />
 
           {/* <div className="col-span-1">

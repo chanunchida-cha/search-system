@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
 
 const AddRemoveField = () => {
   const [listData, setData] = useState([
@@ -44,10 +45,14 @@ const AddRemoveField = () => {
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
-          {listData.length - 1 === index && (
+          <AddAndRemoveButton
+            onClickAdd={handleAdd}
+            onClickRemove={() => handleRemove(index)}
+          />
+          {/* {listData.length - 1 === index && (
             <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
+              <button 
+                className="w-full rounded-md border border-blue-700 p-1.5 text-gray-900  placeholder:text-gray-400 bg-blue-700"
                 onClick={handleAdd}
               >
                 +
@@ -64,7 +69,7 @@ const AddRemoveField = () => {
                 -
               </button>
             </div>
-          )}
+          )} */}
         </div>
       ))}
     </div>

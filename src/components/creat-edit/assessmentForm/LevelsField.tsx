@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 
 const levels = [
   {
@@ -155,7 +156,12 @@ export default function LevelsField() {
             />
           </div>
 
-          <div className="col-span-1">
+          <AddAndRemoveButton
+            onClickAdd={handleAdd}
+            onClickRemove={() => handleRemove(index)}
+          />
+
+          {/* <div className="col-span-1">
             {listData.length - 1 === index && (
               <button
                 className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
@@ -174,7 +180,7 @@ export default function LevelsField() {
                 -
               </button>
             )}
-          </div>
+          </div> */}
         </div>
       ))}
     </div>

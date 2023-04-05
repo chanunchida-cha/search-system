@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from "react";
-import AddRemoveField from "~/ui/create-edit/AddRemoveField";
-import ExpforResearch from "~/ui/create-edit/ExpForResearch";
-import ExpForWork from "~/ui/create-edit/ExpForWork";
-import LevelsField from "~/ui/create-edit/LevelsField";
-import ResearchResult from "~/ui/create-edit/ResearchResult";
+import AddRemoveField from "~/components/creat-edit/assessmentForm/SubjectExpertField";
+import ExpforResearch from "~/components/creat-edit/assessmentForm/ExpForResearch";
+import ExpForWork from "~/components/creat-edit/assessmentForm/ExpForWork";
+import LevelsField from "~/components/creat-edit/assessmentForm/LevelsField";
+import ResearchResult from "~/components/creat-edit/assessmentForm/ResearchResult";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 
@@ -24,7 +24,9 @@ function HistoryForm({}: Props): ReactElement {
       <div>ประวัติผู้ทรงคุณวุฒิ</div>
 
       <div className="grid grid-cols-4">
-        <div className="col-span-1">{/*  */}</div>
+        <div className="col-span-1">
+          {/* <PreviewImage /> */}
+        </div>
         <div className="col-span-3">
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-1">

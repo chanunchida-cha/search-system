@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 
 type Props = {};
 
@@ -24,7 +25,10 @@ export default function ExpforResearch() {
   return (
     <div>
       {listData.map((data, index) => (
-        <div className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400" key={index}>
+        <div
+          className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400"
+          key={index}
+        >
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
               <input
@@ -88,6 +92,12 @@ export default function ExpforResearch() {
             />
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
+            <AddAndRemoveButton
+              onClickAdd={handleAdd}
+              onClickRemove={() => handleRemove(index)}
+            />
+          </div>
+          {/* <div className="mt-3 grid grid-cols-12 gap-2">
             {listData.length - 1 === index && (
               <div className="col-span-1">
                 <button
@@ -108,7 +118,7 @@ export default function ExpforResearch() {
                 </button>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       ))}
     </div>

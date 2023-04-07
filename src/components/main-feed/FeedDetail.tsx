@@ -26,6 +26,7 @@ function FeedDetail({}: Props) {
             <div className="flex h-0.5 w-44 justify-start bg-[#0265ff]"></div>
 
             {/* BOX 1 */}
+            {/* 225 x 225*/}
             <div className="mt-3 flex flex-row">
               <div className="basis-3/12 ">
                 <Image

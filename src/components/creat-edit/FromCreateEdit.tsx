@@ -20,35 +20,34 @@ const typeTab = [
 function FromCreateEdit({}: Props): ReactElement {
   const [type, settype] = useState("history");
   return (
-    <div>
-      <div className=" relative grid h-10 grid-cols-5 px-5">
-        {typeTab.map((data) => {
-          return type === data.type ? (
-            <div
-              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-blue-600 font-extrabold text-white shadow-sm"
-              onClick={() => {
-                settype(data.type);
-              }}
-            >
-              {data.i18n}
-            </div>
-          ) : (
-            <div
-              className="flex justify-center rounded-tl-lg rounded-tr-lg bg-gray-200 text-black shadow-sm"
-              onClick={() => {
-                settype(data.type);
-              }}
-            >
-              {data.i18n}
-            </div>
-          );
-        })}
+    <>
+      <div className="mx-auto h-screen bg-gray-100">
+        <div className=" ml-16 mt-3 grid h-16 grid-cols-4">
+          {typeTab.map((data) => {
+            return type === data.type ? (
+              <div
+                className={`flex w-full items-center justify-center rounded-t-lg bg-[#668ff6] px-2 text-white shadow-lg`}
+                onClick={() => {
+                  settype(data.type);
+                }}
+              >
+                {data.i18n}
+              </div>
+            ) : (
+              <div
+                className={`mt-4 flex h-12 w-full items-center justify-center rounded-t-lg bg-[#d9e3f8] px-2 text-black shadow-lg`}
+                onClick={() => {
+                  settype(data.type);
+                }}
+              >
+                {data.i18n}
+              </div>
+            );
+          })}
+        </div>
+        <div>{type === "history" ? <HistoryForm /> : <AssessmentForm />}</div>
       </div>
-      <div className="rounded-3xl bg-white p-5 shadow-lg">
-        {" "}
-        {type === "history" ? <HistoryForm /> : <AssessmentForm />}
-      </div>
-    </div>
+    </>
   );
 }
 

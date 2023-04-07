@@ -260,7 +260,7 @@ function HistoryForm({}: Props): ReactElement {
             </label>
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
-            <div className="col-span-2">
+            <div className="col-span-3">
               <label
                 htmlFor="price"
                 className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -268,7 +268,7 @@ function HistoryForm({}: Props): ReactElement {
                 แบบประวัติ :
               </label>
             </div>
-            <div className="col-span-3">
+            <div className="col-span-9">
             <UploadFileInForm />
               {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
@@ -287,7 +287,7 @@ function HistoryForm({}: Props): ReactElement {
             </div>
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
-            <div className="col-span-4">
+            <div className="col-span-3">
               <label
                 htmlFor="price"
                 className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -295,34 +295,7 @@ function HistoryForm({}: Props): ReactElement {
                 แบบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
               </label>
             </div>
-            <div className="col-span-4">
-              <UploadFileInForm />
-              {/* <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                // onClick={handleRemove}
-              >
-                -
-              </button> */}
-            </div>
-          </div>
-          <div className="mt-3 grid grid-cols-12 gap-2">
-            <div className="col-span-2">
-              <label
-                htmlFor="price"
-                className="items-center justify-center font-medium leading-6 text-gray-900"
-              >
-                แบบสำเนาบัญชี :
-              </label>
-            </div>
-            <div className="col-span-4">
+            <div className="col-span-9">
               <UploadFileInForm />
               {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
@@ -346,28 +319,25 @@ function HistoryForm({}: Props): ReactElement {
                 htmlFor="price"
                 className="items-center justify-center font-medium leading-6 text-gray-900"
               >
+                แบบสำเนาบัญชี :
+              </label>
+            </div>
+            <div className="col-span-9">
+              <UploadFileInForm />
+            </div>
+          </div>
+          <div className="mt-3 grid grid-cols-12 gap-2">
+            <div className="col-span-3">
+              <label
+                htmlFor="price"
+                className="items-center justify-center font-medium leading-6 text-gray-900"
+              >
                 แบบสำเนาบัตรประชาชน :
               </label>
             </div>
-            <div className="col-span-4">
+            <div className="col-span-9">
               <UploadFileInForm />
             </div>
-            {/* <div className="col-span-3">
-              <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                -
-              </button>
-            </div> */}
           </div>
         </div>
       </div>

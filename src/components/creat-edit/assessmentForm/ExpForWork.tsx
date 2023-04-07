@@ -22,13 +22,11 @@ export default function ExpForWork({}: Props) {
     setData(list);
   };
 
-  const onClickAdd = () => {
-    console.log("onClickAdd");
-  };
+  // const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
+  //   levels[0]!
+  // );
 
-  const onClickRemove = () => {
-    console.log("onClickAdd");
-  };
+  const hidden = listData.length === 1;
 
   return (
     <div>
@@ -104,6 +102,7 @@ export default function ExpForWork({}: Props) {
             <AddAndRemoveButton
               onClickAdd={handleAdd}
               onClickRemove={() => handleRemove(index)}
+              hidden={hidden}
             />
           </div>
           {/* <div className="mt-3 grid grid-cols-12 gap-2">

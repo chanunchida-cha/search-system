@@ -121,8 +121,8 @@ function HistoryForm({}: Props): ReactElement {
                 setAffiliation(event.target.value);
               }}
               type="text"
-              name="price"
-              id="price"
+              name="myUniversity"
+              id="myUniversity"
               className="w-3/4 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
@@ -135,7 +135,7 @@ function HistoryForm({}: Props): ReactElement {
             </label>
           </div>
           <div>
-            <ExpForWork title={"aaa"} onClick={onClick} />
+            <ExpForWork />
           </div>
           <div className="mt-3">
             <label

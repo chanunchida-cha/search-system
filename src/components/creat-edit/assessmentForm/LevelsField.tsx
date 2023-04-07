@@ -42,7 +42,9 @@ export default function LevelsField() {
   const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
     levels[0]!
   );
+
   const hidden = listData.length === 1;
+  
   return (
     <div>
       {listData.map((data, index) => (

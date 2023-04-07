@@ -30,6 +30,8 @@ const SubjectExpertField = () => {
     setData(listOnchange);
   };
 
+  const hidden = listData.length === 1;
+
   return (
     <div className="list-data">
       {listData.map((data, index) => (
@@ -48,6 +50,7 @@ const SubjectExpertField = () => {
           <AddAndRemoveButton
             onClickAdd={handleAdd}
             onClickRemove={() => handleRemove(index)}
+            hidden={hidden}
           />
           {/* {listData.length - 1 === index && (
             <div className="col-span-1">

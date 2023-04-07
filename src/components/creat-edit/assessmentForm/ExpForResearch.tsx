@@ -22,6 +22,8 @@ export default function ExpforResearch() {
     setData(list);
   };
 
+  const hidden = listData.length === 1;
+
   return (
     <div>
       {listData.map((data, index) => (
@@ -95,6 +97,7 @@ export default function ExpforResearch() {
             <AddAndRemoveButton
               onClickAdd={handleAdd}
               onClickRemove={() => handleRemove(index)}
+              hidden={hidden}
             />
           </div>
           {/* <div className="mt-3 grid grid-cols-12 gap-2">

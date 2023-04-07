@@ -22,6 +22,8 @@ export default function ResearchResult() {
     setData(list);
   };
 
+  const hidden = listData.length === 1;
+
   return (
     <div>
       {listData.map((data, index) => (
@@ -92,6 +94,7 @@ export default function ResearchResult() {
             <AddAndRemoveButton
               onClickAdd={handleAdd}
               onClickRemove={() => handleRemove(index)}
+              hidden={hidden}
             />
             {/* {listData.length - 1 === index && (
               <div className="col-span-1">

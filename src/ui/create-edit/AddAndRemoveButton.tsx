@@ -7,21 +7,21 @@ type Props = {
   };
 
 export default function AddAndRemoveButton({onClickAdd,onClickRemove,hidden}: Props) {
-  const [listData, setData] = useState([
-    {
-      name: "",
-    },
-  ]);
+//   const [listData, setData] = useState([
+//     {
+//       name: "",
+//     },
+//   ]);
 
-  const handleAdd = () => {
-    setData([...listData, { name: "" }]);
-  };
+//   const handleAdd = () => {
+//     setData([...listData, { name: "" }]);
+//   };
 
-  const handleRemove = (index: number) => {
-    const list = [...listData];
-    list.splice(index, 1);
-    setData(list);
-  };
+//   const handleRemove = (index: number) => {
+//     const list = [...listData];
+//     list.splice(index, 1);
+//     setData(list);
+//   };
 
   return (
     <div className="grid grid-cols-12 gap-2">
@@ -38,7 +38,7 @@ export default function AddAndRemoveButton({onClickAdd,onClickRemove,hidden}: Pr
       {/* {listData.length > 1 && ( */}
       <div className="col-span-6">
         <button
-          className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
+          className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
           onClick={() => onClickRemove()}
           hidden={hidden}
         >

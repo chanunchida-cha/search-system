@@ -6,6 +6,7 @@ import LevelsField from "~/components/creat-edit/assessmentForm/LevelsField";
 import ResearchResult from "~/components/creat-edit/assessmentForm/ResearchResult";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
+import UploadFileInForm from "../assessmentForm/UploadFileInForm";
 
 interface Props {}
 
@@ -14,19 +15,16 @@ function HistoryForm({}: Props): ReactElement {
   const [lastName, setlastName] = useState("");
   const [Affiliation, setAffiliation] = useState("");
 
-  const onClick = ()=>{
+  const onClick = () => {
     console.log("test");
-    
-  }
+  };
 
   return (
     <div>
       <div>ประวัติผู้ทรงคุณวุฒิ</div>
 
       <div className="grid grid-cols-4">
-        <div className="col-span-1">
-          {/* <PreviewImage /> */}
-        </div>
+        <div className="col-span-1">{/* <PreviewImage /> */}</div>
         <div className="col-span-3">
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-1">
@@ -47,8 +45,8 @@ function HistoryForm({}: Props): ReactElement {
                   setFirstName(event.target.value);
                 }}
                 type="text"
-                name="price"
-                id="price"
+                name="firstName"
+                id="firstName"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400"
               />
             </div>
@@ -66,8 +64,8 @@ function HistoryForm({}: Props): ReactElement {
                   setlastName(event.target.value);
                 }}
                 type="text"
-                name="price"
-                id="price"
+                name="lastName"
+                id="lastName"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
@@ -271,7 +269,8 @@ function HistoryForm({}: Props): ReactElement {
               </label>
             </div>
             <div className="col-span-3">
-              <button
+            <UploadFileInForm />
+              {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
               >
@@ -280,11 +279,11 @@ function HistoryForm({}: Props): ReactElement {
             </div>
             <div className="col-span-1">
               <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
+                className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
                 // onClick={handleRemove}
               >
                 -
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
@@ -296,8 +295,9 @@ function HistoryForm({}: Props): ReactElement {
                 แบบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
               </label>
             </div>
-            <div className="col-span-3">
-              <button
+            <div className="col-span-4">
+              <UploadFileInForm />
+              {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
               >
@@ -310,7 +310,7 @@ function HistoryForm({}: Props): ReactElement {
                 // onClick={handleRemove}
               >
                 -
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
@@ -322,8 +322,9 @@ function HistoryForm({}: Props): ReactElement {
                 แบบสำเนาบัญชี :
               </label>
             </div>
-            <div className="col-span-3">
-              <button
+            <div className="col-span-4">
+              <UploadFileInForm />
+              {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
               >
@@ -336,7 +337,7 @@ function HistoryForm({}: Props): ReactElement {
                 // onClick={handleRemove}
               >
                 -
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
@@ -348,7 +349,10 @@ function HistoryForm({}: Props): ReactElement {
                 แบบสำเนาบัตรประชาชน :
               </label>
             </div>
-            <div className="col-span-3">
+            <div className="col-span-4">
+              <UploadFileInForm />
+            </div>
+            {/* <div className="col-span-3">
               <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
@@ -358,12 +362,12 @@ function HistoryForm({}: Props): ReactElement {
             </div>
             <div className="col-span-1">
               <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
+                className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
                 // onClick={handleRemove}
               >
                 -
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

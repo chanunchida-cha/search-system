@@ -42,7 +42,7 @@ export default function LevelsField() {
   const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
     levels[0]!
   );
-  const hidden = listData.length === 1
+  const hidden = listData.length === 1;
   return (
     <div>
       {listData.map((data, index) => (
@@ -156,7 +156,6 @@ export default function LevelsField() {
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
-
           <AddAndRemoveButton
             onClickAdd={handleAdd}
             onClickRemove={() => handleRemove(index)}

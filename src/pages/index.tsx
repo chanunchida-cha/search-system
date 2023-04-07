@@ -1,16 +1,14 @@
-import React, { ReactElement } from 'react'
-import FromCreateEdit from '~/components/creat-edit/FromCreateEdit'
+import React, { ReactElement } from "react";
+import FromCreateEdit from "~/components/creat-edit/FromCreateEdit";
 
-interface Props {
-  
-}
+interface Props {}
 
 function index({}: Props): ReactElement {
   return (
-    <div>
-      <FromCreateEdit/>
-    </div>
-  )
+    <>
+      <FromCreateEdit />
+    </>
+  );
 }
 
-export default index
+export default index;

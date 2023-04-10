@@ -30,10 +30,11 @@ export default function NameFeed({}: Props): ReactElement {
 
   return (
     <>
+      {/* 
       <div className="flex w-full flex-col items-center justify-center rounded-lg border border-gray-200 bg-gray-100 p-8">
-        <h1>ชื่อผู้วิจัย : {name} </h1>
+        <h1 className="text-black">ชื่อผู้วิจัย : {name} </h1>
       </div>
-
+      */}
       <div className="mx-auto h-screen bg-gray-100">
         <div className=" ml-16 mt-3 grid h-16 grid-cols-4">
           {typeTab.map((data) => {
@@ -48,7 +49,7 @@ export default function NameFeed({}: Props): ReactElement {
               </div>
             ) : (
               <div
-                className={`flex w-full items-center justify-center rounded-t-lg bg-[#d9e3f8] px-2 text-black shadow-lg`}
+                className={`mt-4 flex h-12 w-full items-center justify-center rounded-t-lg bg-[#d9e3f8] px-2 text-black shadow-lg`}
                 onClick={() => {
                   settype(data.type);
                 }}

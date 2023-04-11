@@ -5,15 +5,9 @@ import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
 import { ContentResponse } from "~/models/type/main-feed/typeContent";
 
 class FeedStore {
-  content: ContentResponse = {
-    researcher_id: "",
-    university: "",
-    explore_year: "",
-    project_title: "",
-  };
 
   feedList: FeedListResponse = {
-    content: this.content,
+    content:[ ],
     totalPage: "",
     totalObject: "",
     currentPage: "",
@@ -30,32 +24,9 @@ class FeedStore {
           `http://localhost:3001/api/feedApi`
         );
         this.feedList = response.data;
-      console.log(this.feedList);
       
       
-      // if (searchType === "") {
-      //   const response = await axios.post(
-      //     `${process.env.REACT_APP_API}/lists`,
-      //     {
-      //       page: page,
-      //       limit: limit,
-      //     }
-      //   );
-      //   this.feedList = response.data;
-      //   console.log("NOT HAVE KEY INPUT VALUE");
-      //   console.log(this.feedList);
-      // } else {
-      //   const response = await axios.post(
-      //     `${process.env.REACT_APP_API}/lists`,
-      //     {
-      //       searchType: "",
-      //       page: page,
-      //       limit: limit,
-      //     }
-      //   );
-      //   this.feedList = response.data;
-      //   console.log(this.feedList);
-      // }
+    
 
     } catch (err: any) {
       Swal.fire({

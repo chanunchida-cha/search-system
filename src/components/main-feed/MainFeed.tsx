@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import MainFeedSearchBar from "./MainFeedSearchBar";
 import MainFeedTable from "./MainFeedTable";
 import { feedStore } from "~/store/main-feed/FeedStore";
+import { observer } from "mobx-react-lite";
 
 type Props = {};
 
-function MainFeed({}: Props) {
+const MainFeed = observer(({}: Props) => {
   useEffect(() => {
     const fetchFeedList = async () => {
       await feedStore.getFeedList("qeqwe", "0", "10");
     };
     fetchFeedList();
   }, []);
+  console.log("feed list",feedStore.feedList);
+  
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">
@@ -54,6 +57,5 @@ function MainFeed({}: Props) {
       </div>
     </>
   );
-}
-
+});
 export default MainFeed;

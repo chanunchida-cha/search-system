@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainFeedSearchBar from "./MainFeedSearchBar";
 import MainFeedTable from "./MainFeedTable";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
 type Props = {};
 
 function MainFeed({}: Props) {
+  useEffect(() => {
+    const fetchFeedList = async () => {
+      await feedStore.getFeedList("qeqwe", "0", "10");
+    };
+    fetchFeedList();
+  }, []);
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">

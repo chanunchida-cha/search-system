@@ -5,13 +5,14 @@ import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
 import { ContentResponse } from "~/models/type/main-feed/typeContent";
 
 class FeedStore {
-
   feedList: FeedListResponse = {
-    content:[ ],
-    totalPage: "",
-    totalObject: "",
-    currentPage: "",
-    isLast: "",
+    data: {
+      content: [],
+      totalPage: "",
+      totalObject: "",
+      currentPage: "",
+      isLast: "",
+    },
   };
 
   constructor() {
@@ -20,14 +21,8 @@ class FeedStore {
 
   async getFeedList(searchType: string, page: string, limit: string) {
     try {
-      const response = await axios.get(
-          `http://localhost:3001/api/feedApi`
-        );
-        this.feedList = response.data;
-      
-      
-    
-
+      const response = await axios.get(`http://localhost:3000/api/feedApi`);
+      this.feedList = response.data;
     } catch (err: any) {
       Swal.fire({
         icon: "error",

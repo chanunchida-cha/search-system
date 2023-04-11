@@ -13,7 +13,7 @@ const MainFeed = observer(({}: Props) => {
     };
     fetchFeedList();
   }, []);
-  console.log("feed list",feedStore.feedList);
+  console.log("feed list",feedStore.feedList.data.content?.[0]?.project_title);
   
   return (
     <>

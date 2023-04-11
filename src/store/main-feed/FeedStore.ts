@@ -26,12 +26,8 @@ class FeedStore {
 
   async getFeedList(searchType: string, page: string, limit: string) {
     try {
-      const response = await axios.post(
-          `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
-          {
-            page: page,
-            limit: limit,
-          }
+      const response = await axios.get(
+          `http://localhost:3001/api/feedApi`
         );
         this.feedList = response.data;
       console.log(this.feedList);

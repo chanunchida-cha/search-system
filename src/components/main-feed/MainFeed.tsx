@@ -9,12 +9,10 @@ type Props = {};
 const MainFeed = observer(({}: Props) => {
   useEffect(() => {
     const fetchFeedList = async () => {
-      await feedStore.getFeedList("qeqwe", "0", "10");
+      await feedStore.getFeedList("university", "1", "10");
     };
     fetchFeedList();
   }, []);
-  console.log("feed list",feedStore.feedList.content?.[0]?.project_title);
-  
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">
@@ -53,7 +51,7 @@ const MainFeed = observer(({}: Props) => {
         {/* END OF Heading and AddUserData */}
 
         <MainFeedSearchBar />
-        <MainFeedTable />
+        <MainFeedTable feedList={feedStore.feedList} />
       </div>
     </>
   );

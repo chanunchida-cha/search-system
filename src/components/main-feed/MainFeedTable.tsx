@@ -4,10 +4,14 @@ import Link from "next/link";
 import { main_feed_heading } from "~/models/const/main-feed/main_feed_heading";
 import FeedEditButton from "~/ui/main-feed/FeedEditButton";
 import FeedDeleteButton from "~/ui/main-feed/FeedDeleteButton";
+import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
 
-type Props = {};
+type Props = {
+  feedList: FeedListResponse;
+};
 
-function MainFeedTable({}: Props) {
+function MainFeedTable({ feedList }: Props) {
+  console.log("feed list", feedList.content);
   return (
     <>
       {/* TABLE CONTENT */}

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import UploadFileInForm from "./UploadFileInForm";
 import FeedbackInForm from "./FeedbackInForm";
 import HeaderAssessment from "./HeaderAssessment";
+import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
+import { observer } from "mobx-react-lite";
 
 type Props = {};
 
-function ResearchPropasal({}: Props) {
+const ResearchPropasal = observer(({}: Props) => {
+  const { researchPropasals, setResearchPropasals } = setStateAssessmentStore;
+  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const 
+      newAssessmentResults = {
+        ...researchPropasals,
+        [event.target.name]: event.target.value,
+      };
+      setResearchPropasals(newAssessmentResults);
+    };
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
@@ -20,12 +31,11 @@ function ResearchPropasal({}: Props) {
           </div>
           <div className="col-span-1">
             <input
-              // onChange={(event) => {
-              //   setAffiliation(event.target.value);
-              // }}
+              value={researchPropasals.project_point}
+              onChange={handleFromChange}
               type="text"
-              name="price"
-              id="price"
+              name="project_point"
+              id="project_point"
               className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
@@ -45,5 +55,5 @@ function ResearchPropasal({}: Props) {
     </BoxLayout>
   );
 }
-
+);
 export default ResearchPropasal;

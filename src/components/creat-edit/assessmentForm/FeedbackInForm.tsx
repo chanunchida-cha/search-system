@@ -50,18 +50,17 @@ const FeedbackInForm = (props: Props) => {
         </div>
         <div className=" col-span-1">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input type="checkbox" />
+            <input type="radio" name="feedback_assessment" />
             มี
           </label>
         </div>
         <div className=" col-span-1">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input className=" ml-2" type="checkbox" />
+            <input className=" ml-2" type="radio" name="feedback_assessment"/>
             ไม่มี
           </label>
         </div>
       </div>
-
       <div className="mt-3 ml-10 grid grid-cols-12 gap-2">
         <div className="col-span-3">
           <label className="items-center justify-center font-medium text-gray-900">
@@ -70,13 +69,13 @@ const FeedbackInForm = (props: Props) => {
         </div>
         <div className=" col-span-1">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input type="checkbox" />
+            <input type="radio" name="feedback_project" />
             มี
           </label>
         </div>
         <div className=" col-span-1">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input className=" ml-2" type="checkbox" />
+            <input className=" ml-2" type="radio" name="feedback_project"/>
             ไม่มี
           </label>
         </div>
@@ -93,13 +92,13 @@ const FeedbackInForm = (props: Props) => {
       <div className="mt-3 ml-10 grid grid-cols-12 gap-2">
         <div className=" col-span-2">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input type="checkbox" />
+            <input type="radio" name="time_assessment"/>
             ตามกำหนด
           </label>
         </div>
         <div className=" col-span-2">
           <label className="items-center justify-center font-medium text-gray-900">
-            <input className=" ml-2" type="checkbox" />
+            <input className=" ml-2" type="radio" name="time_assessment"/>
             เกินกำหนด
           </label>
         </div>

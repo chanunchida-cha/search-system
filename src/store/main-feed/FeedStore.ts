@@ -17,7 +17,7 @@ class FeedStore {
     makeAutoObservable(this);
   }
 
-  async getFeedList(searchType: string, page: number, limit: number) {
+  async getFeedList(searchType: string, page: number, limit: number, searchText: string) {
     try {
       // const response = await axios.get(`http://localhost:3000/api/feedApi`);
       if (searchType == "") {
@@ -34,7 +34,7 @@ class FeedStore {
         const response = await axios.post(
             `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
             {
-              researcher_name: searchType,
+              researcher_name: searchText,
               page: page,
               limit: limit,
             }
@@ -44,8 +44,8 @@ class FeedStore {
       } else if (searchType == "university") {
         const response = await axios.post(
             `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
-            {
-              university: searchType,
+          {
+              university: searchText,
               page: page,
               limit: limit,
             }
@@ -56,7 +56,7 @@ class FeedStore {
         const response = await axios.post(
             `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
             {
-              explore_year: searchType,
+              explore_year: searchText,
               page: page,
               limit: limit,
             }
@@ -67,7 +67,7 @@ class FeedStore {
         const response = await axios.post(
             `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
             {
-              project_title: searchType,
+              project_title: searchText,
               page: page,
               limit: limit,
             }
@@ -75,15 +75,7 @@ class FeedStore {
         const result = response.data;
         this.feedList = result.data
       } 
-      const response = await axios.post(
-        `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
-        {
-          page: 1,
-          limit: 10,
-        }
-      );
-      const result = response.data;
-      this.feedList = result.data
+      
     } catch (err: any) {
       Swal.fire({
         icon: "error",

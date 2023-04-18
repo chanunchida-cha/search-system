@@ -18,10 +18,12 @@ const ResearchPropasal = observer(({}: Props) => {
       };
       setResearchPropasals(newAssessmentResults);
     };
+    console.log(researchPropasals);
+    
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
-        <HeaderAssessment />
+        <HeaderAssessment onChange={handleFromChange} state={researchPropasals} />
 
         <div className="mt-3 grid grid-cols-12 gap-2">
           <div className="col-span-1">

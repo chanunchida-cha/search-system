@@ -67,8 +67,12 @@ class SetStateAssessmentStore {
     this.progressReports = progressReports
   }
 
-  setReports = (Reports: ProgressReports)=>{
-    this.progressReports = progressReports
+  setReports = (reports: Reports)=>{
+    this.reports = reports
+  }
+
+  setResearchArticles = (researchArticles: ResearchArticles)=>{
+    this.researchArticles = researchArticles
   }
 
 }

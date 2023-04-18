@@ -8,20 +8,6 @@ import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/type
 type Props = {};
 
 const AssessmentResult = observer(({}: Props) => {
-  // const [data, setdata] = useState<AssessmentResults>({
-  //   to: "",
-  //   from: "",
-  //   researchFile: null,
-  // });
-
-  // const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const newData = {
-  //     ...data,
-  //     [event.target.name]: event.target.value,
-  //   };
-  //   setdata(newData);
-  // };
-
   const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
   const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newAssessmentResults = {
@@ -30,6 +16,9 @@ const AssessmentResult = observer(({}: Props) => {
     };
     setAssessmentResult(newAssessmentResults);
   };
+
+  console.log("assessmentResults", assessmentResults);
+
   return (
     <BoxLayout title=" ผลการประเมิน">
       <>
@@ -76,8 +65,8 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-            // state={assessmentResults}
-            // onChange={handleFromChange}
+              state={assessmentResults}
+              onChange={handleFromChange}
             />
           </div>
         </div>

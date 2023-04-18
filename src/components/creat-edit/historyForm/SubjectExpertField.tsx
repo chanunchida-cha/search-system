@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
+import React, { ChangeEvent,useState } from "react";
 import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
+import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
 
-const SubjectExpertField = () => {
+const SubjectExpertField = observer(() => {
+
   const [listData, setData] = useState([
     {
       name: "",
@@ -30,6 +33,15 @@ const SubjectExpertField = () => {
     setData(listOnchange);
   };
 
+  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
+  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>,index :number) => {
+    const newhistoryDataResults = {
+      ...historyDataResults.Program,
+      [event.target.name]: event.target.value,
+    };
+
+  };
+
   const hidden = listData.length === 1;
 
   return (
@@ -38,11 +50,12 @@ const SubjectExpertField = () => {
         <div className="mt-3 grid grid-cols-12 gap-2" key={index}>
           <div className="col-span-4">
             <input
-              name="name"
+              name="programName"
               type="text"
-              id="name"
+              id="programName"
               value={data.name}
-              onChange={(event) => handleChange(event, index)}
+              // onChange={(event) => handleChange(event, index)}
+              onChange={handleHistoryChange}
               required
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
@@ -77,6 +90,6 @@ const SubjectExpertField = () => {
       ))}
     </div>
   );
-};
+});
 
 export default SubjectExpertField;

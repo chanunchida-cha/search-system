@@ -89,6 +89,19 @@ const LevelsField = observer(({}: Props) => {
                                     {levels}
                                   </span>
                                 </div>
+                                {selected ? (
+                                  <span
+                                    className={classNames(
+                                      active ? "text-white" : "text-indigo-600",
+                                      "absolute inset-y-0 right-0 flex items-center pr-4"
+                                    )}
+                                  >
+                                    <CheckIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  </span>
+                                ) : null}
                               </>
                             )}
                           </Listbox.Option>

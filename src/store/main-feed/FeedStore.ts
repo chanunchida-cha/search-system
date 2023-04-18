@@ -25,8 +25,8 @@ class FeedStore {
       const response = await axios.post(
         `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
         {
-          page: "1",
-          limit: "10",
+          page: 1,
+          limit: 10,
         }
       );
       const result = response.data;

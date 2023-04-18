@@ -1,10 +1,16 @@
 import React, { ChangeEvent } from "react";
-import { ResearchPropasals } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
+import {
+  ProgressReports,
+  Reports,
+  ResearchArticles,
+  ResearchPropasals,
+} from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
 type Props = {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  state: ResearchPropasals;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  state?: ResearchPropasals | ProgressReports | Reports | ResearchArticles;
 };
+console.log();
 
 const HeaderAssessment = ({ onChange, state }: Props) => {
   return (
@@ -17,10 +23,10 @@ const HeaderAssessment = ({ onChange, state }: Props) => {
       <div className="col-span-2">
         <input
           type="text"
-          name={state.project_year}
-          id={state.project_year}
+          // name={Object.keys(state.project_year)[0]}
+          // id={Object.keys(state.project_year)[0]}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
         />
       </div>
       <div className="col-span-1">
@@ -31,10 +37,10 @@ const HeaderAssessment = ({ onChange, state }: Props) => {
       <div className="col-span-5">
         <input
           type="text"
-          name={state.project_title}
-          id={state.project_title}
+          // name={Object.keys(state!)[0]}
+          // id={Object.keys(state!)[0]}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
         />
       </div>
     </div>

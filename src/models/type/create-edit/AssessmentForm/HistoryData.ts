@@ -3,7 +3,6 @@ export type HistoryDataResults = {
     firstName: string;
     lastName: string;
     positionID: string;
-    degree: Degree[];
     Program: Program[];
     university: string;
     experience: Experience[];
@@ -15,7 +14,7 @@ export type HistoryDataResults = {
     // researchFile: File | null;
   };
 
-  type Degree = {
+export  type Degree = {
     degreeType : string;
     degreeProgram : string;
     degreeUniversity : string;

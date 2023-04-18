@@ -5,8 +5,7 @@ type Props = {
     onClickRemove: () => void
     hidden:boolean
   };
-
-export default function AddAndRemoveButton({onClickAdd,onClickRemove,hidden}: Props) {
+const AddAndRemoveButton=({onClickAdd,onClickRemove,hidden}: Props) =>{
 //   const [listData, setData] = useState([
 //     {
 //       name: "",
@@ -49,3 +48,5 @@ export default function AddAndRemoveButton({onClickAdd,onClickRemove,hidden}: Pr
     </div>
   );
 }
+
+export default AddAndRemoveButton;

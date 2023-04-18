@@ -58,10 +58,19 @@ class SetStateAssessmentStore {
     console.log(this.assessmentResults);
   };
 
-  setResearchPropasals = (assessmentData: ResearchPropasals) => {
-    this.researchPropasals = assessmentData;
+  setResearchPropasals = (researchPropasals: ResearchPropasals) => {
+    this.researchPropasals = researchPropasals;
     console.log(this.researchPropasals);
   };
+
+  setProgressReports = (progressReports: ProgressReports)=>{
+    this.progressReports = progressReports
+  }
+
+  setReports = (Reports: ProgressReports)=>{
+    this.progressReports = progressReports
+  }
+
 }
 
 export const setStateAssessmentStore = new SetStateAssessmentStore();

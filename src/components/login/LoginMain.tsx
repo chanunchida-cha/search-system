@@ -1,11 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
+import { loginStore } from "~/store/login/LoginStore";
 
 type Props = {};
 
-function loginMain({ }: Props) {
+const loginMain = observer(({ }: Props) => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  
+  const loginSubmit = async () => {
+    await loginStore.getLogin(userName,userPassword)
+  }
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-white p-8">
@@ -14,7 +20,7 @@ function loginMain({ }: Props) {
           <p className="text-2xl font-extrabold text-blue-600">System Name</p>
         </div>
 
-        <form className="mx-2 md:mx-10 mt-5">
+        <form className="mx-2 md:mx-10 mt-5" onSubmit={loginSubmit}>
           <div className="mb-4">
             <label
               form="email"
@@ -55,8 +61,8 @@ function loginMain({ }: Props) {
               required
               pattern="[a-z0-9]{1,15}"
               title="Password should be digits (0 to 9) or alphabets (a to z)."
-              maxLength={8}
-              minLength={8}
+              maxLength={6}
+              minLength={6}
             />
           </div>
 
@@ -73,6 +79,7 @@ function loginMain({ }: Props) {
     </div>
 
   );
-}
+  
+});
 
 export default loginMain;

@@ -75,6 +75,15 @@ class FeedStore {
         const result = response.data;
         this.feedList = result.data
       } 
+      const response = await axios.post(
+        `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+        {
+          page: 1,
+          limit: 10,
+        }
+      );
+      const result = response.data;
+      this.feedList = result.data
     } catch (err: any) {
       Swal.fire({
         icon: "error",

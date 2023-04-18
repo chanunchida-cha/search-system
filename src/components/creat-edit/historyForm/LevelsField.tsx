@@ -1,7 +1,11 @@
-import { Fragment, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
+import { observer } from "mobx-react-lite";
+import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+
+interface Props {}
 
 const levels = [
   {
@@ -22,15 +26,20 @@ function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function LevelsField() {
+const LevelsField = observer(({}: Props) => {
   const [listData, setData] = useState([
     {
-      name: "",
+      degreeType: "",
+      degreeProgram: "",
+      degreeUniversity: "",
     },
   ]);
 
   const handleAdd = () => {
-    setData([...listData, { name: "" }]);
+    setData([
+      ...listData,
+      { degreeType: "", degreeProgram: "", degreeUniversity: "" },
+    ]);
   };
 
   const handleRemove = (index: number) => {
@@ -43,8 +52,32 @@ export default function LevelsField() {
     levels[0]!
   );
 
+  // const handleChangeInput = (
+  //   index: number,
+  //   event: ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   const newInputFields = inputFields.map((inputField, id) => {
+  //     if (index === id) {
+  //       inputField[event.target.name as keyof InputFields] = event.target.value;
+  //     }
+  //     return inputField;
+  //   });
+
+  //   setInputFields(newInputFields);
+  //   console.log(inputFields);
+  // };
+
+  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
+  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newhistoryDataResults = {
+      ...historyDataResults,
+      [event.target.name]: event.target.value,
+    };
+    setAssessmentResult(newhistoryDataResults);
+  };
+
   const hidden = listData.length === 1;
-  
+
   return (
     <div>
       {listData.map((data, index) => (
@@ -138,7 +171,10 @@ export default function LevelsField() {
           </div>
           <div className="col-span-2">
             <input
-              name="name"
+              value={historyDataResults.degree[index]?.degreeProgram}
+              onChange={handleHistoryChange}
+              name="degreeProgram"
+              id="degreeProgram"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
@@ -153,7 +189,10 @@ export default function LevelsField() {
           </div>
           <div className="col-span-3">
             <input
-              name="name"
+              value={historyDataResults.degree[index]?.degreeUniversity}
+              onChange={handleHistoryChange}
+              name="degreeUniversity"
+              id="degreeUniversity"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
@@ -188,4 +227,6 @@ export default function LevelsField() {
       ))}
     </div>
   );
-}
+});
+
+export default LevelsField;

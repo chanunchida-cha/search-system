@@ -1,9 +1,10 @@
+import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 
 type Props = {};
 
-export default function ExpForWork({}: Props) {
+const ExpforResearch = observer(({}:Props) => {
   const [listData, setData] = useState([
     {
       name: "",
@@ -22,15 +23,10 @@ export default function ExpForWork({}: Props) {
     setData(list);
   };
 
-  // const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
-  //   levels[0]!
-  // );
-
   const hidden = listData.length === 1;
 
   return (
     <div>
-      {/* {title} */}
       {listData.map((data, index) => (
         <div
           className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400"
@@ -45,13 +41,13 @@ export default function ExpForWork({}: Props) {
                 type="text"
                 name="price"
                 id="price"
-                className="w-full rounded-md border border-gray-300 py-1.5 text-gray-900  placeholder:text-gray-400 "
+                className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
             <div className="col-span-1">
               <label
                 htmlFor="price"
-                className="w-full items-center justify-center font-medium leading-6 text-gray-900"
+                className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
               >
                 ถึง
               </label>
@@ -70,7 +66,7 @@ export default function ExpForWork({}: Props) {
             <div className="col-span-1">
               <label
                 htmlFor="price"
-                className="w-full items-center justify-center font-medium leading-6 text-gray-900"
+                className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
               >
                 สังกัด
               </label>
@@ -120,7 +116,7 @@ export default function ExpForWork({}: Props) {
               <div className="col-span-1">
                 <button
                   className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                  onClick={onClick}
+                  onClick={handleRemove}
                 >
                   -
                 </button>
@@ -131,4 +127,6 @@ export default function ExpForWork({}: Props) {
       ))}
     </div>
   );
-}
+});
+
+export default ExpforResearch;

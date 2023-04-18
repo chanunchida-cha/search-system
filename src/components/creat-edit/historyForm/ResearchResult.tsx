@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
+import React, { ChangeEvent, useState } from "react";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
+import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
 
 type Props = {};
 
-export default function ExpforResearch() {
+const ResearchResult = observer(({}: Props) => {
   const [listData, setData] = useState([
     {
       name: "",
@@ -24,6 +26,22 @@ export default function ExpforResearch() {
 
   const hidden = listData.length === 1;
 
+  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
+  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newhistoryDataResults = {
+      ...historyDataResults,
+      [event.target.name]: event.target.value,
+    };
+
+    // const [listData, setData] = useState([
+    //   {
+    //     name: "",
+    //   },
+    // ]);
+    
+    setAssessmentResult(newhistoryDataResults);
+  };
+
   return (
     <div>
       {listData.map((data, index) => (
@@ -33,6 +51,14 @@ export default function ExpforResearch() {
         >
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
+              <label
+                htmlFor="price"
+                className="items-center justify-center font-medium leading-6 text-gray-900"
+              >
+                ชื่อผู้จัดทำ :
+              </label>
+            </div>
+            <div className="col-span-4">
               <input
                 onChange={(event) => {
                   //   setAffiliation(event.target.value);
@@ -43,12 +69,12 @@ export default function ExpforResearch() {
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label
                 htmlFor="price"
                 className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
               >
-                ถึง
+                ปีที่ตีพิมพ์ :
               </label>
             </div>
             <div className="col-span-2">
@@ -62,25 +88,14 @@ export default function ExpforResearch() {
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
-            <div className="col-span-1">
-              <label
-                htmlFor="price"
-                className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-              >
-                สังกัด
-              </label>
-            </div>
-            <div className="col-span-6">
-              <input
-                onChange={(event) => {
-                  //   setAffiliation(event.target.value);
-                }}
-                type="text"
-                name="price"
-                id="price"
-                className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-              />
-            </div>
+          </div>
+          <div className="mt-3">
+            <label
+              htmlFor="price"
+              className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
+            >
+              รายละเอียด :
+            </label>
           </div>
           <div className="mt-3">
             <input
@@ -99,9 +114,7 @@ export default function ExpforResearch() {
               onClickRemove={() => handleRemove(index)}
               hidden={hidden}
             />
-          </div>
-          {/* <div className="mt-3 grid grid-cols-12 gap-2">
-            {listData.length - 1 === index && (
+            {/* {listData.length - 1 === index && (
               <div className="col-span-1">
                 <button
                   className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
@@ -120,10 +133,11 @@ export default function ExpforResearch() {
                   -
                 </button>
               </div>
-            )}
-          </div> */}
+            )} */}
+          </div>
         </div>
       ))}
     </div>
   );
-}
+});
+export default ResearchResult;

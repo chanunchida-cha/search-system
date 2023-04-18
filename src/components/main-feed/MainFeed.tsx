@@ -9,7 +9,7 @@ type Props = {};
 const MainFeed = observer(({}: Props) => {
   useEffect(() => {
     const fetchFeedList = async () => {
-      await feedStore.getFeedList("university", "1", "10");
+      await feedStore.getFeedList("university", 1, 10);
     };
     fetchFeedList();
   }, []);

@@ -2,8 +2,8 @@ import { ContentResponse } from "./typeContent";
 
 export type FeedListResponse = {
   content: ContentResponse[];
-  totalPage: string;
-  totalObject: string;
-  currentPage: string;
-  isLast: string;
+  total_page: string;
+  total_object: string;
+  current_page: string;
+  is_last: string;
 };

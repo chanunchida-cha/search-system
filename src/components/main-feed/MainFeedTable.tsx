@@ -11,7 +11,7 @@ type Props = {
 };
 
 function MainFeedTable({ feedList }: Props) {
-  console.log("feed list", feedList.content);
+  console.log("feed list", feedList);
   return (
     <>
       {/* TABLE CONTENT */}

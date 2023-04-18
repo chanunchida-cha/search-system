@@ -13,9 +13,8 @@ const loginMain = observer(({ }: Props) => {
 
   
   const loginSubmit = async () => {
-    const bcrypt = require("bcrypt");
     console.log("test username",userName);
-    await loginStore.getLogin(userName,bcrypt.hash(userPassword, 10))
+    await loginStore.getLogin(userName,userPassword)
   }
 
   // useEffect(() => {

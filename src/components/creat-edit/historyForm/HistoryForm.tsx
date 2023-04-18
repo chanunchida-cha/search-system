@@ -1,25 +1,36 @@
-import React, { ReactElement, useState } from "react";
-import SubjectExpertField from "~/components/creat-edit/assessmentForm/SubjectExpertField";
-import ExpforResearch from "~/components/creat-edit/assessmentForm/ExpForResearch";
-import ExpForWork from "~/components/creat-edit/assessmentForm/ExpForWork";
-import LevelsField from "~/components/creat-edit/assessmentForm/LevelsField";
-import ResearchResult from "~/components/creat-edit/assessmentForm/ResearchResult";
+import React, { ChangeEvent, ReactElement, useState } from "react";
+import SubjectExpertField from "~/components/creat-edit/historyForm/SubjectExpertField";
+import ExpforResearch from "~/components/creat-edit/historyForm/ExpForResearch";
+import ExpForWork from "~/components/creat-edit/historyForm/ExpForWork";
+import LevelsField from "~/components/creat-edit/historyForm/LevelsField";
+import ResearchResult from "~/components/creat-edit/historyForm/ResearchResult";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 import UploadFileInForm from "../assessmentForm/UploadFileInForm";
 import { previewImage } from "~/ui/create-edit/PreviewImage";
+import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { observer } from "mobx-react-lite";
 
 interface Props {}
 
-function HistoryForm({}: Props): ReactElement {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [Affiliation, setAffiliation] = useState("");
+const HistoryForm = observer(({}: Props) => {
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setlastName] = useState("");
+  // const [Affiliation, setAffiliation] = useState("");
   const [image, setImage] = useState<File>();
   const [preview, setPreview] = useState("");
 
-  const onClick = () => {
-    console.log("test");
+  // const onClick = () => {
+  //   console.log("test");
+  // };
+
+  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
+  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newhistoryDataResults = {
+      ...historyDataResults,
+      [event.target.name]: event.target.value,
+    };
+    setAssessmentResult(newhistoryDataResults);
   };
 
   return (
@@ -127,9 +138,8 @@ function HistoryForm({}: Props): ReactElement {
 
                       <div className="col-span-3">
                         <input
-                          onChange={(event) => {
-                            setFirstName(event.target.value);
-                          }}
+                          value={historyDataResults.firstName}
+                          onChange={handleHistoryChange}
                           type="text"
                           name="firstName"
                           id="firstName"
@@ -146,9 +156,8 @@ function HistoryForm({}: Props): ReactElement {
                       </div>
                       <div className="col-span-3">
                         <input
-                          onChange={(event) => {
-                            setlastName(event.target.value);
-                          }}
+                          value={historyDataResults.lastName}
+                          onChange={handleHistoryChange}
                           type="text"
                           name="lastName"
                           id="lastName"
@@ -203,12 +212,14 @@ function HistoryForm({}: Props): ReactElement {
                     </div>
                     <div>
                       <input
-                        onChange={(event) => {
-                          setAffiliation(event.target.value);
-                        }}
+                        // onChange={(event) => {
+                        //   setAffiliation(event.target.value);
+                        // }}
+                        value={historyDataResults.university}
+                        onChange={handleHistoryChange}
                         type="text"
-                        name="myUniversity"
-                        id="myUniversity"
+                        name="university"
+                        id="university"
                         className="w-3/4 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                       />
                     </div>
@@ -257,7 +268,7 @@ function HistoryForm({}: Props): ReactElement {
                     <div className="mt-3 grid grid-cols-12 gap-2">
                       <div className=" col-span-4">
                         <label
-                          htmlFor="price"
+                          htmlFor="addressHome"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
                           ที่อยู่ที่สามารถติดต่อได้ (ที่บ้าน) :
@@ -265,12 +276,11 @@ function HistoryForm({}: Props): ReactElement {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          onChange={(event) => {
-                            setAffiliation(event.target.value);
-                          }}
+                          value={historyDataResults.addressHome}
+                          onChange={handleHistoryChange}
                           type="text"
-                          name="price"
-                          id="price"
+                          name="addressHome"
+                          id="addressHome"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -278,7 +288,7 @@ function HistoryForm({}: Props): ReactElement {
                     <div className="mt-3 grid grid-cols-12 gap-2">
                       <div className=" col-span-4">
                         <label
-                          htmlFor="price"
+                          htmlFor="addressWork"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
                           ที่อยู่ที่สามารถติดต่อได้ (ที่ทำงาน) :
@@ -286,12 +296,11 @@ function HistoryForm({}: Props): ReactElement {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          onChange={(event) => {
-                            setAffiliation(event.target.value);
-                          }}
+                          value={historyDataResults.addressWork}
+                          onChange={handleHistoryChange}
                           type="text"
-                          name="price"
-                          id="price"
+                          name="addressWork"
+                          id="addressWork"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -299,7 +308,7 @@ function HistoryForm({}: Props): ReactElement {
                     <div className="mt-3 grid grid-cols-12 gap-2">
                       <div className=" col-span-2">
                         <label
-                          htmlFor="price"
+                          htmlFor="phoneNumber"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
                           เบอร์ติดต่อ :
@@ -307,12 +316,11 @@ function HistoryForm({}: Props): ReactElement {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          onChange={(event) => {
-                            setAffiliation(event.target.value);
-                          }}
+                          value={historyDataResults.phoneNumber}
+                          onChange={handleHistoryChange}
                           type="text"
-                          name="price"
-                          id="price"
+                          name="phoneNumber"
+                          id="phoneNumber"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -320,7 +328,7 @@ function HistoryForm({}: Props): ReactElement {
                     <div className="mt-3 grid grid-cols-12 gap-2">
                       <div className=" col-span-2">
                         <label
-                          htmlFor="price"
+                          htmlFor="email"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
                           อีเมลล์ :
@@ -328,12 +336,11 @@ function HistoryForm({}: Props): ReactElement {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          onChange={(event) => {
-                            setAffiliation(event.target.value);
-                          }}
+                          value={historyDataResults.email}
+                          onChange={handleHistoryChange}
                           type="text"
-                          name="price"
-                          id="price"
+                          name="email"
+                          id="email"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -435,6 +442,6 @@ function HistoryForm({}: Props): ReactElement {
       </div>
     </>
   );
-}
+});
 
 export default HistoryForm;

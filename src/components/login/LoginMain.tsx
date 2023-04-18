@@ -1,17 +1,29 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loginStore } from "~/store/login/LoginStore";
+
 
 type Props = {};
 
 const loginMain = observer(({ }: Props) => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+
   
   const loginSubmit = async () => {
-    await loginStore.getLogin(userName,userPassword)
+    const bcrypt = require("bcrypt");
+    console.log("test username",userName);
+    await loginStore.getLogin(userName,bcrypt.hash(userPassword, 10))
   }
+
+  // useEffect(() => {
+  //   const loginSubmit = async () => {
+  //     await loginStore.getLogin("test8229@gmail.com",bcrypt.hash("123456", 10))
+  //   };
+  //   loginSubmit();
+  // }, []);
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-white p-8">
@@ -20,7 +32,7 @@ const loginMain = observer(({ }: Props) => {
           <p className="text-2xl font-extrabold text-blue-600">System Name</p>
         </div>
 
-        <form className="mx-2 md:mx-10 mt-5" onSubmit={loginSubmit}>
+        <form onSubmit={loginSubmit} className="mx-2 md:mx-10 mt-5">
           <div className="mb-4">
             <label
               form="email"

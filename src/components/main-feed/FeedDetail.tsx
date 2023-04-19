@@ -7,6 +7,8 @@ import FeedDetailHalfNewLineContent from "./FeedDetailHalfNewLineContent";
 import FeedDetailMultiNewLineContent from "./FeedDetailMultiNewLineContent";
 import FeedDetailThirdBoxNewLineContent from "./FeedDetailThirdBoxNewLineContent";
 import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
+import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
+import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -163,6 +165,15 @@ function FeedDetail({}: Props) {
             {/* END OF BOX 1 */}
           </div>
           {/* END OF CONTENT */}
+        </div>
+        <div className="mt-6 flex flex-row">
+          <Link href="/">
+            <FeedOneBoxButton
+              btnColor={"[#828282]"}
+              hoverColor={"[#668ff6]"}
+              title={"ย้อนกลับ"}
+            />
+          </Link>
         </div>
       </div>
     </>

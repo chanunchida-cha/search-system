@@ -17,7 +17,6 @@ function MainFeedTable({ feedList }: Props) {
   const updatePageCurrent = async (page: number) => {
     await feedStore.getFeedList("", page, 10, "");
   };
-  let currentPage = feedList.current_page;
   return (
     <>
       {/* TABLE CONTENT */}
@@ -50,7 +49,7 @@ function MainFeedTable({ feedList }: Props) {
                 </td>
                 <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
                   <Link
-                    href={"/" + "Suchart Thongyod"}
+                    href={"/" + item.researcher_name}
                     className="font-bold text-blue-500 hover:underline"
                   >
                     {item.researcher_name}
@@ -64,7 +63,9 @@ function MainFeedTable({ feedList }: Props) {
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                    <FeedEditButton />
+                    <Link href={"/" + item.researcher_name}>
+                      <FeedEditButton />
+                    </Link>
                     <FeedDeleteButton />
                   </div>
                 </td>
@@ -93,9 +94,19 @@ function MainFeedTable({ feedList }: Props) {
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-gray-700">
-              Showing <span className="font-medium">1</span> to{" "}
-              <span className="font-medium">10</span> of{" "}
-              <span className="font-medium">97</span> results
+              Showing{" "}
+              <span className="font-medium">
+                {(Number(feedList.current_page) + 1) * 10 - 9}
+              </span>{" "}
+              to{" "}
+              <span className="font-medium">
+                {(Number(feedList.current_page) + 1) * 10}
+              </span>{" "}
+              of{" "}
+              <span className="font-medium">
+                {Number(feedList.total_object) * Number(feedList.total_page)}
+              </span>{" "}
+              results
             </p>
           </div>
           <div>

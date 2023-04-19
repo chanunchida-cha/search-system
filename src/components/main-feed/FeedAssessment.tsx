@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import FeedAssessmentCheckbox from "./FeedAssessmentCheckbox";
+import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
+import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -79,6 +81,15 @@ function FeedAssessment({}: Props) {
             {/* END OF BOX 1 */}
           </div>
           {/* END OF CONTENT */}
+        </div>
+        <div className="mt-6 flex flex-row">
+          <Link href="/">
+            <FeedOneBoxButton
+              btnColor={"[#828282]"}
+              hoverColor={"[#668ff6]"}
+              title={"ย้อนกลับ"}
+            />
+          </Link>
         </div>
       </div>
     </>

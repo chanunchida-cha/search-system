@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
 import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ResearchPropasals } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
@@ -19,7 +20,7 @@ class SetStateAssessmentStore {
     project_estimate: true,
     project_recommend: true,
     period: true,
-    researchFile: null,
+    researchPropasalsFile: null,
   };
 
   progressReports: ProgressReports = {
@@ -28,7 +29,7 @@ class SetStateAssessmentStore {
     progress_estimate: true,
     progress_recommend: true,
     period: true,
-    researchFile: null,
+    progressReportsFile: null,
   };
 
   reports: Reports = {
@@ -37,7 +38,7 @@ class SetStateAssessmentStore {
     report_estimate: true,
     report_recommend: true,
     period: true,
-    researchFile: null,
+    reports: null,
   };
 
   researchArticles: ResearchArticles = {
@@ -46,21 +47,75 @@ class SetStateAssessmentStore {
     article_estimate: true,
     article_recommend: true,
     period: true,
-    researchFile: null,
+    researchArticles: null,
   };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setAssessmentResult = (assessmentResults: AssessmentResults) => {
-    this.assessmentResults = assessmentResults;
+  setAssessmentResult = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    if (type === "file" && files && files[0]) {
+      const fileType = files[0].type;
+      if (
+        fileType !== "image/png" &&
+        fileType !== "image/jpeg" &&
+        fileType !== "application/pdf"
+      ) {
+        return alert("Invalid file type");
+      }
+
+      const newAssessmentResult = {
+        ...this.assessmentResults,
+        [name]: files[0],
+      };
+      this.assessmentResults = newAssessmentResult;
+    } else {
+      const newAssessmentResult = {
+        ...this.assessmentResults,
+        [name]: value,
+      };
+      this.assessmentResults = newAssessmentResult;
+    }
+  };
+  removeFileAssessmentResults = () => {
+    this.assessmentResults.researchFile = null;
   };
 
-  setResearchPropasals = (researchPropasals: ResearchPropasals) => {
-    this.researchPropasals = researchPropasals;
-    console.log(this.researchPropasals);
+  setResearchPropasals = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    if (type === "file" && files && files[0]) {
+      const fileType = files[0].type;
+      if (
+        fileType !== "image/png" &&
+        fileType !== "image/jpeg" &&
+        fileType !== "application/pdf"
+      ) {
+        console.log("Invalid file type");
+        return;
+      }
+
+      const newResearchPropasals = {
+        ...this.researchPropasals,
+        [name]: files[0],
+      };
+      this.researchPropasals = newResearchPropasals;
+    } else {
+      const newValue = type === "checkbox" ? event.target.checked : value;
+      const newResearchPropasals = {
+        ...this.researchPropasals,
+        [name]: newValue,
+      };
+      this.researchPropasals = newResearchPropasals;
+    }
   };
+  removeFileResearchPropasals = () => {
+    this.researchPropasals.researchPropasalsFile = null;
+  };
+
 
   setProgressReports = (progressReports: ProgressReports) => {
     this.progressReports = progressReports;

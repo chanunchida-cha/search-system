@@ -9,22 +9,19 @@ import { observer } from "mobx-react-lite";
 type Props = {};
 
 const ResearchPropasal = observer(({}: Props) => {
-  const { researchPropasals, setResearchPropasals } = setStateAssessmentStore;
-  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newAssessmentResults = {
-      ...researchPropasals,
-      [event.target.name]: event.target.value,
-    };
-    setResearchPropasals(newAssessmentResults);
-  };
+  const { researchPropasals, setResearchPropasals,removeFileResearchPropasals } = setStateAssessmentStore;
+
   console.log(researchPropasals);
 
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
         <HeaderAssessment
-          onChange={handleFromChange}
-          state={researchPropasals}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasals(event)
+          }
+          year={researchPropasals.project_year}
+          title={researchPropasals.project_title}
         />
 
         <div className="mt-3 grid grid-cols-12 gap-2">
@@ -36,7 +33,9 @@ const ResearchPropasal = observer(({}: Props) => {
           <div className="col-span-1">
             <input
               value={researchPropasals.project_point}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setResearchPropasals(event)
+              }
               type="text"
               name="project_point"
               id="project_point"
@@ -52,7 +51,14 @@ const ResearchPropasal = observer(({}: Props) => {
             </label>
           </div>
           <div className="col-span-8">
-            <UploadFileInForm />
+            <UploadFileInForm
+              name="researchPropasalsFile"
+              state={researchPropasals.researchPropasalsFile!}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setResearchPropasals(event)
+              }
+              onClickButton={removeFileResearchPropasals}
+            />
           </div>
         </div>
         <FeedbackInForm />

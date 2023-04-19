@@ -11,7 +11,7 @@ export type ResearchPropasals = {
   project_estimate: boolean;
   project_recommend: boolean;
   period: boolean;
-  researchFile: File | null;
+  researchPropasalsFile: File | null;
 };
 
 export type ProgressReports = {
@@ -20,7 +20,7 @@ export type ProgressReports = {
   progress_estimate: boolean;
   progress_recommend: boolean;
   period: boolean;
-  researchFile: File | null;
+  progressReportsFile: File | null;
 };
 
 export type Reports = {
@@ -29,7 +29,7 @@ export type Reports = {
   report_estimate: boolean;
   report_recommend: boolean;
   period: boolean;
-  researchFile: File | null;
+  reports: File | null;
 };
 
 export type ResearchArticles = {
@@ -38,5 +38,5 @@ export type ResearchArticles = {
   article_estimate: boolean;
   article_recommend: boolean;
   period: boolean;
-  researchFile: File | null;
+  researchArticles: File | null;
 };

@@ -8,31 +8,11 @@ import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/type
 type Props = {};
 
 const AssessmentResult = observer(({}: Props) => {
-  const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
-  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {name,value,type,files} = event.target
-   
-    if (type === "file" && files && files[0]) {
-      const fileType = files[0].type;
-      if (fileType !== "image/png" && fileType !== "image/jpeg" && fileType !== "application/pdf") {
-        console.log("Invalid file type");
-        return;
-      }
-
-      const newResearchPropasals = {
-        ...assessmentResults,
-        [name]: files[0],
-      };
-     setAssessmentResult(newResearchPropasals);
-    } else {
-      const newValue = type === "checkbox" ? event.target.checked : value;
-      const newResearchPropasals = {
-        ...assessmentResults,
-        [name]: newValue,
-      };
-      setAssessmentResult(newResearchPropasals);
-    }
-  };
+  const {
+    assessmentResults,
+    setAssessmentResult,
+    removeFileAssessmentResults,
+  } = setStateAssessmentStore;
 
   console.log("assessmentResults", assessmentResults);
 
@@ -49,7 +29,9 @@ const AssessmentResult = observer(({}: Props) => {
             <input
               // value={data.from}
               value={assessmentResults.from}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResult(event)
+              }
               type="text"
               name="from"
               id="from"
@@ -65,7 +47,9 @@ const AssessmentResult = observer(({}: Props) => {
             <input
               // value={data.to}
               value={assessmentResults.to}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResult(event)
+              }
               type="text"
               name="to"
               id="to"
@@ -82,8 +66,12 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
+              name="researchFile"
               state={assessmentResults.researchFile!}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResult(event)
+              }
+              onClickButton={removeFileAssessmentResults}
             />
           </div>
         </div>

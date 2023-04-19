@@ -3,37 +3,45 @@ export type HistoryDataResults = {
   firstName: string;
   lastName: string;
   positionID: string;
-  Program: Program[];
+  // Program: Program[];
   university: string;
-  experience: Experience[];
-  explore: Explore[];
+  // experience: Experience[];
+  // explore: Explore[];
   addressHome: string;
   addressWork: string;
   email: string;
   phoneNumber: string;
-  // researchFile: File | null;
+  researchFile: File | null;
 };
 
-export  type Degree = {
-  degreeType : string;
-  degreeProgram : string;
-  degreeUniversity : string;
+export type Degree = {
+  degreeType: string;
+  degreeProgram: string;
+  degreeUniversity: string;
 };
 
-type Program = {
-  programName : string;
+export type Program = {
+  programName: string;
 };
 
-type Experience = {
-  experienceType : string;
-  experienceStart : string;
-  experienceEnd : string;
-  experienceUniversity : string;
-  experienceRemark : string;
+export type Experience = {
+  experienceType: string;
+  experienceStart: string;
+  experienceEnd: string;
+  experienceUniversity: string;
+  experienceRemark: string;
 };
 
-type Explore = {
-  exploreName : string;
-  exploreYear : string;
-  exploreDetail : string;
+export type ExpResearch = {
+  experienceType: string;
+  experienceStart: string;
+  experienceEnd: string;
+  experienceUniversity: string;
+  experienceRemark: string;
+};
+
+export type Explore = {
+  exploreName: string;
+  exploreYear: string;
+  exploreDetail: string;
 };

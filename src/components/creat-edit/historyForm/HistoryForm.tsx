@@ -132,11 +132,11 @@ const HistoryForm = observer(({}: Props) => {
                           ชื่อ :
                         </label>
                       </div>
-                      <div className="col-span-2">
+                      {/* <div className="col-span-2">
                         <SelectPrefix />
-                      </div>
+                      </div> */}
 
-                      <div className="col-span-3">
+                      <div className="col-span-4">
                         <input
                           value={historyDataResults.firstName}
                           onChange={handleHistoryChange}
@@ -154,7 +154,7 @@ const HistoryForm = observer(({}: Props) => {
                           นามสกุล :
                         </label>
                       </div>
-                      <div className="col-span-3">
+                      <div className="col-span-4">
                         <input
                           value={historyDataResults.lastName}
                           onChange={handleHistoryChange}

@@ -1,5 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import FeedDetailHalfLineContent from "./FeedDetailHalfLineContent";
+import FeedDetailOneLineContent from "./FeedDetailOneLineContent";
+import FeedDetailQuadLineContent from "./FeedDetailQuadLineContent";
+import FeedDetailHalfNewLineContent from "./FeedDetailHalfNewLineContent";
+import FeedDetailMultiNewLineContent from "./FeedDetailMultiNewLineContent";
+import FeedDetailThirdBoxNewLineContent from "./FeedDetailThirdBoxNewLineContent";
+import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -12,11 +19,14 @@ function FeedDetail({}: Props) {
           {/* CONTENT */}
           <div className="w-full p-10">
             <div className="flex w-44 justify-center">
-              <h1 className="text-xl text-black ">ประวัติผู้ทรงคุณวุฒิ</h1>
+              <h1 className="text-xl font-bold text-black ">
+                ประวัติผู้ทรงคุณวุฒิ
+              </h1>
             </div>
             <div className="flex h-0.5 w-44 justify-start bg-[#0265ff]"></div>
 
             {/* BOX 1 */}
+            {/* 225 x 225*/}
             <div className="mt-3 flex flex-row">
               <div className="basis-3/12 ">
                 <Image
@@ -28,542 +38,125 @@ function FeedDetail({}: Props) {
               </div>
               <div className="mt-12 flex basis-9/12 items-center">
                 <div className="flex w-full flex-col">
-                  <div className="flex w-full flex-row">
-                    <div className="basis-5/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ชื่อ : </p>
-                        <input
-                          type="text"
-                          name="username"
-                          id="username"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ชื่อ"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="basis-7/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">นามสกุล : </p>
-                        <input
-                          type="text"
-                          name="surname"
-                          id="surname"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="นามสกุล"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="flex w-full items-center">
-                      <p className="ml-3  text-black">ตำแหน่งทางวิชาการ : </p>
-                      <input
-                        type="text"
-                        name="position"
-                        id="position"
-                        className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                        placeholder="ตำแหน่ง"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">วุฒิการศึกษา : </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ปริญญาเอก</p>
-                        <p className="ml-3  text-black">สาขา</p>
-                        <input
-                          type="text"
-                          name="major"
-                          id="major"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขา"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">มหาวิทยาลัย</p>
-                        <input
-                          type="text"
-                          name="university"
-                          id="university"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="มหาวิทยาลัย"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-6/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ปริญญาเอก</p>
-                        <p className="ml-3  text-black">สาขา</p>
-                        <input
-                          type="text"
-                          name="major"
-                          id="major"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขา"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">มหาวิทยาลัย</p>
-                        <input
-                          type="text"
-                          name="university"
-                          id="university"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="มหาวิทยาลัย"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ปริญญาเอก</p>
-                        <p className="ml-3  text-black">สาขา</p>
-                        <input
-                          type="text"
-                          name="major"
-                          id="major"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขา"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">มหาวิทยาลัย</p>
-                        <input
-                          type="text"
-                          name="university"
-                          id="university"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="มหาวิทยาลัย"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
+                  <FeedDetailHalfLineContent
+                    titleLeft={"ชื่อ : "}
+                    titleRight={"นามสกุล : "}
+                    placeHolderLeft={"ชื่อ"}
+                    placeHolderRight={"นามสกุล"}
+                    basisLeft={"basis-5/12"}
+                    basisRight={"basis-7/12"}
+                    inputLeft={"w-3/4"}
+                    inputRight={"w-3/4"}
+                    mainClass={""}
+                  />
+                  <FeedDetailOneLineContent
+                    title={"ตำแหน่งทางวิชาการ : "}
+                    placeHolder={"ตำแหน่งทางวิชาการ"}
+                    mainClass={"mt-3"}
+                    inputClass={"w-2/4"}
+                    textClass={"font-bold"}
+                  />
+                  <FeedDetailHalfNewLineContent
+                    title={"วุฒิการศึกษา :"}
+                    major={"ปริญญาเอก"}
+                    section={"สาขา"}
+                    sectionPlaceHolder={"สาขา"}
+                    university={"มหาวิทยาลัย"}
+                    universityPlaceHolder={"มหาวิทยาลัย"}
+                    mainClass={"mt-3"}
+                  />
+                  <FeedDetailMultiNewLineContent
+                    title={"สาขาวิชาที่เชี่ยวชาญ :"}
+                    textClass={"font-bold"}
+                    placeHolder={"สาขาที่เชี่ยวชาญ"}
+                    mainClass={"mt-3"}
+                  />
+                  <FeedDetailOneNewLineContent
+                    title={"สังกัดมหาวิทยาลัย :"}
+                    mainClass={"mt-3"}
+                    mainTextClass={"font-bold"}
+                    placeHolder={"สังกัดมหาวิทยาลัย"}
+                  />
+                  <FeedDetailThirdBoxNewLineContent
+                    title={"ประสบการทำงาน :"}
+                    mainClass={"mt-3"}
+                    mainTextClass={"font-bold"}
+                    firstPlaceHolder={"2562"}
+                    firstConjunction={"ถึง"}
+                    secondPlaceHolder={"ปัจจุบัน"}
+                    secondConjunction={"สังกัด"}
+                    thirdPlaceHolder={"Software MIT"}
+                    textAreaPlaceholder={"เนื้อหาประสบการทำงาน"}
+                  />
+                  <FeedDetailThirdBoxNewLineContent
+                    title={"ประสบการณ์ด้านการวิจัย :"}
+                    mainClass={"mt-3"}
+                    mainTextClass={"font-bold"}
+                    firstPlaceHolder={"2562"}
+                    firstConjunction={"ถึง"}
+                    secondPlaceHolder={"ปัจจุบัน"}
+                    secondConjunction={"สังกัด"}
+                    thirdPlaceHolder={"Software MIT"}
+                    textAreaPlaceholder={"เนื้อหาประสบการณ์ด้านการวิจัย"}
+                  />
                   <div className="mt-3 flex w-full flex-row">
                     <div className="w-full">
                       <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">
-                          สาขาวิชาที่เชี่ยวชาญ :
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="expertMajor"
-                          id="expertMajor"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขาที่เชี่ยวชาญ"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="expertMajor"
-                          id="expertMajor"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขาที่เชี่ยวชาญ"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="expertMajor"
-                          id="expertMajor"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สาขาที่เชี่ยวชาญ"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">สังกัดมหาวิทยาลัย :</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="universityUnder"
-                          id="universityUnder"
-                          className="pointer-events-none ml-3 block w-5/6 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="สังกัดมหาวิทยาลัย"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ประสบการทำงาน :</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="workExperienceSince"
-                          id="workExperienceSince"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="2562"
-                        ></input>
-                        <p className="ml-3  text-black">ถึง</p>
-                      </div>
-                    </div>
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="workExperienceYear"
-                          id="workExperienceYear"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ปัจจุบัน"
-                        ></input>
-                        <p className="ml-3  text-black">สังกัด</p>
-                      </div>
-                    </div>
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="universitySection"
-                          id="universitySection"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="Software MIT "
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="workingDetail"
-                          id="workingDetail"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="เนื้อหาประสบการทำงาน"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">
-                          ประสบการณ์ด้านการวิจัย :
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="workExperienceResearchSince"
-                          id="workExperienceResearchSince"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="2562"
-                        ></input>
-                        <p className="ml-3  text-black">ถึง</p>
-                      </div>
-                    </div>
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="workExperienceResearchYear"
-                          id="workExperienceResearchYear"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ปัจจุบัน"
-                        ></input>
-                        <p className="ml-3  text-black">สังกัด</p>
-                      </div>
-                    </div>
-                    <div className="basis-4/12 ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="universitySectionExperience"
-                          id="universitySectionExperience"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="Software MIT "
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full ">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="researchDetail"
-                          id="researchDetail"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="เนื้อหาประสบการณ์ด้านการวิจัย"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">
+                        <p className="ml-3 font-bold text-black">
                           ผลงานวิจัยทรี่ตีพิมพ์ :
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ชื่อผู้จัดทำ : </p>
-                        <input
-                          type="text"
-                          name="authorName"
-                          id="authorName"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ชื่อผู้จัดทำ"
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="basis-6/12 ">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">ปีที่ตีพิมพ์ : </p>
-                        <input
-                          type="text"
-                          name="typeYear"
-                          id="typeYear"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ปีที่ตีพิมพ์"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">รายละเอียด :</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="detailText"
-                          id="detailText"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="รายละเอียดเนื้อหา"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">
-                          ที่อยู่ที่สามารถติดต่อได้ พร้อมเบอร์ติดต่อ และ E-mail
-                          address :
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-5/12">
-                      <div className="flex w-full items-center">
-                        <p className="mt-1 ml-3 text-black">
-                          ที่อยู่ที่สามารถติดต่อได้ (ที่บ้าน):
-                        </p>
-                      </div>
-                    </div>
-                    <div className="basis-7/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="addressUser"
-                          id="addressUser"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ที่อยู่บ้าน"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-5/12">
-                      <div className="flex w-full items-center">
-                        <p className="mt-1 ml-3 text-black">
-                          ที่อยู่ที่สามารถติดต่อได้ (ที่ทำงาน):
-                        </p>
-                      </div>
-                    </div>
-                    <div className="basis-7/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="addressCompany"
-                          id="addressCompany"
-                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ที่ทำงาน"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-2/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">เบอร์ติดต่อ :</p>
-                      </div>
-                    </div>
-                    <div className="basis-10/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="phoneUser"
-                          id="phoneUser"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="099-999-9999"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-2/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">อีเมลล์ :</p>
-                      </div>
-                    </div>
-                    <div className="basis-10/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="emailUser"
-                          id="emailUser"
-                          className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="dummy_user@vulcan.bluebik.com"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="w-full">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3  text-black">อื่นๆ :</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-3/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">เอกสารประวัติ :</p>
-                      </div>
-                    </div>
-                    <div className="basis-9/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="historyDocument"
-                          id="historyDocument"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="history.pdf"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-5/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">
-                          เอกสารคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
-                        </p>
-                      </div>
-                    </div>
-                    <div className="basis-7/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="appointDocument"
-                          id="appointDocument"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="appointing.pdf"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-3/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">
-                          เอกสารสำเนาบัญชี :
-                        </p>
-                      </div>
-                    </div>
-                    <div className="basis-9/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="accountCopyDocument"
-                          id="accountCopyDocument"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="book_bank.pdf"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex w-full flex-row">
-                    <div className="basis-4/12">
-                      <div className="flex w-full items-center">
-                        <p className="ml-3 mt-1 text-black">
-                          เอกสารสำเนาบัตรประชาชน :
-                        </p>
-                      </div>
-                    </div>
-                    <div className="basis-8/12">
-                      <div className="flex w-full items-center">
-                        <input
-                          type="text"
-                          name="idCardCopyDocument"
-                          id="idCardCopyDocument"
-                          className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-                          placeholder="ID_card.pdf"
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
+                  <FeedDetailHalfLineContent
+                    titleLeft={"ชื่อผู้จัดทำ : "}
+                    titleRight={"ปีที่ตีพิมพ์ : "}
+                    placeHolderLeft={"ชื่อผู้จัดทำ"}
+                    placeHolderRight={"ปีที่ตีพิมพ์"}
+                    basisLeft={"basis-6/12"}
+                    basisRight={"basis-6/12"}
+                    inputLeft={"w-2/4"}
+                    inputRight={"w-2/4"}
+                    mainClass={"mt-3"}
+                  />
+                  <FeedDetailOneNewLineContent
+                    title={"รายละเอียด :"}
+                    mainClass={"mt-3"}
+                    mainTextClass={"font-bold"}
+                    placeHolder={"รายละเอียดเนื้อหา"}
+                  />
+                  <FeedDetailQuadLineContent
+                    headTitle={
+                      "ที่อยู่ที่สามารถติดต่อได้ พร้อมเบอร์ติดต่อ และ E-mail address :"
+                    }
+                    firstTitle={"ที่อยู่ที่สามารถติดต่อได้ (ที่บ้าน):"}
+                    firstPlaceHolder={"ที่อยู่บ้าน"}
+                    firstClass={"w-2/4"}
+                    secondTitle={"ที่อยู่ที่สามารถติดต่อได้ (ที่ทำงาน):"}
+                    secondPlaceHolder={"ที่อยู่ที่ทำงาน"}
+                    secondClass={"w-2/4"}
+                    thirdTitle={"เบอร์ติดต่อ :"}
+                    thirdPlaceHolders={"099-999-9999"}
+                    thirdClass={"w-2/4"}
+                    fourthTitle={"อีเมลล์ :"}
+                    fourthPlaceHolder={"dummy_user@vulcan.bluebik.com"}
+                    fourthClass={"w-2/4"}
+                  />
+                  <FeedDetailQuadLineContent
+                    headTitle={"อื่นๆ :"}
+                    firstTitle={"เอกสารประวัติ :"}
+                    firstPlaceHolder={"history.pdf"}
+                    firstClass={"w-1/4"}
+                    secondTitle={"เอกสารคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :"}
+                    secondPlaceHolder={"appointing.pdf"}
+                    secondClass={"w-1/4"}
+                    thirdTitle={"เอกสารสำเนาบัญชี :"}
+                    thirdPlaceHolders={"book_bank.pdf"}
+                    thirdClass={"w-1/4"}
+                    fourthTitle={"เอกสารสำเนาบัตรประชาชน :"}
+                    fourthPlaceHolder={"ID_card.pdf"}
+                    fourthClass={"w-1/4"}
+                  />
                 </div>
               </div>
             </div>

@@ -1,10 +1,10 @@
 export const sidebar = [
   {
-    path: "",
-    icon: null,
-    title: "ข้อมูลรายชื่อผู้วิจัย",
+    path: "#",
+    title: "เมนู",
     type: "head",
   },
+
   {
     path: "/",
     icon: (
@@ -27,12 +27,7 @@ export const sidebar = [
     title: "ข้อมูลรายชื่อผู้วิจัย",
     type: "list",
   },
-  {
-    path: "",
-    icon: null,
-    title: "การจัดการข้อมูลผู้ทรงคุณวุฒิ",
-    type: "head",
-  },
+
   {
     path: "/create",
     icon: (

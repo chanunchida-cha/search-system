@@ -53,9 +53,8 @@ class SetStateAssessmentStore {
     makeAutoObservable(this);
   }
 
-  setAssessmentResult = (assessmentData: AssessmentResults) => {
-    this.assessmentResults = assessmentData;
-    console.log(this.assessmentResults);
+  setAssessmentResult = (assessmentResults: AssessmentResults) => {
+    this.assessmentResults = assessmentResults;
   };
 
   setResearchPropasals = (researchPropasals: ResearchPropasals) => {
@@ -63,18 +62,17 @@ class SetStateAssessmentStore {
     console.log(this.researchPropasals);
   };
 
-  setProgressReports = (progressReports: ProgressReports)=>{
-    this.progressReports = progressReports
-  }
+  setProgressReports = (progressReports: ProgressReports) => {
+    this.progressReports = progressReports;
+  };
 
-  setReports = (reports: Reports)=>{
-    this.reports = reports
-  }
+  setReports = (reports: Reports) => {
+    this.reports = reports;
+  };
 
-  setResearchArticles = (researchArticles: ResearchArticles)=>{
-    this.researchArticles = researchArticles
-  }
-
+  setResearchArticles = (researchArticles: ResearchArticles) => {
+    this.researchArticles = researchArticles;
+  };
 }
 
 export const setStateAssessmentStore = new SetStateAssessmentStore();

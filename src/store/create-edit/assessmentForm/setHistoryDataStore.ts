@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { makeAutoObservable } from "mobx";
-import { levels } from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/createEdit/degreeLevels";
 import {
   Degree,
   HistoryDataResults,

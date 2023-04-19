@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect, FormEvent } from "react";
 import { loginStore } from "~/store/login/LoginStore";
@@ -7,7 +6,7 @@ import { loginStore } from "~/store/login/LoginStore";
 
 type Props = {};
 
-const loginMain = observer(({ }: Props) => {
+const LoginMain = observer(({ }: Props) => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -94,4 +93,4 @@ const loginMain = observer(({ }: Props) => {
   
 });
 
-export default loginMain;
+export default LoginMain;

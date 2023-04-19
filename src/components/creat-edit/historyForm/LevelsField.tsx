@@ -4,7 +4,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
-import { levels } from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/createEdit/degreeLevels";
 
 interface Props {}
 
@@ -22,46 +22,6 @@ const LevelsField = observer(({}: Props) => {
     onChangeLavel,
     onChangeInputDegree,
   } = setHistoryDataStore;
-
-  const handleAdd = () => {
-    setData([
-      ...listData,
-      { degreeType: "", degreeProgram: "", degreeUniversity: "" },
-    ]);
-  };
-
-  const handleRemove = (index: number) => {
-    const list = [...listData];
-    list.splice(index, 1);
-    setData(list);
-  };
-
-  const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
-    levels[0]!
-  );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { name, value } = event.target;
-    const listOnchange = [...listData];
-    listOnchange[index][name] = value;
-    setData(listOnchange);
-  };
-
-  const { historyDegree, setHistoryDegree } = setHistoryDataStore;
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>,
-    index: number) => {
-   
-      
-      setHistoryDegree(newInputFields);
-      console.log(inputFields);
-      
-
-    // setHistoryDegree(listOnchange);
-  };
-  
 
   const hidden = listData.length === 1;
 
@@ -129,19 +89,6 @@ const LevelsField = observer(({}: Props) => {
                                     {levels}
                                   </span>
                                 </div>
-                                {selected ? (
-                                  <span
-                                    className={classNames(
-                                      active ? "text-white" : "text-indigo-600",
-                                      "absolute inset-y-0 right-0 flex items-center pr-4"
-                                    )}
-                                  >
-                                    <CheckIcon
-                                      className="h-5 w-5"
-                                      aria-hidden="true"
-                                    />
-                                  </span>
-                                ) : null}
                               </>
                             )}
                           </Listbox.Option>
@@ -163,8 +110,10 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-2">
             <input
-              value={historyDegree.degree[index]?.degreeProgram}
-              onChange={handleHistoryChange}
+              value={data.degreeProgram}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChangeInputDegree(index, event);
+              }}
               name="degreeProgram"
               id="degreeProgram"
               type="text"
@@ -181,8 +130,10 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-3">
             <input
-              value={historyDegree.degree[index]?.degreeUniversity}
-              onChange={handleHistoryChange}
+              value={data.degreeUniversity}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChangeInputDegree(index, event);
+              }}
               name="degreeUniversity"
               id="degreeUniversity"
               type="text"

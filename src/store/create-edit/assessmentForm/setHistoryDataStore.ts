@@ -1,12 +1,9 @@
 import { ChangeEvent } from 'react';
 import { makeAutoObservable } from "mobx";
+import { levels } from "~/models/const/createEdit/degreeLevels";
 import {
+  Degree,
   HistoryDataResults,
-  HistoryDegree,
-  HistoryExplore,
-  HistoryPexperience,
-  HistoryProgramResult,
-  Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 
 class SetHistoryDataStore {
@@ -14,30 +11,25 @@ class SetHistoryDataStore {
     firstName: "",
     lastName: "",
     positionID: "",
-
+    Program: [],
     university: "",
-
+    experience: [],
+    explore: [],
     addressHome: "",
     addressWork: "",
     email: "",
     phoneNumber: "",
   };
 
-  historyDegree: HistoryDegree = {
-    degree: [],
-  };
+  listData: Degree[] = [
+    {
+      degreeType: levels[0]!,
+      degreeProgram: "",
+      degreeUniversity: "",
+    },
+  ];
 
-  historyProgramResult: HistoryProgramResult = {
-    programList :[],
-  };
-
-  historyPexperience: HistoryPexperience = {
-    experience: [],
-  };
-
-  historyExplore: HistoryExplore = {
-    explore: [],
-  };
+  selectLevel:string = levels[0]!
 
   constructor() {
     makeAutoObservable(this);
@@ -48,22 +40,45 @@ class SetHistoryDataStore {
     console.log(this.historyDataResults);
   };
 
-  setHistoryDegree = (historyDegree: HistoryDegree) => {
-    this.historyDegree = historyDegree;
-    console.log(this.historyDegree);
+  addListData = () => {
+    this.listData = [
+      ...this.listData,
+      { degreeType: levels[0]!, degreeProgram: "", degreeUniversity: "" },
+    ];
   };
 
-  // setHistoryProgram = (historyProgram: HistoryProgramResult) => {
-  //   this.historyProgram = historyProgram;
-  //   console.log(this.historyProgram);
-  // };
-
-  setHistoryProgramResult = (historyProgramResult: HistoryProgramResult) => {
-    this.historyProgramResult = historyProgramResult;
-    console.log(this.historyProgramResult);
+  removeListData = (index: number) => {
+    const newListData = [...this.listData];
+    newListData.splice(index, 1);
+    this.listData = newListData;
   };
-
   
+  setSelectedLevel=(level:string)=>{
+    this.selectLevel = level
+
+  }
+
+  onChangeLavel = (index: number, selectedLevel: string) => {
+    const newInputFields = this.listData.map((inputField, id) => {
+      if (index === id) {
+        return {
+          ...inputField,
+          degreeType: selectedLevel,
+        };
+      }
+      return inputField;
+    });
+    this.listData = newInputFields;
+  };
+  onChangeInputDegree = (
+    index: number,
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newInputFields = [...this.listData]; 
+    const fieldToUpdate = event.target.name; 
+    newInputFields[index]![fieldToUpdate as keyof typeof newInputFields[number]] = event.target.value; 
+    this.listData=newInputFields
+  }
 }
 
 export const setHistoryDataStore = new SetHistoryDataStore();

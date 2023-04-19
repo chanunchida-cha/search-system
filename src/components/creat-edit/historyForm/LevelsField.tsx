@@ -4,7 +4,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
-import { levels } from "~/models/const/createEdit/degreeLevels";
+import { levels } from "~/models/const/degreeLevels";
 
 interface Props {}
 
@@ -13,6 +13,7 @@ function classNames(...classes: (false | null | undefined | string)[]) {
 }
 
 const LevelsField = observer(({}: Props) => {
+
   const {
     selectLevel,
     listData,

@@ -9,9 +9,14 @@ import { observer } from "mobx-react-lite";
 type Props = {};
 
 const ResearchPropasal = observer(({}: Props) => {
-  const { researchPropasals, setResearchPropasals,removeFileResearchPropasals } = setStateAssessmentStore;
+  const {
+    researchPropasals,
+    setResearchPropasals,
+    removeFileResearchPropasals,
+  } = setStateAssessmentStore;
 
   console.log(researchPropasals);
+  
 
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
@@ -22,6 +27,8 @@ const ResearchPropasal = observer(({}: Props) => {
           }
           year={researchPropasals.project_year}
           title={researchPropasals.project_title}
+          name_year={"project_year"}
+          name_title={"project_title"}
         />
 
         <div className="mt-3 grid grid-cols-12 gap-2">
@@ -61,7 +68,17 @@ const ResearchPropasal = observer(({}: Props) => {
             />
           </div>
         </div>
-        <FeedbackInForm />
+        <FeedbackInForm
+          name_period={"project_period"}
+          name_estimate={"project_estimate"}
+          name_recommend={"project_recommend"}
+          period={researchPropasals.project_period}
+          estimate={researchPropasals.project_estimate}
+          recommend={researchPropasals.project_recommend}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasals(event)
+          }
+        />
       </div>
     </BoxLayout>
   );

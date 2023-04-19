@@ -10,10 +10,12 @@ type Props = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   year: string;
   title: string;
+  name_year:string
+  name_title:string
 };
-console.log();
 
-const HeaderAssessment = ({ onChange, year, title }: Props) => {
+
+const HeaderAssessment = ({ onChange, year, title,name_year,name_title }: Props) => {
   return (
     <div className="mt-3 grid grid-cols-12 gap-2">
       <div className="col-span-4">
@@ -24,8 +26,8 @@ const HeaderAssessment = ({ onChange, year, title }: Props) => {
       <div className="col-span-2">
         <input
           type="text"
-          name="project_year"
-          id="project_year"
+          name={name_year}
+          id={name_year}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
           onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
           value={year}
@@ -39,8 +41,8 @@ const HeaderAssessment = ({ onChange, year, title }: Props) => {
       <div className="col-span-5">
         <input
           type="text"
-          name="project_title"
-          id="project_title"
+          name={name_title}
+          id={name_title}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
           onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
           value={title}

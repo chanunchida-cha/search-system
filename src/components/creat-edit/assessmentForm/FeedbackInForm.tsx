@@ -1,8 +1,23 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
+type Props = {
+  period: string;
+  estimate: string;
+  recommend: string;
+  name_period: string;
+  name_estimate: string;
+  name_recommend: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+};
 
-type Props = {};
-
-const FeedbackInForm = (props: Props) => {
+const FeedbackInForm = ({
+  period,
+  estimate,
+  recommend,
+  name_estimate,
+  name_period,
+  name_recommend,
+  onChange,
+}: Props) => {
   return (
     <div className="grid grid-cols-1">
       <div className="mt-3 grid grid-cols-12 gap-2">
@@ -19,18 +34,32 @@ const FeedbackInForm = (props: Props) => {
           </label>
         </div>
         <div className=" col-span-1">
-          <input type="radio" name="feedback_assessment" value="true" />
+          <input
+            type="radio"
+            id={name_estimate}
+            name={name_estimate}
+            value={"true"}
+            checked={estimate === "true"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
           <label
-            htmlFor="feedback_assessment"
+            htmlFor={name_estimate}
             className="items-center justify-center pl-2 font-medium text-gray-900"
           >
             มี
           </label>
         </div>
         <div className=" col-span-1">
-          <input type="radio" name="feedback_assessment" value="false"/>
+          <input
+            type="radio"
+            name={name_estimate}
+            id={name_estimate}
+            value={"false"}
+            checked={estimate === "false"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
           <label
-            htmlFor="feedback_assessment"
+            htmlFor={name_estimate}
             className="items-center justify-center pl-2 font-medium text-gray-900"
           >
             ไม่มี
@@ -44,18 +73,30 @@ const FeedbackInForm = (props: Props) => {
           </label>
         </div>
         <div className=" col-span-1">
-          <input  type="radio" name="feedback_project" value="true" />
+          <input
+            type="radio"
+            name={name_recommend}
+            value={"true"}
+            checked={recommend === "true"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
           <label
-            htmlFor="feedback_project"
+            htmlFor={name_recommend}
             className="items-center justify-center  pl-2 font-medium text-gray-900"
           >
             มี
           </label>
         </div>
         <div className=" col-span-1">
-          <input  type="radio" name="feedback_project" value="false" />
+          <input
+            type="radio"
+            name={name_recommend}
+            value={"false"}
+            checked={recommend === "false"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
           <label
-            htmlFor="feedback_project"
+            htmlFor={name_recommend}
             className="items-center justify-center  pl-2 font-medium text-gray-900"
           >
             ไม่มี
@@ -73,15 +114,33 @@ const FeedbackInForm = (props: Props) => {
 
       <div className="mt-3 ml-10 grid grid-cols-12 gap-2">
         <div className=" col-span-2">
-          <label className="items-center justify-center font-medium text-gray-900">
-            <input type="radio" name="time_assessment" />
+          <input
+            type="radio"
+            name={name_period}
+            value={"true"}
+            checked={period === "true"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
+          <label
+            htmlFor={name_period}
+            className="items-center justify-center  pl-2 font-medium text-gray-900"
+          >
             ตามกำหนด
           </label>
         </div>
         <div className=" col-span-2">
-          <label className="items-center justify-center font-medium text-gray-900">
-            <input className=" ml-2" type="radio" name="time_assessment" />
-            เกินกำหนด
+          <input
+            type="radio"
+            name={name_period}
+            value={"false"}
+            checked={period === "false"}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
+          />
+          <label
+            htmlFor={name_period}
+            className="items-center justify-center  pl-2 font-medium text-gray-900"
+          >
+            เลยกำหนด
           </label>
         </div>
       </div>

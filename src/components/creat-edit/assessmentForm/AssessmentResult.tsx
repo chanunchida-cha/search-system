@@ -10,11 +10,28 @@ type Props = {};
 const AssessmentResult = observer(({}: Props) => {
   const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
   const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newAssessmentResults = {
-      ...assessmentResults,
-      [event.target.name]: event.target.value,
-    };
-    setAssessmentResult(newAssessmentResults);
+    const {name,value,type,files} = event.target
+   
+    if (type === "file" && files && files[0]) {
+      const fileType = files[0].type;
+      if (fileType !== "image/png" && fileType !== "image/jpeg" && fileType !== "application/pdf") {
+        console.log("Invalid file type");
+        return;
+      }
+
+      const newResearchPropasals = {
+        ...assessmentResults,
+        [name]: files[0],
+      };
+     setAssessmentResult(newResearchPropasals);
+    } else {
+      const newValue = type === "checkbox" ? event.target.checked : value;
+      const newResearchPropasals = {
+        ...assessmentResults,
+        [name]: newValue,
+      };
+      setAssessmentResult(newResearchPropasals);
+    }
   };
 
   console.log("assessmentResults", assessmentResults);
@@ -65,7 +82,7 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              state={assessmentResults}
+              state={assessmentResults.researchFile!}
               onChange={handleFromChange}
             />
           </div>

@@ -1,13 +1,13 @@
+import { type } from "os";
+
 export type HistoryDataResults = {
     // prefix: string;
     firstName: string;
     lastName: string;
     positionID: string;
-    degree: Degree[];
-    Program: Program[];
+
     university: string;
-    experience: Experience[];
-    explore: Explore[];
+    
     addressHome: string;
     addressWork: string;
     email: string;
@@ -15,15 +15,31 @@ export type HistoryDataResults = {
     // researchFile: File | null;
   };
 
+  export type HistoryDegree = {
+    degree: Degree[];
+  }
+
   type Degree = {
     degreeType : string;
     degreeProgram : string;
     degreeUniversity : string;
   };
 
-  type Program = {
+  export type HistoryProgramResult = {
+    programList : Program[]
+  }
+
+  export type Program = {
     programName : string;
-  };
+  }
+
+  // export type Program = {
+  //   programName : string;
+  // };
+
+  export type HistoryPexperience = {
+    experience: Experience[];
+  }
 
   type Experience = {
     experienceType : string;
@@ -32,6 +48,10 @@ export type HistoryDataResults = {
     experienceUniversity : string;
     experienceRemark : string;
   };
+
+  export type HistoryExplore = {
+    explore: Explore[];
+  }
 
   type Explore = {
     exploreName : string;

@@ -2,19 +2,39 @@ import { observer } from "mobx-react-lite";
 import React, { ChangeEvent,useState } from "react";
 import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { HistoryProgramResult } from "~/models/type/create-edit/AssessmentForm/HistoryData";
+import { Props } from "@headlessui/react/dist/types";
 
-const SubjectExpertField = observer(() => {
+interface Props {}
+
+const SubjectExpertField = observer(({}:Props) => {
+
+  const { historyProgramResult, setHistoryProgramResult } = setHistoryDataStore;
+
+  // const handleProgramChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const newhistoryProgramResults = {
+  //     ...historyProgramResult,
+  //     [event.target.name]: event.target.value,
+  //   };
+  //   setHistoryProgramResult(historyProgram);
+  // };
 
   const [listData, setData] = useState([
     {
-      name: "",
+      programName: "",
     },
   ]);
+
+  const historyProgram: HistoryProgramResult = {
+    programList:[]
+  }
 
   console.log(listData);
 
   const handleAdd = () => {
-    setData([...listData, { name: "" }]);
+    setData([...listData, { programName: "" }]);
+
+    // historyProgram.programList = listData
   };
 
   const handleRemove = (index: number) => {
@@ -31,18 +51,29 @@ const SubjectExpertField = observer(() => {
     const listOnchange = [...listData];
     listOnchange[index][name] = value;
     setData(listOnchange);
+    historyProgram.programList = listData
+    setHistoryProgramResult(historyProgram);
+    console.log("asdasdsadasdsssss");
+    
+    console.log(historyProgramResult);
   };
 
-  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>,index :number) => {
-    const newhistoryDataResults = {
-      ...historyDataResults.Program,
-      [event.target.name]: event.target.value,
-    };
+  // console.log(historyProgramResult);
 
-  };
+  // const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
+  // const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>,index :number) => {
+  //   const newhistoryDataResults = {
+  //     ...historyDataResults.Program,
+  //     [event.target.name]: event.target.value,
+  //   };
+
+  // };
 
   const hidden = listData.length === 1;
+
+  // const addProgramList = () => {
+    
+  // };
 
   return (
     <div className="list-data">
@@ -53,9 +84,10 @@ const SubjectExpertField = observer(() => {
               name="programName"
               type="text"
               id="programName"
-              value={data.name}
-              // onChange={(event) => handleChange(event, index)}
-              onChange={handleHistoryChange}
+              value={data.programName}
+              onChange={(event) => handleChange(event, index)}
+              // value={historyProgramResult.programList}
+              // onChange={handleProgramChange}
               required
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />

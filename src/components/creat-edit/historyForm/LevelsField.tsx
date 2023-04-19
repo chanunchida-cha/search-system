@@ -52,29 +52,28 @@ const LevelsField = observer(({}: Props) => {
     levels[0]!
   );
 
-  // const handleChangeInput = (
-  //   index: number,
-  //   event: ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   const newInputFields = inputFields.map((inputField, id) => {
-  //     if (index === id) {
-  //       inputField[event.target.name as keyof InputFields] = event.target.value;
-  //     }
-  //     return inputField;
-  //   });
-
-  //   setInputFields(newInputFields);
-  //   console.log(inputFields);
-  // };
-
-  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newhistoryDataResults = {
-      ...historyDataResults,
-      [event.target.name]: event.target.value,
-    };
-    setAssessmentResult(newhistoryDataResults);
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { name, value } = event.target;
+    const listOnchange = [...listData];
+    listOnchange[index][name] = value;
+    setData(listOnchange);
   };
+
+  const { historyDegree, setHistoryDegree } = setHistoryDataStore;
+  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>,
+    index: number) => {
+   
+      
+      setHistoryDegree(newInputFields);
+      console.log(inputFields);
+      
+
+    // setHistoryDegree(listOnchange);
+  };
+  
 
   const hidden = listData.length === 1;
 
@@ -171,7 +170,7 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-2">
             <input
-              value={historyDataResults.degree[index]?.degreeProgram}
+              value={historyDegree.degree[index]?.degreeProgram}
               onChange={handleHistoryChange}
               name="degreeProgram"
               id="degreeProgram"
@@ -189,7 +188,7 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-3">
             <input
-              value={historyDataResults.degree[index]?.degreeUniversity}
+              value={historyDegree.degree[index]?.degreeUniversity}
               onChange={handleHistoryChange}
               name="degreeUniversity"
               id="degreeUniversity"

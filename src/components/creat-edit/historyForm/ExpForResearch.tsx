@@ -44,12 +44,12 @@ const ExpforResearch = observer(({}:Props) => {
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
               <input
-               value={data.experienceEnd}
+               value={data.experienceStart}
                onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChangeInputExpResearch(index, event);
                }}
-               name="experienceEnd"
-               id="experienceEnd"
+               name="experienceStart"
+               id="experienceStart"
                type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />

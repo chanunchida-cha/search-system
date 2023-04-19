@@ -4,36 +4,24 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { levels } from "~/models/const/degreeLevels";
 
 interface Props {}
-
-const levels = [
-  {
-    id: 1,
-    level: "ตรี",
-  },
-  {
-    id: 2,
-    level: "โท",
-  },
-  {
-    id: 3,
-    level: "เอก",
-  },
-];
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 const LevelsField = observer(({}: Props) => {
-  const [listData, setData] = useState([
-    {
-      degreeType: "",
-      degreeProgram: "",
-      degreeUniversity: "",
-    },
-  ]);
+  const {
+    selectLevel,
+    listData,
+    setSelectedLevel,
+    addListData,
+    removeListData,
+    onChangeLavel,
+    onChangeInputDegree,
+  } = setHistoryDataStore;
 
   const handleAdd = () => {
     setData([
@@ -79,17 +67,23 @@ const LevelsField = observer(({}: Props) => {
 
   return (
     <div>
-      {listData.map((data, index) => (
+      {listData.map((data, index: number) => (
         <div className="mt-3 grid grid-cols-12 gap-2" key={index}>
           <div className="col-span-2">
-            <Listbox value={selectLevel} onChange={setLevels}>
+            <Listbox
+              value={selectLevel}
+              onChange={(selectedLevel) => {
+                onChangeLavel(index, selectedLevel);
+                setSelectedLevel(selectedLevel);
+              }}
+            >
               {({ open }) => (
                 <>
                   <div className="relative ">
                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                       <span className="flex items-center">
                         <span className="ml-3 block truncate">
-                          {selectLevel?.level}
+                          {data.degreeType}
                         </span>
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -108,9 +102,9 @@ const LevelsField = observer(({}: Props) => {
                       leaveTo="opacity-0"
                     >
                       <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                        {levels.map((levels) => (
+                        {levels.map((levels, index) => (
                           <Listbox.Option
-                            key={levels.id}
+                            key={index}
                             className={({ active }) =>
                               classNames(
                                 active
@@ -132,10 +126,9 @@ const LevelsField = observer(({}: Props) => {
                                       "ml-3 block truncate"
                                     )}
                                   >
-                                    {levels.level}
+                                    {levels}
                                   </span>
                                 </div>
-
                                 {selected ? (
                                   <span
                                     className={classNames(
@@ -197,8 +190,8 @@ const LevelsField = observer(({}: Props) => {
             />
           </div>
           <AddAndRemoveButton
-            onClickAdd={handleAdd}
-            onClickRemove={() => handleRemove(index)}
+            onClickAdd={addListData}
+            onClickRemove={() => removeListData(index)}
             hidden={hidden}
           />
 

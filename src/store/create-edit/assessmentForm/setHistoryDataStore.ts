@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { makeAutoObservable } from "mobx";
 import {
   HistoryDataResults,

@@ -11,17 +11,21 @@ type Props = {};
 const ResearchPropasal = observer(({}: Props) => {
   const { researchPropasals, setResearchPropasals } = setStateAssessmentStore;
   const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const 
-      newAssessmentResults = {
-        ...researchPropasals,
-        [event.target.name]: event.target.value,
-      };
-      setResearchPropasals(newAssessmentResults);
+    const newAssessmentResults = {
+      ...researchPropasals,
+      [event.target.name]: event.target.value,
     };
+    setResearchPropasals(newAssessmentResults);
+  };
+  console.log(researchPropasals);
+
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
-        <HeaderAssessment />
+        <HeaderAssessment
+          onChange={handleFromChange}
+          state={researchPropasals}
+        />
 
         <div className="mt-3 grid grid-cols-12 gap-2">
           <div className="col-span-1">
@@ -40,6 +44,7 @@ const ResearchPropasal = observer(({}: Props) => {
             />
           </div>
         </div>
+
         <div className="mt-3 grid grid-cols-12 gap-2">
           <div className="col-span-2">
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
@@ -54,6 +59,5 @@ const ResearchPropasal = observer(({}: Props) => {
       </div>
     </BoxLayout>
   );
-}
-);
+});
 export default ResearchPropasal;

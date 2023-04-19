@@ -1,12 +1,13 @@
 import React, { ReactElement } from "react";
 import FromCreateEdit from "~/components/creat-edit/FromCreateEdit";
+import MainFeed from "~/components/main-feed/MainFeed";
 
 interface Props {}
 
 function index({}: Props): ReactElement {
   return (
     <>
-      <FromCreateEdit />
+      <MainFeed />
     </>
   );
 }

@@ -50,7 +50,7 @@ const ManageMain = observer(({}: Props) => {
           </div>
         </div>
         <ManageSearchBar />
-        <ManageTable />
+        <ManageTable manageList={manageStore.manageList}/>
       </div>
     </>
   );

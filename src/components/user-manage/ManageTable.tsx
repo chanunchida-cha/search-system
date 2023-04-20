@@ -4,10 +4,18 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { manage_heading } from '~/models/const/user-manage/manage_heading';
 import ManageEditButton from '~/ui/user-manage/ManageEditButton';
+import { ManageResponse } from '~/models/type/manage/typeManage';
+import { manageStore } from '~/store/manage/ManageStore';
 
-type Props = {};
+type Props = {
+  manageList : ManageResponse;
+};
 
-function ManageTable({} : Props) {
+function ManageTable({manageList} : Props) {
+  console.log("test manageList", manageList.total_page);
+  const updatePageCurrent = async (page: number) => {
+    await manageStore.getUserManage(page, 10);
+  };
     return (
         <>
           {/* TABLE CONTENT */}
@@ -30,26 +38,28 @@ function ManageTable({} : Props) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {manage_heading.map((item) => (
+                {manageList.content.map((item, index) => (
                   <tr className="bg-white">
-                    <td className="p-3 text-center text-sm text-gray-700">1</td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      <Link
-                        href={"/" + "Suchart Thongyod"}
-                        className="font-bold text-blue-500 hover:underline"
-                      >
-                        Suchart Thongyod
-                      </Link>
+                  <td className="p-3 text-center text-sm text-gray-700">
+                  {index + 1}
                     </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      Adminitrator
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      <div className="flex justify-center">
-                        <ManageEditButton />
-                      </div>
-                    </td>
-                  </tr>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    <Link
+                      href={"/" + "Suchart Thongyod"}
+                      className="font-bold text-blue-500 hover:underline"
+                    >
+                      Suchart Thongyod
+                    </Link>
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    Adminitrator
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    <div className="flex justify-center">
+                      <ManageEditButton />
+                    </div>
+                  </td>
+                </tr>
                 ))}
               </tbody>
             </table>
@@ -74,9 +84,15 @@ function ManageTable({} : Props) {
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">1</span> to{" "}
-                  <span className="font-medium">10</span> of{" "}
-                  <span className="font-medium">97</span> results
+                  Showing <span className="font-medium">
+                  {(Number(manageList.current_page) + 1) * 10 - 9}
+                  </span> to{" "}
+                  <span className="font-medium">
+                  {(Number(manageList.current_page) + 1) * 10}
+                    </span> of{" "}
+                  <span className="font-medium">
+                  {Number(manageList.total_object) * Number(manageList.total_page)}
+                    </span> results
                 </p>
               </div>
               <div>

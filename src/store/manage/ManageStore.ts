@@ -1,31 +1,32 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { ManageResponse } from "~/models/type/manage/ManageResponse";
+import { ManageResponse } from "~/models/type/manage/typeManage";
 
 class ManageStore {
-  manageData: ManageResponse = {
-    user_id: 1,
-    username: "",
-    role: "",
-    token: "",
-  };
+  manageList: ManageResponse = {
+    content: [],
+    total_page: "",
+    total_object: "",
+    current_page: "",
+    is_last: "",
+};
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  async getUserManage(userName : string, userPassword : string){
+  async getUserManage(page : number, limit : number){
     try {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/login`,
-            {
-                username : userName,
-                password : userPassword,
-            }
+          `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+          {
+            page: page,
+            limit: limit,
+          }
         );
         const result = response.data;
-        this.manageData = result.data;
+        this.manageList = result.data;
     }catch(err: any){
         Swal.fire({
             icon: "error",

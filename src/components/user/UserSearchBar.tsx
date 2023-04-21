@@ -4,7 +4,7 @@ import { manage_heading } from '~/models/const/user-manage/manage_heading';
 
 type Props = {};
 
-function ManageSearchBar({}: Props) {
+function UserSearchBar({}: Props) {
     return (
         <>
           {/* SearchBar and TypeSelection */}
@@ -69,4 +69,4 @@ function ManageSearchBar({}: Props) {
       );
 }
 
-export default ManageSearchBar
+export default UserSearchBar

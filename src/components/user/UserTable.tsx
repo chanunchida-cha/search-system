@@ -11,7 +11,7 @@ type Props = {
   manageList : ManageResponse;
 };
 
-function ManageTable({manageList} : Props) {
+function UserTable({manageList} : Props) {
   console.log("test manageList", manageList.total_page);
   const updatePageCurrent = async (page: number) => {
     await manageStore.getUserManage(page, 10);
@@ -163,4 +163,4 @@ function ManageTable({manageList} : Props) {
       );
 }
 
-export default ManageTable
+export default UserTable

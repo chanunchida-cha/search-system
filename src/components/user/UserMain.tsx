@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import ManageTable from "./ManageTable";
-import ManageSearchBar from "./ManageSearchBar";
+import UserTable from "./UserTable";
+import UserSearchBar from "./UserSearchBar";
 import { manageStore } from "~/store/manage/ManageStore";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 
 type Props = {};
-const ManageMain = observer(({}: Props) => {
+const UserMain = observer(({}: Props) => {
   const route = useRouter();
   useEffect(() => {
     const fecthManage = async () => {
@@ -55,11 +55,11 @@ const ManageMain = observer(({}: Props) => {
             </div>
           </div>
         </div>
-        <ManageSearchBar />
-        <ManageTable manageList={manageStore.manageList} />
+        <UserSearchBar />
+        <UserTable manageList={manageStore.manageList} />
       </div>
     </>
   );
 });
 
-export default ManageMain;
+export default UserMain;

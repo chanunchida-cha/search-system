@@ -1,14 +1,10 @@
-import React, { ReactElement } from "react";
-import AddUserAccount from "~/components/user-manage/AddUserAccount";
+import React from "react";
+import AddUserAccount from "~/components/user/AddUserAccount";
 
 interface Props {}
 
-function addUser({}: Props): ReactElement {
-  return (
-        <>
-          <AddUserAccount />
-        </>
-      );
+function addUser({}: Props) {
+  return <AddUserAccount />;
 }
 
 export default addUser;

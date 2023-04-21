@@ -27,7 +27,7 @@ export const sidebar = [
     type: "list",
   },
   {
-    path: "/manage",
+    path: "/user",
     icon: (
       <svg
         className="h-5 w-5"

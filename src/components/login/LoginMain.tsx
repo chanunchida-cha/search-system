@@ -12,7 +12,9 @@ const LoginMain = observer(({ }: Props) => {
 
   async function loginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await loginStore.getLogin(userName,userPassword)
+    await loginStore.getLogin(userName,userPassword);
+    console.log("test token",sessionStorage.getItem("token"))
+    
   }
 
   // useEffect(() => {

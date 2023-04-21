@@ -1,14 +1,18 @@
 import { type } from 'os'
 import React from 'react'
+import { useRouter } from 'next/router'
 import { manage_heading } from '~/models/const/user-manage/manage_heading';
 
 type Props = {};
 
 function ManageSearchBar({}: Props) {
+  const route = useRouter();
     return (
         <>
           {/* SearchBar and TypeSelection */}
-          <div className="mb-3 mt-5 grid h-12 md:mt-0">
+          <div className="mb-3 mt-5 grid h-12 md:mt-0" onClick={() => {
+            route.push("/create")
+          }}>
             <div className="flex items-center justify-end">
               {/* SearchBar */}
               <div className="relative w-2/3 md:w-2/5 lg:w-2/5">

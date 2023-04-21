@@ -5,6 +5,8 @@ import MainFeedTable from "./MainFeedTable";
 type Props = {};
 
 function MainFeed({}: Props) {
+  const token = sessionStorage.getItem("token");
+  console.log("test token", token)
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">

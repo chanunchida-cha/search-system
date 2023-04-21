@@ -26,8 +26,7 @@ class LoginStore {
                 }
             );
             const result = response.data;
-            sessionStorage.setItem("token",response.data.token)
-            console.log("test token store", result.data.token)
+            sessionStorage.setItem("token",result.data.token)
             this.loginData = result.data;
         }catch(err: any){
             Swal.fire({

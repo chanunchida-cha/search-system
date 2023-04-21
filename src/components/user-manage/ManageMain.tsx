@@ -1,15 +1,16 @@
-import React, {useEffect} from 'react'
-import ManageTable from './ManageTable';
-import ManageSearchBar from './ManageSearchBar';
-import { manageStore } from '~/store/manage/ManageStore';
-import { observer } from 'mobx-react-lite';
+import React, { useEffect } from "react";
+import ManageTable from "./ManageTable";
+import ManageSearchBar from "./ManageSearchBar";
+import { manageStore } from "~/store/manage/ManageStore";
+import { observer } from "mobx-react-lite";
+import { useRouter } from "next/router";
 
 type Props = {};
 const ManageMain = observer(({}: Props) => {
-
+  const route = useRouter();
   useEffect(() => {
     const fecthManage = async () => {
-      await manageStore.getUserManage(1,10)
+      await manageStore.getUserManage(1, 10);
     };
     fecthManage();
   }, []);
@@ -24,7 +25,12 @@ const ManageMain = observer(({}: Props) => {
               การจัดการบัญชีผู้ใช้
             </h1>
           </div>
-          <div className="flex items-center justify-start md:justify-end ">
+          <div
+            className="flex items-center justify-start md:justify-end "
+            onClick={() => {
+              route.push("/addUser");
+            }}
+          >
             <div className="mt-2  w-auto md:w-full lg:w-4/5 xl:w-3/5">
               <button className="flex w-full items-center justify-center rounded-lg bg-[#0265ff] p-1">
                 <svg
@@ -50,10 +56,10 @@ const ManageMain = observer(({}: Props) => {
           </div>
         </div>
         <ManageSearchBar />
-        <ManageTable manageList={manageStore.manageList}/>
+        <ManageTable manageList={manageStore.manageList} />
       </div>
     </>
   );
 });
 
-export default ManageMain
+export default ManageMain;

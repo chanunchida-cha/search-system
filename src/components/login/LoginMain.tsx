@@ -2,19 +2,20 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect, FormEvent } from "react";
 import { loginStore } from "~/store/login/LoginStore";
+import { useRouter } from "next/router";
 
 
 type Props = {};
 
 const LoginMain = observer(({ }: Props) => {
+  const route = useRouter();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   async function loginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     await loginStore.getLogin(userName,userPassword);
-    console.log("test token",sessionStorage.getItem("token"))
-    
+    route.push("/")
   }
 
   // useEffect(() => {

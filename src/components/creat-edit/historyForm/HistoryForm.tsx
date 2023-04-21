@@ -10,13 +10,30 @@ import UploadFileInForm from "../assessmentForm/UploadFileInForm";
 import { previewImage } from "~/utils/PreviewImage";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
 import { observer } from "mobx-react-lite";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 interface Props {}
 
 const HistoryForm = observer(({}: Props) => {
-  const { profile, preview, setProfile, setPreview } = setHistoryDataStore;
-  console.log(profile.profile);
-  
+  const {
+    profile,
+    preview,
+    setProfile,
+    setPreview,
+    historyFile,
+    setHistoryFile,
+    removeFileHistory,
+    orderFile,
+    setOrderFile,
+    removeFileOrder,
+    accountFile,
+    setAccountFile,
+    removeFileAccount,
+    idCardFile,
+    setIdCardFile,
+    removeFileIdCard,
+  } = setStateFile;
+  console.log(profile);
 
   const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
   const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -367,7 +384,14 @@ const HistoryForm = observer(({}: Props) => {
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="history_file"
+                          state={historyFile.history_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setHistoryFile(event)
+                          }
+                          onClickButton={removeFileHistory}
+                        />
                         {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
@@ -394,7 +418,14 @@ const HistoryForm = observer(({}: Props) => {
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="order_file"
+                          state={orderFile.order_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setOrderFile(event)
+                          }
+                          onClickButton={removeFileOrder}
+                        />
                         {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
@@ -421,7 +452,14 @@ const HistoryForm = observer(({}: Props) => {
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="account_file"
+                          state={accountFile.account_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setAccountFile(event)
+                          }
+                          onClickButton={removeFileAccount}
+                        />
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">
@@ -434,7 +472,14 @@ const HistoryForm = observer(({}: Props) => {
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="idCard_file"
+                          state={idCardFile.idCard_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setIdCardFile(event)
+                          }
+                          onClickButton={removeFileIdCard}
+                        />
                       </div>
                     </div>
                   </div>

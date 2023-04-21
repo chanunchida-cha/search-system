@@ -66,29 +66,9 @@ class SetHistoryDataStore {
     },
   ];
 
-  profile: Profile = {
-    profile: null,
-    directory_file: "profile",
-  };
-  HistoryFile = {
-    history_file: null,
-    directory_file: "history",
-  };
 
-  OrderFile = {
-    order_file: null,
-    directory_file: "order",
-  };
-  AccountFile = {
-    account_file: null,
-    directory_file: "account",
-  };
-  IdCardFile = {
-    idCard_file: null,
-    directory_file: "idcard",
-  };
 
-  preview: string = "";
+
 
   selectLevel: string = levels[0]!;
 
@@ -98,12 +78,6 @@ class SetHistoryDataStore {
     makeAutoObservable(this);
   }
 
-  setProfile = (image: File) => {
-    this.profile.profile = image;
-  };
-  setPreview = (objectUrl: string) => {
-    this.preview = objectUrl;
-  };
 
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;

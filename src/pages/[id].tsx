@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
 interface Props {}
 
@@ -18,23 +19,34 @@ const typeTab = [
 
 export default function NameFeed({}: Props): ReactElement {
   const router = useRouter();
-  const { name } = router.query;
+  const { id } = router.query;
   const [type, settype] = useState("");
   const updateToggle = () => {
     settype("history");
   };
 
+  const fetchFeedDetail = async (id: number) => {
+    await feedStore.getFeedDetail(id);
+  };
+
+  const fetchAssessmentDetail = async (id: number) => {
+    await feedStore.getAssessmentDetail(id);
+  };
+
   useEffect(() => {
     updateToggle();
+    fetchFeedDetail(Number(id));
+    fetchAssessmentDetail(Number(id));
+    console.log("FEED:", feedStore.feedDetail);
+    console.log("ASSESSMENT:", feedStore.assessmentDetail);
   }, []);
 
   return (
     <>
-      {/* 
-      <div className="flex w-full flex-col items-center justify-center rounded-lg border border-gray-200 bg-gray-100 p-8">
-        <h1 className="text-black">ชื่อผู้วิจัย : {name} </h1>
-      </div>
-      */}
+      {/* <div className="flex w-full flex-col items-center justify-center rounded-lg border border-gray-200 bg-gray-100 p-8">
+        <h1 className="text-black">ID ผู้ทรงคุณวุฒิ : {id} </h1>
+      </div> */}
+
       <div className="mx-auto h-screen bg-gray-100">
         <div className=" ml-16 mt-3 grid h-16 grid-cols-4">
           {typeTab.map((data) => {
@@ -59,7 +71,13 @@ export default function NameFeed({}: Props): ReactElement {
             );
           })}
         </div>
-        <div>{type === "history" ? <FeedDetail /> : <FeedAssessment />}</div>
+        <div>
+          {type === "history" ? (
+            <FeedDetail feedDetail={feedStore.feedDetail} />
+          ) : (
+            <FeedAssessment assessmentDetail={feedStore.assessmentDetail} />
+          )}
+        </div>
       </div>
     </>
   );

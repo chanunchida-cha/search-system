@@ -26,7 +26,7 @@ const MainFeed = observer(({}: Props) => {
             </h1>
           </div>
           <div className="flex items-center justify-start md:justify-end ">
-            <div className="mt-2  w-auto md:w-full lg:w-4/5 xl:w-3/5">
+            <div className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5">
               <Link href={"/"}>
                 <FeedAddNewUserButton />
               </Link>

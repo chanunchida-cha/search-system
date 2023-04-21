@@ -49,7 +49,7 @@ function MainFeedTable({ feedList }: Props) {
                 </td>
                 <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
                   <Link
-                    href={"/" + item.researcher_name}
+                    href={"/" + item.researcher_id}
                     className="font-bold text-blue-500 hover:underline"
                   >
                     {item.researcher_name}

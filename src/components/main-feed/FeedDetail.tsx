@@ -9,14 +9,16 @@ import FeedDetailThirdBoxNewLineContent from "./FeedDetailThirdBoxNewLineContent
 import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
+import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type Props = {};
+type Props = {
+  feedDetail: FeedDetailResponse;
+};
 
-function FeedDetail({}: Props) {
+function FeedDetail({ feedDetail }: Props) {
   return (
     <>
-      <div className="mx-auto h-full bg-gray-100 px-10 pb-10">
+      <div className="mx-auto h-full bg-gray-100 px-5 pb-10">
         <div className="align-center border-solid-900 flex h-full w-full rounded-lg bg-white ">
           {/* CONTENT */}
           <div className="w-full p-10">
@@ -50,6 +52,9 @@ function FeedDetail({}: Props) {
                     inputLeft={"w-3/4"}
                     inputRight={"w-3/4"}
                     mainClass={""}
+                    textLeft={feedDetail.first_name}
+                    textRight={feedDetail.last_name}
+                    checkListArray={false}
                   />
                   <FeedDetailOneLineContent
                     title={"ตำแหน่งทางวิชาการ : "}
@@ -57,27 +62,35 @@ function FeedDetail({}: Props) {
                     mainClass={"mt-3"}
                     inputClass={"w-2/4"}
                     textClass={"font-bold"}
+                    textContent={
+                      feedDetail.position[0]?.position_name
+                        ? feedDetail.position[0].position_name
+                        : ""
+                    }
                   />
                   <FeedDetailHalfNewLineContent
                     title={"วุฒิการศึกษา :"}
-                    major={"ปริญญาเอก"}
+                    major={"ปริญญา"}
                     section={"สาขา"}
                     sectionPlaceHolder={"สาขา"}
                     university={"มหาวิทยาลัย"}
                     universityPlaceHolder={"มหาวิทยาลัย"}
                     mainClass={"mt-3"}
+                    contentList={feedDetail.degree}
                   />
                   <FeedDetailMultiNewLineContent
                     title={"สาขาวิชาที่เชี่ยวชาญ :"}
                     textClass={"font-bold"}
                     placeHolder={"สาขาที่เชี่ยวชาญ"}
                     mainClass={"mt-3"}
+                    contentList={feedDetail.program}
                   />
                   <FeedDetailOneNewLineContent
                     title={"สังกัดมหาวิทยาลัย :"}
                     mainClass={"mt-3"}
                     mainTextClass={"font-bold"}
                     placeHolder={"สังกัดมหาวิทยาลัย"}
+                    textContent={feedDetail.university}
                   />
                   <FeedDetailThirdBoxNewLineContent
                     title={"ประสบการทำงาน :"}
@@ -89,6 +102,9 @@ function FeedDetail({}: Props) {
                     secondConjunction={"สังกัด"}
                     thirdPlaceHolder={"Software MIT"}
                     textAreaPlaceholder={"เนื้อหาประสบการทำงาน"}
+                    contentList={feedDetail.experience.filter(
+                      (item) => item.experience_type === "work"
+                    )}
                   />
                   <FeedDetailThirdBoxNewLineContent
                     title={"ประสบการณ์ด้านการวิจัย :"}
@@ -100,12 +116,15 @@ function FeedDetail({}: Props) {
                     secondConjunction={"สังกัด"}
                     thirdPlaceHolder={"Software MIT"}
                     textAreaPlaceholder={"เนื้อหาประสบการณ์ด้านการวิจัย"}
+                    contentList={feedDetail.experience.filter(
+                      (item) => item.experience_type === "research"
+                    )}
                   />
                   <div className="mt-3 flex w-full flex-row">
                     <div className="w-full">
                       <div className="flex w-full items-center">
                         <p className="ml-3 font-bold text-black">
-                          ผลงานวิจัยทรี่ตีพิมพ์ :
+                          ผลงานวิจัยที่ตีพิมพ์ :
                         </p>
                       </div>
                     </div>
@@ -117,16 +136,15 @@ function FeedDetail({}: Props) {
                     placeHolderRight={"ปีที่ตีพิมพ์"}
                     basisLeft={"basis-6/12"}
                     basisRight={"basis-6/12"}
-                    inputLeft={"w-2/4"}
-                    inputRight={"w-2/4"}
+                    inputLeft={"w-3/5"}
+                    inputRight={"w-3/5"}
                     mainClass={"mt-3"}
+                    textLeft={""}
+                    textRight={""}
+                    contentList={feedDetail.explore}
+                    checkListArray={true}
                   />
-                  <FeedDetailOneNewLineContent
-                    title={"รายละเอียด :"}
-                    mainClass={"mt-3"}
-                    mainTextClass={"font-bold"}
-                    placeHolder={"รายละเอียดเนื้อหา"}
-                  />
+
                   <FeedDetailQuadLineContent
                     headTitle={
                       "ที่อยู่ที่สามารถติดต่อได้ พร้อมเบอร์ติดต่อ และ E-mail address :"
@@ -143,21 +161,26 @@ function FeedDetail({}: Props) {
                     fourthTitle={"อีเมลล์ :"}
                     fourthPlaceHolder={"dummy_user@vulcan.bluebik.com"}
                     fourthClass={"w-2/4"}
+                    textFirst={feedDetail.address_home}
+                    textSecond={feedDetail.address_work}
+                    textThird={feedDetail.phone_number}
+                    textFourth={feedDetail.email}
+                    checkListArray={false}
                   />
                   <FeedDetailQuadLineContent
                     headTitle={"อื่นๆ :"}
                     firstTitle={"เอกสารประวัติ :"}
                     firstPlaceHolder={"history.pdf"}
-                    firstClass={"w-1/4"}
-                    secondTitle={"เอกสารคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :"}
-                    secondPlaceHolder={"appointing.pdf"}
-                    secondClass={"w-1/4"}
-                    thirdTitle={"เอกสารสำเนาบัญชี :"}
-                    thirdPlaceHolders={"book_bank.pdf"}
-                    thirdClass={"w-1/4"}
-                    fourthTitle={"เอกสารสำเนาบัตรประชาชน :"}
-                    fourthPlaceHolder={"ID_card.pdf"}
-                    fourthClass={"w-1/4"}
+                    firstClass={"w-3/5 underline underline-offset-4 "}
+                    checkListArray={true}
+                    isLink={true}
+                    contentList={
+                      feedDetail.attach
+                        ? feedDetail.attach.filter(
+                            (item) => item.file_action !== "profile"
+                          )
+                        : []
+                    }
                   />
                 </div>
               </div>
@@ -169,7 +192,7 @@ function FeedDetail({}: Props) {
         <div className="mt-6 flex flex-row">
           <Link href="/">
             <FeedOneBoxButton
-              btnColor={"[#828282]"}
+              btnColor={"[#668ff6]"}
               hoverColor={"[#668ff6]"}
               title={"ย้อนกลับ"}
             />

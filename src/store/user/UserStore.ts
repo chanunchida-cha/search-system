@@ -1,15 +1,16 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { ManageResponse } from "~/models/type/manage/typeManage";
+import { UserManageResponse } from "~/models/type/user/typeUser";
+import { boolean } from "zod";
 
-class ManageStore {
-  manageList: ManageResponse = {
+class UserStore {
+  userManageList: UserManageResponse = {
     content: [],
-    total_page: "",
-    total_object: "",
-    current_page: "",
-    is_last: "",
+    total_page: 0,
+    total_object: 0,
+    current_page: 0,
+    is_last: true,
 };
 
   constructor() {
@@ -26,7 +27,7 @@ class ManageStore {
           }
         );
         const result = response.data;
-        this.manageList = result.data;
+        this.userManageList = result.data;
     }catch(err: any){
         Swal.fire({
             icon: "error",
@@ -40,4 +41,4 @@ class ManageStore {
 
   }
 }
-export const manageStore = new ManageStore
+export const userStore = new UserStore

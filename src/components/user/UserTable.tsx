@@ -4,17 +4,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { manage_heading } from '~/models/const/user-manage/manage_heading';
 import ManageEditButton from '~/ui/user-manage/ManageEditButton';
-import { ManageResponse } from '~/models/type/manage/typeManage';
-import { manageStore } from '~/store/manage/ManageStore';
+import { UserManageResponse } from '~/models/type/user/typeUser';
+import { userStore } from '~/store/user/UserStore';
 
 type Props = {
-  manageList : ManageResponse;
+  userManageList : UserManageResponse;
 };
 
-function UserTable({manageList} : Props) {
-  console.log("test manageList", manageList.total_page);
+function UserTable({userManageList} : Props) {
   const updatePageCurrent = async (page: number) => {
-    await manageStore.getUserManage(page, 10);
+    await userStore.getUserManage(page, 10);
   };
     return (
         <>
@@ -38,7 +37,7 @@ function UserTable({manageList} : Props) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {manageList.content.map((item, index) => (
+                {userManageList.content.map((item, index) => (
                   <tr className="bg-white">
                   <td className="p-3 text-center text-sm text-gray-700">
                   {index + 1}
@@ -85,13 +84,13 @@ function UserTable({manageList} : Props) {
               <div>
                 <p className="text-sm text-gray-700">
                   Showing <span className="font-medium">
-                  {(Number(manageList.current_page) + 1) * 10 - 9}
+                  {(Number(userManageList.current_page) + 1) * 10 - 9}
                   </span> to{" "}
                   <span className="font-medium">
-                  {(Number(manageList.current_page) + 1) * 10}
+                  {(Number(userManageList.current_page) + 1) * 10}
                     </span> of{" "}
                   <span className="font-medium">
-                  {Number(manageList.total_object) * Number(manageList.total_page)}
+                  {Number(userManageList.total_object) * Number(userManageList.total_page)}
                     </span> results
                 </p>
               </div>

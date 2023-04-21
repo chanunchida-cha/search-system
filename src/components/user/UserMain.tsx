@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import UserTable from "./UserTable";
 import UserSearchBar from "./UserSearchBar";
-import { manageStore } from "~/store/manage/ManageStore";
+import { userStore } from "~/store/user/UserStore";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 
@@ -10,7 +10,7 @@ const UserMain = observer(({}: Props) => {
   const route = useRouter();
   useEffect(() => {
     const fecthManage = async () => {
-      await manageStore.getUserManage(1, 10);
+      await userStore.getUserManage(1, 10);
     };
     fecthManage();
   }, []);
@@ -56,7 +56,7 @@ const UserMain = observer(({}: Props) => {
           </div>
         </div>
         <UserSearchBar />
-        <UserTable manageList={manageStore.manageList} />
+        <UserTable userManageList={userStore.userManageList} />
       </div>
     </>
   );

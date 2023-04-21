@@ -5,11 +5,13 @@ import UploadFileInForm from "./UploadFileInForm";
 import FeedbackInForm from "./FeedbackInForm";
 import { observer } from "mobx-react-lite";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const Report = observer(({}: Props) => {
-  const { reports, setReports, removeFileReport } = setStateAssessmentStore;
+  const { reports, setReports } = setStateAssessmentStore;
+  const { reportFile, setReportFile, removeFileReport } = setStateFile;
   return (
     <BoxLayout title={"รายงานการวิจัย"}>
       <div>
@@ -30,10 +32,10 @@ const Report = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              name="reportsFile"
-              state={reports.reportsFile!}
+              name="reports_file"
+              state={reportFile.reports_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setReports(event)
+                setReportFile(event)
               }
               onClickButton={removeFileReport}
             />

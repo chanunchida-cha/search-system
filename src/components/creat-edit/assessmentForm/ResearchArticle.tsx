@@ -5,12 +5,17 @@ import UploadFileInForm from "./UploadFileInForm";
 import FeedbackInForm from "./FeedbackInForm";
 import { observer } from "mobx-react-lite";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const ResearchArticle = observer(({}: Props) => {
-  const { researchArticles, setResearchArticles, removeFileResearchArticles } =
-    setStateAssessmentStore;
+  const { researchArticles, setResearchArticles } = setStateAssessmentStore;
+  const {
+    researchArticlesFile,
+    setResearchArticlesFile,
+    removeFileResearchArticles,
+  } = setStateFile;
   return (
     <BoxLayout title={" บทความวิจัย/บทความวิชาการ"}>
       <div>
@@ -31,10 +36,10 @@ const ResearchArticle = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              name="researchArticlesFile"
-              state={researchArticles.researchArticlesFile!}
+              name="researchArticles_file"
+              state={researchArticlesFile.researchArticles_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setResearchArticles(event)
+                setResearchArticlesFile(event)
               }
               onClickButton={removeFileResearchArticles}
             />

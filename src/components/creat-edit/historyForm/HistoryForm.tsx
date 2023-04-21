@@ -7,22 +7,16 @@ import ResearchResult from "~/components/creat-edit/historyForm/ResearchResult";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 import UploadFileInForm from "../assessmentForm/UploadFileInForm";
-import { previewImage } from "~/ui/create-edit/PreviewImage";
+import { previewImage } from "~/utils/PreviewImage";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
 import { observer } from "mobx-react-lite";
 
 interface Props {}
 
 const HistoryForm = observer(({}: Props) => {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setlastName] = useState("");
-  // const [Affiliation, setAffiliation] = useState("");
-  const [image, setImage] = useState<File>();
-  const [preview, setPreview] = useState("");
-
-  // const onClick = () => {
-  //   console.log("test");
-  // };
+  const { profile, preview, setProfile, setPreview } = setHistoryDataStore;
+  console.log(profile.profile);
+  
 
   const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
   const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +44,7 @@ const HistoryForm = observer(({}: Props) => {
                   className="flex h-56 w-56 flex-col items-center justify-center rounded-full
                 bg-gray-300"
                 >
-                  {image ? (
+                  {profile.profile ? (
                     <div className="h-full w-full rounded-full">
                       <label
                         htmlFor="file-upload"
@@ -66,7 +60,12 @@ const HistoryForm = observer(({}: Props) => {
                           type="file"
                           className="sr-only"
                           onChange={async (e) => {
-                            previewImage(e, setPreview, setImage, image!);
+                            previewImage(
+                              e,
+                              setPreview,
+                              setProfile,
+                              profile.profile!
+                            );
                           }}
                           required
                         />
@@ -110,7 +109,12 @@ const HistoryForm = observer(({}: Props) => {
                             type="file"
                             className="sr-only"
                             onChange={async (e) => {
-                              previewImage(e, setPreview, setImage, image!);
+                              previewImage(
+                                e,
+                                setPreview,
+                                setProfile,
+                                profile.profile!
+                              );
                             }}
                             required
                           />
@@ -359,7 +363,7 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบประวัติ :
+                          แนบประวัติ :
                         </label>
                       </div>
                       <div className="col-span-9">
@@ -386,7 +390,7 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
+                          แนบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
                         </label>
                       </div>
                       <div className="col-span-9">
@@ -413,7 +417,7 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบสำเนาบัญชี :
+                          แนบสำเนาบัญชี :
                         </label>
                       </div>
                       <div className="col-span-9">
@@ -426,7 +430,7 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบสำเนาบัตรประชาชน :
+                          แนบสำเนาบัตรประชาชน :
                         </label>
                       </div>
                       <div className="col-span-9">

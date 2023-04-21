@@ -1,7 +1,10 @@
 export type AssessmentResults = {
   from: string;
   to: string;
-  researchFile: File | null;
+};
+export type AssessmentResultsFile = {
+  assessmentResults_file: File | null;
+  directory_file: string;
 };
 
 export type ResearchPropasals = {
@@ -11,7 +14,10 @@ export type ResearchPropasals = {
   project_estimate: string;
   project_recommend: string;
   project_period: string;
-  researchPropasalsFile: File | null;
+};
+export type ResearchPropasalsFile = {
+  researchPropasals_file: File | null;
+  directory_file: string;
 };
 
 export type ProgressReports = {
@@ -20,7 +26,10 @@ export type ProgressReports = {
   progress_estimate: string;
   progress_recommend: string;
   progress_period: string;
-  progressReportsFile: File | null;
+};
+export type ProgressReportsFile = {
+  progressReport_file: File | null;
+  directory_file: string;
 };
 
 export type Reports = {
@@ -29,8 +38,13 @@ export type Reports = {
   report_estimate: string;
   report_recommend: string;
   report_period: string;
-  reportsFile: File | null;
+ 
 };
+export type ReportFile = {
+  reports_file: File | null;
+  directory_file: string;
+
+}
 
 export type ResearchArticles = {
   article_year: string;
@@ -38,5 +52,9 @@ export type ResearchArticles = {
   article_estimate: string;
   article_recommend: string;
   article_period: string;
-  researchArticlesFile: File | null;
+
 };
+export type ResearchArticlesFile = {
+  researchArticles_file: File | null;
+  directory_file: string;
+}

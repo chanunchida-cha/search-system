@@ -1,17 +1,13 @@
 export type HistoryDataResults = {
-  // prefix: string;
   firstName: string;
   lastName: string;
-  positionID: string;
-  // Program: Program[];
+  positionName: string;
   university: string;
-  // experience: Experience[];
-  // explore: Explore[];
   addressHome: string;
   addressWork: string;
   email: string;
   phoneNumber: string;
-  researchFile: File | null;
+ 
 };
 
 export type Degree = {
@@ -44,4 +40,27 @@ export type Explore = {
   exploreName: string;
   exploreYear: string;
   exploreDetail: string;
+};
+
+export type Profile = {
+  profile: File | null;
+  directory_file: string;
+};
+
+export type HistoryFile = {
+  history_file: File | null;
+  directory_file: string;
+};
+
+export type OrderFile = {
+  order_file: File | null;
+  directory_file: string;
+};
+export type AccountFile = {
+  account_file: File | null;
+  directory_file: string;
+};
+export type IdCardFile = {
+  idCard_file: File | null;
+  directory_file: string;
 };

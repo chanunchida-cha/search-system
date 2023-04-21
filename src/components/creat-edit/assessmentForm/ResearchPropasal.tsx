@@ -5,6 +5,7 @@ import FeedbackInForm from "./FeedbackInForm";
 import HeaderAssessment from "./HeaderAssessment";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
@@ -12,10 +13,12 @@ const ResearchPropasal = observer(({}: Props) => {
   const {
     researchPropasals,
     setResearchPropasals,
-    removeFileResearchPropasals,
+   
   } = setStateAssessmentStore;
 
-  console.log(researchPropasals);
+  const { researchPropasalsFile,setResearchPropasalsFile,removeFileResearchPropasals } = setStateFile
+
+  console.log(researchPropasalsFile);
   
 
   return (
@@ -59,10 +62,10 @@ const ResearchPropasal = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              name="researchPropasalsFile"
-              state={researchPropasals.researchPropasalsFile!}
+              name="researchPropasals_file"
+              state={researchPropasalsFile.researchPropasals_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setResearchPropasals(event)
+                setResearchPropasalsFile(event)
               }
               onClickButton={removeFileResearchPropasals}
             />

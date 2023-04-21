@@ -1,1 +1,1 @@
-export const levels = ["ตรี", "โท", "เอก"];
+export const levels = ["ปริญญาตรี", "ปริญญาโท", "ปริญญาเอก"];

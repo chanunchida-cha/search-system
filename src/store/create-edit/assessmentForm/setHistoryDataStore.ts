@@ -7,6 +7,7 @@ import {
   Explore,
   ExpResearch,
   HistoryDataResults,
+  Profile,
   Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { ranks } from "~/models/const/createEdit/rankLevels";
@@ -15,7 +16,7 @@ class SetHistoryDataStore {
   historyDataResults: HistoryDataResults = {
     firstName: "",
     lastName: "",
-    positionID: "",
+    positionName: "",
     university: "",
     addressHome: "",
     addressWork: "",
@@ -60,10 +61,34 @@ class SetHistoryDataStore {
   listExplore: Explore[] = [
     {
       exploreDetail: "",
-      exploreName:"",
-      exploreYear:"",
+      exploreName: "",
+      exploreYear: "",
     },
   ];
+
+  profile: Profile = {
+    profile: null,
+    directory_file: "profile",
+  };
+  HistoryFile = {
+    history_file: null,
+    directory_file: "history",
+  };
+
+  OrderFile = {
+    order_file: null,
+    directory_file: "order",
+  };
+  AccountFile = {
+    account_file: null,
+    directory_file: "account",
+  };
+  IdCardFile = {
+    idCard_file: null,
+    directory_file: "idcard",
+  };
+
+  preview: string = "";
 
   selectLevel: string = levels[0]!;
 
@@ -72,6 +97,13 @@ class SetHistoryDataStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  setProfile = (image: File) => {
+    this.profile.profile = image;
+  };
+  setPreview = (objectUrl: string) => {
+    this.preview = objectUrl;
+  };
 
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
@@ -236,7 +268,6 @@ class SetHistoryDataStore {
     ] = event.target.value;
     this.listExplore = newInputFields;
   };
-  
 }
 
 export const setHistoryDataStore = new SetHistoryDataStore();

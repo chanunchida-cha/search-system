@@ -5,13 +5,16 @@ import UploadFileInForm from "./UploadFileInForm";
 import FeedbackInForm from "./FeedbackInForm";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const ProgressReport = observer(({}: Props) => {
-  const { progressReports, setProgressReports, removeFileProgressReport } =
+  const { progressReports, setProgressReports } =
     setStateAssessmentStore;
-  console.log("progress", progressReports);
+
+    const {progressReportFile,setProgressReportFile,removeFileProgressReport} = setStateFile
+
 
   return (
     <BoxLayout title={"รายงานความก้าวหน้างานวิจัย"}>
@@ -33,10 +36,10 @@ const ProgressReport = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              name="progressReportsFile"
-              state={progressReports.progressReportsFile!}
+              name="progressReport_file"
+              state={progressReportFile.progressReport_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setProgressReports(event)
+                setProgressReportFile(event)
               }
               onClickButton={removeFileProgressReport}
             />

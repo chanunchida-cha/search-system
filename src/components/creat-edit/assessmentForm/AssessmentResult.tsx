@@ -4,17 +4,18 @@ import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
 import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const AssessmentResult = observer(({}: Props) => {
-  const {
-    assessmentResults,
-    setAssessmentResult,
-    removeFileAssessmentResults,
-  } = setStateAssessmentStore;
+  const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
 
-  console.log("assessmentResults", assessmentResults);
+  const { assessmentFile, setAssessmentFile, removeFileAssessmentResults } =
+    setStateFile;
+
+  console.log("assessmentFile", assessmentFile);
+  console.log("assessmentResult", assessmentResults);
 
   return (
     <BoxLayout title=" ผลการประเมิน">
@@ -66,10 +67,10 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              name="researchFile"
-              state={assessmentResults.researchFile!}
+              name="assessmentResults_file"
+              state={assessmentFile.assessmentResults_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                setAssessmentResult(event)
+                setAssessmentFile(event)
               }
               onClickButton={removeFileAssessmentResults}
             />

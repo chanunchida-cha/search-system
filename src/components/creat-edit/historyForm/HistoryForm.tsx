@@ -188,22 +188,17 @@ const HistoryForm = observer(({}: Props) => {
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">
                       <div className="col-span-4">
-                        <label
-                          htmlFor="price"
-                          className="items-center justify-center font-medium leading-6 text-gray-900"
-                        >
+                        <label className="items-center justify-center font-medium leading-6 text-gray-900">
                           ตำแหน่งทางวิชาการ :
-                        </label>{" "}
+
+                        </label>
                       </div>
                       <div className="col-span-6">
                         <SelectRanks />
                       </div>
                     </div>
                     <div className="mt-3">
-                      <label
-                        htmlFor="price"
-                        className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-                      >
+                      <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         วุฒิการศึกษา :
                       </label>
                       <div className="mt-3">
@@ -211,10 +206,7 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                     </div>
                     <div className="mt-3">
-                      <label
-                        htmlFor="price"
-                        className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-                      >
+                      <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         สาขาวิชาที่เชี่ยวชาญ :
                       </label>
                     </div>

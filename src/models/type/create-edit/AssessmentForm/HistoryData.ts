@@ -12,6 +12,7 @@ export type HistoryDataResults = {
 
 export type Degree = {
   degreeType: string;
+  degreeTypeTH: string;
   degreeProgram: string;
   degreeUniversity: string;
 };

@@ -4,7 +4,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
-import { levels,levelsEng } from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/degreeLevels";
 
 interface Props {}
 
@@ -21,10 +21,10 @@ const LevelsField = observer(({}: Props) => {
     removeListData,
     onChangeLavel,
     onChangeInputDegree,
-   
   } = setHistoryDataStore;
 
   const hidden = listData.length === 1;
+  console.log(listData);
 
   return (
     <div>
@@ -35,8 +35,8 @@ const LevelsField = observer(({}: Props) => {
               disabled={index === 0}
               value={selectLevel}
               onChange={(selectedLevel) => {
-                onChangeLavel(index, selectedLevel);
-                setSelectedLevel(selectedLevel);
+                onChangeLavel(index, selectedLevel.key);
+                setSelectedLevel(selectLevel);
               }}
             >
               {({ open }) => (
@@ -45,7 +45,7 @@ const LevelsField = observer(({}: Props) => {
                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                       <span className="flex items-center">
                         <span className="ml-3 block truncate">
-                          {data.degreeTypeTH}
+                          {selectLevel.i18n}
                         </span>
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -88,7 +88,7 @@ const LevelsField = observer(({}: Props) => {
                                       "ml-3 block truncate"
                                     )}
                                   >
-                                    {levels}
+                                    {levels.i18n}
                                   </span>
                                 </div>
                               </>

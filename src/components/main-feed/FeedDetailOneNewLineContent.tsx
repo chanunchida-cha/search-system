@@ -5,6 +5,7 @@ type Props = {
   mainClass: string;
   placeHolder: string;
   mainTextClass: string;
+  textContent: string;
 };
 
 function FeedDetailOneNewLineContent({
@@ -12,6 +13,7 @@ function FeedDetailOneNewLineContent({
   mainClass,
   placeHolder,
   mainTextClass,
+  textContent,
 }: Props) {
   return (
     <>
@@ -29,6 +31,7 @@ function FeedDetailOneNewLineContent({
               type="text"
               name="universityUnder"
               id="universityUnder"
+              value={textContent}
               className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
               placeholder={placeHolder}
             ></input>

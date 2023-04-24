@@ -1,11 +1,33 @@
+import Link from "next/link";
 import React from "react";
+import { ArticleResponse } from "~/models/type/main-feed/typeArticle";
+import { ProgressResponse } from "~/models/type/main-feed/typeProgress";
+import { ProjectResponse } from "~/models/type/main-feed/typeProject";
+import { ReportResponse } from "~/models/type/main-feed/typeReport";
 
 type Props = {
   title: string;
   point: boolean;
+  startYear: string;
+  contentTitle: string;
+  projectPoint?: number;
+  fileTitle: string;
+  checkEstimate: boolean;
+  checkRecommend: boolean;
+  checkPeriod: boolean;
 };
 
-function FeedAssessmentCheckbox({ title, point }: Props) {
+function FeedAssessmentCheckbox({
+  title,
+  point,
+  startYear,
+  contentTitle,
+  projectPoint,
+  fileTitle,
+  checkEstimate,
+  checkRecommend,
+  checkPeriod,
+}: Props) {
   return (
     <>
       <div className="mt-3 flex w-full flex-row">
@@ -23,6 +45,7 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
               type="text"
               name="assessmentSinceYearBudget"
               id="assessmentSinceYearBudget"
+              value={startYear}
               className="pointer-events-none ml-3 block w-1/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
               placeholder="2562"
             ></input>
@@ -31,6 +54,7 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
               type="text"
               name="assessmentNameTitle"
               id="assessmentNameTitle"
+              value={contentTitle}
               className="pointer-events-none ml-3 block w-2/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
               placeholder="ชื่อเรื่อง"
             ></input>
@@ -48,6 +72,7 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
             type="text"
             name="assessmentPoint"
             id="assessmentPoint"
+            value={projectPoint}
             className="pointer-events-none ml-3 block w-2/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
             placeholder="9"
           ></input>
@@ -56,13 +81,16 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
       <div className="mt-3 flex w-full flex-row">
         <div className="flex w-full items-center">
           <p className=" text-black">เอกสารผลการประเมิน : </p>
-          <input
-            type="text"
-            name="assessmentResult"
-            id="assessmentResult"
-            className="pointer-events-none ml-3 block w-3/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
-            placeholder="ผลการประเมิน.pdf"
-          ></input>
+          <Link href={"/"} className="w-4/5">
+            <input
+              type="text"
+              name="assessmentResult"
+              id="assessmentResult"
+              value={fileTitle}
+              className="pointer-events-none ml-3 block w-3/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
+              placeholder="ผลการประเมิน.pdf"
+            ></input>
+          </Link>
         </div>
       </div>
       <div className="mt-3 flex w-full flex-row">
@@ -80,20 +108,41 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
         </div>
         <div className="basis-2/4">
           <div className="flex w-full items-center">
-            <input
-              type="checkbox"
-              name="checkboxHave"
-              id="checkboxHave"
-              checked
-            ></input>
-            <p className="ml-2 text-black">มี</p>
-            <input
-              type="checkbox"
-              name="checkboxNotHave"
-              id="checkboxNotHave"
-              className="ml-10"
-            ></input>
-            <p className="ml-2 text-black">ไม่มี</p>
+            {checkEstimate ? (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                  checked
+                ></input>
+                <p className="ml-2 text-black">มี</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  className="ml-10"
+                ></input>
+                <p className="ml-2 text-black">ไม่มี</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                ></input>
+                <p className="ml-2 text-black">มี</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  checked
+                  className="ml-10"
+                ></input>
+                <p className="ml-2 text-black">ไม่มี</p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -105,20 +154,41 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
         </div>
         <div className="basis-2/4">
           <div className="flex w-full items-center">
-            <input
-              type="checkbox"
-              name="checkboxHave"
-              id="checkboxHave"
-              checked
-            ></input>
-            <p className="ml-2 text-black">มี</p>
-            <input
-              type="checkbox"
-              name="checkboxNotHave"
-              id="checkboxNotHave"
-              className="ml-10"
-            ></input>
-            <p className="ml-2 text-black">ไม่มี</p>
+            {checkRecommend ? (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                  checked
+                ></input>
+                <p className="ml-2 text-black">มี</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  className="ml-10"
+                ></input>
+                <p className="ml-2 text-black">ไม่มี</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                ></input>
+                <p className="ml-2 text-black">มี</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  checked
+                  className="ml-10"
+                ></input>
+                <p className="ml-2 text-black">ไม่มี</p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -132,21 +202,43 @@ function FeedAssessmentCheckbox({ title, point }: Props) {
       <div className="mt-3 flex w-full flex-row">
         <div className="w-full">
           <div className="flex w-full items-center">
-            <input
-              type="checkbox"
-              name="checkboxHave"
-              id="checkboxHave"
-              className="ml-12"
-              checked
-            ></input>
-            <p className="ml-2 text-black">ภายในกำหนด</p>
-            <input
-              type="checkbox"
-              name="checkboxNotHave"
-              id="checkboxNotHave"
-              className="ml-20"
-            ></input>
-            <p className="ml-2 text-black">เกินกำหนด</p>
+            {checkPeriod ? (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                  className="ml-12"
+                  checked
+                ></input>
+                <p className="ml-2 text-black">ภายในกำหนด</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  className="ml-20"
+                ></input>
+                <p className="ml-2 text-black">เกินกำหนด</p>
+              </>
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  name="checkboxHave"
+                  id="checkboxHave"
+                  className="ml-12"
+                ></input>
+                <p className="ml-2 text-black">ภายในกำหนด</p>
+                <input
+                  type="checkbox"
+                  name="checkboxNotHave"
+                  id="checkboxNotHave"
+                  className="ml-20"
+                  checked
+                ></input>
+                <p className="ml-2 text-black">เกินกำหนด</p>
+              </>
+            )}
           </div>
         </div>
       </div>

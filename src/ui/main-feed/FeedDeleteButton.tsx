@@ -1,11 +1,37 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 type Props = {};
 
 function FeedDeleteButton({}: Props) {
+  const confirmDelete = () => {
+    Swal.fire({
+      icon: "error",
+      title: "ต้องการลบข้อมูล",
+      text: "โปรดตรวจสอบก่อนการยืนยัน",
+    });
+    Swal.fire({
+      title: "ต้องการลบข้อมูล",
+      text: "โปรดตรวจสอบก่อนการยืนยัน",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonColor: "#828282",
+      cancelButtonColor: "#668ff6",
+      confirmButtonText: "ยกเลิก",
+      cancelButtonText: "ยืนยัน",
+    }).then((result) => {
+      if (result.isConfirmed) {
+      } else {
+        Swal.fire("ลบข้อมูล", "ทำการลบข้อมูลสำเร็จ", "success");
+      }
+    });
+  };
   return (
     <>
-      <button className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700">
+      <button
+        className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700"
+        onClick={() => confirmDelete()}
+      >
         <svg
           fill="none"
           stroke="currentColor"

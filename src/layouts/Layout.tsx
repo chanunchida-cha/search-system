@@ -4,8 +4,8 @@ import Navbar from '~/components/global/Navbar'
 import SideBar from '~/components/global/Sidebar'
 
 type Props = {
-    children:React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 function Layout({children}: Props): ReactElement {
   const route = useRouter();
@@ -17,4 +17,4 @@ function Layout({children}: Props): ReactElement {
     )
 }
 
-export default Layout
+export default Layout;

@@ -55,7 +55,7 @@ function UserTable({userManageList} : Props) {
                   </td>
                   <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                     <div className="flex justify-center">
-                      <ManageEditButton />
+                      <ManageEditButton  />
                     </div>
                   </td>
                 </tr>

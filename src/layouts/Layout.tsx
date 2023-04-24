@@ -7,13 +7,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-function Layout({ children }: Props): ReactElement {
-  return (
-    <>
-      <SideBar children={children} />
-    </>
-  );
-}
 
 function Layout({children}: Props): ReactElement {
   const route = useRouter();

@@ -88,7 +88,7 @@ class FeedStore {
       // const response = await axios.get(`http://localhost:3000/api/feedApi`);
       if (searchType == "") {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
               page: page,
               limit: limit,
@@ -98,7 +98,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "researcher_name") {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
               researcher_name: searchText,
               page: page,
@@ -109,7 +109,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "university") {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
               university: searchText,
               page: page,
@@ -120,7 +120,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "explore_year") {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
               explore_year: searchText,
               page: page,
@@ -131,7 +131,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "project_title") {
         const response = await axios.post(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
               project_title: searchText,
               page: page,
@@ -158,7 +158,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/profile_detail/${researcher_id}`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/1`,
         );
         const result = response.data;
         this.feedDetail = result.data
@@ -178,7 +178,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `https://sit-api.uap.universityapp.net/research/api/v1/researcher/assessment_detail/${researcher_id}`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/1`,
         );
         const result = response.data;
         this.assessmentDetail = result.data

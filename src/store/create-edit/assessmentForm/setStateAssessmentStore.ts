@@ -1,5 +1,9 @@
+import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
-import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
+import {
+  AssessmentResults,
+  AssessmentResultsFile,
+} from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ResearchPropasals } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ProgressReports } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { Reports } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
@@ -9,69 +13,93 @@ class SetStateAssessmentStore {
   assessmentResults: AssessmentResults = {
     from: "",
     to: "",
-    researchFile: null,
   };
 
   researchPropasals: ResearchPropasals = {
     project_year: "",
     project_title: "",
     project_point: 0,
-    project_estimate: true,
-    project_recommend: true,
-    period: true,
-    researchFile: null,
+    project_estimate: "true",
+    project_recommend: "true",
+    project_period: "true",
   };
 
   progressReports: ProgressReports = {
     progress_year: "",
     progress_title: "",
-    progress_estimate: true,
-    progress_recommend: true,
-    period: true,
-    researchFile: null,
+    progress_estimate: "true",
+    progress_recommend: "true",
+    progress_period: "true",
   };
 
   reports: Reports = {
     report_year: "",
     report_title: "",
-    report_estimate: true,
-    report_recommend: true,
-    period: true,
-    researchFile: null,
+    report_estimate: "true",
+    report_recommend: "true",
+    report_period: "true",
   };
 
   researchArticles: ResearchArticles = {
     article_year: "",
     article_title: "",
-    article_estimate: true,
-    article_recommend: true,
-    period: true,
-    researchFile: null,
+    article_estimate: "true",
+    article_recommend: "true",
+    article_period: "true",
   };
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setAssessmentResult = (assessmentResults: AssessmentResults) => {
-    this.assessmentResults = assessmentResults;
+  setAssessmentResult = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    const newAssessmentResult = {
+      ...this.assessmentResults,
+      [name]: value,
+    };
+    this.assessmentResults = newAssessmentResult;
   };
 
-  setResearchPropasals = (researchPropasals: ResearchPropasals) => {
-    this.researchPropasals = researchPropasals;
-    console.log(this.researchPropasals);
+  setResearchPropasals = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    const newResearchPropasals = {
+      ...this.researchPropasals,
+      [name]: value,
+    };
+    this.researchPropasals = newResearchPropasals;
   };
 
-  setProgressReports = (progressReports: ProgressReports) => {
-    this.progressReports = progressReports;
+  setProgressReports = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    const newProgressReports = {
+      ...this.progressReports,
+      [name]: value,
+    };
+    this.progressReports = newProgressReports;
   };
 
-  setReports = (reports: Reports) => {
-    this.reports = reports;
+  setReports = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    const newReports = {
+      ...this.reports,
+      [name]: value,
+    };
+    this.reports = newReports;
   };
 
-  setResearchArticles = (researchArticles: ResearchArticles) => {
-    this.researchArticles = researchArticles;
+  setResearchArticles = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = event.target;
+
+    const newResearchArticles = {
+      ...this.researchArticles,
+      [name]: value,
+    };
+    this.researchArticles = newResearchArticles;
   };
 }
 

@@ -7,22 +7,33 @@ import ResearchResult from "~/components/creat-edit/historyForm/ResearchResult";
 import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 import UploadFileInForm from "../assessmentForm/UploadFileInForm";
-import { previewImage } from "~/ui/create-edit/PreviewImage";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { previewImage } from "~/utils/PreviewImage";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { observer } from "mobx-react-lite";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 interface Props {}
 
 const HistoryForm = observer(({}: Props) => {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setlastName] = useState("");
-  // const [Affiliation, setAffiliation] = useState("");
-  const [image, setImage] = useState<File>();
-  const [preview, setPreview] = useState("");
-
-  // const onClick = () => {
-  //   console.log("test");
-  // };
+  const {
+    profile,
+    preview,
+    setProfile,
+    setPreview,
+    historyFile,
+    setHistoryFile,
+    removeFileHistory,
+    orderFile,
+    setOrderFile,
+    removeFileOrder,
+    accountFile,
+    setAccountFile,
+    removeFileAccount,
+    idCardFile,
+    setIdCardFile,
+    removeFileIdCard,
+  } = setStateFile;
+  console.log(profile);
 
   const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
   const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +61,7 @@ const HistoryForm = observer(({}: Props) => {
                   className="flex h-56 w-56 flex-col items-center justify-center rounded-full
                 bg-gray-300"
                 >
-                  {image ? (
+                  {profile.profile ? (
                     <div className="h-full w-full rounded-full">
                       <label
                         htmlFor="file-upload"
@@ -66,7 +77,12 @@ const HistoryForm = observer(({}: Props) => {
                           type="file"
                           className="sr-only"
                           onChange={async (e) => {
-                            previewImage(e, setPreview, setImage, image!);
+                            previewImage(
+                              e,
+                              setPreview,
+                              setProfile,
+                              profile.profile!
+                            );
                           }}
                           required
                         />
@@ -110,7 +126,12 @@ const HistoryForm = observer(({}: Props) => {
                             type="file"
                             className="sr-only"
                             onChange={async (e) => {
-                              previewImage(e, setPreview, setImage, image!);
+                              previewImage(
+                                e,
+                                setPreview,
+                                setProfile,
+                                profile.profile!
+                              );
                             }}
                             required
                           />
@@ -132,11 +153,11 @@ const HistoryForm = observer(({}: Props) => {
                           ชื่อ :
                         </label>
                       </div>
-                      <div className="col-span-2">
+                      {/* <div className="col-span-2">
                         <SelectPrefix />
-                      </div>
+                      </div> */}
 
-                      <div className="col-span-3">
+                      <div className="col-span-4">
                         <input
                           value={historyDataResults.firstName}
                           onChange={handleHistoryChange}
@@ -154,7 +175,7 @@ const HistoryForm = observer(({}: Props) => {
                           นามสกุล :
                         </label>
                       </div>
-                      <div className="col-span-3">
+                      <div className="col-span-4">
                         <input
                           value={historyDataResults.lastName}
                           onChange={handleHistoryChange}
@@ -166,23 +187,18 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">
-                      <div className="col-span-3">
-                        <label
-                          htmlFor="price"
-                          className="items-center justify-center font-medium leading-6 text-gray-900"
-                        >
-                          ตำแหน่งทางวิชาการ :
-                        </label>{" "}
-                      </div>
                       <div className="col-span-4">
+                        <label className="items-center justify-center font-medium leading-6 text-gray-900">
+                          ตำแหน่งทางวิชาการ :
+
+                        </label>
+                      </div>
+                      <div className="col-span-6">
                         <SelectRanks />
                       </div>
                     </div>
                     <div className="mt-3">
-                      <label
-                        htmlFor="price"
-                        className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-                      >
+                      <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         วุฒิการศึกษา :
                       </label>
                       <div className="mt-3">
@@ -190,10 +206,7 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                     </div>
                     <div className="mt-3">
-                      <label
-                        htmlFor="price"
-                        className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-                      >
+                      <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         สาขาวิชาที่เชี่ยวชาญ :
                       </label>
                     </div>
@@ -359,11 +372,18 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบประวัติ :
+                          แนบประวัติ :
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="history_file"
+                          state={historyFile.history_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setHistoryFile(event)
+                          }
+                          onClickButton={removeFileHistory}
+                        />
                         {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
@@ -386,11 +406,18 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
+                          แนบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="order_file"
+                          state={orderFile.order_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setOrderFile(event)
+                          }
+                          onClickButton={removeFileOrder}
+                        />
                         {/* <button
                 className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
                 // onClick={handleRemove}
@@ -413,11 +440,18 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบสำเนาบัญชี :
+                          แนบสำเนาบัญชี :
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="account_file"
+                          state={accountFile.account_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setAccountFile(event)
+                          }
+                          onClickButton={removeFileAccount}
+                        />
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">
@@ -426,11 +460,18 @@ const HistoryForm = observer(({}: Props) => {
                           htmlFor="price"
                           className="items-center justify-center font-medium leading-6 text-gray-900"
                         >
-                          แบบสำเนาบัตรประชาชน :
+                          แนบสำเนาบัตรประชาชน :
                         </label>
                       </div>
                       <div className="col-span-9">
-                        <UploadFileInForm />
+                        <UploadFileInForm
+                          name="idCard_file"
+                          state={idCardFile.idCard_file!}
+                          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setIdCardFile(event)
+                          }
+                          onClickButton={removeFileIdCard}
+                        />
                       </div>
                     </div>
                   </div>

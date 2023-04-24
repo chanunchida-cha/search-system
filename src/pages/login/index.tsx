@@ -1,16 +1,14 @@
 import React, { ReactElement } from "react";
-import LoginMain from "~/components/login/loginMain";
+import LoginMain from "~/components/login/LoginMain";
 
 interface Props {}
 
 function index({}: Props): ReactElement {
   return (
-    <div>
-      <div>
-        <LoginMain />
-      </div>
-    </div>
-  );
+        <>
+          <LoginMain />
+        </>
+      );
 }
 
 export default index;

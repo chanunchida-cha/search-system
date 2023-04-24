@@ -1,20 +1,24 @@
-import React, { useState,FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import AddUserExpertField from "./AddUserExpertField";
 import { observer } from "mobx-react-lite";
 
-type Props = {}
+type Props = {};
 
-const AddUserAccount = observer(({ }: Props) => {
+const AddUserAccount = observer(({}: Props) => {
   const [show, setShow] = useState(false);
-  const [userName, setUserName] = useState(""); 
+  const [userName, setUserName] = useState("");
+  async function userSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    handleClick();
+  }
 
   const handleClick = () => {
     if (userName != "") {
-      console.log('input value is NOT empty');
-      setShow(true)
+      console.log("input value is NOT empty");
+      setShow(true);
     } else {
-      console.log('input value is empty');
-      setShow(false)
+      console.log("input value is empty");
+      setShow(false);
     }
   };
 
@@ -30,6 +34,7 @@ const AddUserAccount = observer(({ }: Props) => {
           ชื่อผู้ใช้งาน
         </label>
       </div>
+      <form onSubmit={userSubmit}>
       <div className="mt-3 ml-20 grid grid-cols-12 gap-2">
         <div className="col-span-4">
           <input
@@ -38,39 +43,38 @@ const AddUserAccount = observer(({ }: Props) => {
             className="block w-full rounded-xl border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
             onChange={(event) => {
               setUserName(event.target.value);
-              console.log('input value =', event.target.value);
+              console.log("input value =", event.target.value);
             }}
+            required
           />
         </div>
         <div className="col-span-4 ml-5">
           <button
             className="w-full rounded-3xl bg-blue-700 px-6 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:w-auto"
-            onClick={() => {
-              handleClick()
-            }}
           >
             สร้างบัญชี
           </button>
         </div>
       </div>
-      {show && 
-      <div className="flex h-screen flex-col items-center bg-white p-8">
-        <div className="rounded-xl border border-gray-100 bg-gray-100 p-2 shadow-xl lg:w-96">
-          <h1 className=" text-center text-base font-bold text-green-400">
-            สร้างบัญชีผู้ใช้งาน สำเร็จ!
-          </h1>
-          <div>
-            <AddUserExpertField title="ลำดับบัญชี" name="test1"/>
-          </div>
-          <div>
-            <AddUserExpertField title="ชื่อผู้ใช้งาน" name="test2"/>
-          </div>
-          <div>
-            <AddUserExpertField title="รหัสผ่าน" name="test3"/>
+      </form>
+      {show && (
+        <div className="flex h-screen flex-col items-center bg-white p-8">
+          <div className="rounded-xl border border-gray-100 bg-gray-100 p-2 shadow-xl lg:w-96">
+            <h1 className=" text-center text-base font-bold text-green-400">
+              สร้างบัญชีผู้ใช้งาน สำเร็จ!
+            </h1>
+            <div>
+              <AddUserExpertField title="ลำดับบัญชี" name="test1" />
+            </div>
+            <div>
+              <AddUserExpertField title="ชื่อผู้ใช้งาน" name="test2" />
+            </div>
+            <div>
+              <AddUserExpertField title="รหัสผ่าน" name="test3" />
+            </div>
           </div>
         </div>
-      </div>
-      }
+      )}
     </div>
   );
 });

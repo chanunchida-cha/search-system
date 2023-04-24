@@ -8,7 +8,7 @@ import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 import UploadFileInForm from "../assessmentForm/UploadFileInForm";
 import { previewImage } from "~/utils/PreviewImage";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { observer } from "mobx-react-lite";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 

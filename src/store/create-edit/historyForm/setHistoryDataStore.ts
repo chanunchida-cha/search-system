@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
-import { levels, levelsEng } from "~/models/const/degreeLevels";
+import { levels,  } from "~/models/const/degreeLevels";
 import {
   Degree,
   Experience,
@@ -26,8 +26,7 @@ class SetHistoryDataStore {
 
   listData: Degree[] = [
     {
-      degreeType: levelsEng[0]!,
-      degreeTypeTH :levels[0]!,
+      degreeType: levels[0]?.key!,
       degreeProgram: "",
       degreeUniversity: "",
     },
@@ -67,7 +66,7 @@ class SetHistoryDataStore {
     },
   ];
 
-  selectLevel: string = levelsEng[0]!;
+  selectLevel: {key:string,i18n:string} = levels[0]!;
 
   selectRanks: string = ranks[0]!;
 
@@ -98,7 +97,12 @@ class SetHistoryDataStore {
   addListData = () => {
     this.listData = [
       ...this.listData,
-      { degreeType: levelsEng[0]!,degreeTypeTH: levels[0]!,  degreeProgram: "", degreeUniversity: "" },
+      {
+        degreeType: levels[0]?.key!,
+
+        degreeProgram: "",
+        degreeUniversity: "",
+      },
     ];
   };
 
@@ -162,7 +166,7 @@ class SetHistoryDataStore {
     this.listExplore = newListData;
   };
 
-  setSelectedLevel = (level: string) => {
+  setSelectedLevel = (level:{key:string,i18n:string}) => {
     this.selectLevel = level;
   };
 

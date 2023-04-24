@@ -1,2 +1,6 @@
-export const levels = ["ปริญญาตรี", "ปริญญาโท", "ปริญญาเอก"];
-export const levelsEng = ["bachelor", "master", "doctor"];
+export const levels = [
+  { key: "bachelor", i18n: "ปริญญาตรี" },
+  { key: "master", i18n: "ปริญญาโท" },
+  { key: "doctor", i18n: "ปริญญาเอก" },
+];
+

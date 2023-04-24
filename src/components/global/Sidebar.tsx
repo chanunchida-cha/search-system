@@ -11,9 +11,9 @@ const SideBar = observer(({ children }: Props) => {
   return (
     <div className="flex h-screen flex-auto flex-shrink-0 flex-col bg-white text-black antialiased dark:bg-gray-700 dark:text-white">
       {/* Header */}
-      <div className="fixed z-10 flex h-14  w-full items-center  text-xl font-semibold text-black">
+      <div className="fixed z-10 flex h-14  w-full items-center  text-lg font-semibold ">
         <div className="flex h-14 w-14 items-center justify-start gap-x-4 border-none bg-white pt-4 pl-3 md:w-64 md:justify-center">
-          <span className="hidden md:block">system name</span>
+          <span className="hidden md:block text-[#0265ff]">ระบบสืบค้นข้อมูลงานวิจัย</span>
         </div>
         <div className="fixed-top flex h-14 w-full items-center justify-end bg-white pr-10 text-base">
           yok park
@@ -42,7 +42,7 @@ const SideBar = observer(({ children }: Props) => {
                     <span className="ml-4 inline-flex items-center justify-center">
                       {header.icon}
                     </span>
-                    <span className="ml-2 truncate text-sm tracking-wide">
+                    <span className={`${header.type === "head"?"text-base font-semibold mb-2":"ml-2 truncate text-sm tracking-wide"}`}>
                       {header.title}
                     </span>
                   </Link>

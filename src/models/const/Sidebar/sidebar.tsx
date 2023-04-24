@@ -49,7 +49,6 @@ export const sidebar = [
     type: "list",
   },
 
-
   {
     path: "/create",
     icon: (
@@ -72,6 +71,7 @@ export const sidebar = [
     title: "เพิ่มข้อมูลผู้ทรงคุณวุฒิ",
     type: "list",
   },
+
   {
     path: "/",
     icon: (

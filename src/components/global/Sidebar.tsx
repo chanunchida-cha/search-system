@@ -41,7 +41,7 @@ const SideBar = observer(({ children }: Props) => {
       </div>
       {/* ./Sidebar */}
       <div className="ml-14 mt-12 h-screen  bg-[#F1F4F8] md:ml-64 ">
-        <div className="px-20 py-6 pt-10 ">{children}</div>
+        <div className="px-10 py-4 pt-10 ">{children}</div>
       </div>
     </div>
   );

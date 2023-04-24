@@ -1,9 +1,14 @@
+import { useRouter } from 'next/router';
 import React from 'react'
 
+
 function ManageEditButton() {
+    const route = useRouter();
     return (
         <>
-          <button className="flex items-center justify-center rounded-lg bg-[#f1d386] py-1 px-1 font-bold text-white hover:bg-yellow-700">
+          <button onClick={() => {
+              route.push("/editpassword");
+            }} className="flex items-center justify-center rounded-lg bg-[#f1d386] py-1 px-1 font-bold text-white hover:bg-yellow-700">
             <svg
               fill="none"
               stroke="currentColor"

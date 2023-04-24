@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { ChangeEvent,useState } from "react";
 import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 
 // interface Props {}
 

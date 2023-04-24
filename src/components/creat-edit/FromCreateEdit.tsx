@@ -3,6 +3,7 @@
 import React, { ReactElement, useState } from "react";
 import HistoryForm from "./historyForm/HistoryForm";
 import AssessmentForm from "./assessmentForm/AssessmentForm";
+import { observer } from "mobx-react-lite";
 
 interface Props {}
 
@@ -17,7 +18,7 @@ const typeTab = [
   },
 ];
 
-function FromCreateEdit({}: Props): ReactElement {
+const FromCreateEdit = observer(({}: Props) => {
   const [type, settype] = useState("history");
   return (
     <>
@@ -71,6 +72,7 @@ function FromCreateEdit({}: Props): ReactElement {
                 className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400"
                 // onClick={() => onClickRemove()}
                 hidden={type === "history"}
+                type="submit"
               >
                 บันทึก
               </button>
@@ -81,6 +83,6 @@ function FromCreateEdit({}: Props): ReactElement {
       </div>
     </>
   );
-}
+});
 
 export default FromCreateEdit;

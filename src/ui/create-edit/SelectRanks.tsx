@@ -2,7 +2,7 @@ import { ChangeEvent, Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { observer } from "mobx-react-lite";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { ranks } from "~/models/const/createEdit/rankLevels";
 
 // const ranks = [

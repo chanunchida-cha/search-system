@@ -3,8 +3,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
-import { levels } from "~/models/const/degreeLevels";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+import { levels,levelsEng } from "~/models/const/degreeLevels";
 
 interface Props {}
 

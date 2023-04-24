@@ -1,20 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
 import { observer } from "mobx-react-lite";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import { loginStore } from "~/store/login/LoginStore";
+import { useRouter } from "next/router";
 
 
 type Props = {};
 
-const loginMain = observer(({ }: Props) => {
+const LoginMain = observer(({ }: Props) => {
+  const route = useRouter();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  
-  const loginSubmit = async () => {
-    console.log("test username",userName);
-    await loginStore.getLogin(userName,userPassword)
+  async function loginSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await loginStore.getLogin(userName,userPassword);
+    route.push("/")
   }
 
   // useEffect(() => {
@@ -23,15 +24,17 @@ const loginMain = observer(({ }: Props) => {
   //   };
   //   loginSubmit();
   // }, []);
+  
 
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-white p-8">
       <div className="rounded-3xl border border-gray-300 bg-white p-2 shadow-xl lg:w-96">
         <div className="mt-2 text-center">
-          <p className="text-2xl font-extrabold text-blue-600">System Name</p>
+          <p className="text-xl font-extrabold text-blue-600 mt-5">ระบบสืบค้นข้อมูลวิจัย</p>
         </div>
 
         <form onSubmit={loginSubmit} className="mx-2 md:mx-10 mt-5">
+      
           <div className="mb-4">
             <label
               form="email"
@@ -77,7 +80,7 @@ const loginMain = observer(({ }: Props) => {
             />
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-10">
             <button
               type="submit"
               className="w-full md:w-auto rounded-3xl bg-blue-700 px-8 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
@@ -93,4 +96,4 @@ const loginMain = observer(({ }: Props) => {
   
 });
 
-export default loginMain;
+export default LoginMain;

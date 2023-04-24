@@ -13,7 +13,7 @@ type Props = {
 };
 
 function MainFeedTable({ feedList }: Props) {
-  console.log("feed list", feedList.content);
+ 
   const updatePageCurrent = async (page: number) => {
     await feedStore.getFeedList("", page, 10, "");
   };

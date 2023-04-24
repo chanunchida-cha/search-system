@@ -19,13 +19,13 @@ function RemoveButton({ onClickRemove }: Props) {
 
   return (
     // <div className="ol-span-1" >
-      <button
-        className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
-        onClick={() => onClickRemove()}
-        //   hidden={hidden}
-      >
-        -
-      </button>
+    <button
+      className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
+      onClick={() => onClickRemove()}
+      //   hidden={hidden}
+    >
+      -
+    </button>
     // {/* </div> */}
   );
 }

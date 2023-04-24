@@ -1,30 +1,32 @@
 import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
-import { setHistoryDataStore } from "~/store/create-edit/assessmentForm/setHistoryDataStore";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 
 type Props = {};
 
 const ResearchResult = observer(({}: Props) => {
-  const [listData, setData] = useState([
-    {
-      name: "",
-    },
-  ]);
+  const { listExplore, addListExplore, removeExplore, onChangeInputExplore } =
+    setHistoryDataStore;
+  // const [listData, setData] = useState([
+  //   {
+  //     name: "",
+  //   },
+  // ]);
 
-  console.log(listData);
+  // console.log(listData);
 
-  const handleAdd = () => {
-    setData([...listData, { name: "" }]);
-  };
+  // const handleAdd = () => {
+  //   setData([...listData, { name: "" }]);
+  // };
 
-  const handleRemove = (index: number) => {
-    const list = [...listData];
-    list.splice(index, 1);
-    setData(list);
-  };
+  // const handleRemove = (index: number) => {
+  //   const list = [...listData];
+  //   list.splice(index, 1);
+  //   setData(list);
+  // };
 
-  const hidden = listData.length === 1;
+  const hidden = listExplore.length === 1;
 
   const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
   const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,13 +40,13 @@ const ResearchResult = observer(({}: Props) => {
     //     name: "",
     //   },
     // ]);
-    
+
     setAssessmentResult(newhistoryDataResults);
   };
 
   return (
     <div>
-      {listData.map((data, index) => (
+      {listExplore.map((data, index) => (
         <div
           className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400"
           key={index}
@@ -60,12 +62,13 @@ const ResearchResult = observer(({}: Props) => {
             </div>
             <div className="col-span-4">
               <input
-                onChange={(event) => {
-                  //   setAffiliation(event.target.value);
+                value={data.exploreName}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  onChangeInputExplore(index, event);
                 }}
+                name="exploreName"
+                id="exploreName"
                 type="text"
-                name="price"
-                id="price"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
@@ -79,12 +82,13 @@ const ResearchResult = observer(({}: Props) => {
             </div>
             <div className="col-span-2">
               <input
-                onChange={(event) => {
-                  //   setAffiliation(event.target.value);
+                value={data.exploreYear}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  onChangeInputExplore(index, event);
                 }}
+                name="exploreYear"
+                id="exploreYear"
                 type="text"
-                name="price"
-                id="price"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
@@ -99,19 +103,20 @@ const ResearchResult = observer(({}: Props) => {
           </div>
           <div className="mt-3">
             <input
-              onChange={(event) => {
-                //   setAffiliation(event.target.value);
+              value={data.exploreDetail}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChangeInputExplore(index, event);
               }}
+              name="exploreDetail"
+              id="exploreDetail"
               type="text"
-              name="price"
-              id="price"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
             <AddAndRemoveButton
-              onClickAdd={handleAdd}
-              onClickRemove={() => handleRemove(index)}
+              onClickAdd={addListExplore}
+              onClickRemove={() => removeExplore(index)}
               hidden={hidden}
             />
             {/* {listData.length - 1 === index && (

@@ -4,37 +4,18 @@ import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
 import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const AssessmentResult = observer(({}: Props) => {
   const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
-  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {name,value,type,files} = event.target
-   
-    if (type === "file" && files && files[0]) {
-      const fileType = files[0].type;
-      if (fileType !== "image/png" && fileType !== "image/jpeg" && fileType !== "application/pdf") {
-        console.log("Invalid file type");
-        return;
-      }
 
-      const newResearchPropasals = {
-        ...assessmentResults,
-        [name]: files[0],
-      };
-     setAssessmentResult(newResearchPropasals);
-    } else {
-      const newValue = type === "checkbox" ? event.target.checked : value;
-      const newResearchPropasals = {
-        ...assessmentResults,
-        [name]: newValue,
-      };
-      setAssessmentResult(newResearchPropasals);
-    }
-  };
+  const { assessmentFile, setAssessmentFile, removeFileAssessmentResults } =
+    setStateFile;
 
-  console.log("assessmentResults", assessmentResults);
+  console.log("assessmentFile", assessmentFile);
+  console.log("assessmentResult", assessmentResults);
 
   return (
     <BoxLayout title=" ผลการประเมิน">
@@ -49,7 +30,9 @@ const AssessmentResult = observer(({}: Props) => {
             <input
               // value={data.from}
               value={assessmentResults.from}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResult(event)
+              }
               type="text"
               name="from"
               id="from"
@@ -65,7 +48,9 @@ const AssessmentResult = observer(({}: Props) => {
             <input
               // value={data.to}
               value={assessmentResults.to}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResult(event)
+              }
               type="text"
               name="to"
               id="to"
@@ -82,8 +67,12 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="col-span-8">
             <UploadFileInForm
-              state={assessmentResults.researchFile!}
-              onChange={handleFromChange}
+              name="assessmentResults_file"
+              state={assessmentFile.assessmentResults_file!}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentFile(event)
+              }
+              onClickButton={removeFileAssessmentResults}
             />
           </div>
         </div>

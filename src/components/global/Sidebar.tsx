@@ -24,8 +24,21 @@ const SideBar = observer(({ children }: Props) => {
           <ul className="flex flex-col space-y-1 py-4">
             {sidebar.map((header) => {
               return (
-                <li className={`${header.type === "head" ? "text-black ":"text-black"}  `}>
-                  <Link href={header.path} className={`text-white-600 text-white-800 relative flex h-11 flex-row items-center  border-l-4 border-transparent pr-6 ${header.type !== "head" ?"hover:border-[#0066FF] hover:bg-blue-200":null}  focus:outline-none`}>
+                <li
+                  className={`${
+                    header.type === "head"
+                      ? "disabled:true hidden sm:flex sm:text-gray-600 "
+                      : "text-black"
+                  }  `}
+                >
+                  <Link
+                    href={header.path}
+                    className={`text-white-600 text-white-800 relative flex h-11 flex-row items-center  border-l-4 border-transparent pr-6 ${
+                      header.type !== "head"
+                        ? "hover:border-[#0066FF] hover:bg-blue-200"
+                        : null
+                    }  focus:outline-none`}
+                  >
                     <span className="ml-4 inline-flex items-center justify-center">
                       {header.icon}
                     </span>
@@ -41,7 +54,7 @@ const SideBar = observer(({ children }: Props) => {
       </div>
       {/* ./Sidebar */}
       <div className="ml-14 mt-12 h-screen  bg-[#F1F4F8] md:ml-64 ">
-        <div className="px-20 py-6 pt-10 ">{children}</div>
+        <div className="px-10 py-4 pt-10 ">{children}</div>
       </div>
     </div>
   );

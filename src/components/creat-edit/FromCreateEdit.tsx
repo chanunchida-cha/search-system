@@ -3,6 +3,7 @@
 import React, { ReactElement, useState } from "react";
 import HistoryForm from "./historyForm/HistoryForm";
 import AssessmentForm from "./assessmentForm/AssessmentForm";
+import { observer } from "mobx-react-lite";
 
 interface Props {}
 
@@ -17,7 +18,7 @@ const typeTab = [
   },
 ];
 
-function FromCreateEdit({}: Props): ReactElement {
+const FromCreateEdit = observer(({}: Props) => {
   const [type, settype] = useState("history");
   return (
     <>
@@ -45,10 +46,43 @@ function FromCreateEdit({}: Props): ReactElement {
             );
           })}
         </div>
-        <div>{type === "history" ? <HistoryForm /> : <AssessmentForm />}</div>
+        <div>
+          {type === "history" ? <HistoryForm /> : <AssessmentForm />}
+          <div className="ml-10 mr-10 grid grid-cols-12">
+            {/* {listData.length - 1 === index && ( */}
+            <div className="col-span-2">
+              <button
+                className="w-full rounded-md border border-gray-500 bg-gray-500 p-1.5  text-white placeholder:text-gray-400"
+                onClick={() => {
+                  if (type === "Assessment") {
+                    settype("history");
+                  } else {
+                    // settype(type);
+                  }
+                }}
+              >
+                ย้อนกลับ
+              </button>
+            </div>
+            <div className="col-span-8"></div>
+            {/* )} */}
+            {/* {listData.length > 1 && ( */}
+            <div className="col-span-2">
+              <button
+                className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400"
+                // onClick={() => onClickRemove()}
+                hidden={type === "history"}
+                type="submit"
+              >
+                บันทึก
+              </button>
+            </div>
+            {/* )} */}
+          </div>
+        </div>
       </div>
     </>
   );
-}
+});
 
 export default FromCreateEdit;

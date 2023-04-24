@@ -5,26 +5,33 @@ import FeedbackInForm from "./FeedbackInForm";
 import HeaderAssessment from "./HeaderAssessment";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props = {};
 
 const ResearchPropasal = observer(({}: Props) => {
-  const { researchPropasals, setResearchPropasals } = setStateAssessmentStore;
-  const handleFromChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newAssessmentResults = {
-      ...researchPropasals,
-      [event.target.name]: event.target.value,
-    };
-    setResearchPropasals(newAssessmentResults);
-  };
-  console.log(researchPropasals);
+  const {
+    researchPropasals,
+    setResearchPropasals,
+   
+  } = setStateAssessmentStore;
+
+  const { researchPropasalsFile,setResearchPropasalsFile,removeFileResearchPropasals } = setStateFile
+
+  console.log(researchPropasalsFile);
+  
 
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
         <HeaderAssessment
-          onChange={handleFromChange}
-          state={researchPropasals}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasals(event)
+          }
+          year={researchPropasals.project_year}
+          title={researchPropasals.project_title}
+          name_year={"project_year"}
+          name_title={"project_title"}
         />
 
         <div className="mt-3 grid grid-cols-12 gap-2">
@@ -36,7 +43,9 @@ const ResearchPropasal = observer(({}: Props) => {
           <div className="col-span-1">
             <input
               value={researchPropasals.project_point}
-              onChange={handleFromChange}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setResearchPropasals(event)
+              }
               type="text"
               name="project_point"
               id="project_point"
@@ -52,10 +61,27 @@ const ResearchPropasal = observer(({}: Props) => {
             </label>
           </div>
           <div className="col-span-8">
-            <UploadFileInForm />
+            <UploadFileInForm
+              name="researchPropasals_file"
+              state={researchPropasalsFile.researchPropasals_file!}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setResearchPropasalsFile(event)
+              }
+              onClickButton={removeFileResearchPropasals}
+            />
           </div>
         </div>
-        <FeedbackInForm />
+        <FeedbackInForm
+          name_period={"project_period"}
+          name_estimate={"project_estimate"}
+          name_recommend={"project_recommend"}
+          period={researchPropasals.project_period}
+          estimate={researchPropasals.project_estimate}
+          recommend={researchPropasals.project_recommend}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasals(event)
+          }
+        />
       </div>
     </BoxLayout>
   );

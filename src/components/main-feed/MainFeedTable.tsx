@@ -4,10 +4,19 @@ import Link from "next/link";
 import { main_feed_heading } from "~/models/const/main-feed/main_feed_heading";
 import FeedEditButton from "~/ui/main-feed/FeedEditButton";
 import FeedDeleteButton from "~/ui/main-feed/FeedDeleteButton";
+import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
+import index from "~/pages";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
-type Props = {};
+type Props = {
+  feedList: FeedListResponse;
+};
 
-function MainFeedTable({}: Props) {
+function MainFeedTable({ feedList }: Props) {
+  console.log("feed list", feedList.content);
+  const updatePageCurrent = async (page: number) => {
+    await feedStore.getFeedList("", page, 10, "");
+  };
   return (
     <>
       {/* TABLE CONTENT */}
@@ -30,30 +39,33 @@ function MainFeedTable({}: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {main_feed_heading.map((item) => (
+            {feedList.content.map((item, index) => (
               <tr className="bg-white">
-                <td className="p-3 text-center text-sm text-gray-700">1</td>
                 <td className="p-3 text-center text-sm text-gray-700">
-                  Innovation for youth development with “Palang Boron”, Bang Nam
-                  Chuet Subdistrict, Lang Suan District, Chumphon Province
+                  {index + 1 + Number(feedList.current_page) * 10}
+                </td>
+                <td className="p-3 text-center text-sm text-gray-700">
+                  {item.project_title}
                 </td>
                 <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
                   <Link
-                    href={"/" + "Suchart Thongyod"}
+                    href={"/" + item.researcher_id}
                     className="font-bold text-blue-500 hover:underline"
                   >
-                    Suchart Thongyod
+                    {item.researcher_name}
                   </Link>
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  Chiang Mai University
+                  {item.university}
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  2023
+                  {item.explore_year}
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                    <FeedEditButton />
+                    <Link href={"/" + item.researcher_name}>
+                      <FeedEditButton />
+                    </Link>
                     <FeedDeleteButton />
                   </div>
                 </td>
@@ -82,9 +94,19 @@ function MainFeedTable({}: Props) {
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-gray-700">
-              Showing <span className="font-medium">1</span> to{" "}
-              <span className="font-medium">10</span> of{" "}
-              <span className="font-medium">97</span> results
+              Showing{" "}
+              <span className="font-medium">
+                {(Number(feedList.current_page) + 1) * 10 - 9}
+              </span>{" "}
+              to{" "}
+              <span className="font-medium">
+                {(Number(feedList.current_page) + 1) * 10}
+              </span>{" "}
+              of{" "}
+              <span className="font-medium">
+                {Number(feedList.total_object) * Number(feedList.total_page)}
+              </span>{" "}
+              results
             </p>
           </div>
           <div>
@@ -99,47 +121,28 @@ function MainFeedTable({}: Props) {
                 <span className="sr-only">Previous</span>
                 <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
               </a>
+              {Array.from({ length: Number(feedList.total_page) }, (_, index) =>
+                Number(feedList.current_page) === index ? (
+                  <a
+                    href="#"
+                    aria-current="page"
+                    onClick={() => updatePageCurrent(index)}
+                    className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    {index + 1}
+                  </a>
+                ) : (
+                  <a
+                    href="#"
+                    onClick={() => updatePageCurrent(index)}
+                    className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                  >
+                    {index + 1}
+                  </a>
+                )
+              )}
               {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-              <a
-                href="#"
-                aria-current="page"
-                className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                1
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                2
-              </a>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-              >
-                3
-              </a>
-              <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
-                ...
-              </span>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-              >
-                8
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                9
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                10
-              </a>
+
               <a
                 href="#"
                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

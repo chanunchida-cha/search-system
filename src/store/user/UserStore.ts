@@ -20,7 +20,7 @@ class UserStore {
   async getUserManage(page : number, limit : number){
     try {
         const response = await axios.post(
-          `https://sit-api.uap.universityapp.net/research/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
             page: page,
             limit: limit,

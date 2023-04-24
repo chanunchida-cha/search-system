@@ -5,16 +5,22 @@ import { feedStore } from "~/store/main-feed/FeedStore";
 import { observer } from "mobx-react-lite";
 import FeedAddNewUserButton from "~/ui/main-feed/FeedAddNewUserButton";
 import Link from "next/link";
+import { loginStore } from "~/store/login/LoginStore";
+
 
 type Props = {};
 
 const MainFeed = observer(({}: Props) => {
+  const { loginData } = loginStore;
+  const { username } = loginData;
+  // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
-      await feedStore.getFeedList("", 1, 10, "");
+      await feedStore.getFeedList("", 0, 10, "");
     };
     fetchFeedList();
   }, []);
+
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">

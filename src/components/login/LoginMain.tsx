@@ -4,18 +4,17 @@ import React, { useState, useEffect, FormEvent } from "react";
 import { loginStore } from "~/store/login/LoginStore";
 import { useRouter } from "next/router";
 
-
 type Props = {};
 
-const LoginMain = observer(({ }: Props) => {
+const LoginMain = observer(({}: Props) => {
   const route = useRouter();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   async function loginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await loginStore.getLogin(userName,userPassword);
-    route.push("/")
+    await loginStore.getLogin(userName, userPassword);
+    route.push("/");
   }
 
   // useEffect(() => {
@@ -24,17 +23,22 @@ const LoginMain = observer(({ }: Props) => {
   //   };
   //   loginSubmit();
   // }, []);
-  
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center bg-white p-8">
+    <div className="flex h-screen flex-col items-center justify-center bg-white p-8">
       <div className="rounded-3xl border border-gray-300 bg-white p-2 shadow-xl lg:w-96">
         <div className="mt-2 text-center">
-          <p className="text-xl font-extrabold text-blue-600 mt-5">ระบบสืบค้นข้อมูลวิจัย</p>
+          <p className="mt-5 text-xl font-extrabold text-blue-600">
+            ระบบสืบค้นข้อมูลวิจัย
+          </p>
         </div>
 
-        <form onSubmit={loginSubmit} className="mx-2 md:mx-10 mt-5">
-      
+        <form
+          onSubmit={(e) => {
+            loginSubmit(e);
+          }}
+          className="mx-2 mt-5 md:mx-10"
+        >
           <div className="mb-4">
             <label
               form="email"
@@ -80,10 +84,10 @@ const LoginMain = observer(({ }: Props) => {
             />
           </div>
 
-          <div className="flex justify-center mb-10">
+          <div className="mb-10 flex justify-center">
             <button
               type="submit"
-              className="w-full md:w-auto rounded-3xl bg-blue-700 px-8 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+              className="w-full rounded-3xl bg-blue-700 px-8 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:w-auto"
             >
               Sign in
             </button>
@@ -91,9 +95,7 @@ const LoginMain = observer(({ }: Props) => {
         </form>
       </div>
     </div>
-
   );
-  
 });
 
 export default LoginMain;

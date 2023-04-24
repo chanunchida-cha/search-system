@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
-import { levels,  } from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/degreeLevels";
 import {
   Degree,
   Experience,
@@ -66,7 +66,7 @@ class SetHistoryDataStore {
     },
   ];
 
-  selectLevel: {key:string,i18n:string} = levels[0]!;
+  selectLevel: { key: string; i18n: string } = levels[0]!;
 
   selectRanks: string = ranks[0]!;
 
@@ -77,6 +77,39 @@ class SetHistoryDataStore {
   // setPositionNameEng = (positionName : string) =>{
   //   this.historyDataResults.positionName = positionName
   // }
+
+  validationHistoryData = Object.keys(this.historyDataResults).length !== 0
+
+  validationExplore = this.listExplore.every(
+    (item) =>
+      item.exploreDetail &&
+      item.exploreName &&
+      item.exploreYear 
+  );
+
+  validationExpReserach = this.listExpReserach.every(
+    (item) =>
+      item.experienceType &&
+      item.experienceStart &&
+      item.experienceEnd &&
+      item.experienceUniversity &&
+      item.experienceRemark
+  );
+
+  validationExperience = this.listExperience.every(
+    (item) =>
+      item.experienceType &&
+      item.experienceStart &&
+      item.experienceEnd &&
+      item.experienceUniversity &&
+      item.experienceRemark
+  );
+
+  validationProgram = this.listProgram.every((item) => item.programName);
+
+  validationDegree = this.listData.every(
+    (item) => item.degreeType && item.degreeProgram && item.degreeUniversity
+  );
 
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
@@ -166,7 +199,7 @@ class SetHistoryDataStore {
     this.listExplore = newListData;
   };
 
-  setSelectedLevel = (level:{key:string,i18n:string}) => {
+  setSelectedLevel = (level: { key: string; i18n: string }) => {
     this.selectLevel = level;
   };
 

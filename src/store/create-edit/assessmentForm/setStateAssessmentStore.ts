@@ -52,6 +52,16 @@ class SetStateAssessmentStore {
     makeAutoObservable(this);
   }
 
+  validationAssessment = Object.keys(this.assessmentResults).length !== 0
+
+  validationResearchPropasals = Object.keys(this.researchPropasals).length !== 0
+  
+  validationProgressReports = Object.keys(this.progressReports).length !== 0
+
+  validationReports= Object.keys(this.reports).length !== 0
+
+  validationResearchArticles = Object.keys(this.researchArticles).length !== 0
+
   setAssessmentResult = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 

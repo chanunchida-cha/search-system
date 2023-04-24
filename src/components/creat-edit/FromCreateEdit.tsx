@@ -4,6 +4,8 @@ import React, { ReactElement, useState } from "react";
 import HistoryForm from "./historyForm/HistoryForm";
 import AssessmentForm from "./assessmentForm/AssessmentForm";
 import { observer } from "mobx-react-lite";
+import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
+import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 
 interface Props {}
 
@@ -19,6 +21,23 @@ const typeTab = [
 ];
 
 const FromCreateEdit = observer(({}: Props) => {
+  const {
+    validationAssessment,
+    validationReports,
+    validationProgressReports,
+    validationResearchArticles,
+    validationResearchPropasals,
+  } = setStateAssessmentStore;
+
+  const {
+    validationDegree,
+    validationExpReserach,
+    validationExperience,
+    validationExplore,
+    validationHistoryData,
+    validationProgram,
+  } = setHistoryDataStore;
+
   const [type, settype] = useState("history");
   return (
     <>
@@ -73,6 +92,21 @@ const FromCreateEdit = observer(({}: Props) => {
                 // onClick={() => onClickRemove()}
                 hidden={type === "history"}
                 type="submit"
+                disabled={
+                  !(
+                    validationAssessment &&
+                    validationDegree &&
+                    validationExpReserach &&
+                    validationExperience &&
+                    validationExplore &&
+                    validationHistoryData &&
+                    validationProgram &&
+                    validationProgressReports &&
+                    validationReports &&
+                    validationResearchArticles &&
+                    validationResearchPropasals
+                  )
+                }
               >
                 บันทึก
               </button>

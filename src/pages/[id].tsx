@@ -36,7 +36,7 @@ export default function NameFeed({}: Props): ReactElement {
   useEffect(() => {
     updateToggle();
     fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
+    // fetchAssessmentDetail(Number(id));
     console.log("FEED:", feedStore.feedDetail);
     console.log("ASSESSMENT:", feedStore.assessmentDetail);
   }, []);

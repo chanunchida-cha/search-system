@@ -63,7 +63,7 @@ function MainFeedTable({ feedList }: Props) {
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                    <Link href={"/" + item.researcher_name}>
+                    <Link href={`/edit/${item.researcher_id}`}>
                       <FeedEditButton />
                     </Link>
                     <FeedDeleteButton />

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
@@ -16,8 +17,7 @@ const typeTab = [
     i18n: "ข้อมูลผลการประเมิน",
   },
 ];
-
-export default function NameFeed({}: Props): ReactElement {
+export const NameFeed = observer(({}: Props): ReactElement => {
   const router = useRouter();
   const { id } = router.query;
   const [type, settype] = useState("");
@@ -81,4 +81,4 @@ export default function NameFeed({}: Props): ReactElement {
       </div>
     </>
   );
-}
+});

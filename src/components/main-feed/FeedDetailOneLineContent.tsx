@@ -26,7 +26,12 @@ function FeedDetailOneLineContent({
         <div className="flex w-full items-center">
           <p className={`ml-3 text-black ${textClass}`}>{title}</p>
           {isLink ? (
-            <Link href={"/"} className="w-3/4">
+            <Link
+              href={
+                "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+              }
+              className="w-3/4"
+            >
               <input
                 type="text"
                 name="position"

@@ -190,13 +190,12 @@ function FeedDetail({ feedDetail }: Props) {
           {/* END OF CONTENT */}
         </div>
         <div className="mt-6 flex flex-row">
-          <Link href="/">
-            <FeedOneBoxButton
-              btnColor={"[#668ff6]"}
-              hoverColor={"[#668ff6]"}
-              title={"ย้อนกลับ"}
-            />
-          </Link>
+          <FeedOneBoxButton
+            btnColor={"[#668ff6]"}
+            hoverColor={"[#668ff6]"}
+            title={"ย้อนกลับ"}
+            link={"/"}
+          />
         </div>
       </div>
     </>

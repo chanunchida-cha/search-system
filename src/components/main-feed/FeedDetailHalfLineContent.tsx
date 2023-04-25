@@ -1,6 +1,7 @@
 import React from "react";
 import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
 import { ExploreResponse } from "~/models/type/main-feed/typeExplore";
+import { useRouter } from "next/router";
 
 type Props = {
   titleLeft: string;
@@ -33,6 +34,9 @@ function FeedDetailHalfLineContent({
   checkListArray,
   contentList,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
+
   return (
     <>
       {checkListArray ? (
@@ -49,7 +53,9 @@ function FeedDetailHalfLineContent({
                         name="username"
                         id="username"
                         value={item.explore_name}
-                        className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                        className={`${
+                          edit ? "bg-white text-black" : "pointer-events-none"
+                        } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
                         placeholder={placeHolderLeft}
                       ></input>
                     </div>
@@ -62,7 +68,9 @@ function FeedDetailHalfLineContent({
                         name="surname"
                         id="surname"
                         value={item.explore_year}
-                        className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                        className={`${
+                          edit ? "bg-white text-black" : "pointer-events-none"
+                        } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
                         placeholder={placeHolderRight}
                       ></input>
                     </div>
@@ -88,7 +96,9 @@ function FeedDetailHalfLineContent({
                       name="username"
                       id="username"
                       value={textLeft}
-                      className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
                       placeholder={placeHolderLeft}
                     ></input>
                   </div>
@@ -101,7 +111,9 @@ function FeedDetailHalfLineContent({
                       name="surname"
                       id="surname"
                       value={textRight}
-                      className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
                       placeholder={placeHolderRight}
                     ></input>
                   </div>
@@ -127,7 +139,9 @@ function FeedDetailHalfLineContent({
                 name="username"
                 id="username"
                 value={textLeft}
-                className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                }  ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1  px-3 text-gray-700  ${inputLeft}`}
                 placeholder={placeHolderLeft}
               ></input>
             </div>
@@ -140,7 +154,9 @@ function FeedDetailHalfLineContent({
                 name="surname"
                 id="surname"
                 value={textRight}
-                className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                }  ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1  px-3 text-gray-700  ${inputRight}`}
                 placeholder={placeHolderRight}
               ></input>
             </div>

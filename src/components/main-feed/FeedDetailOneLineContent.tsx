@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 type Props = {
@@ -20,6 +21,8 @@ function FeedDetailOneLineContent({
   textContent,
   isLink,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   return (
     <>
       <div className={`flex w-full flex-row ${mainClass}`}>

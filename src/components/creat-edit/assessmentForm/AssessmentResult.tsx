@@ -28,7 +28,6 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
-              // value={data.from}
               value={assessmentResults.from}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 setAssessmentResult(event)
@@ -36,7 +35,7 @@ const AssessmentResult = observer(({}: Props) => {
               type="text"
               name="from"
               id="from"
-              className=" w-full items-center rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
+              className=" w-full  items-center rounded-md border border-gray-300 px-2 py-1.5 text-gray-900  placeholder:text-gray-400  required:border-red-500 "
             />
           </div>
           <div className="w-18 flex-initial">

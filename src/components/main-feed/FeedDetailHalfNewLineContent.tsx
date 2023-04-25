@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { DegreeResponse } from "~/models/type/main-feed/typeDegree";
 
@@ -22,6 +23,8 @@ function FeedDetailHalfNewLineContent({
   mainClass,
   contentList,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   return (
     <>
       <div className={`flex w-full flex-row ${mainClass}`}>
@@ -43,7 +46,9 @@ function FeedDetailHalfNewLineContent({
                   name="major"
                   id="major"
                   value={item.degree_program}
-                  className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                  className={`${
+                    edit ? "bg-white text-black" : "pointer-events-none"
+                  } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={sectionPlaceHolder}
                 ></input>
               </div>
@@ -56,7 +61,9 @@ function FeedDetailHalfNewLineContent({
                   name="university"
                   id="university"
                   value={item.degree_university}
-                  className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                  className={`${
+                    edit ? "bg-white text-black" : "pointer-events-none"
+                  } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={universityPlaceHolder}
                 ></input>
               </div>
@@ -73,7 +80,9 @@ function FeedDetailHalfNewLineContent({
                 type="text"
                 name="major"
                 id="major"
-                className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                 placeholder={sectionPlaceHolder}
               ></input>
             </div>
@@ -85,7 +94,9 @@ function FeedDetailHalfNewLineContent({
                 type="text"
                 name="university"
                 id="university"
-                className="pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                 placeholder={universityPlaceHolder}
               ></input>
             </div>

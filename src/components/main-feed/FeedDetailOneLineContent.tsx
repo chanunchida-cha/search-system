@@ -40,7 +40,9 @@ function FeedDetailOneLineContent({
                 name="position"
                 id="position"
                 value={textContent}
-                className={` pointer-events-none ml-3 block rounded  border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700  ${inputClass}`}
+                className={` ${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                } ml-3 block rounded  border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700  ${inputClass}`}
                 placeholder={placeHolder}
               ></input>
             </Link>
@@ -50,7 +52,9 @@ function FeedDetailOneLineContent({
               name="position"
               id="position"
               value={textContent}
-              className={` pointer-events-none ml-3 block rounded  border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700  ${inputClass}`}
+              className={` ${
+                edit ? "bg-white text-black" : "pointer-events-none"
+              } ml-3 block rounded  border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700  ${inputClass}`}
               placeholder={placeHolder}
             ></input>
           )}

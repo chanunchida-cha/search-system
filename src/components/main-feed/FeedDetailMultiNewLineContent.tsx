@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { ProgramResponse } from "~/models/type/main-feed/typeProgram";
 
@@ -16,6 +17,8 @@ function FeedDetailMultiNewLineContent({
   mainClass,
   contentList,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   return (
     <>
       <div className={`${mainClass} flex w-full flex-row`}>
@@ -35,7 +38,9 @@ function FeedDetailMultiNewLineContent({
                   name="expertMajor"
                   id="expertMajor"
                   value={item.program_name}
-                  className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                  className={`${
+                    edit ? "bg-white text-black" : "pointer-events-none"
+                  } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={placeHolder}
                 ></input>
               </div>
@@ -50,7 +55,9 @@ function FeedDetailMultiNewLineContent({
                 type="text"
                 name="expertMajor"
                 id="expertMajor"
-                className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 `}
                 placeholder={placeHolder}
               ></input>
             </div>

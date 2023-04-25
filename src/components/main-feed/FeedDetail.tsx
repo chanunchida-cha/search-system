@@ -63,8 +63,8 @@ function FeedDetail({ feedDetail }: Props) {
                     inputClass={"w-2/4"}
                     textClass={"font-bold"}
                     textContent={
-                      feedDetail.position[0]?.position_name
-                        ? feedDetail.position[0].position_name
+                      feedDetail.position.position_name
+                        ? feedDetail.position.position_name
                         : ""
                     }
                   />

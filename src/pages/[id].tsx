@@ -35,8 +35,8 @@ const NameFeed = observer(({}: Props) => {
 
   useEffect(() => {
     updateToggle();
-    // fetchFeedDetail(Number(id));
-    // fetchAssessmentDetail(Number(id));
+    fetchFeedDetail(Number(id));
+    fetchAssessmentDetail(Number(id));
     console.log("FEED:", feedStore.feedDetail);
     console.log("ASSESSMENT:", feedStore.assessmentDetail);
   }, []);

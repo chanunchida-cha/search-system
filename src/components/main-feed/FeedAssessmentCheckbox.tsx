@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { ArticleResponse } from "~/models/type/main-feed/typeArticle";
 import { ProgressResponse } from "~/models/type/main-feed/typeProgress";
@@ -28,6 +29,8 @@ function FeedAssessmentCheckbox({
   checkRecommend,
   checkPeriod,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   return (
     <>
       <div className="mt-3 flex w-full flex-row">
@@ -46,7 +49,9 @@ function FeedAssessmentCheckbox({
               name="assessmentSinceYearBudget"
               id="assessmentSinceYearBudget"
               value={startYear}
-              className="pointer-events-none ml-3 block w-1/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+              className={`${
+                edit ? "bg-white text-black" : "pointer-events-none"
+              } ml-3 block w-1/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 `}
               placeholder="2562"
             ></input>
             <p className="ml-3  text-black">เรื่อง</p>
@@ -55,7 +60,9 @@ function FeedAssessmentCheckbox({
               name="assessmentNameTitle"
               id="assessmentNameTitle"
               value={contentTitle}
-              className="pointer-events-none ml-3 block w-2/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+              className={`${
+                edit ? "bg-white text-black" : "pointer-events-none"
+              } ml-3 block w-2/5 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
               placeholder="ชื่อเรื่อง"
             ></input>
           </div>
@@ -73,7 +80,9 @@ function FeedAssessmentCheckbox({
             name="assessmentPoint"
             id="assessmentPoint"
             value={projectPoint}
-            className="pointer-events-none ml-3 block w-2/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+            className={`${
+              edit ? "bg-white text-black" : "pointer-events-none"
+            } ml-3 block w-2/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 `}
             placeholder="9"
           ></input>
         </div>

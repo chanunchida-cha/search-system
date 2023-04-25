@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import Image from "next/image";
 import FeedAssessmentCheckbox from "./FeedAssessmentCheckbox";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
+import { useRouter } from "next/router";
+import UploadFileInForm from "../creat-edit/assessmentForm/UploadFileInForm";
 
 type Props = {
   assessmentDetail: AssessmentDetailResponse;
 };
 
 function FeedAssessment({ assessmentDetail }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   useEffect(() => {
     console.log("Check", assessmentDetail.assessment_end);
   }, []);
@@ -44,7 +48,9 @@ function FeedAssessment({ assessmentDetail }: Props) {
                       name="assessmentSinceBudget"
                       id="assessmentSinceBudget"
                       value={assessmentDetail.assessment_start}
-                      className="pointer-events-none ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                       placeholder="2562"
                     ></input>
                     <p className="ml-3  text-black">ถึง</p>
@@ -52,7 +58,9 @@ function FeedAssessment({ assessmentDetail }: Props) {
                       name="assessmentYearBudget"
                       id="assessmentYearBudget"
                       value={assessmentDetail.assessment_end}
-                      className="pointer-events-none ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                       placeholder="ปัจจุบัน"
                     ></input>
                   </div>
@@ -60,16 +68,27 @@ function FeedAssessment({ assessmentDetail }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">เอกสารงานวิจัย : </p>
-                    <Link href={"/"} className="w-3/4">
-                      <input
-                        type="text"
-                        name="assessmentResearchDocument"
-                        id="assessmentResearchDocument"
-                        value={assessmentDetail.assessment_file_name}
-                        className="pointer-events-none ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
-                        placeholder="งานวิจัย.pdf"
-                      ></input>
-                    </Link>
+                    {edit ? (
+                      <UploadFileInForm
+                        name="assessmentResults_file"
+                        state={assessmentDetail.assessment_file_name}
+                        // onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        //   setAssessmentFile(event)
+                        // }
+                        // onClickButton={removeFileAssessmentResults}
+                      />
+                    ) : (
+                      <Link href={"/"} className="w-3/4">
+                        <input
+                          type="text"
+                          name="assessmentResearchDocument"
+                          id="assessmentResearchDocument"
+                          value={assessmentDetail.assessment_file_name}
+                          className={` ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-blue-700 underline underline-offset-4 `}
+                          placeholder="งานวิจัย.pdf"
+                        ></input>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <FeedAssessmentCheckbox

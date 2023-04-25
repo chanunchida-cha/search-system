@@ -26,20 +26,18 @@ const Edit = observer(({}: Props) => {
     settype("history");
   };
 
-  // const fetchFeedDetail = async (id: number) => {
-  //   await feedStore.getFeedDetail(id);
-  // };
+  const fetchFeedDetail = async (id: number) => {
+    await feedStore.getFeedDetail(id);
+  };
 
-  // const fetchAssessmentDetail = async (id: number) => {
-  //   await feedStore.getAssessmentDetail(id);
-  // };
+  const fetchAssessmentDetail = async (id: number) => {
+    await feedStore.getAssessmentDetail(id);
+  };
 
   useEffect(() => {
     updateToggle();
-    // fetchFeedDetail(Number(id));
-    // fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
+    fetchFeedDetail(Number(id));
+    fetchAssessmentDetail(Number(id));
   }, []);
 
   return  <>

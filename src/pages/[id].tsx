@@ -5,7 +5,7 @@ import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
 
-interface Props {}
+type Props = {};
 
 const typeTab = [
   {
@@ -17,7 +17,7 @@ const typeTab = [
     i18n: "ข้อมูลผลการประเมิน",
   },
 ];
-export const NameFeed = observer(({}: Props): ReactElement => {
+const NameFeed = observer(({}: Props) => {
   const router = useRouter();
   const { id } = router.query;
   const [type, settype] = useState("");
@@ -82,3 +82,5 @@ export const NameFeed = observer(({}: Props): ReactElement => {
     </>
   );
 });
+
+export default NameFeed;

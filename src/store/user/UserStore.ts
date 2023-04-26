@@ -17,11 +17,12 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  async getUserManage(page : number, limit : number){
+  async getUserManage(username : string,  page : number, limit : number){
     try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/user`,
           {
+            username : username,
             page: page,
             limit: limit,
           }

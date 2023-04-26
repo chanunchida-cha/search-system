@@ -26,6 +26,7 @@ class LoginStore {
       );
       const result = response.data;
       sessionStorage.setItem("token", result.data.token);
+      sessionStorage.setItem("username", result.data.userName);
       this.loginData = result.data;
     } catch (err: any) {
       Swal.fire({

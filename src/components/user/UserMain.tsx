@@ -8,9 +8,10 @@ import { useRouter } from "next/router";
 type Props = {};
 const UserMain = observer(({}: Props) => {
   const route = useRouter();
+  const username = sessionStorage.getItem("username");
   useEffect(() => {
     const fecthManage = async () => {
-      await userStore.getUserManage(0, 10);
+      await userStore.getUserManage(String(username), 0, 10);
     };
     fecthManage();
   }, []);

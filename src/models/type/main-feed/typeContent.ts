@@ -4,4 +4,5 @@ export type ContentResponse = {
   explore_year: string;
   project_title: string;
   researcher_id: number;
+  profile_status: boolean;
 };

@@ -34,8 +34,12 @@ const AddUserAccount = observer(({}: Props) => {
           ชื่อผู้ใช้งาน
         </label>
       </div>
+      <span className="mt-3 ml-20 text-red-500 text-xl" aria-hidden="true">
+              *
+            </span>
+
       <form onSubmit={userSubmit}>
-      <div className="mt-3 ml-20 grid grid-cols-12 gap-2">
+      <div className="ml-20 grid grid-cols-12 gap-2">
         <div className="col-span-4">
           <input
             type="text"

@@ -6,6 +6,7 @@ import AssessmentForm from "./assessmentForm/AssessmentForm";
 import { observer } from "mobx-react-lite";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+import { setStateFile } from "~/store/create-edit/setStateFile";
 
 interface Props {}
 
@@ -88,7 +89,7 @@ const FromCreateEdit = observer(({}: Props) => {
             {/* {listData.length > 1 && ( */}
             <div className="col-span-2">
               <button
-                className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:bg-blue-300 disabled:border-none"
+                className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:border-none disabled:bg-blue-300"
                 // onClick={() => onClickRemove()}
                 hidden={type === "history"}
                 type="submit"

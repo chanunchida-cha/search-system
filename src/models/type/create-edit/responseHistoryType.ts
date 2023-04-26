@@ -3,6 +3,7 @@ export type ResponseHistory = {
     profile_id: number;
     first_name: string;
     last_name: string;
+    profile_status:boolean
     position_id: number;
     position_name: string;
     degree: Degree[];

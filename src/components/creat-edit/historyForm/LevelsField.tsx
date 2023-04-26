@@ -24,6 +24,7 @@ const LevelsField = observer(({}: Props) => {
   } = setHistoryDataStore;
 
   const hidden = listData.length === 1;
+  
   console.log(listData);
 
   return (

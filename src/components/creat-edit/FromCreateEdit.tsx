@@ -23,6 +23,9 @@ const typeTab = [
 
 const FromCreateEdit = observer(({}: Props) => {
   const {
+    validationFile
+  } = setStateFile;
+  const {
     validationAssessment,
     validationReports,
     validationProgressReports,
@@ -38,6 +41,9 @@ const FromCreateEdit = observer(({}: Props) => {
     validationHistoryData,
     validationProgram,
   } = setHistoryDataStore;
+
+  console.log(validationDegree);
+  
 
   const [type, settype] = useState("history");
   return (
@@ -105,7 +111,8 @@ const FromCreateEdit = observer(({}: Props) => {
                     validationProgressReports &&
                     validationReports &&
                     validationResearchArticles &&
-                    validationResearchPropasals
+                    validationResearchPropasals &&
+                    validationFile
                   )
                 }
               >

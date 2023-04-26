@@ -6,13 +6,15 @@ import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import ManageEditButton from "~/ui/user-manage/ManageEditButton";
 import { UserManageResponse } from "~/models/type/user/typeUser";
 import { userStore } from "~/store/user/UserStore";
+import Cookie from "cookie-universal";
+const cookies = Cookie();
 
 type Props = {
   userManageList: UserManageResponse;
 };
 
 function UserTable({ userManageList }: Props) {
-  const username = sessionStorage.getItem("username");
+  const username = cookies.get("username");
   const updatePageCurrent = async (page: number) => {
     await userStore.getUserManage(String(username), page, 10);
   };
@@ -41,18 +43,18 @@ function UserTable({ userManageList }: Props) {
             {userManageList.content.map((item, index) => (
               <tr className="bg-white">
                 <td className="p-3 text-center text-sm text-gray-700">
-                  {index + 1}
-                </td>
+                    {index + 1 + Number(userManageList.current_page) * 10}
+                  </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <Link
-                    href={"/" + "Suchart Thongyod"}
+                    href={"/" + item.user_id}
                     className="font-bold text-blue-500 hover:underline"
                   >
-                    Suchart Thongyod
+                    {item.username}
                   </Link>
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  Adminitrator
+                {item.role}
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex justify-center">
@@ -83,7 +85,7 @@ function UserTable({ userManageList }: Props) {
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
                 {(Number(userManageList.current_page) + 1) * 10 - 9}
@@ -94,8 +96,7 @@ function UserTable({ userManageList }: Props) {
               </span>{" "}
               of{" "}
               <span className="font-medium">
-                {Number(userManageList.total_object) *
-                  Number(userManageList.total_page)}
+                {Number(userManageList.total_object) * Number(userManageList.total_page)}
               </span>{" "}
               results
             </p>
@@ -112,47 +113,26 @@ function UserTable({ userManageList }: Props) {
                 <span className="sr-only">Previous</span>
                 <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
               </a>
-              {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-              <a
-                href="#"
-                aria-current="page"
-                className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                1
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                2
-              </a>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-              >
-                3
-              </a>
-              <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
-                ...
-              </span>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-              >
-                8
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                9
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-              >
-                10
-              </a>
+              {Array.from({ length: Number(userManageList.total_page) }, (_, index) =>
+                Number(userManageList.current_page) === index ? (
+                  <a
+                    href="#"
+                    aria-current="page"
+                    onClick={() => updatePageCurrent(index)}
+                    className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    {index + 1}
+                  </a>
+                ) : (
+                  <a
+                    href="#"
+                    onClick={() => updatePageCurrent(index)}
+                    className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                  >
+                    {index + 1}
+                  </a>
+                )
+              )}
               <a
                 href="#"
                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

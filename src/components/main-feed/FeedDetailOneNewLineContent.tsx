@@ -24,6 +24,9 @@ function FeedDetailOneNewLineContent({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className={`ml-3 text-black ${mainTextClass}`}>{title}</p>
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
           </div>
         </div>
       </div>

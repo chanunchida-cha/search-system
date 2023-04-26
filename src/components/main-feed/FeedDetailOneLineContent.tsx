@@ -28,6 +28,9 @@ function FeedDetailOneLineContent({
       <div className={`flex w-full flex-row ${mainClass}`}>
         <div className="flex w-full items-center">
           <p className={`ml-3 text-black ${textClass}`}>{title}</p>
+          <span className="text-xl text-red-500" aria-hidden="true">
+            *
+          </span>
           {isLink ? (
             <Link
               href={

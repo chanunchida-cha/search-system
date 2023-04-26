@@ -41,7 +41,7 @@ const FromCreateEdit = observer(({}: Props) => {
   const [type, settype] = useState("history");
   return (
     <>
-      <div className="mx-auto h-screen bg-gray-100">
+      <div className="mx-auto h-screen bg-gray-100 ">
         <div className=" ml-16 mt-3 grid h-16 grid-cols-4">
           {typeTab.map((data) => {
             return type === data.type ? (
@@ -65,7 +65,7 @@ const FromCreateEdit = observer(({}: Props) => {
             );
           })}
         </div>
-        <div>
+        <div className="pb-8">
           {type === "history" ? <HistoryForm /> : <AssessmentForm />}
           <div className="ml-10 mr-10 grid grid-cols-12">
             {/* {listData.length - 1 === index && ( */}
@@ -88,7 +88,7 @@ const FromCreateEdit = observer(({}: Props) => {
             {/* {listData.length > 1 && ( */}
             <div className="col-span-2">
               <button
-                className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400"
+                className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:bg-blue-300 disabled:border-none"
                 // onClick={() => onClickRemove()}
                 hidden={type === "history"}
                 type="submit"

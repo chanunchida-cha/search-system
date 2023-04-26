@@ -25,21 +25,19 @@ const NameFeed = observer(({}: Props) => {
     settype("history");
   };
 
-  const fetchFeedDetail = async (id: number) => {
-    await feedStore.getFeedDetail(id);
-  };
-
-  const fetchAssessmentDetail = async (id: number) => {
-    await feedStore.getAssessmentDetail(id);
-  };
-
   useEffect(() => {
     updateToggle();
-    fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
-  }, []);
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+    getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    getAssessmentDetail();
+  }, [id]);
 
   return (
     <>

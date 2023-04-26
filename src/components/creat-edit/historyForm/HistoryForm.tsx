@@ -152,11 +152,27 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           ชื่อ :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       {/* <div className="col-span-2">
                         <SelectPrefix />
                       </div> */}
-
+                      {/* <div class="flex">
+  <div class="flex-none w-14 h-14">
+    01
+  </div>
+  <div class="flex-initial w-64 ...">
+    02
+  </div>
+  <div class="flex-initial w-32 ...">
+    03
+  </div>
+</div> */}
                       <div className="col-span-4">
                         <input
                           value={historyDataResults.firstName}
@@ -174,6 +190,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           นามสกุล :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-4">
                         <input
@@ -190,8 +212,13 @@ const HistoryForm = observer(({}: Props) => {
                       <div className="col-span-4">
                         <label className="items-center justify-center font-medium leading-6 text-gray-900">
                           ตำแหน่งทางวิชาการ :
-
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-6">
                         <SelectRanks />
@@ -201,6 +228,12 @@ const HistoryForm = observer(({}: Props) => {
                       <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         วุฒิการศึกษา :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       <div className="mt-3">
                         <LevelsField />
                       </div>
@@ -209,6 +242,12 @@ const HistoryForm = observer(({}: Props) => {
                       <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         สาขาวิชาที่เชี่ยวชาญ :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                     </div>
 
                     <div>
@@ -222,6 +261,12 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         สังกัดมหาวิทยาลัย :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                     </div>
                     <div>
                       <input
@@ -243,6 +288,12 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ประสบการณ์ทำงาน :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                     </div>
                     <div>
                       <ExpForWork />
@@ -254,6 +305,12 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ประสบการณ์ด้านการวิจัย :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                     </div>
                     <div>
                       <ExpforResearch />
@@ -265,6 +322,12 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ผลงานวิจัยที่ตีพิมพ์ :
                       </label>
+                      <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                     </div>
                     <div>
                       <ResearchResult />
@@ -286,6 +349,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           ที่อยู่ที่สามารถติดต่อได้ (ที่บ้าน) :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className=" col-span-1">
                         <input
@@ -306,6 +375,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           ที่อยู่ที่สามารถติดต่อได้ (ที่ทำงาน) :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className=" col-span-1">
                         <input
@@ -326,6 +401,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           เบอร์ติดต่อ :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className=" col-span-1">
                         <input
@@ -346,6 +427,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           อีเมลล์ :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className=" col-span-1">
                         <input
@@ -374,6 +461,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           แนบประวัติ :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-9">
                         <UploadFileInForm
@@ -408,6 +501,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           แนบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-9">
                         <UploadFileInForm
@@ -442,6 +541,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           แนบสำเนาบัญชี :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-9">
                         <UploadFileInForm
@@ -462,6 +567,12 @@ const HistoryForm = observer(({}: Props) => {
                         >
                           แนบสำเนาบัตรประชาชน :
                         </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
                       </div>
                       <div className="col-span-9">
                         <UploadFileInForm

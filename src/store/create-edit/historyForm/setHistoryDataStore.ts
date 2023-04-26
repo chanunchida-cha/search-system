@@ -110,7 +110,7 @@ class SetHistoryDataStore {
   validationDegree = this.listData.every(
     (item) => item.degreeType && item.degreeProgram && item.degreeUniversity
   );
-
+  
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
     console.log(this.historyDataResults);

@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
 
-interface Props {}
+type Props = {};
 
 const typeTab = [
   {
@@ -16,8 +17,7 @@ const typeTab = [
     i18n: "ข้อมูลผลการประเมิน",
   },
 ];
-
-export default function NameFeed({}: Props): ReactElement {
+const NameFeed = observer(({}: Props) => {
   const router = useRouter();
   const { id } = router.query;
   const [type, settype] = useState("");
@@ -25,21 +25,19 @@ export default function NameFeed({}: Props): ReactElement {
     settype("history");
   };
 
-  const fetchFeedDetail = async (id: number) => {
-    await feedStore.getFeedDetail(id);
-  };
-
-  const fetchAssessmentDetail = async (id: number) => {
-    await feedStore.getAssessmentDetail(id);
-  };
-
   useEffect(() => {
     updateToggle();
-    fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
-  }, []);
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+    getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    getAssessmentDetail();
+  }, [id]);
 
   return (
     <>
@@ -81,4 +79,6 @@ export default function NameFeed({}: Props): ReactElement {
       </div>
     </>
   );
-}
+});
+
+export default NameFeed;

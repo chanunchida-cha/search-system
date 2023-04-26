@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useState } from "react";
+import { object } from "zod";
 import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import index from "~/pages";
 import RemoveButton from "~/ui/create-edit/RemoveButton";
 
 type Props = {
-  name:string
-  state?: File;
+  name?:string
+  state?: File|string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickButton?: () => void;
 };
@@ -16,6 +17,8 @@ export default function UploadFileInForm({
   onChange,
   onClickButton,
 }: Props) {
+ console.log(state);
+ 
   return (
     <div className="grid grid-cols-12 gap-2">
       <div className="col-span-2 flex items-center justify-center rounded-lg bg-slate-100">
@@ -35,7 +38,7 @@ export default function UploadFileInForm({
           state ? "col-span-6 " : "col-span-2"
         }  flex items-center justify-center `}
       >
-        {state ? state.name : "No file chosen "}
+        {typeof state === "string" ? state :state?.name }
       </div>
       <div className="col-span-1">
         <RemoveButton onClickRemove={onClickButton!} />

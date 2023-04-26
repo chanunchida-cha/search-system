@@ -6,24 +6,29 @@ type Props = {
     isOpen: boolean;
     onClose: () => void;
     buttonText: string;
+    disabled: boolean;
 };
 
-const DialogEditpass: React.FC<Props> = ({ buttonText }) => {
+const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(false);
 
     function openModal() {
         setIsOpen(true);
+        setIsDisabled(true); // กำหนดให้ปุ่ม disabled เมื่อเปิดโมดัล
     }
 
     function closeModal() {
         setIsOpen(false);
+        setIsDisabled(false); // กำหนดให้ปุ่ม enabled เมื่อปิดโมดัล
     }
 
     return (
         <>
             <button
                 onClick={openModal}
-                className="bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline "
+                className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isDisabled || disabled} // ใช้ค่า isDisabled และ props.disabled ในการกำหนดค่า disabled ให้กับปุ่ม
             >
                 {buttonText}
             </button>

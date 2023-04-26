@@ -14,20 +14,23 @@ class FeedStore {
       is_last: true,
   };
   feedDetail: FeedDetailResponse = {
-      profile_id: "",
-      first_name: "",
-      last_name: "",
-      university: "",
-      address_home: "",
-      address_work: "",
-      email: "",
-      phone_number: "",
-      degree: [],
-      position: [],
-      program: [],
-      experience: [],
-      attach: [],
-      explore: [],
+    profile_id: "",
+    first_name: "",
+    last_name: "",
+    university: "",
+    address_home: "",
+    address_work: "",
+    email: "",
+    phone_number: "",
+    degree: [],
+    program: [],
+    experience: [],
+    attach: [],
+    explore: [],
+    position: {
+      position_id: 0,
+      position_name: ""
+    }
   };
 
   assessmentDetail: AssessmentDetailResponse = {
@@ -158,7 +161,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/1`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/${researcher_id}`,
         );
         const result = response.data;
         this.feedDetail = result.data
@@ -178,7 +181,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/1`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/${researcher_id}`,
         );
         const result = response.data;
         this.assessmentDetail = result.data

@@ -63,9 +63,7 @@ function FeedDetail({ feedDetail }: Props) {
                     inputClass={"w-2/4"}
                     textClass={"font-bold"}
                     textContent={
-                      feedDetail.position[0]?.position_name
-                        ? feedDetail.position[0].position_name
-                        : ""
+                      feedDetail.position.position_name
                     }
                   />
                   <FeedDetailHalfNewLineContent
@@ -190,13 +188,12 @@ function FeedDetail({ feedDetail }: Props) {
           {/* END OF CONTENT */}
         </div>
         <div className="mt-6 flex flex-row">
-          <Link href="/">
-            <FeedOneBoxButton
-              btnColor={"[#668ff6]"}
-              hoverColor={"[#668ff6]"}
-              title={"ย้อนกลับ"}
-            />
-          </Link>
+          <FeedOneBoxButton
+            btnColor={"[#668ff6]"}
+            hoverColor={"[#668ff6]"}
+            title={"ย้อนกลับ"}
+            link={"/"}
+          />
         </div>
       </div>
     </>

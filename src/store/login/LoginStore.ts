@@ -2,7 +2,8 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { LoginResponse } from "~/models/type/login/LoginResponse";
-
+import Cookie from "cookie-universal";
+const cookies = Cookie();
 class LoginStore {
   loginData: LoginResponse = {
     user_id: 1,
@@ -24,9 +25,13 @@ class LoginStore {
           password: userPassword,
         }
       );
-      const result = response.data;
-      sessionStorage.setItem("token", result.data.token);
-      this.loginData = result.data;
+      const rawResult = response.data;
+      const result: LoginResponse = rawResult.data;
+      cookies.set("username", result.username);
+      cookies.set("role", result.role);
+      cookies.set("token", result.token);
+      cookies.set("userID", result.user_id);
+      this.loginData = result;
     } catch (err: any) {
       Swal.fire({
         icon: "error",

@@ -13,7 +13,7 @@ type Props = {
 };
 
 function MainFeedTable({ feedList }: Props) {
-  console.log("feed list", feedList.content);
+ 
   const updatePageCurrent = async (page: number) => {
     await feedStore.getFeedList("", page, 10, "");
   };
@@ -39,38 +39,40 @@ function MainFeedTable({ feedList }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {feedList.content.map((item, index) => (
-              <tr className="bg-white">
-                <td className="p-3 text-center text-sm text-gray-700">
-                  {index + 1 + Number(feedList.current_page) * 10}
-                </td>
-                <td className="p-3 text-center text-sm text-gray-700">
-                  {item.project_title}
-                </td>
-                <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
-                  <Link
-                    href={"/" + item.researcher_id}
-                    className="font-bold text-blue-500 hover:underline"
-                  >
-                    {item.researcher_name}
-                  </Link>
-                </td>
-                <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  {item.university}
-                </td>
-                <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  {item.explore_year}
-                </td>
-                <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                  <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                    <Link href={"/" + item.researcher_name}>
-                      <FeedEditButton />
+            {feedList.content
+              .filter((item) => item.profile_status === true)
+              .map((item, index) => (
+                <tr className="bg-white">
+                  <td className="p-3 text-center text-sm text-gray-700">
+                    {index + 1 + Number(feedList.current_page) * 10}
+                  </td>
+                  <td className="p-3 text-center text-sm text-gray-700">
+                    {item.project_title}
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
+                    <Link
+                      href={"/" + item.researcher_id}
+                      className="font-bold text-blue-500 hover:underline"
+                    >
+                      {item.researcher_name}
                     </Link>
-                    <FeedDeleteButton />
-                  </div>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    {item.university}
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    {item.explore_year}
+                  </td>
+                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                    <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
+                      <Link href={"/" + item.researcher_name}>
+                        <FeedEditButton />
+                      </Link>
+                      <FeedDeleteButton />
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

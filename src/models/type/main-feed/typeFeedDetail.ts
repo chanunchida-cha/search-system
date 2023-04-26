@@ -15,7 +15,7 @@ export type FeedDetailResponse = {
   email: string;
   phone_number: string;
   degree: DegreeResponse[];
-  position: PositionResponse[];
+  position: PositionResponse;
   program: ProgramResponse[];
   experience: ExperienceResponse[];
   attach: AttachResponse[];

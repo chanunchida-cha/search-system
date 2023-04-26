@@ -33,7 +33,6 @@ const HistoryForm = observer(({}: Props) => {
     setIdCardFile,
     removeFileIdCard,
   } = setStateFile;
-  console.log(profile);
 
   const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
   const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +42,7 @@ const HistoryForm = observer(({}: Props) => {
     };
     setAssessmentResult(newhistoryDataResults);
   };
+  console.log(historyDataResults);
 
   return (
     <>
@@ -159,27 +159,14 @@ const HistoryForm = observer(({}: Props) => {
                           *
                         </span>
                       </div>
-                      {/* <div className="col-span-2">
-                        <SelectPrefix />
-                      </div> */}
-                      {/* <div class="flex">
-  <div class="flex-none w-14 h-14">
-    01
-  </div>
-  <div class="flex-initial w-64 ...">
-    02
-  </div>
-  <div class="flex-initial w-32 ...">
-    03
-  </div>
-</div> */}
+
                       <div className="col-span-4">
                         <input
-                          value={historyDataResults.firstName}
+                          value={historyDataResults.first_name}
                           onChange={handleHistoryChange}
                           type="text"
-                          name="firstName"
-                          id="firstName"
+                          name="first_name"
+                          id="first_name"
                           className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400"
                         />
                       </div>
@@ -199,11 +186,11 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                       <div className="col-span-4">
                         <input
-                          value={historyDataResults.lastName}
+                          value={historyDataResults.last_name}
                           onChange={handleHistoryChange}
                           type="text"
-                          name="lastName"
-                          id="lastName"
+                          name="last_name"
+                          id="last_name"
                           className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -228,12 +215,9 @@ const HistoryForm = observer(({}: Props) => {
                       <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         วุฒิการศึกษา :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                       <div className="mt-3">
                         <LevelsField />
                       </div>
@@ -242,12 +226,9 @@ const HistoryForm = observer(({}: Props) => {
                       <label className="ml-2 items-center justify-center font-medium leading-6 text-gray-900">
                         สาขาวิชาที่เชี่ยวชาญ :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                     </div>
 
                     <div>
@@ -261,18 +242,12 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         สังกัดมหาวิทยาลัย :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                     </div>
                     <div>
                       <input
-                        // onChange={(event) => {
-                        //   setAffiliation(event.target.value);
-                        // }}
                         value={historyDataResults.university}
                         onChange={handleHistoryChange}
                         type="text"
@@ -288,12 +263,9 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ประสบการณ์ทำงาน :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                     </div>
                     <div>
                       <ExpForWork />
@@ -305,12 +277,9 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ประสบการณ์ด้านการวิจัย :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                     </div>
                     <div>
                       <ExpforResearch />
@@ -322,12 +291,9 @@ const HistoryForm = observer(({}: Props) => {
                       >
                         ผลงานวิจัยที่ตีพิมพ์ :
                       </label>
-                      <span
-                          className="text-xl text-red-500"
-                          aria-hidden="true"
-                        >
-                          *
-                        </span>
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
                     </div>
                     <div>
                       <ResearchResult />
@@ -358,11 +324,11 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          value={historyDataResults.addressHome}
+                          value={historyDataResults.address_home}
                           onChange={handleHistoryChange}
                           type="text"
-                          name="addressHome"
-                          id="addressHome"
+                          name="address_home"
+                          id="address_home"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -384,11 +350,11 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          value={historyDataResults.addressWork}
+                          value={historyDataResults.address_work}
                           onChange={handleHistoryChange}
                           type="text"
-                          name="addressWork"
-                          id="addressWork"
+                          name="address_work"
+                          id="address_work"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -410,11 +376,11 @@ const HistoryForm = observer(({}: Props) => {
                       </div>
                       <div className=" col-span-1">
                         <input
-                          value={historyDataResults.phoneNumber}
+                          value={historyDataResults.phone_number}
                           onChange={handleHistoryChange}
                           type="text"
-                          name="phoneNumber"
-                          id="phoneNumber"
+                          name="phone_number"
+                          id="phone_number"
                           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
                         />
                       </div>
@@ -477,20 +443,6 @@ const HistoryForm = observer(({}: Props) => {
                           }
                           onClickButton={removeFileHistory}
                         />
-                        {/* <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                -
-              </button> */}
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">
@@ -517,20 +469,6 @@ const HistoryForm = observer(({}: Props) => {
                           }
                           onClickButton={removeFileOrder}
                         />
-                        {/* <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                // onClick={handleRemove}
-              >
-                -
-              </button> */}
                       </div>
                     </div>
                     <div className="mt-3 grid grid-cols-12 gap-2">

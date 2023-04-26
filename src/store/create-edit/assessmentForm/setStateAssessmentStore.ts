@@ -11,8 +11,8 @@ import { ResearchArticles } from "~/models/type/create-edit/AssessmentForm/typeD
 
 class SetStateAssessmentStore {
   assessmentResults: AssessmentResults = {
-    from: "",
-    to: "",
+    assessment_start: "",
+    assessment_end: "",
   };
 
   researchPropasals: ResearchPropasals = {

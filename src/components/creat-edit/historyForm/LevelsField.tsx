@@ -5,6 +5,7 @@ import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { levels} from "~/models/const/degreeLevels";
+import { Degree } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 
 interface Props {}
 
@@ -29,7 +30,7 @@ const LevelsField = observer(({}: Props) => {
 
   return (
     <div>
-      {listData.map((data, index: number) => (
+      {listData.map((data: Degree , index: number) => (
         <div className="mt-3 grid grid-cols-12 gap-2" key={index}>
           <div className="col-span-3">
             <Listbox
@@ -113,12 +114,12 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-2">
             <input
-              value={data.degreeProgram}
+              value={data.degree_program}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChangeInputDegree(index, event);
               }}
-              name="degreeProgram"
-              id="degreeProgram"
+              name="degree_program"
+              id="degree_program"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
@@ -133,12 +134,12 @@ const LevelsField = observer(({}: Props) => {
           </div>
           <div className="col-span-3">
             <input
-              value={data.degreeUniversity}
+              value={data.degree_university}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChangeInputDegree(index, event);
               }}
-              name="degreeUniversity"
-              id="degreeUniversity"
+              name="degree_university"
+              id="degree_university"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />

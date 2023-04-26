@@ -28,13 +28,13 @@ const AssessmentResult = observer(({}: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
-              value={assessmentResults.from}
+              value={assessmentResults.assessment_start}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 setAssessmentResult(event)
               }
               type="text"
-              name="from"
-              id="from"
+              name="assessment_start"
+              id="assessment_start"
               className=" w-full  items-center rounded-md border border-gray-300 px-2 py-1.5 text-gray-900  placeholder:text-gray-400  required:border-red-500 "
             />
           </div>
@@ -46,13 +46,13 @@ const AssessmentResult = observer(({}: Props) => {
           <div className="... w-20 flex-initial">
             <input
               // value={data.to}
-              value={assessmentResults.to}
+              value={assessmentResults.assessment_end}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 setAssessmentResult(event)
               }
               type="text"
-              name="to"
-              id="to"
+              name="assessment_end"
+              id="assessment_end"
               className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>

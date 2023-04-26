@@ -8,41 +8,8 @@ type Props = {};
 const ResearchResult = observer(({}: Props) => {
   const { listExplore, addListExplore, removeExplore, onChangeInputExplore } =
     setHistoryDataStore;
-  // const [listData, setData] = useState([
-  //   {
-  //     name: "",
-  //   },
-  // ]);
-
-  // console.log(listData);
-
-  // const handleAdd = () => {
-  //   setData([...listData, { name: "" }]);
-  // };
-
-  // const handleRemove = (index: number) => {
-  //   const list = [...listData];
-  //   list.splice(index, 1);
-  //   setData(list);
-  // };
 
   const hidden = listExplore.length === 1;
-
-  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newhistoryDataResults = {
-      ...historyDataResults,
-      [event.target.name]: event.target.value,
-    };
-
-    // const [listData, setData] = useState([
-    //   {
-    //     name: "",
-    //   },
-    // ]);
-
-    setAssessmentResult(newhistoryDataResults);
-  };
 
   return (
     <div>
@@ -62,12 +29,12 @@ const ResearchResult = observer(({}: Props) => {
             </div>
             <div className="col-span-4">
               <input
-                value={data.exploreName}
+                value={data.explore_name}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   onChangeInputExplore(index, event);
                 }}
-                name="exploreName"
-                id="exploreName"
+                name="explore_name"
+                id="explore_name"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
@@ -82,12 +49,12 @@ const ResearchResult = observer(({}: Props) => {
             </div>
             <div className="col-span-2">
               <input
-                value={data.exploreYear}
+                value={data.explore_year}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   onChangeInputExplore(index, event);
                 }}
-                name="exploreYear"
-                id="exploreYear"
+                name="explore_year"
+                id="explore_year"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
@@ -103,12 +70,12 @@ const ResearchResult = observer(({}: Props) => {
           </div>
           <div className="mt-3">
             <input
-              value={data.exploreDetail}
+              value={data.explore_detail}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChangeInputExplore(index, event);
               }}
-              name="exploreDetail"
-              id="exploreDetail"
+              name="explore_detail"
+              id="explore_detail"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
@@ -119,26 +86,6 @@ const ResearchResult = observer(({}: Props) => {
               onClickRemove={() => removeExplore(index)}
               hidden={hidden}
             />
-            {/* {listData.length - 1 === index && (
-              <div className="col-span-1">
-                <button
-                  className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
-                  onClick={handleAdd}
-                >
-                  +
-                </button>
-              </div>
-            )}
-            {listData.length > 1 && (
-              <div className="col-span-1">
-                <button
-                  className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                  onClick={handleRemove}
-                >
-                  -
-                </button>
-              </div>
-            )} */}
           </div>
         </div>
       ))}

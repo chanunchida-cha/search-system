@@ -5,42 +5,6 @@ import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { ranks } from "~/models/const/createEdit/rankLevels";
 
-// const ranks = [
-//   {
-//     id: 1,
-//     prefix: "ศาสตราจารย์เกียรติคุณ",
-//   },
-//   {
-//     id: 2,
-//     prefix: "ศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 3,
-//     prefix: "ศาสตราจารย์",
-//   },
-//   {
-//     id: 4,
-//     prefix: "รองศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 5,
-//     prefix: "รองศาสตราจารย์",
-//   },
-//   {
-//     id: 6,
-//     prefix: "ผู้ช่วยศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 7,
-//     prefix: "ผู้ช่วยศาสตราจารย์",
-//   },
-//   {
-//     id: 8,
-//     prefix: "อื่น ๆ เช่น ดร. /อาจารย์",
-//   },
-// ];
-
-// interface Props {}
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
@@ -153,11 +117,11 @@ const SelectRanks = observer(() => {
       <div className="col-span-3">
         <input
           // value={selectedRank}
-          value={historyDataResults.positionName}
+          value={historyDataResults.position_name}
           onChange={handleHistoryChange}
           type="text"
-          name="positionName"
-          id="positionName"
+          name="position_name"
+          id="position_name"
           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
           hidden={ranks[ranks.length - 1] !== selectRanks}
         />

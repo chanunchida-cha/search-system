@@ -12,29 +12,6 @@ const ExpForWork = observer(({}: Props) => {
     removeListExperience,
     onChangeInputExperience,
   } = setHistoryDataStore;
-  // const [listData, setData] = useState([
-  //   {
-  //     name: "",
-  //   },
-  // ]);
-
-  // console.log(listData);
-
-  // const handleAdd = () => {
-  //   setData([...listData, { name: "" }]);
-  // };
-
-  // const handleRemove = (index: number) => {
-  //   const list = [...listData];
-  //   list.splice(index, 1);
-  //   setData(list);
-  // };
-
-  // const [selectLevel, setLevels] = useState<{ id: number; level: string }>(
-  //   levels[0]!
-  // );
-
-  const expType = "work"
 
   const hidden = listExperience.length === 1;
 
@@ -49,12 +26,12 @@ const ExpForWork = observer(({}: Props) => {
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
               <input
-                value={data.experienceStart}
+                value={data.experience_start}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   onChangeInputExperience(index, event);
                 }}
-                name="experienceStart"
-                id="experienceStart"
+                name="experience_start"
+                id="experience_start"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5 text-gray-900  placeholder:text-gray-400 "
               />
@@ -69,12 +46,12 @@ const ExpForWork = observer(({}: Props) => {
             </div>
             <div className="col-span-2">
               <input
-                value={data.experienceEnd}
+                value={data.experience_end}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   onChangeInputExperience(index, event);
                 }}
-                name="experienceEnd"
-                id="experienceEnd"
+                name="experience_end"
+                id="experience_end"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
@@ -89,26 +66,26 @@ const ExpForWork = observer(({}: Props) => {
             </div>
             <div className="col-span-6">
               <input
-                 value={data.experienceUniversity}
-                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                   onChangeInputExperience(index, event);
-                 }}
-                 name="experienceUniversity"
-                 id="experienceUniversity"
-                 type="text"
+                value={data.experience_university}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  onChangeInputExperience(index, event);
+                }}
+                name="experience_university"
+                id="experience_university"
+                type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
           </div>
           <div className="mt-3">
             <input
-               value={data.experienceRemark}
-               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                 onChangeInputExperience(index, event);
-               }}
-               name="experienceRemark"
-               id="experienceRemark"
-               type="text"
+              value={data.experience_remark}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChangeInputExperience(index, event);
+              }}
+              name="experience_remark"
+              id="experience_remark"
+              type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
@@ -119,28 +96,6 @@ const ExpForWork = observer(({}: Props) => {
               hidden={hidden}
             />
           </div>
-          {/* <div className="mt-3 grid grid-cols-12 gap-2">
-            {listData.length - 1 === index && (
-              <div className="col-span-1">
-                <button
-                  className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
-                  onClick={handleAdd}
-                >
-                  +
-                </button>
-              </div>
-            )}
-            {listData.length > 1 && (
-              <div className="col-span-1">
-                <button
-                  className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                  onClick={onClick}
-                >
-                  -
-                </button>
-              </div>
-            )}
-          </div> */}
         </div>
       ))}
     </div>

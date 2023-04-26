@@ -14,55 +14,55 @@ import { ranks } from "~/models/const/createEdit/rankLevels";
 
 class SetHistoryDataStore {
   historyDataResults: HistoryDataResults = {
-    firstName: "",
-    lastName: "",
-    positionName: "",
+    first_name: "",
+    last_name: "",
+    position_name: "",
     university: "",
-    addressHome: "",
-    addressWork: "",
+    address_home: "",
+    address_work: "",
     email: "",
-    phoneNumber: "",
+    phone_number: "",
   };
 
   listData: Degree[] = [
     {
-      degreeType: levels[0]?.key!,
-      degreeProgram: "",
-      degreeUniversity: "",
+      degree_type: levels[0]?.key!,
+      degree_program: "",
+      degree_university: "",
     },
   ];
 
   listProgram: Program[] = [
     {
-      programName: "",
+      program_name: "",
     },
   ];
 
   listExperience: Experience[] = [
     {
-      experienceType: "work",
-      experienceStart: "",
-      experienceEnd: "",
-      experienceUniversity: "",
-      experienceRemark: "",
+      experience_type: "",
+      experience_start: "",
+      experience_end: "",
+      experience_university: "",
+      experience_remark: "",
     },
   ];
 
   listExpReserach: ExpResearch[] = [
     {
-      experienceType: "research",
-      experienceStart: "",
-      experienceEnd: "",
-      experienceUniversity: "",
-      experienceRemark: "",
+      experience_type: "research",
+      experience_start: "",
+      experience_end: "",
+      experience_university: "",
+      experience_remark: "",
     },
   ];
 
   listExplore: Explore[] = [
     {
-      exploreDetail: "",
-      exploreName: "",
-      exploreYear: "",
+      explore_detail: "",
+      explore_name: "",
+      explore_year: "",
     },
   ];
 
@@ -78,39 +78,36 @@ class SetHistoryDataStore {
   //   this.historyDataResults.positionName = positionName
   // }
 
-  validationHistoryData = Object.keys(this.historyDataResults).length !== 0
+  validationHistoryData = Object.keys(this.historyDataResults).length !== 0;
 
   validationExplore = this.listExplore.every(
-    (item) =>
-      item.exploreDetail &&
-      item.exploreName &&
-      item.exploreYear 
+    (item) => item.explore_detail && item.explore_name && item.explore_year
   );
 
   validationExpReserach = this.listExpReserach.every(
     (item) =>
-      item.experienceType &&
-      item.experienceStart &&
-      item.experienceEnd &&
-      item.experienceUniversity &&
-      item.experienceRemark
+      item.experience_type &&
+      item.experience_start &&
+      item.experience_end &&
+      item.experience_university &&
+      item.experience_remark
   );
 
   validationExperience = this.listExperience.every(
     (item) =>
-      item.experienceType &&
-      item.experienceStart &&
-      item.experienceEnd &&
-      item.experienceUniversity &&
-      item.experienceRemark
+      item.experience_type &&
+      item.experience_start &&
+      item.experience_end &&
+      item.experience_university &&
+      item.experience_remark
   );
 
-  validationProgram = this.listProgram.every((item) => item.programName);
+  validationProgram = this.listProgram.every((item) => item.program_name);
 
   validationDegree = this.listData.every(
-    (item) => item.degreeType && item.degreeProgram && item.degreeUniversity
+    (item) => item.degree_type && item.degree_program && item.degree_university
   );
-  
+
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
     console.log(this.historyDataResults);
@@ -120,9 +117,9 @@ class SetHistoryDataStore {
     this.listExplore = [
       ...this.listExplore,
       {
-        exploreDetail: "",
-        exploreName: "",
-        exploreYear: "",
+        explore_detail: "",
+        explore_name: "",
+        explore_year: "",
       },
     ];
   };
@@ -131,27 +128,27 @@ class SetHistoryDataStore {
     this.listData = [
       ...this.listData,
       {
-        degreeType: levels[0]?.key!,
+        degree_type: levels[0]?.key!,
 
-        degreeProgram: "",
-        degreeUniversity: "",
+        degree_program: "",
+        degree_university: "",
       },
     ];
   };
 
   addListProgram = () => {
-    this.listProgram = [...this.listProgram, { programName: "" }];
+    this.listProgram = [...this.listProgram, { program_name: "" }];
   };
 
   addListExperience = () => {
     this.listExperience = [
       ...this.listExperience,
       {
-        experienceType: "",
-        experienceStart: "",
-        experienceEnd: "",
-        experienceUniversity: "",
-        experienceRemark: "",
+        experience_type: "",
+        experience_start: "",
+        experience_end: "",
+        experience_university: "",
+        experience_remark: "",
       },
     ];
   };
@@ -160,11 +157,11 @@ class SetHistoryDataStore {
     this.listExpReserach = [
       ...this.listExpReserach,
       {
-        experienceType: "",
-        experienceStart: "",
-        experienceEnd: "",
-        experienceUniversity: "",
-        experienceRemark: "",
+        experience_type: "",
+        experience_start: "",
+        experience_end: "",
+        experience_university: "",
+        experience_remark: "",
       },
     ];
   };
@@ -246,7 +243,8 @@ class SetHistoryDataStore {
 
   onChangeInputExperience = (
     index: number,
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
+    
   ) => {
     const newInputFields = [...this.listExperience];
     const fieldToUpdate = event.target.name;
@@ -254,6 +252,8 @@ class SetHistoryDataStore {
       fieldToUpdate as keyof (typeof newInputFields)[number]
     ] = event.target.value;
     this.listExperience = newInputFields;
+   
+  
   };
 
   onChangeInputExpResearch = (

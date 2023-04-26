@@ -14,20 +14,23 @@ class FeedStore {
       is_last: true,
   };
   feedDetail: FeedDetailResponse = {
-      profile_id: "",
-      first_name: "",
-      last_name: "",
-      university: "",
-      address_home: "",
-      address_work: "",
-      email: "",
-      phone_number: "",
-      degree: [],
-      position: [],
-      program: [],
-      experience: [],
-      attach: [],
-      explore: [],
+    profile_id: "",
+    first_name: "",
+    last_name: "",
+    university: "",
+    address_home: "",
+    address_work: "",
+    email: "",
+    phone_number: "",
+    degree: [],
+    program: [],
+    experience: [],
+    attach: [],
+    explore: [],
+    position: {
+      position_id: 0,
+      position_name: ""
+    }
   };
 
   assessmentDetail: AssessmentDetailResponse = {

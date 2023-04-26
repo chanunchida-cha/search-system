@@ -10,6 +10,8 @@ function EditPassword({ }: Props) {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [password, setPassword] = useState("")
     const [disabled, setDisabled] = useState(true)
+    console.log(password);
+    
 
     const handleDialogClose = () => {
         setDialogOpen(false);
@@ -19,7 +21,7 @@ function EditPassword({ }: Props) {
         e.preventDefault();
     }
 
-    const handleChangePassword = (e: any) => {
+    const handleChangePassword = async (e: any) => {
         setPassword(e.target.value)
         if (e.target.value.length >= 8) {
           setDisabled(false)
@@ -41,7 +43,7 @@ function EditPassword({ }: Props) {
             <input className="pointer-events-none shadow rounded-lg appearance-none border text-gray-400 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="123456" />
           </div>
           <div className="mb-6 lg:mb-4">
-            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านใหม่</label>
+            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านใหม่ <span className="text-red-500">*</span></label>
             <input className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={password} onChange={handleChangePassword} required />
           </div>
           <div className="flex items-center justify-between">

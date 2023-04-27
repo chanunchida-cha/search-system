@@ -39,7 +39,7 @@ function UserTable({ userManageList }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {userManageList.content.map((item, index) => (
+            {userManageList?.content?.map((item, index) => (
               <tr className="bg-white">
                 <td className="p-3 text-center text-sm text-gray-700">
                     {index + 1 + Number(userManageList.current_page) * 10}

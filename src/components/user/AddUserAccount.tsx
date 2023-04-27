@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from "react";
 import AddUserExpertField from "./AddUserExpertField";
 import { observer } from "mobx-react-lite";
+import { registerStore } from "~/store/register/RegisterStore";
 
 type Props = {};
 
@@ -12,9 +13,10 @@ const AddUserAccount = observer(({}: Props) => {
     handleClick();
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (userName != "") {
       console.log("input value is NOT empty");
+      await registerStore.getRegister(userName);
       setShow(true);
     } else {
       console.log("input value is empty");
@@ -66,14 +68,15 @@ const AddUserAccount = observer(({}: Props) => {
             <h1 className=" text-center text-base font-bold text-green-400">
               สร้างบัญชีผู้ใช้งาน สำเร็จ!
             </h1>
+
             <div>
-              <AddUserExpertField title="ลำดับบัญชี" name="test1" />
+              <AddUserExpertField title="ลำดับบัญชี" name={String(registerStore.register.user_id)} />
             </div>
             <div>
-              <AddUserExpertField title="ชื่อผู้ใช้งาน" name="test2" />
+              <AddUserExpertField title="ชื่อผู้ใช้งาน" name={registerStore.register.username} />
             </div>
             <div>
-              <AddUserExpertField title="รหัสผ่าน" name="test3" />
+              <AddUserExpertField title="รหัสผ่าน" name={registerStore.register.password} />
             </div>
           </div>
         </div>

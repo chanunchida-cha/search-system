@@ -46,7 +46,7 @@ function EditPassword({ }: Props) {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-white rounded-lg">
       <div className="w-full md:w-1/2 lg:w-3/4 xl:w-1/2 lg:h-full pt-10 pl-5 pr-5 lg:pt-10">/
-        <form className="bg-gray-100 shadow-md rounded-lg px-8 pt-20 pb-20 lg:pl-20 lg:pr-20 w-full ">
+        <form className="bg-gray-100 shadow-md rounded-lg px-8 pt-20 pb-20 lg:pl-20 lg:pr-20 w-full " onSubmit={handleSubmit}>
           <div className="mb-4 mr-4 ml-4">
             <label className="block text-gray-700 font-bold mb-2">ชื่อผู้ใช้งาน</label>
             <input

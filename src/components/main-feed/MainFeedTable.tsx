@@ -44,7 +44,9 @@ function MainFeedTable({ feedList }: Props) {
               .map((item, index) => (
                 <tr className="bg-white">
                   <td className="p-3 text-center text-sm text-gray-700">
-                    {index + 1 + Number(feedList.current_page) * 10}
+                    {feedList.current_page > 1
+                      ? index + 1 + Number(feedList.current_page - 1) * 10
+                      : index + 1}
                   </td>
                   <td className="p-3 text-center text-sm text-gray-700">
                     {item.project_title}
@@ -98,11 +100,13 @@ function MainFeedTable({ feedList }: Props) {
             <p className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
-                {(Number(feedList.current_page) + 1) * 10 - 9}
+                {Number(feedList.current_page) * 10 - 9}
               </span>{" "}
               to{" "}
               <span className="font-medium">
-                {(Number(feedList.current_page) + 1) * 10}
+                {Number(feedList.current_page) * 10 === 10
+                  ? 10
+                  : Number(feedList.total_object) * Number(feedList.total_page)}
               </span>{" "}
               of{" "}
               <span className="font-medium">
@@ -124,11 +128,11 @@ function MainFeedTable({ feedList }: Props) {
                 <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
               </a>
               {Array.from({ length: Number(feedList.total_page) }, (_, index) =>
-                Number(feedList.current_page) === index ? (
+                Number(feedList.current_page) === index + 1 ? (
                   <a
                     href="#"
                     aria-current="page"
-                    onClick={() => updatePageCurrent(index)}
+                    onClick={() => updatePageCurrent(index + 1)}
                     className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     {index + 1}
@@ -136,7 +140,7 @@ function MainFeedTable({ feedList }: Props) {
                 ) : (
                   <a
                     href="#"
-                    onClick={() => updatePageCurrent(index)}
+                    onClick={() => updatePageCurrent(index + 1)}
                     className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                   >
                     {index + 1}

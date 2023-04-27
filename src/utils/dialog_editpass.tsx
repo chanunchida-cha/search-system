@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import axios from "axios";
 
 type Props = {
     isOpen: boolean;
     onClose: () => void;
     buttonText: string;
     disabled: boolean;
+    user_id: number;
+    old_password: string;
+    new_password: string;
 };
 
-const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
+const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_password, new_password }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -22,13 +26,37 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
         setIsOpen(false);
         setIsDisabled(false); // กำหนดให้ปุ่ม enabled เมื่อปิดโมดัล
     }
+    const userToPatch = {
+        user_id: user_id,
+        old_password: old_password,
+        new_password: new_password,
+    };
+
+    const handleClick = async () => {
+        try {
+            
+            const response = await axios
+            .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
+            .catch((error: any) => console.log('Error: ', error));
+            
+        if (response && response.data) {
+            openModal();
+            console.log(response);
+            console.log(response.data);
+        } else {
+            
+        }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
             <button
-                onClick={openModal}
+                onClick={handleClick}
                 className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isDisabled || disabled} // ใช้ค่า isDisabled และ props.disabled ในการกำหนดค่า disabled ให้กับปุ่ม
+                disabled={isDisabled || disabled}
             >
                 {buttonText}
             </button>

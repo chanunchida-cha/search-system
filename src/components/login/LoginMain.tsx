@@ -79,8 +79,8 @@ const LoginMain = observer(({}: Props) => {
               required
               pattern="[a-z0-9]{1,15}"
               title="Password should be digits (0 to 9) or alphabets (a to z)."
-              maxLength={6}
-              minLength={6}
+              maxLength={8}
+              minLength={4}
             />
           </div>
 

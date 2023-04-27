@@ -5,6 +5,7 @@ import Link from "next/link";
 import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import ManageEditButton from "~/ui/user-manage/ManageEditButton";
 import { UserManageResponse } from "~/models/type/user/typeUser";
+import { ContentUserManageResponse } from "~/models/type/user/typeContent";
 import { userStore } from "~/store/user/UserStore";
 
 type Props = {
@@ -56,7 +57,7 @@ function UserTable({ userManageList }: Props) {
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex justify-center">
-                    <ManageEditButton />
+                    <ManageEditButton userData={item}  />
                   </div>
                 </td>
               </tr>

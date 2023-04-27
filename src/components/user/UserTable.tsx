@@ -6,17 +6,14 @@ import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import ManageEditButton from "~/ui/user-manage/ManageEditButton";
 import { UserManageResponse } from "~/models/type/user/typeUser";
 import { userStore } from "~/store/user/UserStore";
-import Cookie from "cookie-universal";
-const cookies = Cookie();
 
 type Props = {
   userManageList: UserManageResponse;
 };
 
 function UserTable({ userManageList }: Props) {
-  const username = cookies.get("username");
   const updatePageCurrent = async (page: number) => {
-    await userStore.getUserManage(String(username), page, 10);
+    await userStore.getUserManage("", page, 10);
   };
   return (
     <>

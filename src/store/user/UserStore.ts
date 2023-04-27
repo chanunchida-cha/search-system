@@ -17,18 +17,32 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  async getUserManage(username : string,  page : number, limit : number){
+  async getUserManage(searchType : string,  page : number, limit : number){
     try {
+      if(searchType == ""){
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/user`,
           {
-            username : username,
+
             page: page,
             limit: limit,
           }
         );
         const result = response.data;
         this.userManageList = result.data;
+      }else{
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/user`,
+          {
+            username: searchType,
+            page: page,
+            limit: limit,
+          }
+        );
+        const result = response.data;
+        this.userManageList = result.data;
+      }
+        
     }catch(err: any){
         Swal.fire({
             icon: "error",

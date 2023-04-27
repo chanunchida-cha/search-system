@@ -1,10 +1,12 @@
 import { type } from 'os'
-import React from 'react'
+import React, {useState} from 'react'
 import { manage_heading } from '~/models/const/user-manage/manage_heading';
 
 type Props = {};
 
 function UserSearchBar({}: Props) {
+  const [searchText, setSearchText] = useState("");
+
     return (
         <>
           {/* SearchBar and TypeSelection */}
@@ -17,6 +19,10 @@ function UserSearchBar({}: Props) {
                   id="username"
                   type="text"
                   placeholder="ค้นหาขื่อบัญชี"
+                  onChange={(event) => {
+                    setSearchText(event.target.value);
+                    console.log(event.target.value);
+                  }}
                 />
                 <div className="absolute inset-y-0 left-0 flex items-center">
                   <svg

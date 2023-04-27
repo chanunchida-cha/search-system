@@ -4,16 +4,13 @@ import UserSearchBar from "./UserSearchBar";
 import { userStore } from "~/store/user/UserStore";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
-import Cookie from "cookie-universal";
-const cookies = Cookie();
 
 type Props = {};
 const UserMain = observer(({}: Props) => {
   const route = useRouter();
-  const username = cookies.get("username");
   useEffect(() => {
     const fecthManage = async () => {
-      await userStore.getUserManage(String(username), 0, 10);
+      await userStore.getUserManage("", 0, 10);
     };
     fecthManage();
   }, []);

@@ -22,7 +22,7 @@ class SetStateFile {
   };
   researchPropasalsFile: ResearchPropasalsFile = {
     researchPropasals_file: null,
-    directory_file: "project ",
+    directory_file: "project",
   };
   progressReportFile: ProgressReportsFile = {
     progressReport_file: null,

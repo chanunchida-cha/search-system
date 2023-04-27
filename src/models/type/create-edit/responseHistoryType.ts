@@ -1,5 +1,5 @@
 export type ResponseHistory = {
-  data: {
+ 
     profile_id: number;
     first_name: string;
     last_name: string;
@@ -15,7 +15,7 @@ export type ResponseHistory = {
     address_work:string;
     email:string;
     phone_number:string;
-  };
+  
 };
 
 export type Degree = {

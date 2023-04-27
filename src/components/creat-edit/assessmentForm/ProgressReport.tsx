@@ -10,11 +10,13 @@ import { setStateFile } from "~/store/create-edit/setStateFile";
 type Props = {};
 
 const ProgressReport = observer(({}: Props) => {
-  const { progressReports, setProgressReports } =
-    setStateAssessmentStore;
+  const { progressReports, setProgressReports } = setStateAssessmentStore;
 
-    const {progressReportFile,setProgressReportFile,removeFileProgressReport} = setStateFile
-
+  const {
+    progressReportFile,
+    setProgressReportFile,
+    removeFileProgressReport,
+  } = setStateFile;
 
   return (
     <BoxLayout title={"รายงานความก้าวหน้างานวิจัย"}>
@@ -33,6 +35,9 @@ const ProgressReport = observer(({}: Props) => {
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
               แนบผลประเมินที่สแกน :
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
           </div>
           <div className="col-span-8">
             <UploadFileInForm

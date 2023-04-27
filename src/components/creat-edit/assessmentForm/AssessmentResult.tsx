@@ -25,6 +25,9 @@ const AssessmentResult = observer(({}: Props) => {
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
               ปีงบประมาณ
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
           </div>
           <div className="... w-20 flex-initial">
             <input
@@ -42,6 +45,9 @@ const AssessmentResult = observer(({}: Props) => {
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
               ถึง
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
           </div>
           <div className="... w-20 flex-initial">
             <input
@@ -63,6 +69,9 @@ const AssessmentResult = observer(({}: Props) => {
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
               แนบงานวิจัย :
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
           </div>
           <div className="col-span-8">
             <UploadFileInForm

@@ -39,6 +39,7 @@ const LevelsField = observer(({}: Props) => {
               onChange={(selectedLevel) => {
                 onChangeLavel(index, selectedLevel.key);
                 setSelectedLevel(selectLevel);
+                // listData[index]?.degree_program = selectLevel
               }}
             >
               {({ open }) => (

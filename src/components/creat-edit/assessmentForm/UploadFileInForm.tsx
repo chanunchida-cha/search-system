@@ -21,7 +21,7 @@ export default function UploadFileInForm({
  
   return (
     <div className="grid grid-cols-12 gap-2">
-      <div className="col-span-2 flex items-center justify-center rounded-lg bg-slate-100">
+      <div className="col-span-3 flex items-center justify-center rounded-lg bg-slate-100">
         <label htmlFor={name}>Choose File</label>
 
         <input

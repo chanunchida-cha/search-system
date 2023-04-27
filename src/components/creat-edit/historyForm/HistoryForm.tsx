@@ -399,7 +399,7 @@ const HistoryForm = observer(({}: Props) => {
                 </label>
               </div>
               <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-3">
+                <div className="col-span-4">
                   <label
                     htmlFor="price"
                     className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -410,7 +410,7 @@ const HistoryForm = observer(({}: Props) => {
                     *
                   </span>
                 </div>
-                <div className="col-span-9">
+                <div className="col-span-8">
                   <UploadFileInForm
                     name="history_file"
                     state={historyFile.history_file!}
@@ -436,7 +436,7 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
               </div>
               <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-3">
+                <div className="col-span-4">
                   <label
                     htmlFor="price"
                     className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -447,7 +447,7 @@ const HistoryForm = observer(({}: Props) => {
                     *
                   </span>
                 </div>
-                <div className="col-span-9">
+                <div className="col-span-8">
                   <UploadFileInForm
                     name="order_file"
                     state={orderFile.order_file!}
@@ -473,7 +473,7 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
               </div>
               <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-3">
+                <div className="col-span-4">
                   <label
                     htmlFor="price"
                     className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -484,7 +484,7 @@ const HistoryForm = observer(({}: Props) => {
                     *
                   </span>
                 </div>
-                <div className="col-span-9">
+                <div className="col-span-8">
                   <UploadFileInForm
                     name="account_file"
                     state={accountFile.account_file!}
@@ -496,7 +496,7 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
               </div>
               <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-3">
+                <div className="col-span-4">
                   <label
                     htmlFor="price"
                     className="items-center justify-center font-medium leading-6 text-gray-900"
@@ -507,7 +507,7 @@ const HistoryForm = observer(({}: Props) => {
                     *
                   </span>
                 </div>
-                <div className="col-span-9">
+                <div className="col-span-8">
                   <UploadFileInForm
                     name="idCard_file"
                     state={idCardFile.idCard_file!}

@@ -39,6 +39,9 @@ const ResearchPropasal = observer(({}: Props) => {
             <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
               คะแนน
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
           </div>
           <div className="col-span-1">
             <input
@@ -59,6 +62,9 @@ const ResearchPropasal = observer(({}: Props) => {
             <label className="items-center justify-center font-medium leading-6 text-gray-900">
               แนบผลประเมินที่สแกน :
             </label>
+            <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
           </div>
           <div className="col-span-8">
             <UploadFileInForm

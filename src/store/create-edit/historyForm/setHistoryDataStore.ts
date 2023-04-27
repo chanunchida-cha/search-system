@@ -69,7 +69,12 @@ class SetHistoryDataStore {
     },
   ];
 
-  positions: Positions[] = [];
+  positions: Positions[] = [
+    {
+      position_id: 0,
+      position_name: "",
+    },
+  ];
 
   selectLevel: { key: string; i18n: string } = levels[0]!;
 
@@ -214,7 +219,7 @@ class SetHistoryDataStore {
       if (index === id) {
         return {
           ...inputField,
-          degreeTypeTH: selectedLevel,
+          degree_type: selectedLevel,
         };
       }
       return inputField;

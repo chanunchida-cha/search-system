@@ -22,6 +22,9 @@ const HeaderAssessment = ({ onChange, year, title,name_year,name_title }: Props)
         <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
           งบประมาณรายได้ / งบประมาณแผ่นดิน
         </label>
+        <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
       </div>
       <div className="col-span-2">
         <input
@@ -37,6 +40,9 @@ const HeaderAssessment = ({ onChange, year, title,name_year,name_title }: Props)
         <label className="mr-2 w-full items-center justify-center font-medium text-gray-900">
           เรื่อง
         </label>
+        <span className="text-xl text-red-500" aria-hidden="true">
+                    *
+                  </span>
       </div>
       <div className="col-span-5">
         <input

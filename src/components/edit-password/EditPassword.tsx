@@ -8,9 +8,11 @@ type Props = {};
 function EditPassword({ }: Props) {
   const route = useRouter();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [password, setPassword] = useState("")
+  const [oldpassword, setoldPassword] = useState("")
+  const [newpassword, setnewPassword] = useState("")
   const [disabled, setDisabled] = useState(true)
-  console.log(password);
+  console.log(newpassword);
+  console.log(oldpassword);
 
 
   const handleDialogClose = () => {
@@ -21,8 +23,17 @@ function EditPassword({ }: Props) {
     e.preventDefault();
   }
 
+  const handleOldPassword = async (e: any) => {
+    setoldPassword(e.target.value)
+    if (e.target.value.length >= 4) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }
+
   const handleChangePassword = async (e: any) => {
-    setPassword(e.target.value)
+    setnewPassword(e.target.value)
     if (e.target.value.length >= 4) {
       setDisabled(false)
     } else {
@@ -39,15 +50,15 @@ function EditPassword({ }: Props) {
             <input className="pointer-events-none shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" placeholder="Suchart Thongyod" />
           </div>
           <div className="mb-4 lg:mb-2">
-            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านเก่า</label>
-            <input className="pointer-events-none shadow rounded-lg appearance-none border text-gray-400 w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="123456" />
+            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านเก่า <span className="text-red-500">*</span></label>
+            <input className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={oldpassword} pattern="[a-z0-9]{1,15}" title="Password should be digits (0 to 9) or alphabets (a to z)." maxLength={8} onChange={handleOldPassword} required />
           </div>
           <div className="mb-6 lg:mb-4">
             <label className="block text-gray-700 font-bold mb-2">รหัสผ่านใหม่ <span className="text-red-500">*</span></label>
-            <input className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={password} maxLength={8} onChange={handleChangePassword} required />
+            <input className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={newpassword} pattern="[a-z0-9]{1,15}" title="Password should be digits (0 to 9) or alphabets (a to z)." maxLength={8} onChange={handleChangePassword} required />
           </div>
           <div className="flex items-center justify-between">
-            <DialogEditpass disabled={disabled} isOpen={dialogOpen} onClose={handleDialogClose} buttonText={"บันทึก"} user_id={43} old_password={"12345610"} new_password={password} />
+            <DialogEditpass disabled={disabled} isOpen={dialogOpen} onClose={handleDialogClose} buttonText={"บันทึก"} user_id={43} old_password={oldpassword} new_password={newpassword} />
             <button onClick={() => { route.push('/user') }} type="submit" className="bg-red-500 rounded-full hover:bg-gray-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" >ยกเลิก</button>
           </div>
         </form>

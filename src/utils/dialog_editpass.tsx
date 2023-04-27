@@ -33,11 +33,12 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
     };
 
     const handleClick = async () => {
+        console.log(userToPatch);
         try {
             
             const response = await axios
             .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
-            .catch((error: any) => console.log('Error: ', error));
+            
             
         if (response && response.data) {
             openModal();

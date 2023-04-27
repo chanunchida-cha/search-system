@@ -47,7 +47,7 @@ function EditPassword({ }: Props) {
             <input className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={password} maxLength={8} onChange={handleChangePassword} required />
           </div>
           <div className="flex items-center justify-between">
-            <DialogEditpass disabled={disabled} isOpen={dialogOpen} onClose={handleDialogClose} buttonText={"บันทึก"} />
+            <DialogEditpass disabled={disabled} isOpen={dialogOpen} onClose={handleDialogClose} buttonText={"บันทึก"} user_id={43} old_password={"12345610"} new_password={password} />
             <button onClick={() => { route.push('/user') }} type="submit" className="bg-red-500 rounded-full hover:bg-gray-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" >ยกเลิก</button>
           </div>
         </form>

@@ -82,6 +82,8 @@ class FeedStore {
     }
   }
 
+  deleteUpdateStatus = "404"
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -195,6 +197,36 @@ class FeedStore {
       console.log(err);
       throw err;
     }
+  }
+
+  async deleteFeedDetailById(profile_id: number) {
+    let resultState = ""
+    try {
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile/${profile_id}`,
+      );
+      Swal.fire(
+        "ลบข้อมูลการจองเรียบร้อยแล้ว!",
+        response.data.message,
+        "success"
+      );
+      const result = response.data;
+      resultState = result.status
+      this.deleteUpdateStatus = resultState
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "404",
+      });
+    }
+    console.log("DELETE STATUS:", resultState);
+    
+  }
+
+  setUpdateDeleteState(state: string) {
+    this.deleteUpdateStatus = state;
+    console.log("DELETE NOW STATE:", this.deleteUpdateStatus);
   }
 }
 export const feedStore = new FeedStore();

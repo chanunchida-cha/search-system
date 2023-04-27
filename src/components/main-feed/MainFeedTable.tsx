@@ -70,7 +70,7 @@ function MainFeedTable({ feedList }: Props) {
                       <Link href={"/" + item.researcher_name}>
                         <FeedEditButton />
                       </Link>
-                      <FeedDeleteButton />
+                      <FeedDeleteButton userId={Number(item.researcher_id)} />
                     </div>
                   </td>
                 </tr>

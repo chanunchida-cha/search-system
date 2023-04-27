@@ -43,7 +43,7 @@ class SetHistoryDataStore {
 
   listExperience: Experience[] = [
     {
-      experience_type: "",
+      experience_type: "work",
       experience_start: "",
       experience_end: "",
       experience_university: "",

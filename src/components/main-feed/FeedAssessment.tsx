@@ -43,6 +43,11 @@ function FeedAssessment({ assessmentDetail }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">ปีงบประมาณ</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="assessmentSinceBudget"
@@ -54,6 +59,11 @@ function FeedAssessment({ assessmentDetail }: Props) {
                       placeholder="2562"
                     ></input>
                     <p className="ml-3  text-black">ถึง</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       name="assessmentYearBudget"
                       id="assessmentYearBudget"
@@ -68,6 +78,11 @@ function FeedAssessment({ assessmentDetail }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">เอกสารงานวิจัย : </p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     {edit ? (
                       <UploadFileInForm
                         name="assessmentResults_file"

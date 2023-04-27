@@ -48,9 +48,14 @@ function FeedDetailHalfLineContent({
                   <div className={`${basisLeft}`}>
                     <div className="flex w-full items-center">
                       <p className="ml-3 font-bold text-black">{titleLeft}</p>
-                      <span className="text-xl text-red-500" aria-hidden="true">
-                        *
-                      </span>
+                      {edit && (
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
+                      )}
                       <input
                         type="text"
                         name="username"
@@ -66,9 +71,14 @@ function FeedDetailHalfLineContent({
                   <div className={`${basisRight}`}>
                     <div className="flex w-full items-center">
                       <p className="ml-3 font-bold text-black">{titleRight}</p>
-                      <span className="text-xl text-red-500" aria-hidden="true">
-                        *
-                      </span>
+                      {edit && (
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
+                      )}
                       <input
                         type="text"
                         name="surname"
@@ -97,9 +107,11 @@ function FeedDetailHalfLineContent({
                 <div className={`${basisLeft}`}>
                   <div className="flex w-full items-center">
                     <p className="ml-3 font-bold text-black">{titleLeft}</p>
-                    <span className="text-xl text-red-500" aria-hidden="true">
-                      *
-                    </span>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="username"
@@ -115,9 +127,11 @@ function FeedDetailHalfLineContent({
                 <div className={`${basisRight}`}>
                   <div className="flex w-full items-center">
                     <p className="ml-3 font-bold text-black">{titleRight}</p>
-                    <span className="text-xl text-red-500" aria-hidden="true">
-                      *
-                    </span>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="surname"
@@ -146,9 +160,11 @@ function FeedDetailHalfLineContent({
           <div className={`${basisLeft}`}>
             <div className="flex w-full items-center">
               <p className="ml-3 font-bold text-black">{titleLeft}</p>
-              <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>
+              {edit && (
+                <span className="text-xl text-red-500" aria-hidden="true">
+                  *
+                </span>
+              )}
               <input
                 type="text"
                 name="username"
@@ -164,9 +180,11 @@ function FeedDetailHalfLineContent({
           <div className={`${basisRight}`}>
             <div className="flex w-full items-center">
               <p className="ml-3 font-bold text-black">{titleRight}</p>
-              <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>
+              {edit && (
+                <span className="text-xl text-red-500" aria-hidden="true">
+                  *
+                </span>
+              )}
               <input
                 type="text"
                 name="surname"

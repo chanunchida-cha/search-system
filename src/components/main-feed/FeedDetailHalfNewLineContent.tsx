@@ -31,9 +31,11 @@ function FeedDetailHalfNewLineContent({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className="ml-3 font-bold text-black">{title}</p>
-            <span className="text-xl text-red-500" aria-hidden="true">
-              *
-            </span>
+            {edit && (
+              <span className="text-xl text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -44,9 +46,9 @@ function FeedDetailHalfNewLineContent({
               <div className="flex w-full items-center">
                 <p className="ml-3  text-black">{item.degree_type}</p>
                 <p className="ml-3  text-black">{section}</p>
-                <span className="text-xl text-red-500" aria-hidden="true">
+               {edit && <span className="text-xl text-red-500" aria-hidden="true">
                   *
-                </span>
+                </span>}
                 <input
                   type="text"
                   name="major"
@@ -62,9 +64,9 @@ function FeedDetailHalfNewLineContent({
             <div className="basis-6/12 ">
               <div className="flex w-full items-center">
                 <p className="ml-3  text-black">{university}</p>
-                <span className="text-xl text-red-500" aria-hidden="true">
+               {edit && <span className="text-xl text-red-500" aria-hidden="true">
                   *
-                </span>
+                </span>}
                 <input
                   type="text"
                   name="university"
@@ -84,13 +86,13 @@ function FeedDetailHalfNewLineContent({
           <div className="basis-6/12 ">
             <div className="flex w-full items-center">
               <p className="ml-3  text-black">{major}</p>
-              <span className="text-xl text-red-500" aria-hidden="true">
+            {edit &&  <span className="text-xl text-red-500" aria-hidden="true">
                 *
-              </span>
+              </span>}
               <p className="ml-3  text-black">{section}</p>
-              <span className="text-xl text-red-500" aria-hidden="true">
+           {edit &&   <span className="text-xl text-red-500" aria-hidden="true">
                 *
-              </span>
+              </span>}
               <input
                 type="text"
                 name="major"
@@ -105,9 +107,9 @@ function FeedDetailHalfNewLineContent({
           <div className="basis-6/12 ">
             <div className="flex w-full items-center">
               <p className="ml-3  text-black">{university}</p>
-              <span className="text-xl text-red-500" aria-hidden="true">
+              {edit && <span className="text-xl text-red-500" aria-hidden="true">
                 *
-              </span>
+              </span>}
               <input
                 type="text"
                 name="university"

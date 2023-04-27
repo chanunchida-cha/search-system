@@ -35,6 +35,9 @@ function FeedDetailThirdBoxNewLineContent({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className={`${mainTextClass} ml-3 text-black`}>{title}</p>
+            {edit && <span className="text-xl text-red-500" aria-hidden="true">
+            *
+          </span>}
           </div>
         </div>
       </div>

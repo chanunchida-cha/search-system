@@ -36,7 +36,7 @@ class ServiceCreate {
       console.log({ err });
     }
   }
-  async createDataAssessment(body: BodyAssessment) {
+  async createDataAssessment(body: BodyAssessment ) {
     try {
       const res = await axios.post(`${url}/api/v1/researcher/assessment`, body);
       return res.data;

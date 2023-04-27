@@ -8,7 +8,9 @@ import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setS
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 
-interface Props {}
+type Props ={
+  onSubmitCreate:() => void
+}
 
 const typeTab = [
   {
@@ -21,7 +23,7 @@ const typeTab = [
   },
 ];
 
-const FromCreateEdit = observer(({}: Props) => {
+const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
   const {
     validationFile
   } = setStateFile;
@@ -96,25 +98,25 @@ const FromCreateEdit = observer(({}: Props) => {
             <div className="col-span-2">
               <button
                 className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:border-none disabled:bg-blue-300"
-                // onClick={() => onClickRemove()}
+                onClick={() => onSubmitCreate()}
                 hidden={type === "history"}
                 type="submit"
-                disabled={
-                  !(
-                    validationAssessment &&
-                    validationDegree &&
-                    validationExpReserach &&
-                    validationExperience &&
-                    validationExplore &&
-                    validationHistoryData &&
-                    validationProgram &&
-                    validationProgressReports &&
-                    validationReports &&
-                    validationResearchArticles &&
-                    validationResearchPropasals &&
-                    validationFile
-                  )
-                }
+                // disabled={
+                //   !(
+                //     validationAssessment &&
+                //     validationDegree &&
+                //     validationExpReserach &&
+                //     validationExperience &&
+                //     validationExplore &&
+                //     validationHistoryData &&
+                //     validationProgram &&
+                //     validationProgressReports &&
+                //     validationReports &&
+                //     validationResearchArticles &&
+                //     validationResearchPropasals &&
+                //     validationFile
+                //   )
+                // }
               >
                 บันทึก
               </button>

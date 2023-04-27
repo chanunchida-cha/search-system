@@ -38,7 +38,8 @@ const create = observer(({}: Props) => {
     reports,
     researchArticles,
   } = setStateAssessmentStore;
-  const { createDataResearcher, createDataAssessment } = serviceCreateEdit;
+  const { createDataResearcher, createDataAssessment, responeseHistory } =
+    serviceCreateEdit;
 
   const fromdata = new FormData();
   fromdata.append("file", profile.profile!);
@@ -80,39 +81,38 @@ const create = observer(({}: Props) => {
     phone_number: historyDataResults.phone_number,
   };
 
-  const bodyAsessment: BodyAssessment = {
-    profile_id: 1,
-    assessment_start: assessmentResults.assessment_start,
-    assessment_end: assessmentResults.assessment_end,
-    project_year: researchPropasals.project_year,
-    project_title: researchPropasals.project_title,
-    project_point: researchPropasals.project_point,
-    project_estimate: researchPropasals.project_estimate,
-    project_recommend: researchPropasals.project_recommend,
-    project_period: researchPropasals.project_period,
-    progress_year: progressReports.progress_year,
-    progress_title: progressReports.progress_title,
-    progress_estimate: progressReports.progress_estimate,
-    progress_recommend: progressReports.progress_recommend,
-    progress_period: progressReports.progress_period,
-    report_year: reports.report_year,
-    report_title: reports.report_title,
-    report_estimate: reports.report_estimate,
-    report_recommend: reports.report_recommend,
-    report_period: reports.report_period,
-    article_year: researchArticles.article_year,
-    article_title: researchArticles.article_title,
-    article_estimate: researchArticles.article_estimate,
-    article_recommend: researchArticles.article_recommend,
-    article_period: researchArticles.article_period,
+  const onSubmitCreate = async () => {
+    await createDataResearcher(bodyProfile);
+    const bodyAsessment: BodyAssessment = {
+      profile_id: responeseHistory.data.profile_id,
+      assessment_start: assessmentResults.assessment_start,
+      assessment_end: assessmentResults.assessment_end,
+      project_year: researchPropasals.project_year,
+      project_title: researchPropasals.project_title,
+      project_point: Number(researchPropasals.project_point),
+      project_estimate: Boolean(researchPropasals.project_estimate),
+      project_recommend: Boolean(researchPropasals.project_recommend),
+      project_period: Boolean(researchPropasals.project_period),
+      progress_year: progressReports.progress_year,
+      progress_title: progressReports.progress_title,
+      progress_estimate: Boolean(progressReports.progress_estimate),
+      progress_recommend: Boolean(progressReports.progress_recommend),
+      progress_period: Boolean(progressReports.progress_period),
+      report_year: reports.report_year,
+      report_title: reports.report_title,
+      report_estimate: Boolean(reports.report_estimate),
+      report_recommend: Boolean(reports.report_recommend),
+      report_period: Boolean(reports.report_period),
+      article_year: researchArticles.article_year,
+      article_title: researchArticles.article_title,
+      article_estimate: Boolean(researchArticles.article_estimate),
+      article_recommend: Boolean(researchArticles.article_recommend),
+      article_period: Boolean(researchArticles.article_period),
+    };
+
+    await createDataAssessment(bodyAsessment);
   };
 
-  const onSubmitCreate = async() => {
-    await createDataResearcher(bodyProfile)
-
-  };
-
-
-  return <FromCreateEdit />;
+  return <FromCreateEdit onSubmitCreate={onSubmitCreate} />;
 });
 export default create;

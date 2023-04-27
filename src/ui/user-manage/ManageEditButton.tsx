@@ -11,7 +11,11 @@ function ManageEditButton({userData}: Props) {
     return (
         <>
           <button onClick={() => {
-              route.push("/editpassword");
+            route.push(
+              { pathname: "/editpassword", query: { userId: userData.user_id, userName: userData.username, role: userData.role } },
+              "path_of_component_b"
+            );
+              
             }} className="flex items-center justify-center rounded-lg bg-[#f1d386] py-1 px-1 font-bold text-white hover:bg-yellow-700">
             <svg
               fill="none"

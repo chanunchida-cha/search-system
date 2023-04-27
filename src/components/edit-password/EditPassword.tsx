@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DialogEditpass from "~/utils/dialog_editpass";
-
 
 type Props = {};
 
@@ -10,6 +9,14 @@ function EditPassword({ }: Props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [password, setPassword] = useState("")
   const [disabled, setDisabled] = useState(true)
+
+  useEffect(() => {
+    route.query
+    console.log("go to na", route.query.userId)
+    console.log("go to na", route.query.userName)
+    console.log("go to na", route.query.role)
+  }, []);
+
   console.log(password);
 
 

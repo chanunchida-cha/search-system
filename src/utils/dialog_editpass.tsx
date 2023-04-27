@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 type Props = {
     isOpen: boolean;
@@ -35,20 +36,19 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
     const handleClick = async () => {
         console.log(userToPatch);
         try {
-            
             const response = await axios
-            .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
-            
-            
-        if (response && response.data) {
-            openModal();
+                .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
             console.log(response);
-            console.log(response.data);
-        } else {
-            
-        }
-        } catch (error) {
+
+            return response.data;
+        } catch (error: any) {
+            Swal.fire({
+                icon: "error",
+                title: "CANNOT SERVICE 404 ERROR",
+                text: error.errorMessage,
+            });
             console.log(error);
+            throw error;
         }
     };
 

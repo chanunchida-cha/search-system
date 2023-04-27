@@ -7,12 +7,16 @@ import {
   Explore,
   ExpResearch,
   HistoryDataResults,
+  Positions,
   Profile,
   Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { ranks } from "~/models/const/createEdit/rankLevels";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 class SetHistoryDataStore {
+
   historyDataResults: HistoryDataResults = {
     first_name: "",
     last_name: "",
@@ -66,9 +70,17 @@ class SetHistoryDataStore {
     },
   ];
 
+  positions: Positions[] = [
+    {
+      position_id: 0,
+      position_name: "",
+    },
+  ];
+
   selectLevel: { key: string; i18n: string } = levels[0]!;
 
-  selectRanks: string = ranks[0]!;
+  // selectRanks: { position_id: number; position_name: string } = positions[0]!;
+
 
   constructor() {
     makeAutoObservable(this);
@@ -201,7 +213,7 @@ class SetHistoryDataStore {
   };
 
   setSelectedRank = (ranks: string) => {
-    this.selectRanks = ranks;
+    this.historyDataResults.positionName = ranks;
   };
 
   onChangeLavel = (index: number, selectedLevel: string) => {
@@ -279,6 +291,28 @@ class SetHistoryDataStore {
     ] = event.target.value;
     this.listExplore = newInputFields;
   };
+
+  async getPositions() {
+    try {
+      const response = await axios.get(
+        `https://sit-api.uap.universityapp.net/research/researcher/positions`
+      );
+      const rawResult = response.data;
+      const result: Positions = rawResult.data;
+
+      this.positions = result;
+      this.historyDataResults.positionName = this.positions[0]?.position_name
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "CANNOT SERVICE 404 ERROR",
+        text: err.errorMessage,
+      });
+
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 export const setHistoryDataStore = new SetHistoryDataStore();

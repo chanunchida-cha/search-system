@@ -1,13 +1,15 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent,useState } from "react";
+import React, { ChangeEvent,useState,useEffect } from "react";
 import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 
 // interface Props {}
 
 const SubjectExpertField = observer(() => {
+  // const route = useRouter();
 
   const{
+    historyDataResults,
     listProgram,
     onChangeInputProgram,
     addListProgram,

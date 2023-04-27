@@ -10,6 +10,7 @@ import { userStore } from "~/store/user/UserStore";
 
 type Props = {
   userManageList: UserManageResponse;
+
 };
 
 function UserTable({ userManageList }: Props) {

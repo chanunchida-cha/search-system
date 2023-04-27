@@ -12,8 +12,7 @@ function ManageEditButton({userData}: Props) {
         <>
           <button onClick={() => {
             route.push(
-              { pathname: "/editpassword", query: { userId: userData.user_id, userName: userData.username, role: userData.role } },
-              "path_of_component_b"
+              { pathname: "/editpassword", query: { userId: userData.user_id, userName: userData.username, role: userData.role } }
             );
               
             }} className="flex items-center justify-center rounded-lg bg-[#f1d386] py-1 px-1 font-bold text-white hover:bg-yellow-700">

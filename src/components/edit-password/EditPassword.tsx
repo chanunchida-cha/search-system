@@ -12,7 +12,6 @@ function EditPassword({ }: Props) {
   const [disabled, setDisabled] = useState(true)
 
   useEffect(() => {
-    route.query
     console.log("go to na", route.query.userId)
     console.log("go to na", route.query.userName)
     console.log("go to na", route.query.role)

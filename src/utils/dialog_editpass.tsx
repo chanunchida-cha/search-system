@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 type Props = {
     isOpen: boolean;
@@ -17,6 +18,7 @@ type Props = {
 const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_password, new_password }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
+    const route = useRouter();
 
     function openModal() {
         setIsOpen(true);
@@ -39,8 +41,7 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
             const response = await axios
                 .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
             console.log(response);
-
-            return response.data;
+            openModal();
         } catch (error: any) {
             Swal.fire({
                 icon: "error",
@@ -119,7 +120,8 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
                                         <button
                                             type="button"
                                             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                            onClick={closeModal}
+                                            // onClick={closeModal}
+                                            onClick={() => { route.push('/user') }}
                                         >
                                             ตกลง
                                         </button>

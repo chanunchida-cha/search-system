@@ -7,12 +7,16 @@ import {
   Explore,
   ExpResearch,
   HistoryDataResults,
+  Positions,
   Profile,
   Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { ranks } from "~/models/const/createEdit/rankLevels";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 class SetHistoryDataStore {
+
   historyDataResults: HistoryDataResults = {
     firstName: "",
     lastName: "",
@@ -66,9 +70,17 @@ class SetHistoryDataStore {
     },
   ];
 
+  positions: Positions[] = [
+    {
+      position_id: 0,
+      position_name: "",
+    },
+  ];
+
   selectLevel: { key: string; i18n: string } = levels[0]!;
 
-  selectRanks: string = ranks[0]!;
+  // selectRanks: { position_id: number; position_name: string } = positions[0]!;
+
 
   constructor() {
     makeAutoObservable(this);
@@ -78,13 +90,10 @@ class SetHistoryDataStore {
   //   this.historyDataResults.positionName = positionName
   // }
 
-  validationHistoryData = Object.keys(this.historyDataResults).length !== 0
+  validationHistoryData = Object.keys(this.historyDataResults).length !== 0;
 
   validationExplore = this.listExplore.every(
-    (item) =>
-      item.exploreDetail &&
-      item.exploreName &&
-      item.exploreYear 
+    (item) => item.exploreDetail && item.exploreName && item.exploreYear
   );
 
   validationExpReserach = this.listExpReserach.every(
@@ -110,7 +119,7 @@ class SetHistoryDataStore {
   validationDegree = this.listData.every(
     (item) => item.degreeType && item.degreeProgram && item.degreeUniversity
   );
-  
+
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
     console.log(this.historyDataResults);
@@ -204,7 +213,7 @@ class SetHistoryDataStore {
   };
 
   setSelectedRank = (ranks: string) => {
-    this.selectRanks = ranks;
+    this.historyDataResults.positionName = ranks;
   };
 
   onChangeLavel = (index: number, selectedLevel: string) => {
@@ -279,6 +288,28 @@ class SetHistoryDataStore {
     ] = event.target.value;
     this.listExplore = newInputFields;
   };
+
+  async getPositions() {
+    try {
+      const response = await axios.get(
+        `https://sit-api.uap.universityapp.net/research/researcher/positions`
+      );
+      const rawResult = response.data;
+      const result: Positions = rawResult.data;
+
+      this.positions = result;
+      this.historyDataResults.positionName = this.positions[0]?.position_name
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "CANNOT SERVICE 404 ERROR",
+        text: err.errorMessage,
+      });
+
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 export const setHistoryDataStore = new SetHistoryDataStore();

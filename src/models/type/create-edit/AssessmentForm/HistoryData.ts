@@ -1,3 +1,4 @@
+
 export type HistoryDataResults = {
   firstName: string;
   lastName: string;
@@ -64,4 +65,9 @@ export type AccountFile = {
 export type IdCardFile = {
   idCard_file: File | null;
   directory_file: string;
+};
+
+export type Positions = {
+  position_id : number;
+  position_name : string;
 };

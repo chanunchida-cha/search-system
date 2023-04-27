@@ -1,3 +1,4 @@
+import { number, string } from "zod";
 
 export type HistoryDataResults = {
   first_name: string;
@@ -63,6 +64,11 @@ export type AccountFile = {
 export type IdCardFile = {
   idCard_file: File | null;
   directory_file: string;
+};
+
+export type Positions = {
+  position_id: number;
+  position_name: string;
 };
 
 export type BodyProfile = {

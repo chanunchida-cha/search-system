@@ -48,7 +48,7 @@ const SelectRanks = observer(() => {
     <div className="grid grid-cols-12 gap-1">
       <div className="col-span-9">
         <Listbox
-          value={historyDataResults.positionName}
+          value={historyDataResults.position_name}
           onChange={(selectedRank) => {
             setSelectedRank(selectedRank);
           }}
@@ -58,7 +58,7 @@ const SelectRanks = observer(() => {
               <div className="relative ">
                 <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                   <span className="flex items-center">
-                    <span className="ml-3 block truncate">{historyDataResults.positionName}</span>
+                    <span className="ml-3 block truncate">{historyDataResults.position_name}</span>
                   </span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                     <ChevronUpDownIcon
@@ -135,7 +135,7 @@ const SelectRanks = observer(() => {
           name="position_name"
           id="position_name"
           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          hidden={positions[positions.length - 1] !== historyDataResults.positionName}
+          hidden={positions[positions.length - 1]?.position_name !== historyDataResults.position_name!}
         />
       </div>
     </div>

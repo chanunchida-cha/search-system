@@ -16,7 +16,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 class SetHistoryDataStore {
-
   historyDataResults: HistoryDataResults = {
     first_name: "",
     last_name: "",
@@ -70,17 +69,11 @@ class SetHistoryDataStore {
     },
   ];
 
-  positions: Positions[] = [
-    {
-      position_id: 0,
-      position_name: "",
-    },
-  ];
+  positions: Positions[] = [];
 
   selectLevel: { key: string; i18n: string } = levels[0]!;
 
   // selectRanks: { position_id: number; position_name: string } = positions[0]!;
-
 
   constructor() {
     makeAutoObservable(this);
@@ -213,7 +206,7 @@ class SetHistoryDataStore {
   };
 
   setSelectedRank = (ranks: string) => {
-    this.historyDataResults.positionName = ranks;
+    this.historyDataResults.position_name = ranks;
   };
 
   onChangeLavel = (index: number, selectedLevel: string) => {
@@ -255,8 +248,7 @@ class SetHistoryDataStore {
 
   onChangeInputExperience = (
     index: number,
-    event: ChangeEvent<HTMLInputElement>,
-    
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     const newInputFields = [...this.listExperience];
     const fieldToUpdate = event.target.name;
@@ -264,8 +256,6 @@ class SetHistoryDataStore {
       fieldToUpdate as keyof (typeof newInputFields)[number]
     ] = event.target.value;
     this.listExperience = newInputFields;
-   
-  
   };
 
   onChangeInputExpResearch = (
@@ -298,10 +288,10 @@ class SetHistoryDataStore {
         `https://sit-api.uap.universityapp.net/research/researcher/positions`
       );
       const rawResult = response.data;
-      const result: Positions = rawResult.data;
+      const result = rawResult.data;
 
       this.positions = result;
-      this.historyDataResults.positionName = this.positions[0]?.position_name
+      this.historyDataResults.position_name = this.positions[0]?.position_name!;
     } catch (err: any) {
       Swal.fire({
         icon: "error",

@@ -1,11 +1,15 @@
 import { type } from 'os'
 import React, {useState} from 'react'
 import { manage_heading } from '~/models/const/user-manage/manage_heading';
+import { userStore } from '~/store/user/UserStore';
 
 type Props = {};
 
 function UserSearchBar({}: Props) {
   const [searchText, setSearchText] = useState("");
+  const getSearchUser = async () => {
+    await userStore.getUserManage("", 0, 10);
+  };
 
     return (
         <>
@@ -21,6 +25,7 @@ function UserSearchBar({}: Props) {
                   placeholder="ค้นหาขื่อบัญชี"
                   onChange={(event) => {
                     setSearchText(event.target.value);
+
                     console.log(event.target.value);
                   }}
                 />

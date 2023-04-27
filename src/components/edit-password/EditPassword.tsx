@@ -12,9 +12,9 @@ function EditPassword({ }: Props) {
   const [disabled, setDisabled] = useState(true)
 
   useEffect(() => {
-    console.log("go to na", route.query.userId)
-    console.log("go to na", route.query.userName)
-    console.log("go to na", route.query.role)
+    console.log("go to na id", route.query.user_id)
+    console.log("go to na name", route.query.username)
+    console.log("go to na role", route.query.role)
   }, []);
 
   const handleDialogClose = () => {

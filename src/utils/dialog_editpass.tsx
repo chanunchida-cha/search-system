@@ -56,8 +56,9 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
     return (
         <>
             <button
+
                 onClick={handleClick}
-                className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 w-full lg:w-36 lg:ml-2  focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isDisabled || disabled}
             >
                 {buttonText}
@@ -119,7 +120,7 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
                                     <div className="mt-4 flex justify-center mx-auto pb-1">
                                         <button
                                             type="button"
-                                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                            className="w-36 inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                             // onClick={closeModal}
                                             onClick={() => { route.push('/user') }}
                                         >

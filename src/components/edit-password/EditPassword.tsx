@@ -18,9 +18,6 @@ function EditPassword({ }: Props) {
     console.log("go to na", route.query.role)
   }, []);
 
-  console.log(password);
-
-
   const handleDialogClose = () => {
     setDialogOpen(false);
   };

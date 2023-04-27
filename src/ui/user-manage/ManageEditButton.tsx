@@ -1,8 +1,12 @@
 import { useRouter } from 'next/router';
 import React from 'react'
+import { ContentUserManageResponse } from '~/models/type/user/typeContent';
 
+type Props = {
+  userData: ContentUserManageResponse;
+};
 
-function ManageEditButton() {
+function ManageEditButton({userData}: Props) {
     const route = useRouter();
     return (
         <>

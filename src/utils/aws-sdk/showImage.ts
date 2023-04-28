@@ -3,13 +3,10 @@ export const showImage = async (type:string,message:string,setS3url:(s3url:strin
     const bucketName = process.env.NEXT_PUBLIC_MINIO_BUCKET_NAME?.toString();
     let imageUrl;
     let afterUrl;
-
-    if (type === "image") {
-      imageUrl = `${process.env.NEXT_PUBLIC_MINIO_ENDPOINT}/${process.env.NEXT_PUBLIC_MINIO_BUCKET}/${message}`;
+    imageUrl = `${process.env.NEXT_PUBLIC_MINIO_ENDPOINT}/${process.env.NEXT_PUBLIC_MINIO_BUCKET}/${message}`;
       afterUrl = imageUrl!.substring(
         imageUrl!.indexOf(bucketName!) + bucketName!.length
-      );
-    }
+    );
 
     await AWS.config.update({
       accessKeyId: process.env.NEXT_PUBLIC_MINIO_ASSESS_KEY,
@@ -34,8 +31,16 @@ export const showImage = async (type:string,message:string,setS3url:(s3url:strin
         } else {
           console.log("data.Body");
           console.log(data.Body);
-          var asdasd = "data:image/jpeg;base64," + encode(data.Body);
-          setS3url(asdasd);
+          if (type === "image") {
+            var asdasd = "data:image/jpeg;base64," + encode(data.Body);
+            setS3url(asdasd);
+          } else {
+            let link = document.createElement("a");
+            link.href = "data:image/jpeg;base64," + encode(data.Body);
+            link.download = "certificate.pdf";
+            link.click();
+          }
+          
         }
       }
     );

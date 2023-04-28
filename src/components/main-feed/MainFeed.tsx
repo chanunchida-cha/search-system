@@ -11,7 +11,7 @@ type Props = {};
 const MainFeed = observer(({}: Props) => {
   useEffect(() => {
     const fetchFeedList = async () => {
-      await feedStore.getFeedList("", 0, 10, "");
+      await feedStore.getFeedList("", 1, 10, "");
     };
     fetchFeedList();
   }, []);

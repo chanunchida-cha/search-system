@@ -1,8 +1,22 @@
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useEffect, useState } from "react";
+import { useDebounce } from "~/models/const/main-feed/search_feed_debounce";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
 type Props = {};
 
-function FeedSearchBox({}: Props) {
+const FeedSearchBox = observer(({}: Props) => {
+  const { setSearchContext } = feedStore;
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 1000);
+  const fetchFeedList = async (type: string, text: string) => {
+    await feedStore.getFeedList(type, 1, 10, text);
+  };
+  useEffect(() => {
+    if (debouncedSearch || debouncedSearch === "") {
+      fetchFeedList(feedStore.searchSelection, feedStore.searchContext);
+    }
+  }, [debouncedSearch]);
   return (
     <>
       {/* SearchBar */}
@@ -11,6 +25,11 @@ function FeedSearchBox({}: Props) {
           className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 pl-10 text-sm leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-[#0265ff] focus:outline-none focus:ring-[#0265ff] md:text-base lg:text-lg"
           id="username"
           type="text"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+            setSearchContext(event.target.value);
+          }}
           placeholder="ค้นหาข้อมูลรายชื่อผู้วิจัย"
         />
         <div className="absolute inset-y-0 left-0 flex items-center">
@@ -33,6 +52,6 @@ function FeedSearchBox({}: Props) {
       {/* END OF SearchBar */}
     </>
   );
-}
+});
 
 export default FeedSearchBox;

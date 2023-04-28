@@ -38,45 +38,49 @@ function MainFeedTable({ feedList }: Props) {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50">
-            {feedList.content
-              .filter((item) => item.profile_status === true)
-              .map((item, index) => (
-                <tr className="bg-white">
-                  <td className="p-3 text-center text-sm text-gray-700">
-                    {feedList.current_page > 1
-                      ? index + 1 + Number(feedList.current_page - 1) * 10
-                      : index + 1}
-                  </td>
-                  <td className="p-3 text-center text-sm text-gray-700">
-                    {item.project_title}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
-                    <Link
-                      href={"/" + item.researcher_id}
-                      className="font-bold text-blue-500 hover:underline"
-                    >
-                      {/* {item.researcher_name} */}
-                      {item.researcher_name + "[" + item.researcher_id + "]"}
-                    </Link>
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                    {item.university}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                    {item.explore_year}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                    <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                      <Link href={"/" + item.researcher_name}>
-                        <FeedEditButton />
+          {feedList.total_object === 0 ? (
+            <tbody></tbody>
+          ) : (
+            <tbody className="divide-y divide-gray-50">
+              {feedList.content
+                .filter((item) => item.profile_status === true)
+                .map((item, index) => (
+                  <tr className="bg-white">
+                    <td className="p-3 text-center text-sm text-gray-700">
+                      {feedList.current_page > 1
+                        ? index + 1 + Number(feedList.current_page - 1) * 10
+                        : index + 1}
+                    </td>
+                    <td className="p-3 text-center text-sm text-gray-700">
+                      {item.project_title}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
+                      <Link
+                        href={"/" + item.researcher_id}
+                        className="font-bold text-blue-500 hover:underline"
+                      >
+                        {/* {item.researcher_name + "[" + item.researcher_id + "]"} */}
+                        {item.researcher_name}
                       </Link>
-                      <FeedDeleteButton userId={Number(item.researcher_id)} />
-                    </div>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                      {item.university}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                      {item.explore_year}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                      <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
+                        <Link href={"/" + item.researcher_name}>
+                          <FeedEditButton />
+                        </Link>
+                        <FeedDeleteButton userId={Number(item.researcher_id)} />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          )}
         </table>
       </div>
 
@@ -98,7 +102,7 @@ function MainFeedTable({ feedList }: Props) {
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-gray-700">
+            {/* <p className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
                 {Number(feedList.current_page) * 10 - 9}
@@ -112,6 +116,13 @@ function MainFeedTable({ feedList }: Props) {
               of{" "}
               <span className="font-medium">
                 {Number(feedList.total_object) * Number(feedList.total_page)}
+              </span>{" "}
+              results
+            </p> */}
+            <p className="text-sm text-gray-700">
+              Showing{" "}
+              <span className="font-medium">
+                {Number(feedList.total_object)}
               </span>{" "}
               results
             </p>

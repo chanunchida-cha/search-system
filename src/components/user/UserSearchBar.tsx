@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import { userStore } from "~/store/user/UserStore";
 
@@ -6,14 +6,15 @@ type Props = {};
 
 function UserSearchBar({}: Props) {  
 
+  const [searchText, setSearchText] = useState("");
 
+  const getTime = setTimeout(() => {
+    getSearchUser();
+  }, 2000)
 
-  // const getTime = setTimeout(() => {
-    
-  // }, 2000)
-
-  const getSearchUser = async (searchText : string) => {
+  const getSearchUser = async () => {
     await userStore.getUserManage(searchText, 0, 10);
+    return clearTimeout(getTime)
   };
 
   return (
@@ -29,9 +30,7 @@ function UserSearchBar({}: Props) {
               type="text"
               placeholder="ค้นหาขื่อบัญชี"
               onChange={(event) => {
-                setTimeout(async () => {
-                  getSearchUser(event.target.value);
-                }, 2000)
+                setSearchText(event.target.value);
               }}
             />
             <div className="absolute inset-y-0 left-0 flex items-center">

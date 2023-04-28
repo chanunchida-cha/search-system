@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import DialogEditpass from "~/utils/dialog_editpass";
 
 type Props = {};
@@ -10,6 +10,9 @@ function EditPassword({ }: Props) {
   const [oldpassword, setoldPassword] = useState("")
   const [newpassword, setnewPassword] = useState("")
   const [disabled, setDisabled] = useState(true)
+  console.log("oldpass",oldpassword);
+  console.log("newpass",newpassword);
+  
 
   useEffect(() => {
     console.log("go to na id", route.query.user_id)
@@ -21,27 +24,27 @@ function EditPassword({ }: Props) {
     setDialogOpen(false);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-  }
+  };
 
-  const handleOldPassword = async (e: any) => {
-    setoldPassword(e.target.value)
+  const handleOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setoldPassword(e.target.value);
     if (e.target.value.length >= 4) {
-      // setDisabled(false)
+      setDisabled(false);
     } else {
-      setDisabled(true)
+      setDisabled(true);
     }
-  }
+  };
 
-  const handleChangePassword = async (e: any) => {
-    setnewPassword(e.target.value)
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setnewPassword(e.target.value);
     if (e.target.value.length >= 4) {
-      setDisabled(false)
+      setDisabled(false);
     } else {
-      setDisabled(true)
+      setDisabled(true);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-white rounded-lg">

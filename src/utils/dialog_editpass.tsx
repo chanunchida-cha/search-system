@@ -15,6 +15,7 @@ type Props = {
     new_password: string;
 };
 
+
 const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_password, new_password }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -36,21 +37,30 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
     };
 
     const handleClick = async () => {
-        console.log(userToPatch);
         try {
-            const response = await axios
-                .patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch)
-            console.log(response);
-            openModal();
-        } catch (error: any) {
+            console.log("updatePatch", userToPatch);
+          
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch);
+          
+            if (response && response.data && response.status === 200) {
+              openModal();
+              console.log("อิหยังวะ", response.data);
+            } 
+          } catch (error: any) {
+            let errorMessage = "ไม่สามารถเปลี่ยนรหัสผ่านได้ในขณะนี้";
+            console.log("abcsssss", error);
+          
+            if (error.response && error.response.status === 400) {
+              errorMessage = error.response.data.message;
+              console.log("asdadww222", error.response.data.message);
+            }
+          
             Swal.fire({
-                icon: "error",
-                title: "CANNOT SERVICE 404 ERROR",
-                text: error.errorMessage,
+              icon: "error",
+              title: errorMessage,
             });
-            console.log(error);
             throw error;
-        }
+          }
     };
 
     return (
@@ -122,7 +132,7 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
                                             type="button"
                                             className="w-36 inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                             // onClick={closeModal}
-                                            onClick={() => { route.push('/user') }}
+                                            onClick={(closeModal) => { route.push('/user') }}
                                         >
                                             ตกลง
                                         </button>

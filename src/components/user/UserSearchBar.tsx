@@ -59,7 +59,7 @@ const UserSearchBar = observer(({}: Props) => {
           {/* END OF SearchBar */}
 
           {/* TypeSelection */}
-          <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/5 ">
+          {/* <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/5 ">
             <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight text-black shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg">
               {manage_heading.map((item) =>
                 item === "ลำดับ" || item === "จัดการาข้อมูล" ? null : (
@@ -81,7 +81,7 @@ const UserSearchBar = observer(({}: Props) => {
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
-          </div>
+          </div> */}
           {/* END OF TypeSelection */}
         </div>
       </div>

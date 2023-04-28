@@ -9,7 +9,7 @@ import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryD
 import { setStateFile } from "~/store/create-edit/setStateFile";
 
 type Props ={
-  onSubmitCreate:() => void
+  onSubmitCreate?:() => void
 }
 
 const typeTab = [
@@ -98,7 +98,7 @@ const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
             <div className="col-span-2">
               <button
                 className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:border-none disabled:bg-blue-300"
-                onClick={() => onSubmitCreate()}
+                onClick={() => onSubmitCreate!()}
                 hidden={type === "history"}
                 type="submit"
                 // disabled={

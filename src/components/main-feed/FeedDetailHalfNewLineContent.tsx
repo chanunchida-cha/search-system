@@ -41,11 +41,6 @@ function FeedDetailHalfNewLineContent({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className="ml-3 font-bold text-black">{title}</p>
-            {edit && (
-              <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>
-            )}
           </div>
         </div>
       </div>
@@ -59,17 +54,13 @@ function FeedDetailHalfNewLineContent({
                   {updateEducationDegreeText(item.degree_type)}
                 </p>
                 <p className="ml-3  text-black">{section}</p>
-               {edit && <span className="text-xl text-red-500" aria-hidden="true">
-                  *
-                </span>}
+
                 <input
                   type="text"
                   name="major"
                   id="major"
                   value={item.degree_program}
-                  className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
-                  } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                  className={`${"pointer-events-none"} ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={sectionPlaceHolder}
                 ></input>
               </div>
@@ -77,16 +68,14 @@ function FeedDetailHalfNewLineContent({
             <div className="basis-6/12 ">
               <div className="flex w-full items-center">
                 <p className="ml-3  text-black">{university}</p>
-               {edit && <span className="text-xl text-red-500" aria-hidden="true">
-                  *
-                </span>}
+               
                 <input
                   type="text"
                   name="university"
                   id="university"
                   value={item.degree_university}
                   className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
+                    "pointer-events-none"
                   } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={universityPlaceHolder}
                 ></input>
@@ -99,19 +88,15 @@ function FeedDetailHalfNewLineContent({
           <div className="basis-6/12 ">
             <div className="flex w-full items-center">
               <p className="ml-3  text-black">{major}</p>
-            {edit &&  <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>}
+             
               <p className="ml-3  text-black">{section}</p>
-           {edit &&   <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>}
+             
               <input
                 type="text"
                 name="major"
                 id="major"
                 className={`${
-                  edit ? "bg-white text-black" : "pointer-events-none"
+                  "pointer-events-none"
                 } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                 placeholder={sectionPlaceHolder}
               ></input>
@@ -120,15 +105,13 @@ function FeedDetailHalfNewLineContent({
           <div className="basis-6/12 ">
             <div className="flex w-full items-center">
               <p className="ml-3  text-black">{university}</p>
-              {edit && <span className="text-xl text-red-500" aria-hidden="true">
-                *
-              </span>}
+             
               <input
                 type="text"
                 name="university"
                 id="university"
                 className={`${
-                  edit ? "bg-white text-black" : "pointer-events-none"
+                 "pointer-events-none"
                 } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                 placeholder={universityPlaceHolder}
               ></input>

@@ -6,6 +6,7 @@ export type ProjectResponse = {
   project_estimate: boolean;
   project_recommend: boolean;
   file_name: string;
+  file_action: string;
   file_id: number;
   period: boolean;
 };

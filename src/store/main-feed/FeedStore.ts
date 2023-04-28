@@ -49,6 +49,7 @@ class FeedStore {
       project_estimate: false,
       project_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -59,6 +60,7 @@ class FeedStore {
       progress_estimate: false,
       progress_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -69,6 +71,7 @@ class FeedStore {
       report_estimate: false,
       report_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -79,9 +82,12 @@ class FeedStore {
       article_estimate: false,
       article_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
-    }
+    },
+    profile_id: 0,
+    assessment_file_action: ""
   }
 
   deleteUpdateStatus = "404"

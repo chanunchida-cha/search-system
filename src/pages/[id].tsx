@@ -5,6 +5,7 @@ import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
+import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 
 type Props = {};
 
@@ -59,6 +60,16 @@ const NameFeed = observer(({}: Props) => {
     return pathFile;
   };
 
+  const setPathImageAssessment = () => {
+    let pathFile = "";
+    pathFile =
+      feedStore.assessmentDetail.assessment_file_action +
+      "/" +
+      feedStore.assessmentDetail.assessment_file_name;
+    console.log("PATH FILE ASSESSMENT: ", pathFile);
+    return pathFile;
+  };
+
   useEffect(() => {
     updateToggle();
     fetchFeedDetail(Number(id));
@@ -104,7 +115,10 @@ const NameFeed = observer(({}: Props) => {
               imagePath={setPathImage(feedStore.feedDetail)}
             />
           ) : (
-            <FeedAssessment assessmentDetail={feedStore.assessmentDetail} />
+            <FeedAssessment
+              assessmentDetail={feedStore.assessmentDetail}
+              imagePath={setPathImageAssessment()}
+            />
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-export const showImage = async (type:string,message:string,setS3url:(s3url:string)=>void) => {
+export const showImage = async (type:string,message:string,name:string,setS3url:(s3url:string)=>void) => {
     const AWS = require("aws-sdk");
     const bucketName = process.env.NEXT_PUBLIC_MINIO_BUCKET_NAME?.toString();
     let imageUrl;
@@ -37,7 +37,7 @@ export const showImage = async (type:string,message:string,setS3url:(s3url:strin
           } else {
             let link = document.createElement("a");
             link.href = "data:image/jpeg;base64," + encode(data.Body);
-            link.download = "certificate.pdf";
+            link.download = name;
             link.click();
           }
           

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { showImage } from "~/utils/aws-sdk/showImage";
 
 type Props = {
   title?: string;
@@ -9,6 +10,7 @@ type Props = {
   textClass?: string;
   textContent?: string;
   isLink?: boolean;
+  imagePath?: string;
 };
 
 function FeedDetailOneLineContent({
@@ -19,7 +21,13 @@ function FeedDetailOneLineContent({
   textClass,
   textContent,
   isLink,
+  imagePath,
 }: Props) {
+  const [s3url, setS3url] = useState<string>();
+  useEffect(() => {}, [imagePath]);
+  const loadImage = async () => {
+    await showImage("pdf", imagePath!, String(textContent), setS3url);
+  };
   return (
     <>
       <div className={`flex w-full flex-row ${mainClass}`}>
@@ -27,10 +35,9 @@ function FeedDetailOneLineContent({
           <p className={`ml-3 text-black ${textClass}`}>{title}</p>
           {isLink ? (
             <Link
-              href={
-                "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-              }
+              href={`${s3url}`}
               className="w-3/4"
+              onClick={() => loadImage()}
             >
               <input
                 type="text"

@@ -13,6 +13,8 @@ class UserStore {
     is_last: true,
 };
 
+  searchContext = "";
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -53,7 +55,12 @@ class UserStore {
           console.log(err);
           throw err;
     }
-
   }
+
+  setSearchContext = (text: string) => {
+    this.searchContext = text;
+    console.log("searchContext:", this.searchContext);
+  };
 }
+
 export const userStore = new UserStore

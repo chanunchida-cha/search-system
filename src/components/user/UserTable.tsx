@@ -14,7 +14,7 @@ type Props = {
 
 function UserTable({ userManageList }: Props) {
   const updatePageCurrent = async (page: number) => {
-    await userStore.getUserManage("", page, 10);
+    await userStore.getUserManage(userStore.searchContext, page, 10);
   };
   return (
     <>

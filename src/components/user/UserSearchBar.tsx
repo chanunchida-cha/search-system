@@ -1,21 +1,25 @@
-import React, {useState} from "react";
+import { observer } from "mobx-react-lite";
+import React, {useState, useEffect} from "react";
 import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import { userStore } from "~/store/user/UserStore";
+import { useDebounce } from "~/models/const/user-manage/search_user_debounce";
 
 type Props = {};
 
-function UserSearchBar({}: Props) {  
+const UserSearchBar = observer(({}: Props) => {  
 
+  const { setSearchContext } = userStore;
   const [searchText, setSearchText] = useState("");
+  const debouncedSearch = useDebounce(searchText, 1000);
+  const getSearchUser = async (inputText : string) => {
+    await userStore.getUserManage(inputText, 0, 10);
+  };
 
-  // const getTime = setTimeout(() => {
-  //   getSearchUser();
-  // }, 2000)
-
-  // const getSearchUser = async () => {
-  //   await userStore.getUserManage(searchText, 0, 10);
-  //   return clearTimeout(getTime)
-  // };
+  useEffect(() => {
+    if (debouncedSearch || debouncedSearch === "") {
+      getSearchUser(userStore.searchContext);
+    }
+  }, [debouncedSearch]);
 
   return (
     <>
@@ -29,8 +33,10 @@ function UserSearchBar({}: Props) {
               id="username"
               type="text"
               placeholder="ค้นหาขื่อบัญชี"
+              value={searchText}
               onChange={(event) => {
-                setSearchText(event.target.value);
+                setSearchContext(event.target.value)
+                setSearchText(event.target.value);    
               }}
             />
             <div className="absolute inset-y-0 left-0 flex items-center">
@@ -82,6 +88,8 @@ function UserSearchBar({}: Props) {
       {/* END OF SearchBar and TypeSelection */}
     </>
   );
-}
+});
 
 export default UserSearchBar;
+
+

@@ -8,14 +8,14 @@ function UserSearchBar({}: Props) {
 
   const [searchText, setSearchText] = useState("");
 
-  const getTime = setTimeout(() => {
-    getSearchUser();
-  }, 2000)
+  // const getTime = setTimeout(() => {
+  //   getSearchUser();
+  // }, 2000)
 
-  const getSearchUser = async () => {
-    await userStore.getUserManage(searchText, 0, 10);
-    return clearTimeout(getTime)
-  };
+  // const getSearchUser = async () => {
+  //   await userStore.getUserManage(searchText, 0, 10);
+  //   return clearTimeout(getTime)
+  // };
 
   return (
     <>

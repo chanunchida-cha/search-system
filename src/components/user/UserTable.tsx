@@ -10,7 +10,6 @@ import { userStore } from "~/store/user/UserStore";
 
 type Props = {
   userManageList: UserManageResponse;
-
 };
 
 function UserTable({ userManageList }: Props) {
@@ -42,8 +41,10 @@ function UserTable({ userManageList }: Props) {
             {userManageList?.content?.map((item, index) => (
               <tr className="bg-white">
                 <td className="p-3 text-center text-sm text-gray-700">
-                    {index + 1 + Number(userManageList.current_page) * 10}
-                  </td>
+                  {userManageList.current_page > 1
+                    ? index + 1 + Number(userManageList.current_page - 1) * 10
+                    : index + 1}
+                </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <Link
                     href={"/" + item.user_id}
@@ -53,11 +54,11 @@ function UserTable({ userManageList }: Props) {
                   </Link>
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                {item.role}
+                  {item.role}
                 </td>
                 <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
                   <div className="flex justify-center">
-                    <ManageEditButton userData={item}  />
+                    <ManageEditButton userData={item} />
                   </div>
                 </td>
               </tr>
@@ -84,18 +85,22 @@ function UserTable({ userManageList }: Props) {
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
-          <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
-                {(Number(userManageList.current_page) + 1) * 10 - 9}
+                {Number(userManageList.current_page) * 10 - 9}
               </span>{" "}
               to{" "}
               <span className="font-medium">
-                {(Number(userManageList.current_page) + 1) * 10}
+                {Number(userManageList.current_page) * 10 === 10
+                  ? 10
+                  : Number(userManageList.total_object) *
+                    Number(userManageList.total_page)}
               </span>{" "}
               of{" "}
               <span className="font-medium">
-                {Number(userManageList.total_object) * Number(userManageList.total_page)}
+                {Number(userManageList.total_object) *
+                  Number(userManageList.total_page)}
               </span>{" "}
               results
             </p>
@@ -112,25 +117,27 @@ function UserTable({ userManageList }: Props) {
                 <span className="sr-only">Previous</span>
                 <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
               </a>
-              {Array.from({ length: Number(userManageList.total_page) }, (_, index) =>
-                Number(userManageList.current_page) === index ? (
-                  <a
-                    href="#"
-                    aria-current="page"
-                    onClick={() => updatePageCurrent(index)}
-                    className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    {index + 1}
-                  </a>
-                ) : (
-                  <a
-                    href="#"
-                    onClick={() => updatePageCurrent(index)}
-                    className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-                  >
-                    {index + 1}
-                  </a>
-                )
+              {Array.from(
+                { length: Number(userManageList.total_page) },
+                (_, index) =>
+                  Number(userManageList.current_page) === index + 1 ? (
+                    <a
+                      href="#"
+                      aria-current="page"
+                      onClick={() => updatePageCurrent(index + 1)}
+                      className="relative z-10 inline-flex items-center bg-[#0265ff] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      {index + 1}
+                    </a>
+                  ) : (
+                    <a
+                      href="#"
+                      onClick={() => updatePageCurrent(index + 1)}
+                      className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                    >
+                      {index + 1}
+                    </a>
+                  )
               )}
               <a
                 href="#"

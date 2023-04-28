@@ -11,6 +11,14 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
   const deleteUserById = async (id: number) => {
     await feedStore.deleteFeedDetailById(id);
   };
+  const fetchFeedList = async () => {
+    await feedStore.getFeedList(
+      feedStore.searchSelection,
+      0,
+      10,
+      feedStore.searchContext
+    );
+  };
   const confirmDelete = (id: number) => {
     Swal.fire({
       icon: "error",
@@ -35,6 +43,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
         if (feedStore.deleteUpdateStatus === "200") {
           Swal.fire("ลบข้อมูล", "ทำการลบข้อมูลสำเร็จ", "success");
           feedStore.setUpdateDeleteState("404");
+          fetchFeedList();
         } else {
           feedStore.setUpdateDeleteState("404");
         }

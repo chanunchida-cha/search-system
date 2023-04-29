@@ -4,6 +4,7 @@ import { sidebarAdmin, sidebarUser } from "~/models/const/Sidebar/sidebar";
 import Link from "next/link";
 import Cookie from "cookie-universal";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 
 type Props = {
@@ -23,6 +24,10 @@ const SideBar = ({ children }: Props) => {
   const logout = () =>{
     cookies.removeAll()
     route.push("/login")
+    Swal.fire({
+      icon: "success",
+      title: "ออกจากระบบสำเร็จ"
+    });
   }
 
   return (

@@ -39,7 +39,7 @@ class LoginStore {
         title: err.response.data.errorMessage
         // text: err.response.data.errorMessage,
       });
-        
+      
       console.log(err);
       throw err;
     }

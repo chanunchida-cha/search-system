@@ -22,12 +22,29 @@ const SideBar = ({ children }: Props) => {
   }, [getrole]);
 
   const logout = () =>{
-    cookies.removeAll()
-    route.push("/login")
     Swal.fire({
-      icon: "success",
-      title: "ออกจากระบบสำเร็จ"
-    });
+      title: 'คุณแน่ใจว่าต้องการที่จะออกจากระบบ?',
+      text: "โปรดตรวจสอบก่อนการยืนยัน",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#828282',
+      cancelButtonColor: '#0265ff',
+      confirmButtonText: 'ยกเลิก',
+      cancelButtonText: "ยืนยัน",
+      backdrop: false
+    }).then((result) => {
+      if (result.isDismissed) {
+        cookies.removeAll()
+        route.push("/login")
+        Swal.fire({
+          icon: 'success',
+          title: 'คุณออกจากระบบสำเร็จ',
+          confirmButtonColor: '#0265ff',
+          confirmButtonText: 'ตกลง',
+          backdrop: false,
+        })
+      }
+    })
   }
 
   return (

@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import React from "react";
 
 type Props = {
     isOpen: boolean;

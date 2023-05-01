@@ -160,8 +160,8 @@ class FeedStore {
     } catch (err: any) {
       Swal.fire({
         icon: "error",
-        title: "CANNOT SERVICE 404 ERROR",
-        text: err.errorMessage,
+        title: err.response.data.errorMessage,
+        // text: err.errorMessage,
       });
 
       console.log(err);
@@ -180,8 +180,8 @@ class FeedStore {
     } catch (err: any) {
       Swal.fire({
         icon: "error",
-        title: "CANNOT SERVICE 404 ERROR",
-        text: err.errorMessage,
+        title: err.response.data.errorMessage,
+        // text: err.errorMessage,
       });
 
       console.log(err);
@@ -200,8 +200,8 @@ class FeedStore {
     } catch (err: any) {
       Swal.fire({
         icon: "error",
-        title: "CANNOT SERVICE 404 ERROR",
-        text: err.errorMessage,
+        title: err.response.data.errorMessage,
+        // text: err.errorMessage,
       });
 
       console.log(err);

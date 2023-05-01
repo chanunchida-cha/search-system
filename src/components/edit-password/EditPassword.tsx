@@ -68,6 +68,7 @@ function EditPassword({ }: Props) {
               minLength={4}
               maxLength={8}
               onChange={handleOldPassword}
+              type="password"
               required
             />
           </div>
@@ -81,6 +82,7 @@ function EditPassword({ }: Props) {
               minLength={4}
               maxLength={8}
               onChange={handleChangePassword}
+              type="password"
               required
             />
           </div>

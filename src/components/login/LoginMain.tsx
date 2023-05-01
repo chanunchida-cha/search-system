@@ -25,7 +25,7 @@ const LoginMain = observer(({}: Props) => {
   // }, []);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center bg-white p-8">
+    <div className="flex h-screen flex-col items-center justify-center bg-gray-50 p-8">
       <div className="rounded-3xl border border-gray-300 bg-white p-2 shadow-xl lg:w-96">
         <div className="mt-2 text-center">
           <p className="mt-5 text-2xl font-extrabold text-blue-600">

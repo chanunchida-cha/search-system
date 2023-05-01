@@ -1,52 +1,54 @@
-import React, { ChangeEvent, ReactElement, useState } from "react";
-import SubjectExpertField from "~/components/creat-edit/historyForm/SubjectExpertField";
-import ExpforResearch from "~/components/creat-edit/historyForm/ExpForResearch";
-import ExpForWork from "~/components/creat-edit/historyForm/ExpForWork";
-import LevelsField from "~/components/creat-edit/historyForm/LevelsField";
-import ResearchResult from "~/components/creat-edit/historyForm/ResearchResult";
-import SelectPrefix from "~/ui/create-edit/SelectPrefix";
+import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import SubjectExpertField from "~/components/creat-edit/create/historyForm/SubjectExpertField";
+import ExpforResearch from "~/components/creat-edit/create/historyForm/ExpForResearch";
+import ExpForWork from "~/components/creat-edit/create/historyForm/ExpForWork";
+import LevelsField from "~/components/creat-edit/create/historyForm/LevelsField";
+import ResearchResult from "~/components/creat-edit/create/historyForm/ResearchResult";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
-import UploadFileInForm from "../assessmentForm/UploadFileInForm";
+
 import { previewImage } from "~/utils/PreviewImage";
-import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+
 import { observer } from "mobx-react-lite";
-import { setStateFile } from "~/store/create-edit/setStateFile";
+import { feedStore } from "~/store/main-feed/FeedStore";
+import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
+import UploadFileEdit from "../UploadFileEdit";
+import { showImage } from "~/utils/aws-sdk/showImage";
+import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
+import { setPathImage } from "~/utils/aws-sdk/setPathFile";
 
-interface Props {}
+type Props = { feedDetail: FeedDetailResponse };
+const HistoryEditForm = observer(({ feedDetail }: Props) => {
+  const image = setPathImage(feedDetail);
+  const [s3url, setS3url] = useState<string>();
+  useEffect(() => {
+    const loadImage = async () => {
+      await showImage("image", image!, setS3url);
+    };
+    loadImage();
+  }, [image]);
 
-const HistoryForm = observer(({}: Props) => {
   const {
     profile,
     preview,
+    oldFile,
+    fileChange,
     setProfile,
     setPreview,
+    setOldFile,
+    setFileChange,
     historyFile,
     setHistoryFile,
-    removeFileHistory,
     orderFile,
     setOrderFile,
-    removeFileOrder,
     accountFile,
     setAccountFile,
-    removeFileAccount,
     idCardFile,
     setIdCardFile,
-    removeFileIdCard,
-  } = setStateFile;
-
-  const { historyDataResults, setAssessmentResult } = setHistoryDataStore;
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newhistoryDataResults = {
-      ...historyDataResults,
-      [event.target.name]: event.target.value,
-    };
-    setAssessmentResult(newhistoryDataResults);
-  };
-  console.log(historyDataResults);
+  } = setFileEdit;
+  console.log("old", oldFile);
 
   return (
     <>
-      {/* <div className="mx-auto h-full bg-gray-100 px-10 pb-10"> */}
       <div className="align-center border-solid-900 flex h-full w-full rounded-lg bg-white ">
         <div className="w-full p-10">
           <div className="flex w-52">
@@ -61,33 +63,72 @@ const HistoryForm = observer(({}: Props) => {
                 className="flex flex-col items-center justify-center rounded-full bg-gray-300 sm:h-44
                 sm:w-44"
               >
-                {profile.profile ? (
-                  <div className="h-full w-full rounded-full">
-                    <label
-                      htmlFor="file-upload"
-                      className="text-text-upload relative  cursor-pointer rounded-md  text-sm text-black"
-                    >
-                      <img
-                        className="h-full w-full rounded-full object-cover"
-                        src={preview}
-                      />
-                      <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        className="sr-only"
-                        onChange={async (e) => {
-                          previewImage(
-                            e,
-                            setPreview,
-                            setProfile,
-                            profile.profile!
-                          );
-                        }}
-                        required
-                      />
-                    </label>
-                  </div>
+                {s3url ? (
+                  fileChange ? (
+                    <div className="h-full w-full rounded-full">
+                      <label
+                        htmlFor="file-upload"
+                        className="text-text-upload relative  cursor-pointer rounded-md  text-sm text-black"
+                      >
+                        <img
+                          className="h-full w-full rounded-full object-cover"
+                          src={preview}
+                        />
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          className="sr-only"
+                          required
+                          onChange={async (e) => {
+                            previewImage(
+                              e,
+                              setPreview,
+                              setProfile,
+                              profile.profile!
+                            );
+                            setFileChange(true);
+                            setOldFile(
+                              "profile",
+                              feedStore.feedDetail.profile_id
+                            );
+                          }}
+                        />
+                      </label>
+                    </div>
+                  ) : (
+                    <div className="h-full w-full rounded-full">
+                      <label
+                        htmlFor="file-upload"
+                        className="text-text-upload relative  cursor-pointer rounded-md  text-sm text-black"
+                      >
+                        <img
+                          className="h-full w-full rounded-full object-cover"
+                          src={s3url}
+                        />
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          className="sr-only"
+                          onChange={async (e) => {
+                            previewImage(
+                              e,
+                              setPreview,
+                              setProfile,
+                              profile.profile!
+                            );
+                            setFileChange(true);
+                            setOldFile(
+                              "profile",
+                              feedStore.feedDetail.profile_id
+                            );
+                          }}
+                          required
+                        />
+                      </label>
+                    </div>
+                  )
                 ) : (
                   <div>
                     <div className="flex justify-center">
@@ -125,14 +166,6 @@ const HistoryForm = observer(({}: Props) => {
                           name="file-upload"
                           type="file"
                           className="sr-only"
-                          onChange={async (e) => {
-                            previewImage(
-                              e,
-                              setPreview,
-                              setProfile,
-                              profile.profile!
-                            );
-                          }}
                           required
                         />
                       </label>
@@ -140,7 +173,6 @@ const HistoryForm = observer(({}: Props) => {
                   </div>
                 )}
               </div>
-              {/* </div> */}
             </div>
             <div className="col-span-3">
               <div className="grid grid-cols-12 gap-2">
@@ -157,8 +189,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className="col-span-4">
                   <input
-                    value={historyDataResults.first_name}
-                    onChange={handleHistoryChange}
+                    value=""
+                    onChange={() => {}}
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -178,8 +210,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className="col-span-4">
                   <input
-                    value={historyDataResults.last_name}
-                    onChange={handleHistoryChange}
+                    value=""
+                    onChange={() => {}}
                     type="text"
                     name="last_name"
                     id="last_name"
@@ -237,11 +269,8 @@ const HistoryForm = observer(({}: Props) => {
               </div>
               <div>
                 <input
-                  // onChange={(event) => {
-                  //   setAffiliation(event.target.value);
-                  // }}
-                  value={historyDataResults.university}
-                  onChange={handleHistoryChange}
+                  value=""
+                  onChange={() => {}}
                   type="text"
                   name="university"
                   id="university"
@@ -312,8 +341,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value={historyDataResults.address_home}
-                    onChange={handleHistoryChange}
+                    value=""
+                    onChange={() => {}}
                     type="text"
                     name="address_home"
                     id="address_home"
@@ -335,8 +364,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value={historyDataResults.address_work}
-                    onChange={handleHistoryChange}
+                    value=""
+                    onChange={() => {}}
                     type="text"
                     name="address_work"
                     id="address_work"
@@ -358,8 +387,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value={historyDataResults.phone_number}
-                    onChange={handleHistoryChange}
+                    value=""
+                    onChange={() => {}}
                     type="text"
                     name="phone_number"
                     id="phone_number"
@@ -381,8 +410,8 @@ const HistoryForm = observer(({}: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value={historyDataResults.email}
-                    onChange={handleHistoryChange}
+                    // value={historyDataResults.email}
+                    // onChange={handleHistoryChange}
                     type="text"
                     name="email"
                     id="email"
@@ -398,44 +427,85 @@ const HistoryForm = observer(({}: Props) => {
                   อื่นๆ :
                 </label>
               </div>
-              <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-4">
-                  <label
-                    htmlFor="price"
-                    className="items-center justify-center font-medium leading-6 text-gray-900"
-                  >
-                    แนบประวัติ :
-                  </label>
-                  <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
-                </div>
-                <div className="col-span-8">
-                  <UploadFileInForm
-                    name="history_file"
-                    state={historyFile.history_file!}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setHistoryFile(event)
-                    }
-                    onClickButton={removeFileHistory}
-                  />
-                  {/* <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 bg-red-500 p-1.5  text-white placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                -
-              </button> */}
-                </div>
-              </div>
-              <div className="mt-3 grid grid-cols-12 gap-2">
+              {feedDetail?.attach
+                ?.filter((file) => file.file_action !== "profile")
+                .map((file) => {
+                  return (
+                    <div className="mt-3 grid grid-cols-12 gap-2">
+                      <div className="col-span-4">
+                        <label
+                          htmlFor="price"
+                          className="items-center justify-center font-medium leading-6 text-gray-900"
+                        >
+                          {file.file_action === "history"
+                            ? "แนบประวัติ :"
+                            : file.file_action === "order"
+                            ? "แนบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :"
+                            : file.file_action === "account"
+                            ? "แนบสำเนาบัญชี :"
+                            : "แนบสำเนาบัตรประชาชน :"}
+                        </label>
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
+                      </div>
+                      <div className="col-span-8">
+                        <UploadFileEdit
+                          name={`${file.file_action}_file`}
+                          state={
+                            file.file_action === "history"
+                              ? historyFile.history_file !== null
+                                ? historyFile.history_file
+                                : file.file_name
+                              : file.file_action === "order"
+                              ? orderFile.order_file !== null
+                                ? orderFile.order_file
+                                : file.file_name
+                              : file.file_action === "account"
+                              ? accountFile.account_file !== null
+                                ? accountFile.account_file
+                                : file.file_name
+                              : idCardFile.idCard_file !== null
+                              ? idCardFile.idCard_file
+                              : file.file_name
+                          }
+                          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                            if (file.file_action === "history") {
+                              setHistoryFile(event);
+                              setOldFile(
+                                file.file_action,
+                                Number(feedDetail.profile_id)
+                              );
+                            } else if (file.file_action === "order") {
+                              setOrderFile(event);
+                              setOldFile(
+                                file.file_action,
+                                Number(feedDetail.profile_id)
+                              );
+                            } else if (file.file_action === "account") {
+                              setAccountFile(event);
+                              setOldFile(
+                                file.file_action,
+                                Number(feedDetail.profile_id)
+                              );
+                            } else {
+                              setIdCardFile(event);
+                              setOldFile(
+                                file.file_action,
+                                Number(feedDetail.profile_id)
+                              );
+                            }
+                          }}
+                          // onClickButton={removeFileHistory}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              {/* <div className="mt-3 grid grid-cols-12 gap-2">
                 <div className="col-span-4">
                   <label
                     htmlFor="price"
@@ -448,28 +518,14 @@ const HistoryForm = observer(({}: Props) => {
                   </span>
                 </div>
                 <div className="col-span-8">
-                  <UploadFileInForm
+                  <UploadFileEdit
                     name="order_file"
-                    state={orderFile.order_file!}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setOrderFile(event)
-                    }
-                    onClickButton={removeFileOrder}
+                    // state={orderFile.order_file!}
+                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    //   setOrderFile(event)
+                    // }
+                    // onClickButton={removeFileOrder}
                   />
-                  {/* <button
-                className="w-full rounded-md border border-gray-300 p-1.5 text-gray-900  placeholder:text-gray-400"
-                // onClick={handleRemove}
-              >
-                upload file
-              </button>
-            </div>
-            <div className="col-span-1">
-              <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                // onClick={handleRemove}
-              >
-                -
-              </button> */}
                 </div>
               </div>
               <div className="mt-3 grid grid-cols-12 gap-2">
@@ -485,13 +541,13 @@ const HistoryForm = observer(({}: Props) => {
                   </span>
                 </div>
                 <div className="col-span-8">
-                  <UploadFileInForm
+                  <UploadFileEdit
                     name="account_file"
-                    state={accountFile.account_file!}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setAccountFile(event)
-                    }
-                    onClickButton={removeFileAccount}
+                    // state={accountFile.account_file!}
+                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    //   setAccountFile(event)
+                    // }
+                    // onClickButton={removeFileAccount}
                   />
                 </div>
               </div>
@@ -508,25 +564,22 @@ const HistoryForm = observer(({}: Props) => {
                   </span>
                 </div>
                 <div className="col-span-8">
-                  <UploadFileInForm
+                  <UploadFileEdit
                     name="idCard_file"
-                    state={idCardFile.idCard_file!}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                      setIdCardFile(event)
-                    }
-                    onClickButton={removeFileIdCard}
+                    // state={idCardFile.idCard_file!}
+                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                    //   setIdCardFile(event)
+                    // }
+                    // onClickButton={removeFileIdCard}
                   />
-                </div>
-              </div>
+                </div> 
+              </div>*/}
             </div>
           </div>
-          {/* </div> */}
-          {/* </div> */}
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 });
 
-export default HistoryForm;
+export default HistoryEditForm;

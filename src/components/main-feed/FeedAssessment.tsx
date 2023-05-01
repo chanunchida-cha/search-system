@@ -5,7 +5,7 @@ import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { useRouter } from "next/router";
-import UploadFileInForm from "../creat-edit/assessmentForm/UploadFileInForm";
+import UploadFileInForm from "../creat-edit/create/assessmentForm/UploadFileInForm";
 
 type Props = {
   assessmentDetail: AssessmentDetailResponse;

@@ -8,10 +8,10 @@ import {
 
 type Props = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  year: string;
-  title: string;
-  name_year:string
-  name_title:string
+  year?: string;
+  title?: string;
+  name_year?:string
+  name_title?:string
 };
 
 

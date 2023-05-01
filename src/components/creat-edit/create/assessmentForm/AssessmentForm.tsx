@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import FeedbackInForm from "~/components/creat-edit/assessmentForm/FeedbackInForm";
-import UploadFileInForm from "~/components/creat-edit/assessmentForm/UploadFileInForm";
+import FeedbackInForm from "~/components/creat-edit/create/assessmentForm/FeedbackInForm";
+import UploadFileInForm from "~/components/creat-edit/create/assessmentForm/UploadFileInForm";
 import HeaderAssessment from "./HeaderAssessment";
 import AssessmentResult from "./AssessmentResult";
 import ResearchPropasal from "./ResearchPropasal";

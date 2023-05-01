@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
-import AssessmentForm from "./creat-edit/assessmentForm/AssessmentForm";
-import HistoryForm from "./creat-edit/historyForm/HistoryForm";
+import AssessmentForm from "./creat-edit/create/assessmentForm/AssessmentForm";
+import HistoryForm from "./creat-edit/create/historyForm/HistoryForm";
 
 interface Props {}
 

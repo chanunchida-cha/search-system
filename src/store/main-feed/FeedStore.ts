@@ -29,8 +29,8 @@ class FeedStore {
     explore: [],
     position: {
       position_id: 0,
-      position_name: ""
-    }
+      position_name: "",
+    },
   };
 
   assessmentDetail: AssessmentDetailResponse = {
@@ -38,7 +38,7 @@ class FeedStore {
     assessment_start: "",
     assessment_end: "",
     assessment_file_name: "",
-    assessment_file_id: 0,
+    assessment_file_action:"",
     Project: {
       project_id: 0,
       project_year: "",
@@ -47,7 +47,7 @@ class FeedStore {
       project_estimate: false,
       project_recommend: false,
       file_name: "",
-      file_id: 0,
+      file_action: "",
       period: false,
     },
     Progress: {
@@ -57,7 +57,7 @@ class FeedStore {
       progress_estimate: false,
       progress_recommend: false,
       file_name: "",
-      file_id: 0,
+      file_action: "",
       period: false,
     },
     Report: {
@@ -67,7 +67,7 @@ class FeedStore {
       report_estimate: false,
       report_recommend: false,
       file_name: "",
-      file_id: 0,
+      file_action: "",
       period: false,
     },
     Article: {
@@ -77,12 +77,12 @@ class FeedStore {
       article_estimate: false,
       article_recommend: false,
       file_name: "",
-      file_id: 0,
+      file_action: "",
       period: false,
     },
   };
 
-  deleteUpdateStatus = "404"
+  deleteUpdateStatus = "404";
 
   constructor() {
     makeAutoObservable(this);
@@ -172,6 +172,7 @@ class FeedStore {
       const result = response.data;
       this.feedDetail = result.data;
       console.log("feed detail store", this.feedDetail);
+      return result.data;
     } catch (err: any) {
       Swal.fire({
         icon: "error",
@@ -205,10 +206,10 @@ class FeedStore {
   }
 
   async deleteFeedDetailById(profile_id: number) {
-    let resultState = ""
+    let resultState = "";
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile/${profile_id}`,
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile/${profile_id}`
       );
       Swal.fire(
         "ลบข้อมูลการจองเรียบร้อยแล้ว!",
@@ -216,8 +217,8 @@ class FeedStore {
         "success"
       );
       const result = response.data;
-      resultState = result.status
-      this.deleteUpdateStatus = resultState
+      resultState = result.status;
+      this.deleteUpdateStatus = resultState;
     } catch (err: any) {
       Swal.fire({
         icon: "error",
@@ -226,7 +227,6 @@ class FeedStore {
       });
     }
     console.log("DELETE STATUS:", resultState);
-    
   }
 
   setUpdateDeleteState(state: string) {

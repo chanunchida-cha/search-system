@@ -10,16 +10,15 @@ import { setStateFile } from "~/store/create-edit/setStateFile";
 type Props = {};
 
 const ResearchPropasal = observer(({}: Props) => {
-  const {
-    researchPropasals,
-    setResearchPropasals,
-   
-  } = setStateAssessmentStore;
+  const { researchPropasals, setResearchPropasals } = setStateAssessmentStore;
 
-  const { researchPropasalsFile,setResearchPropasalsFile,removeFileResearchPropasals } = setStateFile
+  const {
+    researchPropasalsFile,
+    setResearchPropasalsFile,
+    removeFileResearchPropasals,
+  } = setStateFile;
 
   console.log(researchPropasalsFile);
-  
 
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
@@ -40,8 +39,8 @@ const ResearchPropasal = observer(({}: Props) => {
               คะแนน
             </label>
             <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
+              *
+            </span>
           </div>
           <div className="col-span-1">
             <input
@@ -63,8 +62,8 @@ const ResearchPropasal = observer(({}: Props) => {
               แนบผลประเมินที่สแกน :
             </label>
             <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
+              *
+            </span>
           </div>
           <div className="col-span-8">
             <UploadFileInForm

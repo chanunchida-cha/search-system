@@ -30,8 +30,8 @@ const Report = observer(({}: Props) => {
               แนบผลประเมินที่สแกน :
             </label>
             <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
+              *
+            </span>
           </div>
           <div className="col-span-8">
             <UploadFileInForm

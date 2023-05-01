@@ -1,16 +1,17 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-/* eslint-disable react/jsx-key */
-import React, { ReactElement, useState } from "react";
-import HistoryForm from "./historyForm/HistoryForm";
-import AssessmentForm from "./assessmentForm/AssessmentForm";
+
+import React, { ReactElement, useState,useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { setStateFile } from "~/store/create-edit/setStateFile";
+import HistoryEditForm from "./historyEdit/HistoryEditForm";
+import AsessmentEditForm from "./assessmentEdit/AsessmentEditForm";
+import { useRouter } from "next/router";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
-type Props ={
-  onSubmitCreate?:() => void
-}
+type Props = {
+  onSubmitEdit?: () => void;
+};
 
 const typeTab = [
   {
@@ -23,10 +24,8 @@ const typeTab = [
   },
 ];
 
-const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
-  const {
-    validationFile
-  } = setStateFile;
+const FormEdit = observer(({ onSubmitEdit }: Props) => {
+  const { validationFile } = setStateFile;
   const {
     validationAssessment,
     validationReports,
@@ -45,9 +44,23 @@ const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
   } = setHistoryDataStore;
 
   console.log(validationDegree);
-  
 
   const [type, settype] = useState("history");
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+    getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    getAssessmentDetail();
+  }, [id]);
   return (
     <>
       <div className="mx-auto h-screen bg-gray-100 ">
@@ -75,7 +88,7 @@ const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
           })}
         </div>
         <div className="pb-8">
-          {type === "history" ? <HistoryForm /> : <AssessmentForm />}
+          {type === "history" ? <HistoryEditForm feedDetail={feedStore.feedDetail} /> : <AsessmentEditForm feedAssesment={feedStore.assessmentDetail} />}
           <div className="ml-10 mr-10 grid grid-cols-12">
             {/* {listData.length - 1 === index && ( */}
             <div className="col-span-2">
@@ -93,12 +106,11 @@ const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
               </button>
             </div>
             <div className="col-span-8"></div>
-            {/* )} */}
-            {/* {listData.length > 1 && ( */}
+
             <div className="col-span-2">
               <button
                 className="w-full rounded-md border border-blue-500 bg-blue-500 p-1.5 text-white placeholder:text-gray-400 disabled:border-none disabled:bg-blue-300"
-                onClick={() => onSubmitCreate!()}
+                onClick={() => onSubmitEdit!()}
                 hidden={type === "history"}
                 type="submit"
                 // disabled={
@@ -129,4 +141,4 @@ const FromCreateEdit = observer(({onSubmitCreate}: Props) => {
   );
 });
 
-export default FromCreateEdit;
+export default FormEdit;

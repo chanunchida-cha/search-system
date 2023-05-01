@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import FromCreateEdit from "~/components/creat-edit/FromCreateEdit";
+import FromCreate from "~/components/creat-edit/create/FromCreate";
 import { BodyProfile } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { BodyAssessment } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ResponseAssessment } from "~/models/type/create-edit/reposnseAssessmentType";
@@ -67,7 +67,7 @@ const create = observer(({}: Props) => {
       const resResearcher: ResponseHistory = await createDataResearcher(
         bodyProfile
       );
-      console.log("resercher",resResearcher);
+      console.log("resercher", resResearcher);
 
       const bodyAsessment: BodyAssessment = {
         profile_id: resResearcher.profile_id!,
@@ -99,7 +99,7 @@ const create = observer(({}: Props) => {
       const resAssessment: ResponseAssessment = await createDataAssessment(
         bodyAsessment
       );
-      console.log("assessment",resAssessment);
+      console.log("assessment", resAssessment);
 
       const fromdata = new FormData();
       fromdata.append("uploadfile", profile.profile!);
@@ -130,9 +130,15 @@ const create = observer(({}: Props) => {
       fromdata.append("directory_file", assessmentFile.directory_file!);
       fromdata.append("directory_id", String(resAssessment.assessment_id!));
       //------------------------------------------------------
-      fromdata.append("uploadfile", researchPropasalsFile.researchPropasals_file!);
+      fromdata.append(
+        "uploadfile",
+        researchPropasalsFile.researchPropasals_file!
+      );
       fromdata.append("directory_file", researchPropasalsFile.directory_file!);
-      fromdata.append("directory_id", String(resAssessment.Project.project_id!));
+      fromdata.append(
+        "directory_id",
+        String(resAssessment.Project.project_id!)
+      );
       //------------------------------------------------------
       fromdata.append("uploadfile", progressReportFile.progressReport_file!);
       fromdata.append("directory_file", progressReportFile.directory_file);
@@ -146,7 +152,10 @@ const create = observer(({}: Props) => {
       fromdata.append("directory_file", reportFile.directory_file);
       fromdata.append("directory_id", String(resAssessment.Report.report_id));
       //------------------------------------------------------
-      fromdata.append("uploadfile", researchArticlesFile.researchArticles_file!);
+      fromdata.append(
+        "uploadfile",
+        researchArticlesFile.researchArticles_file!
+      );
       fromdata.append("directory_file", researchArticlesFile.directory_file);
       fromdata.append("directory_id", String(resAssessment.Article.article_id));
 
@@ -156,6 +165,6 @@ const create = observer(({}: Props) => {
     }
   };
 
-  return <FromCreateEdit onSubmitCreate={onSubmitCreate} />;
+  return <FromCreate onSubmitCreate={onSubmitCreate} />;
 });
 export default create;

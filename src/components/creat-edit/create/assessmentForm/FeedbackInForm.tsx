@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useState } from "react";
 type Props = {
-  period: string;
-  estimate: string;
-  recommend: string;
-  name_period: string;
-  name_estimate: string;
-  name_recommend: string;
+  period?: string;
+  estimate?: string;
+  recommend?: string;
+  name_period?: string;
+  name_estimate?: string;
+  name_recommend?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 

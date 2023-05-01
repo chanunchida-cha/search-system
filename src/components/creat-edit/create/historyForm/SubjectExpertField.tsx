@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent,useState,useEffect } from "react";
-import AddAndRemoveButton from "../../../ui/create-edit/AddAndRemoveButton";
+import React, { ChangeEvent, useState, useEffect } from "react";
+import AddAndRemoveButton from "../../../../ui/create-edit/AddAndRemoveButton";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 
 // interface Props {}
@@ -8,7 +8,7 @@ import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryD
 const SubjectExpertField = observer(() => {
   // const route = useRouter();
 
-  const{
+  const {
     historyDataResults,
     listProgram,
     onChangeInputProgram,
@@ -16,12 +16,10 @@ const SubjectExpertField = observer(() => {
     removeListProgram,
   } = setHistoryDataStore;
 
-
-
   const hidden = listProgram.length === 1;
 
   // const addProgramList = () => {
-    
+
   // };
 
   return (
@@ -46,7 +44,6 @@ const SubjectExpertField = observer(() => {
             onClickRemove={() => removeListProgram(index)}
             hidden={hidden}
           />
-       
         </div>
       ))}
     </div>

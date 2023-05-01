@@ -34,6 +34,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
       cancelButtonColor: "#668ff6",
       confirmButtonText: "ยกเลิก",
       cancelButtonText: "ยืนยัน",
+      backdrop: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("NOW :", feedStore.deleteUpdateStatus);

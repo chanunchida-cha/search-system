@@ -62,7 +62,7 @@ class SetFileEdit {
     directory_file: "idcard",
   };
 
-  oldFile:{ directory_file: string; directory_id: number }[] = [];
+  oldFile: { directory_file: string; directory_id: number }[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -71,8 +71,10 @@ class SetFileEdit {
   setFileChange = (change: boolean) => {
     this.fileChange = change;
   };
-
-  setProfile = (image: File) => {
+  setProfile = (image: File | string) => {
+    this.profile.profile = image;
+  };
+  setProfileOnChange = (image: File) => {
     this.profile.profile = image;
   };
   setPreview = (objectUrl: string) => {
@@ -89,11 +91,14 @@ class SetFileEdit {
         directory_id,
       });
     }
-    
   };
 
   //-----------------------------------------------------------
-  setAssessmentFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setAssessmentFile=(file:File| string)=>{
+    this.assessmentFile.assessmentResults_file = file
+
+  }
+  setAssessmentFileOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -117,8 +122,10 @@ class SetFileEdit {
     this.assessmentFile.assessmentResults_file = null;
   };
   //----------------------------------------------------------------------
-
-  setResearchPropasalsFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setResearchPropasalsFile=(file:File|string)=>{
+    this.researchPropasalsFile.researchPropasals_file = file
+  }
+  setResearchPropasalsFileOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -144,7 +151,10 @@ class SetFileEdit {
   };
 
   //----------------------------------------------------------
-  setProgressReportFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setProgressFile=(file:File|string)=>{
+    this.progressReportFile.progressReport_file = file
+  }
+  setProgressReportFileOnchamge = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -170,7 +180,10 @@ class SetFileEdit {
   };
 
   //-----------------------------------------------------
-  setReportFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setReportFile=(file:File|string)=>{
+    this.reportFile.reports_file = file
+  }
+  setReportFileOnchange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -194,7 +207,10 @@ class SetFileEdit {
     this.reportFile.reports_file = null;
   };
   //-----------------------------------------------------
-  setResearchArticlesFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setResearchArticlesFile=(file:File|string)=>{
+    this.researchArticlesFile.researchArticles_file = file
+  }
+  setResearchArticlesFileOnchange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -220,7 +236,11 @@ class SetFileEdit {
 
   //------------------------------------------------------------
 
-  setHistoryFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setHistoryFile = (file: File | string) => {
+    this.historyFile.history_file = file;
+  };
+
+  setHistoryFileOnChang = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -239,15 +259,16 @@ class SetFileEdit {
       };
       this.historyFile = newHistoryFile;
     }
-
-    
   };
   removeFileHistory = () => {
     this.historyFile.history_file = null;
   };
   //------------------------------------------------------------
+  setOrderFile = (file: File | string) => {
+    this.orderFile.order_file = file;
+  };
 
-  setOrderFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setOrderFileOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -271,8 +292,11 @@ class SetFileEdit {
     this.orderFile.order_file = null;
   };
   //------------------------------------------------------------
+  setAccountFile = (file: File | string) => {
+    this.accountFile.account_file = file;
+  };
 
-  setAccountFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setAccountFileOnChang = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -297,7 +321,11 @@ class SetFileEdit {
   };
   //------------------------------------------------------------
 
-  setIdCardFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setIdCardFile=(file:File|string)=>{
+    this.idCardFile.idCard_file = file
+  }
+
+  setIdCardFileOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {

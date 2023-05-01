@@ -5,9 +5,7 @@ import ExpForWork from "~/components/creat-edit/create/historyForm/ExpForWork";
 import LevelsField from "~/components/creat-edit/create/historyForm/LevelsField";
 import ResearchResult from "~/components/creat-edit/create/historyForm/ResearchResult";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
-
 import { previewImage } from "~/utils/PreviewImage";
-
 import { observer } from "mobx-react-lite";
 import { feedStore } from "~/store/main-feed/FeedStore";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
@@ -15,6 +13,13 @@ import UploadFileEdit from "../UploadFileEdit";
 import { showImage } from "~/utils/aws-sdk/showImage";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
 import { setPathImage } from "~/utils/aws-sdk/setPathFile";
+import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
+import SelectRankEdit from "~/ui/create-edit/SelectRankEdit";
+import LevelsFieldEdit from "./LevelsFieldEdit";
+import SubjectExpertFieldEdit from "./SubjectExpertFieldEdit";
+import ExpForWorkEdit from "./ExForWorkEdit";
+import ExpforResearchEdit from "./ExForResearchEdit";
+import ResearchResultEdit from "./ResearchResultEdit";
 
 type Props = { feedDetail: FeedDetailResponse };
 const HistoryEditForm = observer(({ feedDetail }: Props) => {
@@ -32,20 +37,25 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
     preview,
     oldFile,
     fileChange,
-    setProfile,
+    setProfileOnChange,
     setPreview,
     setOldFile,
     setFileChange,
     historyFile,
     setHistoryFile,
+    setHistoryFileOnChang,
     orderFile,
-    setOrderFile,
+    setOrderFileOnChange,
     accountFile,
-    setAccountFile,
+    setAccountFileOnChang,
     idCardFile,
-    setIdCardFile,
+    setIdCardFileOnChange,
   } = setFileEdit;
-  console.log("old", oldFile);
+
+  const {history,onChangeHistory}=setHistoryEdit
+
+  console.log(accountFile);
+  
 
   return (
     <>
@@ -81,16 +91,20 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           className="sr-only"
                           required
                           onChange={async (e) => {
+                            let file: File | undefined;
+                            if (profile.profile instanceof File) {
+                              file = profile.profile;
+                            }
                             previewImage(
                               e,
                               setPreview,
-                              setProfile,
-                              profile.profile!
+                              setProfileOnChange,
+                              file!
                             );
                             setFileChange(true);
                             setOldFile(
                               "profile",
-                              feedStore.feedDetail.profile_id
+                              Number(feedStore.feedDetail.profile_id)
                             );
                           }}
                         />
@@ -112,16 +126,20 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           type="file"
                           className="sr-only"
                           onChange={async (e) => {
+                            let file: File | undefined;
+                            if (profile.profile instanceof File) {
+                              file = profile.profile;
+                            }
                             previewImage(
                               e,
                               setPreview,
-                              setProfile,
-                              profile.profile!
+                              setProfileOnChange,
+                              file!
                             );
                             setFileChange(true);
                             setOldFile(
                               "profile",
-                              feedStore.feedDetail.profile_id
+                              Number(feedStore.feedDetail.profile_id)
                             );
                           }}
                           required
@@ -166,6 +184,23 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           name="file-upload"
                           type="file"
                           className="sr-only"
+                          onChange={async (e) => {
+                            let file: File | undefined;
+                            if (profile.profile instanceof File) {
+                              file = profile.profile;
+                            }
+                            previewImage(
+                              e,
+                              setPreview,
+                              setProfileOnChange,
+                              file!
+                            );
+                            setFileChange(true);
+                            setOldFile(
+                              "profile",
+                              Number(feedStore.feedDetail.profile_id)
+                            );
+                          }}
                           required
                         />
                       </label>
@@ -189,8 +224,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className="col-span-4">
                   <input
-                    value=""
-                    onChange={() => {}}
+                    value={history.first_name}
+                    onChange={onChangeHistory}
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -210,8 +245,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className="col-span-4">
                   <input
-                    value=""
-                    onChange={() => {}}
+                    value={history.last_name}
+                    onChange={onChangeHistory}
                     type="text"
                     name="last_name"
                     id="last_name"
@@ -229,7 +264,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                   </span>
                 </div>
                 <div className="col-span-6">
-                  <SelectRanks />
+                  <SelectRankEdit />
                 </div>
               </div>
               <div className="mt-3">
@@ -240,7 +275,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                   *
                 </span>
                 <div className="mt-3">
-                  <LevelsField />
+                  <LevelsFieldEdit />
                 </div>
               </div>
               <div className="mt-3">
@@ -253,7 +288,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
               </div>
 
               <div>
-                <SubjectExpertField />
+                <SubjectExpertFieldEdit />
               </div>
 
               <div className="mt-3">
@@ -269,8 +304,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
               </div>
               <div>
                 <input
-                  value=""
-                  onChange={() => {}}
+                  value={history.university}
+                  onChange={onChangeHistory}
                   type="text"
                   name="university"
                   id="university"
@@ -289,7 +324,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </span>
               </div>
               <div>
-                <ExpForWork />
+                <ExpForWorkEdit />
               </div>
               <div className="mt-3">
                 <label
@@ -303,7 +338,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </span>
               </div>
               <div>
-                <ExpforResearch />
+                <ExpforResearchEdit />
               </div>
               <div className="mt-3">
                 <label
@@ -317,7 +352,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </span>
               </div>
               <div>
-                <ResearchResult />
+                <ResearchResultEdit />
               </div>
               <div className="mt-3">
                 <label
@@ -341,8 +376,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value=""
-                    onChange={() => {}}
+                    value={history.address_home}
+                    onChange={onChangeHistory}
                     type="text"
                     name="address_home"
                     id="address_home"
@@ -364,8 +399,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value=""
-                    onChange={() => {}}
+                    value={history.address_work}
+                    onChange={onChangeHistory}
                     type="text"
                     name="address_work"
                     id="address_work"
@@ -387,8 +422,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    value=""
-                    onChange={() => {}}
+                    value={history.phone_number}
+                    onChange={onChangeHistory}
                     type="text"
                     name="phone_number"
                     id="phone_number"
@@ -410,8 +445,8 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                 </div>
                 <div className=" col-span-1">
                   <input
-                    // value={historyDataResults.email}
-                    // onChange={handleHistoryChange}
+                    value={history.email}
+                    onChange={onChangeHistory}
                     type="text"
                     name="email"
                     id="email"
@@ -457,42 +492,35 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           name={`${file.file_action}_file`}
                           state={
                             file.file_action === "history"
-                              ? historyFile.history_file !== null
-                                ? historyFile.history_file
-                                : file.file_name
+                              ? historyFile.history_file!
                               : file.file_action === "order"
-                              ? orderFile.order_file !== null
-                                ? orderFile.order_file
-                                : file.file_name
+                              ? orderFile.order_file!
                               : file.file_action === "account"
-                              ? accountFile.account_file !== null
-                                ? accountFile.account_file
-                                : file.file_name
-                              : idCardFile.idCard_file !== null
-                              ? idCardFile.idCard_file
-                              : file.file_name
+                              ? accountFile.account_file!
+                              : idCardFile.idCard_file!
+                         
                           }
                           onChange={(event: ChangeEvent<HTMLInputElement>) => {
                             if (file.file_action === "history") {
-                              setHistoryFile(event);
+                              setHistoryFileOnChang(event);
                               setOldFile(
                                 file.file_action,
                                 Number(feedDetail.profile_id)
                               );
                             } else if (file.file_action === "order") {
-                              setOrderFile(event);
+                              setOrderFileOnChange(event);
                               setOldFile(
                                 file.file_action,
                                 Number(feedDetail.profile_id)
                               );
                             } else if (file.file_action === "account") {
-                              setAccountFile(event);
+                              setAccountFileOnChang(event);
                               setOldFile(
                                 file.file_action,
                                 Number(feedDetail.profile_id)
                               );
                             } else {
-                              setIdCardFile(event);
+                              setIdCardFileOnChange(event);
                               setOldFile(
                                 file.file_action,
                                 Number(feedDetail.profile_id)
@@ -505,75 +533,6 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                     </div>
                   );
                 })}
-              {/* <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-4">
-                  <label
-                    htmlFor="price"
-                    className="items-center justify-center font-medium leading-6 text-gray-900"
-                  >
-                    แนบคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ :
-                  </label>
-                  <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
-                </div>
-                <div className="col-span-8">
-                  <UploadFileEdit
-                    name="order_file"
-                    // state={orderFile.order_file!}
-                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    //   setOrderFile(event)
-                    // }
-                    // onClickButton={removeFileOrder}
-                  />
-                </div>
-              </div>
-              <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-4">
-                  <label
-                    htmlFor="price"
-                    className="items-center justify-center font-medium leading-6 text-gray-900"
-                  >
-                    แนบสำเนาบัญชี :
-                  </label>
-                  <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
-                </div>
-                <div className="col-span-8">
-                  <UploadFileEdit
-                    name="account_file"
-                    // state={accountFile.account_file!}
-                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    //   setAccountFile(event)
-                    // }
-                    // onClickButton={removeFileAccount}
-                  />
-                </div>
-              </div>
-              <div className="mt-3 grid grid-cols-12 gap-2">
-                <div className="col-span-4">
-                  <label
-                    htmlFor="price"
-                    className="items-center justify-center font-medium leading-6 text-gray-900"
-                  >
-                    แนบสำเนาบัตรประชาชน :
-                  </label>
-                  <span className="text-xl text-red-500" aria-hidden="true">
-                    *
-                  </span>
-                </div>
-                <div className="col-span-8">
-                  <UploadFileEdit
-                    name="idCard_file"
-                    // state={idCardFile.idCard_file!}
-                    // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    //   setIdCardFile(event)
-                    // }
-                    // onClickButton={removeFileIdCard}
-                  />
-                </div> 
-              </div>*/}
             </div>
           </div>
         </div>

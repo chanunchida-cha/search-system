@@ -9,22 +9,28 @@ import UploadFileEdit from "../UploadFileEdit";
 import FeedbackInForm from "../../create/assessmentForm/FeedbackInForm";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
+import HeaderAssessmentEdit from "./HeaderAssessmentEdit";
+import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
+import FeedbackInFormEdit from "./FeedbackInFormEdit";
 
 type Props = {
   feedAssesment: AssessmentDetailResponse;
 };
 const ProgressEdit = observer(({ feedAssesment }: Props) => {
-  const { progressReportFile, setProgressReportFile, setOldFile } = setFileEdit;
+  const { progressReportFile, setProgressReportFileOnchamge, setOldFile } =
+    setFileEdit;
+
+    const {progressReports,setProgressReportsOnchange} =setAssessmentEdit
 
   return (
     <BoxLayout title={"รายงานความก้าวหน้างานวิจัย"}>
       <div>
-        <HeaderAssessment
-          // onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          //   setProgressReports(event);
-          // }}
-          // year={progressReports.progress_year}
-          // title={progressReports.progress_title}
+        <HeaderAssessmentEdit
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setProgressReportsOnchange(event);
+          }}
+          year={progressReports.progress_year}
+          title={progressReports.progress_title}
           name_year={"progress_year"}
           name_title={"progress_title"}
         />
@@ -40,13 +46,9 @@ const ProgressEdit = observer(({ feedAssesment }: Props) => {
           <div className="col-span-8">
             <UploadFileEdit
               name="progressReport_file"
-              state={
-                progressReportFile.progressReport_file !== null
-                  ? progressReportFile.progressReport_file
-                  : feedAssesment.Progress.file_name
-              }
+              state={progressReportFile.progressReport_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setProgressReportFile(event);
+                setProgressReportFileOnchamge(event);
                 setOldFile(
                   feedAssesment.Progress.file_action,
                   feedAssesment.Progress.progress_id
@@ -56,16 +58,16 @@ const ProgressEdit = observer(({ feedAssesment }: Props) => {
             />
           </div>
         </div>
-        <FeedbackInForm
+        <FeedbackInFormEdit
           name_period={"progress_period"}
           name_estimate={"progress_estimate"}
           name_recommend={"progress_recommend"}
-          // period={progressReports.progress_period}
-          // estimate={progressReports.progress_estimate}
-          // recommend={progressReports.progress_recommend}
-          // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          //   setProgressReports(event)
-          // }
+          period={progressReports.progress_period}
+          estimate={progressReports.progress_estimate}
+          recommend={progressReports.progress_recommend}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setProgressReportsOnchange(event)
+          }
         />
       </div>
     </BoxLayout>

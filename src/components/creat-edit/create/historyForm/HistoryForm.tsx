@@ -49,7 +49,6 @@ const HistoryForm = observer(({}: Props) => {
     setAssessmentResult(newhistoryDataResults);
   };
 
-
   return (
     <>
       <div className="align-center border-solid-900 flex h-full w-full rounded-lg bg-white ">
@@ -82,12 +81,11 @@ const HistoryForm = observer(({}: Props) => {
                         type="file"
                         className="sr-only"
                         onChange={async (e) => {
-                          previewImage(
-                            e,
-                            setPreview,
-                            setProfile,
-                            profile.profile!
-                          );
+                          let file: File | undefined;
+                          if (profile.profile instanceof File) {
+                            file = profile.profile;
+                          }
+                          previewImage(e, setPreview, setProfile, file!);
                         }}
                         required
                       />
@@ -131,12 +129,11 @@ const HistoryForm = observer(({}: Props) => {
                           type="file"
                           className="sr-only"
                           onChange={async (e) => {
-                            previewImage(
-                              e,
-                              setPreview,
-                              setProfile,
-                              profile.profile!
-                            );
+                            let file: File | undefined;
+                            if (profile.profile instanceof File) {
+                              file = profile.profile;
+                            }
+                            previewImage(e, setPreview, setProfile, file!);
                           }}
                           required
                         />
@@ -414,7 +411,6 @@ const HistoryForm = observer(({}: Props) => {
                 <div className="col-span-8">
                   <UploadFileInForm
                     name="history_file"
-                  
                     state={historyFile.history_file!}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
                       setHistoryFile(event)

@@ -4,8 +4,9 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
-import { levels} from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/degreeLevels";
 import { Degree } from "~/models/type/create-edit/AssessmentForm/HistoryData";
+import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 
 interface Props {}
 
@@ -13,33 +14,44 @@ function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LevelsField = observer(({}: Props) => {
+const LevelsFieldEdit = observer(({}: Props) => {
+  //   const {
+  //     selectLevel,
+  //     listData,
+  //     setSelectedLevel,
+  //     addListData,
+  //     removeListData,
+  //     onChangeLavel,
+  //     onChangeInputDegree,
+  //   } = setHistoryDataStore;
+
   const {
+    listLevel,
     selectLevel,
-    listData,
+    addListLevel,
     setSelectedLevel,
-    addListData,
-    removeListData,
+    removeListLevel,
     onChangeLavel,
     onChangeInputDegree,
-  } = setHistoryDataStore;
+  } = setHistoryEdit;
 
-  const hidden = listData.length === 1;
-  
-  console.log(listData);
+  const hidden = listLevel.length === 1;
+
+    console.log("selec",listLevel);
 
   return (
     <div>
-      {listData.map((data: Degree , index: number) => (
+      {listLevel.map((data: Degree, index: number) => (
         <div className="mt-3 grid grid-cols-12 gap-2" key={index}>
           <div className="col-span-3">
             <Listbox
               disabled={index === 0}
               value={selectLevel}
               onChange={(selectedLevel) => {
+               
+
                 onChangeLavel(index, selectedLevel.key);
-                setSelectedLevel(selectedLevel);
-                // listData[index]?.degree_program = selectLevel
+                setSelectedLevel(index, selectedLevel);
               }}
             >
               {({ open }) => (
@@ -48,7 +60,7 @@ const LevelsField = observer(({}: Props) => {
                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                       <span className="flex items-center">
                         <span className="ml-3 block truncate">
-                        {data.degree_type === "bachelor"?"ปริญญาตรี":data.degree_type === "master"?"ปริญญาโท":"ปริญญาเอก"}
+                          {data.degree_type === "bachelor"?"ปริญญาตรี":data.degree_type === "master"?"ปริญญาโท":"ปริญญาเอก"}
                         </span>
                       </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -151,7 +163,7 @@ const LevelsField = observer(({}: Props) => {
             <div className="col-span-6">
               <button
                 className="w-full rounded-md border border-blue-700 bg-blue-700 p-1.5  text-white placeholder:text-gray-400"
-                onClick={addListData}
+                onClick={addListLevel}
               >
                 +
               </button>
@@ -161,7 +173,7 @@ const LevelsField = observer(({}: Props) => {
             <div className="col-span-6">
               <button
                 className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
-                onClick={() => removeListData(index)}
+                onClick={() => removeListLevel(index)}
                 // hidden={hidden}
                 hidden={index === 0}
               >
@@ -170,36 +182,10 @@ const LevelsField = observer(({}: Props) => {
             </div>
             {/* )} */}
           </div>
-          {/* <AddAndRemoveButton
-            onClickAdd={addListData}
-            onClickRemove={() => removeListData(index)}
-            hidden={hidden}
-          /> */}
-
-          {/* <div className="col-span-1">
-            {listData.length - 1 === index && (
-              <button
-                className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
-                onClick={handleAdd}
-              >
-                +
-              </button>
-            )}
-          </div>
-          <div className="col-span-1">
-            {listData.length > 1 && (
-              <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                onClick={() => handleRemove(index)}
-              >
-                -
-              </button>
-            )}
-          </div> */}
         </div>
       ))}
     </div>
   );
 });
 
-export default LevelsField;
+export default LevelsFieldEdit;

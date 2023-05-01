@@ -3,6 +3,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 // import { ranks } from "~/models/const/createEdit/rankLevels";
 
 
@@ -10,24 +11,19 @@ function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const SelectRanks = observer(() => {
+const SelectRankEdit = observer(() => {
   // const [selected, setSelected] = useState<{ id: number; prefix: string }>(
   //   ranks[0]!
   // );
   const {
     positions,
-    setSelectedRank,
-    historyDataResults,
-    setAssessmentResult,
+    
   } = setHistoryDataStore;
+const {history,setHistory,setSelectedRank,onChangeHistory}=setHistoryEdit
 
-  const handleHistoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newhistoryDataResults = {
-      ...historyDataResults,
-      [event.target.name]: event.target.value,
-    };
-    setAssessmentResult(newhistoryDataResults);
-  };
+console.log("rank",history.position_name);
+
+
 
   useEffect(() => {
     const fecthManage = async () => {
@@ -40,7 +36,7 @@ const SelectRanks = observer(() => {
     <div className="grid grid-cols-12 gap-1">
       <div className="col-span-9">
         <Listbox
-          value={historyDataResults.position_name}
+          value={history.position_name}
           onChange={(selectedRank) => {
             setSelectedRank(selectedRank);
           }}
@@ -50,7 +46,7 @@ const SelectRanks = observer(() => {
               <div className="relative ">
                 <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                   <span className="flex items-center">
-                    <span className="ml-3 block truncate">{historyDataResults.position_name}</span>
+                    <span className="ml-3 block truncate">{history.position_name}</span>
                   </span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                     <ChevronUpDownIcon
@@ -121,17 +117,17 @@ const SelectRanks = observer(() => {
       <div className="col-span-3">
         <input
           // value={selectedRank}
-          value={historyDataResults.position_name}
-          onChange={handleHistoryChange}
+          value={history.position_name}
+          onChange={onChangeHistory}
           type="text"
           name="position_name"
           id="position_name"
           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          hidden={positions[positions.length - 1]?.position_name !== historyDataResults.position_name!}
+          hidden={positions[positions.length - 1]?.position_name !== history.position_name!}
         />
       </div>
     </div>
   );
 });
 
-export default SelectRanks;
+export default SelectRankEdit;

@@ -2,96 +2,89 @@ import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 
 type Props = {};
 
-const ExpForReserchEdit = observer(({}: Props) => {
-  const {
-    listExpReserach,
-    addListExpResearch,
-    removeListExpResearch,
-    onChangeInputExpResearch,
-  } = setHistoryDataStore;
+const ResearchResultEdit = observer(({}: Props) => {
+  const { listExplore, addListExplore, removeExplore, onChangeInputExplore } =
+    setHistoryEdit;
 
-  const hidden = listExpReserach.length === 1;
+  const hidden = listExplore.length === 1;
 
   return (
     <div>
-      {listExpReserach.map((data, index) => (
+      {listExplore.map((data, index) => (
         <div
           className="mt-3 rounded-md border border-gray-300 p-4 text-gray-900 placeholder:text-gray-400"
           key={index}
         >
           <div className="grid grid-cols-12 gap-2">
             <div className="col-span-2">
+              <label
+                htmlFor="price"
+                className="items-center justify-center font-medium leading-6 text-gray-900"
+              >
+                ชื่อผู้จัดทำ :
+              </label>
+            </div>
+            <div className="col-span-4">
               <input
-                value={data.experience_start}
+                value={data.explore_name}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  onChangeInputExpResearch(index, event);
+                  onChangeInputExplore(index, event);
                 }}
-                name="experience_start"
-                id="experience_start"
+                name="explore_name"
+                id="explore_name"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label
                 htmlFor="price"
                 className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
               >
-                ถึง
+                ปีที่ตีพิมพ์ :
               </label>
             </div>
             <div className="col-span-2">
               <input
-                value={data.experience_end}
+                value={data.explore_year}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  onChangeInputExpResearch(index, event);
+                  onChangeInputExplore(index, event);
                 }}
-                name="experience_end"
-                id="experience_end"
-                type="text"
-                className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-              />
-            </div>
-            <div className="col-span-1">
-              <label
-                htmlFor="price"
-                className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
-              >
-                สังกัด
-              </label>
-            </div>
-            <div className="col-span-6">
-              <input
-                value={data.experience_university}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  onChangeInputExpResearch(index, event);
-                }}
-                name="experience_university"
-                id="experience_university"
+                name="explore_year"
+                id="explore_year"
                 type="text"
                 className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
               />
             </div>
           </div>
           <div className="mt-3">
+            <label
+              htmlFor="price"
+              className="ml-2 items-center justify-center font-medium leading-6 text-gray-900"
+            >
+              รายละเอียด :
+            </label>
+          </div>
+          <div className="mt-3">
             <input
-              value={data.experience_remark}
+              value={data.explore_detail}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                onChangeInputExpResearch(index, event);
+                onChangeInputExplore(index, event);
               }}
-              name="experience_remark"
-              id="experience_remark"
+              name="explore_detail"
+              id="explore_detail"
               type="text"
               className="w-full rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
             />
           </div>
           <div className="mt-3 grid grid-cols-12 gap-2">
             <AddAndRemoveButton
-              onClickAdd={addListExpResearch}
-              onClickRemove={() => removeListExpResearch(index)}
+              onClickAdd={addListExplore}
+              onClickRemove={() => removeExplore(index)}
               hidden={hidden}
             />
           </div>
@@ -100,5 +93,4 @@ const ExpForReserchEdit = observer(({}: Props) => {
     </div>
   );
 });
-
-export default ExpForReserchEdit;
+export default ResearchResultEdit;

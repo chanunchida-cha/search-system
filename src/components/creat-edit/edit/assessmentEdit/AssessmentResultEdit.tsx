@@ -7,13 +7,15 @@ import { setStateFile } from "~/store/create-edit/setStateFile";
 import UploadFileEdit from "../UploadFileEdit";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
+import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
 
 type Props = {
   feedAssesment: AssessmentDetailResponse;
 };
 
 const AssessmentResultEdit = observer(({ feedAssesment }: Props) => {
-  const { assessmentFile, setAssessmentFile, setOldFile } = setFileEdit;
+  const { assessmentFile, setAssessmentFileOnChange, setOldFile } = setFileEdit;
+  const {assessmentResults,setAssessmentResultOnchange }= setAssessmentEdit
 
   return (
     <BoxLayout title=" ผลการประเมิน">
@@ -29,10 +31,10 @@ const AssessmentResultEdit = observer(({ feedAssesment }: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
-              // value={assessmentResults.assessment_start}
-              // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              //   setAssessmentResult(event)
-              // }
+              value={assessmentResults.assessment_start}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResultOnchange(event)
+              }
               type="text"
               name="assessment_start"
               id="assessment_start"
@@ -49,11 +51,11 @@ const AssessmentResultEdit = observer(({ feedAssesment }: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
-              // value={data.to}
-              // value={assessmentResults.assessment_end}
-              // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              //   setAssessmentResult(event)
-              // }
+          
+              value={assessmentResults.assessment_end}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setAssessmentResultOnchange(event)
+              }
               type="text"
               name="assessment_end"
               id="assessment_end"
@@ -74,13 +76,9 @@ const AssessmentResultEdit = observer(({ feedAssesment }: Props) => {
           <div className="col-span-8">
             <UploadFileEdit
               name="assessmentResults_file"
-              state={
-                assessmentFile.assessmentResults_file !== null
-                  ? assessmentFile.assessmentResults_file
-                  : feedAssesment.assessment_file_name
-              }
+              state={assessmentFile.assessmentResults_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setAssessmentFile(event);
+                setAssessmentFileOnChange(event);
                 setOldFile(
                   feedAssesment.assessment_file_action,
                   feedAssesment.assessment_id

@@ -9,23 +9,27 @@ import UploadFileEdit from "../UploadFileEdit";
 import HeaderAssessment from "../../create/assessmentForm/HeaderAssessment";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
+import FeedbackInFormEdit from "./FeedbackInFormEdit";
+import HeaderAssessmentEdit from "./HeaderAssessmentEdit";
+import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
 
 type Props = {
   feedAssesment: AssessmentDetailResponse;
 };
 
 const ReportEdit = observer(({ feedAssesment }: Props) => {
-  const { reportFile, setReportFile, setOldFile } = setFileEdit;
+  const { reportFile, setReportFileOnchange, setOldFile } = setFileEdit;
+  const {reports,setReportsOnchange}=setAssessmentEdit
 
   return (
     <BoxLayout title={"รายงานการวิจัย"}>
       <div>
-        <HeaderAssessment
-          // onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          //   setReports(event);
-          // }}
-          // year={reports.report_year}
-          // title={reports.report_title}
+        <HeaderAssessmentEdit
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setReportsOnchange(event);
+          }}
+          year={reports.report_year}
+          title={reports.report_title}
           name_year={"report_year"}
           name_title={"report_title"}
         />
@@ -41,13 +45,9 @@ const ReportEdit = observer(({ feedAssesment }: Props) => {
           <div className="col-span-8">
             <UploadFileEdit
               name="reports_file"
-              state={
-                reportFile.reports_file !== null
-                  ? reportFile.reports_file
-                  : feedAssesment.Report.file_name
-              }
+              state={reportFile.reports_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setReportFile(event);
+                setReportFileOnchange(event);
                 setOldFile(
                   feedAssesment.Report.file_action,
                   feedAssesment.Report.report_id
@@ -57,14 +57,14 @@ const ReportEdit = observer(({ feedAssesment }: Props) => {
             />
           </div>
         </div>
-        <FeedbackInForm
+        <FeedbackInFormEdit
           name_period={"report_period"}
           name_estimate={"report_estimate"}
           name_recommend={"report_recommend"}
-          // period={reports.report_period}
-          // estimate={reports.report_estimate}
-          // recommend={reports.report_recommend}
-          // onChange={(event: ChangeEvent<HTMLInputElement>) => setReports(event)}
+          period={reports.report_period}
+          estimate={reports.report_estimate}
+          recommend={reports.report_recommend}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => setReportsOnchange(event)}
         />
       </div>
     </BoxLayout>

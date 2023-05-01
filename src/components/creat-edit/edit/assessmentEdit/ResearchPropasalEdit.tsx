@@ -10,24 +10,31 @@ import FeedbackInForm from "../../create/assessmentForm/FeedbackInForm";
 import UploadFileEdit from "../UploadFileEdit";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
+import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
+import HeaderAssessmentEdit from "./HeaderAssessmentEdit";
+import FeedbackInFormEdit from "./FeedbackInFormEdit";
 
 type Props = {
   feedAssesment: AssessmentDetailResponse;
 };
 
 const ResearchPropasalEdit = observer(({ feedAssesment }: Props) => {
-  const { researchPropasalsFile, setResearchPropasalsFile, setOldFile } =
-    setFileEdit;
+  const {
+    researchPropasalsFile,
+    setResearchPropasalsFileOnChange,
+    setOldFile,
+  } = setFileEdit;
+  const {researchPropasals,setResearchPropasalsOnchange}=setAssessmentEdit
 
   return (
     <BoxLayout title={"ข้อเสนอโครงการวิจัย"}>
       <div>
-        <HeaderAssessment
-          // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          //   setResearchPropasals(event)
-          // }
-          // year={researchPropasals.project_year}
-          // title={researchPropasals.project_title}
+        <HeaderAssessmentEdit
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasalsOnchange(event)
+          }
+          year={researchPropasals.project_year}
+          title={researchPropasals.project_title}
           name_year={"project_year"}
           name_title={"project_title"}
         />
@@ -43,10 +50,10 @@ const ResearchPropasalEdit = observer(({ feedAssesment }: Props) => {
           </div>
           <div className="col-span-1">
             <input
-              // value={researchPropasals.project_point}
-              // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              //   setResearchPropasals(event)
-              // }
+              value={researchPropasals.project_point}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setResearchPropasalsOnchange(event)
+              }
               type="text"
               name="project_point"
               id="project_point"
@@ -67,13 +74,9 @@ const ResearchPropasalEdit = observer(({ feedAssesment }: Props) => {
           <div className="col-span-8">
             <UploadFileEdit
               name="researchPropasals_file"
-              state={
-                researchPropasalsFile.researchPropasals_file !== null
-                  ? researchPropasalsFile.researchPropasals_file
-                  : feedAssesment.Project.file_name
-              }
+              state={researchPropasalsFile.researchPropasals_file!}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setResearchPropasalsFile(event);
+                setResearchPropasalsFileOnChange(event);
                 setOldFile(
                   feedAssesment.Project.file_action,
                   feedAssesment.Project.project_id
@@ -83,16 +86,16 @@ const ResearchPropasalEdit = observer(({ feedAssesment }: Props) => {
             />
           </div>
         </div>
-        <FeedbackInForm
+        <FeedbackInFormEdit
           name_period={"project_period"}
           name_estimate={"project_estimate"}
           name_recommend={"project_recommend"}
-          // period={researchPropasals.project_period}
-          // estimate={researchPropasals.project_estimate}
-          // recommend={researchPropasals.project_recommend}
-          // onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          //   setResearchPropasals(event)
-          // }
+          period={researchPropasals.project_period}
+          estimate={researchPropasals.project_estimate}
+          recommend={researchPropasals.project_recommend}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setResearchPropasalsOnchange(event)
+          }
         />
       </div>
     </BoxLayout>

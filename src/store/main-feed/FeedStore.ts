@@ -193,6 +193,7 @@ class FeedStore {
       );
       const result = response.data;
       this.assessmentDetail = result.data;
+      return result.data
     } catch (err: any) {
       Swal.fire({
         icon: "error",

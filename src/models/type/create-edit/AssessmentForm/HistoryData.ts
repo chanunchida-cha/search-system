@@ -44,25 +44,25 @@ export type Explore = {
 };
 
 export type Profile = {
-  profile: File | null;
+  profile: File | string | null;
   directory_file: string;
 };
 
 export type HistoryFile = {
-  history_file: File | null;
+  history_file: File|string | null;
   directory_file: string;
 };
 
 export type OrderFile = {
-  order_file: File | null;
+  order_file: File| string | null;
   directory_file: string;
 };
 export type AccountFile = {
-  account_file: File | null;
+  account_file: File| string | null;
   directory_file: string;
 };
 export type IdCardFile = {
-  idCard_file: File | null;
+  idCard_file: File| string | null;
   directory_file: string;
 };
 

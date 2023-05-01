@@ -1,3 +1,4 @@
+
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
 import { levels } from "~/models/const/degreeLevels";
@@ -117,6 +118,8 @@ class SetHistoryDataStore {
   validationDegree = this.listData.every(
     (item) => item.degree_type && item.degree_program && item.degree_university
   );
+
+ 
 
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;

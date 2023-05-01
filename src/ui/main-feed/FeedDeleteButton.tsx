@@ -24,6 +24,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
       icon: "error",
       title: "ต้องการลบข้อมูล",
       text: "โปรดตรวจสอบก่อนการยืนยัน",
+      backdrop: false
     });
     Swal.fire({
       title: "ต้องการลบข้อมูล",
@@ -34,6 +35,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
       cancelButtonColor: "#668ff6",
       confirmButtonText: "ยกเลิก",
       cancelButtonText: "ยืนยัน",
+      backdrop: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("NOW :", feedStore.deleteUpdateStatus);

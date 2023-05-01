@@ -6,7 +6,6 @@ import Cookie from "cookie-universal";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
-
 type Props = {
   children: React.ReactNode;
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import axios from "axios";
+import axios  from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import React from "react";
@@ -38,6 +38,7 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
     };
 
     const handleClick = async () => {
+        
         try {
             console.log("updatePatch", userToPatch);
           
@@ -48,19 +49,17 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_pa
               console.log("อิหยังวะ", response.data);
             } 
           } catch (error: any) {
-            let errorMessage = "ไม่สามารถเปลี่ยนรหัสผ่านได้ในขณะนี้";
             console.log("abcsssss", error);
           
             if (error.response && error.response.status === 400) {
-              errorMessage = error.response.data.message;
-              console.log("asdadww222", error.response.data.message);
+              console.log("Show Error", error.response.data.errorMessage);
             }
           
             Swal.fire({
               icon: "error",
-              title: errorMessage,
+              title: error.response.data.errorMessage,
             });
-            throw error;
+            // throw error;
           }
     };
 

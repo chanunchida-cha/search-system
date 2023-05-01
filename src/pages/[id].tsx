@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
+import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
+import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 
-interface Props {}
+type Props = {};
 
 const typeTab = [
   {
@@ -16,8 +19,7 @@ const typeTab = [
     i18n: "ข้อมูลผลการประเมิน",
   },
 ];
-
-export default function NameFeed({}: Props): ReactElement {
+const NameFeed = observer(({}: Props) => {
   const router = useRouter();
   const { id } = router.query;
   const [type, settype] = useState("");
@@ -31,6 +33,41 @@ export default function NameFeed({}: Props): ReactElement {
 
   const fetchAssessmentDetail = async (id: number) => {
     await feedStore.getAssessmentDetail(id);
+  };
+
+  const setPathImage = (data: FeedDetailResponse) => {
+    let pathFile = "";
+    let autionFile = "";
+    let nameFile = "";
+    if (data.attach !== null) {
+      autionFile = String(
+        data.attach.filter((item) => item.file_action === "profile")[0]
+          ?.file_action
+          ? data.attach.filter((item) => item.file_action === "profile")[0]
+              ?.file_action
+          : ""
+      );
+      nameFile = String(
+        data.attach.filter((item) => item.file_action === "profile")[0]
+          ?.file_name
+          ? data.attach.filter((item) => item.file_action === "profile")[0]
+              ?.file_name
+          : ""
+      );
+    }
+    pathFile = autionFile + "/" + nameFile;
+    console.log("PATH FILE: ", pathFile);
+    return pathFile;
+  };
+
+  const setPathImageAssessment = () => {
+    let pathFile = "";
+    pathFile =
+      feedStore.assessmentDetail.assessment_file_action +
+      "/" +
+      feedStore.assessmentDetail.assessment_file_name;
+    console.log("PATH FILE ASSESSMENT: ", pathFile);
+    return pathFile;
   };
 
   useEffect(() => {
@@ -73,12 +110,20 @@ export default function NameFeed({}: Props): ReactElement {
         </div>
         <div>
           {type === "history" ? (
-            <FeedDetail feedDetail={feedStore.feedDetail} />
+            <FeedDetail
+              feedDetail={feedStore.feedDetail}
+              imagePath={setPathImage(feedStore.feedDetail)}
+            />
           ) : (
-            <FeedAssessment assessmentDetail={feedStore.assessmentDetail} />
+            <FeedAssessment
+              assessmentDetail={feedStore.assessmentDetail}
+              imagePath={setPathImageAssessment()}
+            />
           )}
         </div>
       </div>
     </>
   );
-}
+});
+
+export default NameFeed;

@@ -1,6 +1,8 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Search } from "heroicons-react";
+import { SearchSelection } from "~/models/type/main-feed/typeSearchSelection";
 import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
@@ -14,20 +16,23 @@ class FeedStore {
       is_last: true,
   };
   feedDetail: FeedDetailResponse = {
-      profile_id: "",
-      first_name: "",
-      last_name: "",
-      university: "",
-      address_home: "",
-      address_work: "",
-      email: "",
-      phone_number: "",
-      degree: [],
-      position: [],
-      program: [],
-      experience: [],
-      attach: [],
-      explore: [],
+    profile_id: "",
+    first_name: "",
+    last_name: "",
+    university: "",
+    address_home: "",
+    address_work: "",
+    email: "",
+    phone_number: "",
+    degree: [],
+    program: [],
+    experience: [],
+    attach: [],
+    explore: [],
+    position: {
+      position_id: 0,
+      position_name: ""
+    }
   };
 
   assessmentDetail: AssessmentDetailResponse = {
@@ -44,6 +49,7 @@ class FeedStore {
       project_estimate: false,
       project_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -54,6 +60,7 @@ class FeedStore {
       progress_estimate: false,
       progress_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -64,6 +71,7 @@ class FeedStore {
       report_estimate: false,
       report_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
     },
@@ -74,10 +82,17 @@ class FeedStore {
       article_estimate: false,
       article_recommend: false,
       file_name: "",
+      file_action: "",
       file_id: 0,
       period: false
-    }
+    },
+    profile_id: 0,
+    assessment_file_action: ""
   }
+
+  deleteUpdateStatus = "404"
+  searchSelection = "ชื่อผู้จัดทำ";
+  searchContext = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -96,7 +111,7 @@ class FeedStore {
         );
         const result = response.data;
         this.feedList = result.data
-      } else if (searchType == "researcher_name") {
+      } else if (searchType == "researcher_name" || searchType == "ชื่อผู้จัดทำ") {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
@@ -107,7 +122,7 @@ class FeedStore {
         );
         const result = response.data;
         this.feedList = result.data
-      } else if (searchType == "university") {
+      } else if (searchType == "university" || searchType == "สังกัดมหาวิทยาลัย") {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
@@ -118,7 +133,7 @@ class FeedStore {
         );
         const result = response.data;
         this.feedList = result.data
-      } else if (searchType == "explore_year") {
+      } else if (searchType == "explore_year" || searchType == "ปีที่ตีพิมพ์") {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
@@ -129,7 +144,7 @@ class FeedStore {
         );
         const result = response.data;
         this.feedList = result.data
-      } else if (searchType == "project_title") {
+      } else if (searchType == "project_title" || searchType == "หัวข้องานวิจัย") {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
             {
@@ -158,7 +173,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/1`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/${researcher_id}`,
         );
         const result = response.data;
         this.feedDetail = result.data
@@ -178,7 +193,7 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/1`,
+            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/${researcher_id}`,
         );
         const result = response.data;
         this.assessmentDetail = result.data
@@ -193,5 +208,47 @@ class FeedStore {
       throw err;
     }
   }
+
+  async deleteFeedDetailById(profile_id: number) {
+    let resultState = ""
+    try {
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile/${profile_id}`,
+      );
+      Swal.fire(
+        "ลบข้อมูลการจองเรียบร้อยแล้ว!",
+        response.data.message,
+        "success"
+      );
+      const result = response.data;
+      resultState = result.status
+      this.deleteUpdateStatus = resultState
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "404",
+      });
+    }
+    console.log("DELETE STATUS:", resultState);
+    
+  }
+
+  setUpdateDeleteState(state: string) {
+    this.deleteUpdateStatus = state;
+    console.log("DELETE NOW STATE:", this.deleteUpdateStatus);
+  }
+
+  setSearchSelection = (type: string) => {
+    this.searchSelection = type;
+    console.log("searchSelection:", this.searchSelection);
+    
+  };
+
+  setSearchContext = (text: string) => {
+    this.searchContext = text;
+    console.log("searchContext:", this.searchContext);
+    
+  };
 }
 export const feedStore = new FeedStore();

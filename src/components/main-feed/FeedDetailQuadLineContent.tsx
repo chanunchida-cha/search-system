@@ -47,6 +47,27 @@ function FeedDetailQuadLineContent({
   contentList,
   isLink,
 }: Props) {
+  const setFilePath = (aution: string, name: string) => {
+    let filePath = "";
+    filePath = aution + "/" + name;
+    console.log("PATH FILE ::", filePath);
+    return filePath;
+  };
+  const updateEducationDegreeText = (actionTypeFile: string) => {
+    let typeActionFile = "";
+    if (actionTypeFile === "history") {
+      typeActionFile = "เอกสารประวัติ";
+    } else if (actionTypeFile === "order") {
+      typeActionFile = "เอกสารคำสั่งแต่งตั้งผู้ทรงคุณวุฒิ";
+    } else if (actionTypeFile === "account") {
+      typeActionFile = "เอกสารสำเนาบัญชี";
+    } else if (actionTypeFile === "idcard") {
+      typeActionFile = "เอกสารสำเนาบัตรประชาชน";
+    } else if (actionTypeFile === "research") {
+      typeActionFile = "เอกสารงานวิจัย";
+    }
+    return typeActionFile;
+  };
   return (
     <>
       {checkListArray ? (
@@ -62,13 +83,14 @@ function FeedDetailQuadLineContent({
             contentList.map((item) => (
               <>
                 <FeedDetailOneLineContent
-                  title={firstTitle}
+                  title={updateEducationDegreeText(item.file_action)}
                   placeHolder={firstPlaceHolder}
                   mainClass={"mt-3"}
                   inputClass={firstClass}
-                  textClass={""}
+                  textClass={"w-1/4"}
                   textContent={item.file_name}
                   isLink={isLink}
+                  imagePath={setFilePath(item.file_action, item.file_name)}
                 />
               </>
             ))

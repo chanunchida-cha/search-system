@@ -5,6 +5,7 @@ export type ReportResponse = {
   report_estimate: boolean;
   report_recommend: boolean;
   file_name: string;
+  file_action: string;
   file_id: number;
   period: boolean;
 };

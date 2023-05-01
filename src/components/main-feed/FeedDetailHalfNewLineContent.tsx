@@ -22,6 +22,18 @@ function FeedDetailHalfNewLineContent({
   mainClass,
   contentList,
 }: Props) {
+  const updateEducationDegreeText = (degree: string) => {
+    let typeEducation = "";
+    if (degree === "bachelor") {
+      typeEducation = "ปริญญาตรี";
+    } else if (degree === "master") {
+      typeEducation = "ปริญญาโท";
+    } else if (degree === "doctor") {
+      typeEducation = "ปริญญาเอก";
+    }
+    return typeEducation;
+  };
+
   return (
     <>
       <div className={`flex w-full flex-row ${mainClass}`}>
@@ -36,7 +48,10 @@ function FeedDetailHalfNewLineContent({
           <div className="mt-3 flex w-full flex-row">
             <div className="basis-6/12 ">
               <div className="flex w-full items-center">
-                <p className="ml-3  text-black">{item.degree_type}</p>
+                {}
+                <p className="ml-3  text-black">
+                  {updateEducationDegreeText(item.degree_type)}
+                </p>
                 <p className="ml-3  text-black">{section}</p>
                 <input
                   type="text"

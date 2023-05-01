@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import FeedDetailHalfLineContent from "./FeedDetailHalfLineContent";
 import FeedDetailOneLineContent from "./FeedDetailOneLineContent";
@@ -10,12 +10,21 @@ import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
+import { showImage } from "~/utils/aws-sdk/showImage";
 
 type Props = {
   feedDetail: FeedDetailResponse;
+  imagePath: string;
 };
 
-function FeedDetail({ feedDetail }: Props) {
+function FeedDetail({ feedDetail, imagePath }: Props) {
+  const [s3url, setS3url] = useState<string>();
+  useEffect(() => {
+    const loadImage = async () => {
+      await showImage("image", imagePath!, "", setS3url);
+    };
+    loadImage();
+  }, [imagePath]);
   return (
     <>
       <div className="mx-auto h-full bg-gray-100 px-5 pb-10">
@@ -33,12 +42,32 @@ function FeedDetail({ feedDetail }: Props) {
             {/* 225 x 225*/}
             <div className="mt-3 flex flex-row">
               <div className="basis-3/12 ">
-                <Image
-                  src="/assets/images/dummy-person.png"
-                  alt={"person"}
-                  width={300}
-                  height={300}
-                />
+                {imagePath && imagePath !== "/" ? (
+                  <img
+                    className="align-center ml-0.5 mt-3 h-56 w-56 items-center rounded-full"
+                    src={s3url}
+                  />
+                ) : (
+                  <div className="align-center ml-0.5 mt-3 flex h-56 w-56 items-center rounded-full bg-gray-300 object-fill">
+                    <div className="h-1/4 w-1/4"></div>
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      className="align-center h-2/4 w-2/4 items-center"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                      ></path>
+                    </svg>
+                    <div className="h-1/4 w-1/4"></div>
+                  </div>
+                )}
               </div>
               <div className="mt-12 flex basis-9/12 items-center">
                 <div className="flex w-full flex-col">
@@ -62,11 +91,7 @@ function FeedDetail({ feedDetail }: Props) {
                     mainClass={"mt-3"}
                     inputClass={"w-2/4"}
                     textClass={"font-bold"}
-                    textContent={
-                      feedDetail.position[0]?.position_name
-                        ? feedDetail.position[0].position_name
-                        : ""
-                    }
+                    textContent={feedDetail.position.position_name}
                   />
                   <FeedDetailHalfNewLineContent
                     title={"วุฒิการศึกษา :"}
@@ -171,7 +196,7 @@ function FeedDetail({ feedDetail }: Props) {
                     headTitle={"อื่นๆ :"}
                     firstTitle={"เอกสารประวัติ :"}
                     firstPlaceHolder={"history.pdf"}
-                    firstClass={"w-3/5 underline underline-offset-4 "}
+                    firstClass={"w-full underline underline-offset-4 "}
                     checkListArray={true}
                     isLink={true}
                     contentList={
@@ -190,13 +215,12 @@ function FeedDetail({ feedDetail }: Props) {
           {/* END OF CONTENT */}
         </div>
         <div className="mt-6 flex flex-row">
-          <Link href="/">
-            <FeedOneBoxButton
-              btnColor={"[#668ff6]"}
-              hoverColor={"[#668ff6]"}
-              title={"ย้อนกลับ"}
-            />
-          </Link>
+          <FeedOneBoxButton
+            btnColor={"[#668ff6]"}
+            hoverColor={"[#668ff6]"}
+            title={"ย้อนกลับ"}
+            link={"/"}
+          />
         </div>
       </div>
     </>

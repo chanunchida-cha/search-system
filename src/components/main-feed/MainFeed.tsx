@@ -16,7 +16,7 @@ const MainFeed = observer(({}: Props) => {
   // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
-      await feedStore.getFeedList("", 0, 10, "");
+      await feedStore.getFeedList("", 1, 10, "");
     };
     fetchFeedList();
   }, []);
@@ -33,7 +33,7 @@ const MainFeed = observer(({}: Props) => {
           </div>
           <div className="flex items-center justify-start md:justify-end ">
             <div className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5">
-              <Link href={"/"}>
+              <Link href={`/create`}>
                 <FeedAddNewUserButton />
               </Link>
             </div>

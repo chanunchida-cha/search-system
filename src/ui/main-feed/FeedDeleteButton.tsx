@@ -1,10 +1,25 @@
 import React from "react";
 import Swal from "sweetalert2";
+import { observer } from "mobx-react-lite";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
-type Props = {};
+type Props = {
+  userId: number;
+};
 
-function FeedDeleteButton({}: Props) {
-  const confirmDelete = () => {
+const FeedDeleteButton = observer(({ userId }: Props) => {
+  const deleteUserById = async (id: number) => {
+    await feedStore.deleteFeedDetailById(id);
+  };
+  const fetchFeedList = async () => {
+    await feedStore.getFeedList(
+      feedStore.searchSelection,
+      0,
+      10,
+      feedStore.searchContext
+    );
+  };
+  const confirmDelete = (id: number) => {
     Swal.fire({
       icon: "error",
       title: "ต้องการลบข้อมูล",
@@ -21,8 +36,17 @@ function FeedDeleteButton({}: Props) {
       cancelButtonText: "ยืนยัน",
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log("NOW :", feedStore.deleteUpdateStatus);
       } else {
-        Swal.fire("ลบข้อมูล", "ทำการลบข้อมูลสำเร็จ", "success");
+        deleteUserById(id);
+        let idFromUser = String(id);
+        if (feedStore.deleteUpdateStatus === "200") {
+          Swal.fire("ลบข้อมูล", "ทำการลบข้อมูลสำเร็จ", "success");
+          feedStore.setUpdateDeleteState("404");
+          fetchFeedList();
+        } else {
+          feedStore.setUpdateDeleteState("404");
+        }
       }
     });
   };
@@ -30,7 +54,7 @@ function FeedDeleteButton({}: Props) {
     <>
       <button
         className="rounded bg-[#ec5e43] py-2 px-4 font-bold text-white hover:bg-yellow-700"
-        onClick={() => confirmDelete()}
+        onClick={() => confirmDelete(userId)}
       >
         <svg
           fill="none"
@@ -50,6 +74,6 @@ function FeedDeleteButton({}: Props) {
       </button>
     </>
   );
-}
+});
 
 export default FeedDeleteButton;

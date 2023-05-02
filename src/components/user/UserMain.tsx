@@ -10,7 +10,7 @@ const UserMain = observer(({}: Props) => {
   const route = useRouter();
   useEffect(() => {
     const fecthManage = async () => {
-      await userStore.getUserManage(0, 10);
+      await userStore.getUserManage("", 0, 10);
     };
     fecthManage();
   }, []);

@@ -7,9 +7,13 @@ import FeedAddNewUserButton from "~/ui/main-feed/FeedAddNewUserButton";
 import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
 
+
 type Props = {};
 
 const MainFeed = observer(({}: Props) => {
+  const { loginData } = loginStore;
+  const { username } = loginData;
+  // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
       await feedStore.getFeedList("", 1, 10, "");
@@ -18,6 +22,7 @@ const MainFeed = observer(({}: Props) => {
     console.log("ROLE USER:", loginStore.loginData.role);
     
   }, []);
+
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">

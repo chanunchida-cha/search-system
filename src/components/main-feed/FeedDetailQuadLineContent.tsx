@@ -1,6 +1,7 @@
 import React from "react";
 import FeedDetailOneLineContent from "./FeedDetailOneLineContent";
 import { AttachResponse } from "~/models/type/main-feed/typeAttach";
+import { useRouter } from "next/router";
 
 type Props = {
   headTitle: string;

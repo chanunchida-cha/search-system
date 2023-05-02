@@ -72,11 +72,17 @@ const NameFeed = observer(({}: Props) => {
 
   useEffect(() => {
     updateToggle();
-    fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
-  }, []);
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+    getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    getAssessmentDetail();
+  }, [id]);
 
   return (
     <>

@@ -22,7 +22,7 @@ class SetStateFile {
   };
   researchPropasalsFile: ResearchPropasalsFile = {
     researchPropasals_file: null,
-    directory_file: "project ",
+    directory_file: "project",
   };
   progressReportFile: ProgressReportsFile = {
     progressReport_file: null,
@@ -70,6 +70,23 @@ class SetStateFile {
   };
   setPreview = (objectUrl: string) => {
     this.preview = objectUrl;
+  };
+
+  validationFile = () => {
+    if (this.assessmentFile.assessmentResults_file !== null &&
+      this.researchPropasalsFile.researchPropasals_file !== null &&
+      this.progressReportFile.progressReport_file !== null &&
+      this.reportFile.reports_file !== null &&
+      this.researchArticlesFile.researchArticles_file !== null &&
+      this.profile.profile !== null &&
+      this.historyFile.history_file !== null &&
+      this.orderFile.order_file !== null &&
+      this.accountFile.account_file !== null &&
+      this.idCardFile.idCard_file !== null ) {
+      return true;
+    }else{
+      return false;
+    }
   };
 
   //-----------------------------------------------------------
@@ -248,9 +265,9 @@ class SetStateFile {
   removeFileOrder = () => {
     this.orderFile.order_file = null;
   };
-   //------------------------------------------------------------
+  //------------------------------------------------------------
 
-   setAccountFile = (event: ChangeEvent<HTMLInputElement>) => {
+  setAccountFile = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, files } = event.target;
 
     if (type === "file" && files && files[0]) {
@@ -271,7 +288,7 @@ class SetStateFile {
     }
   };
   removeFileAccount = () => {
-    this.accountFile.account_file= null;
+    this.accountFile.account_file = null;
   };
   //------------------------------------------------------------
 
@@ -296,7 +313,7 @@ class SetStateFile {
     }
   };
   removeFileIdCard = () => {
-    this.idCardFile.idCard_file= null;
+    this.idCardFile.idCard_file = null;
   };
 }
 

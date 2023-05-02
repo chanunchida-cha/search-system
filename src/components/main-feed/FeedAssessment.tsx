@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import FeedAssessmentCheckbox from "./FeedAssessmentCheckbox";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { showImage } from "~/utils/aws-sdk/showImage";
+import { useRouter } from "next/router";
+import UploadFileInForm from "../creat-edit/create/assessmentForm/UploadFileInForm";
 
 type Props = {
   assessmentDetail: AssessmentDetailResponse;
@@ -12,13 +14,20 @@ type Props = {
 };
 
 function FeedAssessment({ assessmentDetail, imagePath }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   useEffect(() => {
     console.log("Check", assessmentDetail.assessment_end);
   }, []);
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {}, [imagePath]);
   const loadImage = async () => {
-    await showImage("pdf", imagePath!, String(imagePath), setS3url);
+    await showImage(
+      "pdf",
+      imagePath!,
+      assessmentDetail.assessment_file_name,
+      setS3url
+    );
   };
   const setFilePathAssessmentCheckBox = (typeCheck: string) => {
     let pathFile = "";
@@ -66,20 +75,34 @@ function FeedAssessment({ assessmentDetail, imagePath }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">ปีงบประมาณ</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="assessmentSinceBudget"
                       id="assessmentSinceBudget"
                       value={assessmentDetail.assessment_start}
-                      className="pointer-events-none ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                       placeholder="2562"
                     ></input>
                     <p className="ml-3  text-black">ถึง</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       name="assessmentYearBudget"
                       id="assessmentYearBudget"
                       value={assessmentDetail.assessment_end}
-                      className="pointer-events-none ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                       placeholder="ปัจจุบัน"
                     ></input>
                   </div>
@@ -87,20 +110,37 @@ function FeedAssessment({ assessmentDetail, imagePath }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">เอกสารงานวิจัย : </p>
-                    <Link
-                      href={`${s3url}`}
-                      className="w-3/4"
-                      onClick={() => loadImage()}
-                    >
-                      <input
-                        type="text"
-                        name="assessmentResearchDocument"
-                        id="assessmentResearchDocument"
-                        value={assessmentDetail.assessment_file_name}
-                        className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
-                        placeholder="งานวิจัย.pdf"
-                      ></input>
-                    </Link>
+
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
+                    {edit ? (
+                      <UploadFileInForm
+                        name="assessmentResults_file"
+                        state={assessmentDetail.assessment_file_name}
+                        // onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        //   setAssessmentFile(event)
+                        // }
+                        // onClickButton={removeFileAssessmentResults}
+                      />
+                    ) : (
+                      <Link
+                        href={`${s3url}`}
+                        className="w-3/4"
+                        onClick={() => loadImage()}
+                      >
+                        <input
+                          type="text"
+                          name="assessmentResearchDocument"
+                          id="assessmentResearchDocument"
+                          value={assessmentDetail.assessment_file_name}
+                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
+                          placeholder="งานวิจัย.pdf"
+                        ></input>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <FeedAssessmentCheckbox

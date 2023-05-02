@@ -1,8 +1,9 @@
 export type ResponseHistory = {
-  data: {
+
     profile_id: number;
     first_name: string;
     last_name: string;
+    profile_status:boolean
     position_id: number;
     position_name: string;
     degree: Degree[];
@@ -14,7 +15,7 @@ export type ResponseHistory = {
     address_work:string;
     email:string;
     phone_number:string;
-  };
+  
 };
 
 export type Degree = {

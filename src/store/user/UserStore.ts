@@ -13,32 +13,59 @@ class UserStore {
     is_last: true,
 };
 
+  searchContext = "";
+
   constructor() {
     makeAutoObservable(this);
   }
 
-  async getUserManage(page : number, limit : number){
+  async getUserManage(searchType : string,  page : number, limit : number){
+    
     try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/user`,
+        {
+  
+          page: page,
+          limit: limit,
+        }
+      );
+      
+      if(searchType == ""){
+        
+        const result = response.data;
+        this.userManageList = result.data;
+        console.log("a",response.status);
+        
+      }else{
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/user`,
           {
+            username: searchType,
             page: page,
             limit: limit,
           }
         );
         const result = response.data;
         this.userManageList = result.data;
+      }
+      console.log("b",response.status);
+        
     }catch(err: any){
         Swal.fire({
             icon: "error",
-            title: "CANNOT SERVICE 404 ERROR",
-            text: err.errorMessage,
+            title: err.response.data.errorMessage,
+            // text: err.errorMessage,
           });
-    
           console.log(err);
           throw err;
     }
-
   }
+
+  setSearchContext = (text: string) => {
+    this.searchContext = text;
+    console.log("searchContext:", this.searchContext);
+  };
 }
+
 export const userStore = new UserStore

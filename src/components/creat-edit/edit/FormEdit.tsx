@@ -167,8 +167,11 @@ const FormEdit = observer(({ onSubmitEdit }: Props) => {
   }, [id]);
   useEffect(() => {
     const getAssessmentDetail = async () => {
+      
+      
       const assessment: AssessmentDetailResponse =
         await feedStore.getAssessmentDetail(Number(id));
+        console.log("aaa",assessment.Project.project_year);
       setAssessmentFile(assessment.assessment_file_name);
       setResearchPropasalsFile(assessment.Project.file_name);
       setProgressFile(assessment.Progress.file_name);

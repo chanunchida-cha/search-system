@@ -1,13 +1,20 @@
 import { useRouter } from 'next/router';
 import React from 'react'
+import { ContentUserManageResponse } from '~/models/type/user/typeContent';
 
+type Props = {
+  userData: ContentUserManageResponse;
+};
 
-function ManageEditButton() {
+function ManageEditButton({userData}: Props) {
     const route = useRouter();
     return (
         <>
           <button onClick={() => {
-              route.push("/editpassword");
+            route.push(
+              { pathname: "/editpassword", query: userData }
+            );
+              
             }} className="flex items-center justify-center rounded-lg bg-[#f1d386] py-1 px-1 font-bold text-white hover:bg-yellow-700">
             <svg
               fill="none"

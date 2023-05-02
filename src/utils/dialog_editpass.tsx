@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import axios  from "axios";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import React from "react";
 
 type Props = {
     isOpen: boolean;
     onClose: () => void;
     buttonText: string;
     disabled: boolean;
+    user_id: number;
+    old_password: string;
+    new_password: string;
 };
 
-const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
+
+const DialogEditpass: React.FC<Props> = ({ buttonText, disabled, user_id, old_password, new_password }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
+    const route = useRouter();
 
     function openModal() {
         setIsOpen(true);
@@ -22,13 +31,45 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
         setIsOpen(false);
         setIsDisabled(false); // กำหนดให้ปุ่ม enabled เมื่อปิดโมดัล
     }
+    const userToPatch = {
+        user_id: user_id,
+        old_password: old_password,
+        new_password: new_password,
+    };
+
+    const handleClick = async () => {
+        
+        try {
+            console.log("updatePatch", userToPatch);
+          
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/changePassword`, userToPatch);
+          
+            if (response && response.data && response.status === 200) {
+              openModal();
+              console.log("อิหยังวะ", response.data);
+            } 
+          } catch (error: any) {
+            console.log("abcsssss", error);
+          
+            if (error.response && error.response.status === 400) {
+              console.log("Show Error", error.response.data.errorMessage);
+            }
+          
+            Swal.fire({
+              icon: "error",
+              title: error.response.data.errorMessage,
+            });
+            // throw error;
+          }
+    };
 
     return (
         <>
             <button
-                onClick={openModal}
-                className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isDisabled || disabled} // ใช้ค่า isDisabled และ props.disabled ในการกำหนดค่า disabled ให้กับปุ่ม
+
+                onClick={handleClick}
+                className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 w-full lg:w-36 lg:ml-2  focus:outline-none focus:shadow-outline ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isDisabled || disabled}
             >
                 {buttonText}
             </button>
@@ -89,8 +130,9 @@ const DialogEditpass: React.FC<Props> = ({ buttonText, disabled }) => {
                                     <div className="mt-4 flex justify-center mx-auto pb-1">
                                         <button
                                             type="button"
-                                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                            onClick={closeModal}
+                                            className="w-36 inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                            // onClick={closeModal}
+                                            onClick={(closeModal) => { route.push('/user') }}
                                         >
                                             ตกลง
                                         </button>

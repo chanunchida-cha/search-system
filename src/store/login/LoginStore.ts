@@ -5,8 +5,9 @@ import { LoginResponse } from "~/models/type/login/LoginResponse";
 import Cookie from "cookie-universal";
 const cookies = Cookie();
 class LoginStore {
+
   loginData: LoginResponse = {
-    user_id: 1,
+    user_id: 0,
     username: "",
     role: "",
     token: "",
@@ -32,13 +33,15 @@ class LoginStore {
       cookies.set("token", result.token);
       cookies.set("userID", result.user_id);
       this.loginData = result;
+      console.log("ResData Login", response.data);
+      
     } catch (err: any) {
       Swal.fire({
         icon: "error",
-        title: "CANNOT SERVICE 404 ERROR",
-        text: err.errorMessage,
+        title: err.response.data.errorMessage
+        // text: err.response.data.errorMessage,
       });
-
+      
       console.log(err);
       throw err;
     }

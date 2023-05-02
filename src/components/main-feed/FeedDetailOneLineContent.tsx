@@ -2,7 +2,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { showImage } from "~/utils/aws-sdk/showImage";
 import { useRouter } from "next/router";
-import React from "react";
 
 type Props = {
   title?: string;
@@ -37,9 +36,11 @@ function FeedDetailOneLineContent({
       <div className={`flex w-full flex-row ${mainClass}`}>
         <div className="flex w-full items-center">
           <p className={`ml-3 text-black ${textClass}`}>{title}</p>
-         {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+          {edit && (
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
+          )}
           {isLink ? (
             <Link
               href={`${s3url}`}

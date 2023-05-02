@@ -40,7 +40,7 @@ class FeedStore {
     assessment_start: "",
     assessment_end: "",
     assessment_file_name: "",
-    assessment_file_action:"",
+    assessment_file_action: "",
     Project: {
       project_id: 0,
       project_year: "",
@@ -87,7 +87,7 @@ class FeedStore {
       period: false
     },
     profile_id: 0,
-    assessment_file_action: ""
+    assessment_file_id: 0
   }
 
   deleteUpdateStatus = "404"

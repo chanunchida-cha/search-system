@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import React from "react";
 import { ArticleResponse } from "~/models/type/main-feed/typeArticle";
 import { ProgressResponse } from "~/models/type/main-feed/typeProgress";
 import { ProjectResponse } from "~/models/type/main-feed/typeProject";
@@ -53,9 +52,11 @@ function FeedAssessmentCheckbox({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className=" text-black">งบประมาณรายได้ / งบประมาณแผ่นดิน</p>
-            {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+            {edit && (
+              <span className="text-xl text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
             <input
               type="text"
               name="assessmentSinceYearBudget"
@@ -67,9 +68,11 @@ function FeedAssessmentCheckbox({
               placeholder="2562"
             ></input>
             <p className="ml-3  text-black">เรื่อง</p>
-            {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+            {edit && (
+              <span className="text-xl text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
             <input
               type="text"
               name="assessmentNameTitle"
@@ -90,9 +93,11 @@ function FeedAssessmentCheckbox({
       >
         <div className="flex w-full items-center">
           <p className=" text-black">คะแนน</p>
-          {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+          {edit && (
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
+          )}
           <input
             type="text"
             name="assessmentPoint"
@@ -108,11 +113,13 @@ function FeedAssessmentCheckbox({
       <div className="mt-3 flex w-full flex-row">
         <div className="flex w-full items-center">
           <p className=" text-black">เอกสารผลการประเมิน : </p>
+
+          {edit && (
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
+          )}
           <Link href={`${s3url}`} className="w-4/5" onClick={() => loadImage()}>
-          {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
-          <Link href={"/"} className="w-4/5">
             <input
               type="text"
               name="assessmentResult"
@@ -141,12 +148,7 @@ function FeedAssessmentCheckbox({
           <div className="flex w-full items-center">
             {checkEstimate ? (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-               
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"
@@ -158,11 +160,7 @@ function FeedAssessmentCheckbox({
               </>
             ) : (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"
@@ -204,11 +202,7 @@ function FeedAssessmentCheckbox({
               </>
             ) : (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"

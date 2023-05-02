@@ -1,5 +1,4 @@
-import React, { ChangeEvent, useEffect } from "react";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import FeedAssessmentCheckbox from "./FeedAssessmentCheckbox";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
@@ -106,20 +105,7 @@ function FeedAssessment({ assessmentDetail, imagePath }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">เอกสารงานวิจัย : </p>
-                    <Link
-                      href={`${s3url}`}
-                      className="w-3/4"
-                      onClick={() => loadImage()}
-                    >
-                      <input
-                        type="text"
-                        name="assessmentResearchDocument"
-                        id="assessmentResearchDocument"
-                        value={assessmentDetail.assessment_file_name}
-                        className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
-                        placeholder="งานวิจัย.pdf"
-                      ></input>
-                    </Link>
+
                     {edit && (
                       <span className="text-xl text-red-500" aria-hidden="true">
                         *
@@ -135,13 +121,17 @@ function FeedAssessment({ assessmentDetail, imagePath }: Props) {
                         // onClickButton={removeFileAssessmentResults}
                       />
                     ) : (
-                      <Link href={"/"} className="w-3/4">
+                      <Link
+                        href={`${s3url}`}
+                        className="w-3/4"
+                        onClick={() => loadImage()}
+                      >
                         <input
                           type="text"
                           name="assessmentResearchDocument"
                           id="assessmentResearchDocument"
                           value={assessmentDetail.assessment_file_name}
-                          className={` ml-3 block w-1/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-blue-700 underline underline-offset-4 `}
+                          className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
                           placeholder="งานวิจัย.pdf"
                         ></input>
                       </Link>

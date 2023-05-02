@@ -1,6 +1,7 @@
 import React from "react";
 import FeedDetailOneNewLineContent from "./FeedDetailOneNewLineContent";
 import { ExploreResponse } from "~/models/type/main-feed/typeExplore";
+import { useRouter } from "next/router";
 
 type Props = {
   titleLeft: string;
@@ -33,6 +34,9 @@ function FeedDetailHalfLineContent({
   checkListArray,
   contentList,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
+
   return (
     <>
       {checkListArray ? (
@@ -44,12 +48,22 @@ function FeedDetailHalfLineContent({
                   <div className={`${basisLeft}`}>
                     <div className="flex w-full items-center">
                       <p className="ml-3 font-bold text-black">{titleLeft}</p>
+                      {edit && (
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
+                      )}
                       <input
                         type="text"
                         name="username"
                         id="username"
                         value={item.explore_name}
-                        className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                        className={`${
+                          edit ? "bg-white text-black" : "pointer-events-none"
+                        } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
                         placeholder={placeHolderLeft}
                       ></input>
                     </div>
@@ -57,12 +71,22 @@ function FeedDetailHalfLineContent({
                   <div className={`${basisRight}`}>
                     <div className="flex w-full items-center">
                       <p className="ml-3 font-bold text-black">{titleRight}</p>
+                      {edit && (
+                        <span
+                          className="text-xl text-red-500"
+                          aria-hidden="true"
+                        >
+                          *
+                        </span>
+                      )}
                       <input
                         type="text"
                         name="surname"
                         id="surname"
                         value={item.explore_year}
-                        className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                        className={`${
+                          edit ? "bg-white text-black" : "pointer-events-none"
+                        } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
                         placeholder={placeHolderRight}
                       ></input>
                     </div>
@@ -83,12 +107,19 @@ function FeedDetailHalfLineContent({
                 <div className={`${basisLeft}`}>
                   <div className="flex w-full items-center">
                     <p className="ml-3 font-bold text-black">{titleLeft}</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="username"
                       id="username"
                       value={textLeft}
-                      className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
                       placeholder={placeHolderLeft}
                     ></input>
                   </div>
@@ -96,12 +127,19 @@ function FeedDetailHalfLineContent({
                 <div className={`${basisRight}`}>
                   <div className="flex w-full items-center">
                     <p className="ml-3 font-bold text-black">{titleRight}</p>
+                    {edit && (
+                      <span className="text-xl text-red-500" aria-hidden="true">
+                        *
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="surname"
                       id="surname"
                       value={textRight}
-                      className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                      className={`${
+                        edit ? "bg-white text-black" : "pointer-events-none"
+                      } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
                       placeholder={placeHolderRight}
                     ></input>
                   </div>
@@ -122,12 +160,19 @@ function FeedDetailHalfLineContent({
           <div className={`${basisLeft}`}>
             <div className="flex w-full items-center">
               <p className="ml-3 font-bold text-black">{titleLeft}</p>
+              {edit && (
+                <span className="text-xl text-red-500" aria-hidden="true">
+                  *
+                </span>
+              )}
               <input
                 type="text"
                 name="username"
                 id="username"
                 value={textLeft}
-                className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputLeft}`}
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                }  ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1  px-3 text-gray-700  ${inputLeft}`}
                 placeholder={placeHolderLeft}
               ></input>
             </div>
@@ -135,12 +180,19 @@ function FeedDetailHalfLineContent({
           <div className={`${basisRight}`}>
             <div className="flex w-full items-center">
               <p className="ml-3 font-bold text-black">{titleRight}</p>
+              {edit && (
+                <span className="text-xl text-red-500" aria-hidden="true">
+                  *
+                </span>
+              )}
               <input
                 type="text"
                 name="surname"
                 id="surname"
                 value={textRight}
-                className={`pointer-events-none ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 ${inputRight}`}
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                }  ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1  px-3 text-gray-700  ${inputRight}`}
                 placeholder={placeHolderRight}
               ></input>
             </div>

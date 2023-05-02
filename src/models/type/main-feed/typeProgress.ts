@@ -5,6 +5,6 @@ export type ProgressResponse = {
   progress_estimate: boolean;
   progress_recommend: boolean;
   file_name: string;
-  file_id: number;
+  file_action: string;
   period: boolean;
 };

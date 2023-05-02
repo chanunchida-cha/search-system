@@ -8,7 +8,7 @@ export type AssessmentDetailResponse = {
   assessment_start: string;
   assessment_end: string;
   assessment_file_name: string;
-  assessment_file_id: number;
+  assessment_file_action: string;
   Project: ProjectResponse;
   Progress: ProgressResponse;
   Report: ReportResponse;

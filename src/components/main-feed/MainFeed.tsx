@@ -23,6 +23,18 @@ const MainFeed = observer(({}: Props) => {
     console.log("ROLE USER:", loginStore.loginData.role);
   }, []);
 
+  useEffect(() => {
+    const fetchFeedListRefresh = async () => {
+      await feedStore.getFeedList(
+        feedStore.searchSelection,
+        feedStore.feedList.current_page,
+        10,
+        feedStore.searchContext
+      );
+    };
+    fetchFeedListRefresh();
+  }, [feedStore.deleteUpdateStatus]);
+
   return (
     <>
       <div className="align-center h-fit rounded-3xl bg-white p-5 shadow-xl">

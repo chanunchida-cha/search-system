@@ -10,9 +10,10 @@ import { feedStore } from "~/store/main-feed/FeedStore";
 
 type Props = {
   feedList: FeedListResponse;
+  role: string;
 };
 
-function MainFeedTable({ feedList }: Props) {
+function MainFeedTable({ feedList, role }: Props) {
   console.log("feed list", feedList.content);
   const updatePageCurrent = async (page: number) => {
     await feedStore.getFeedList(
@@ -25,69 +26,139 @@ function MainFeedTable({ feedList }: Props) {
   return (
     <>
       {/* TABLE CONTENT */}
-      <div className="overflow-auto rounded-lg shadow">
-        <table className="border-solid-500 w-full table-auto border-collapse border">
-          <thead className="border-b-2 border-gray-200 bg-[#0265ff] ">
-            <tr className="">
-              {main_feed_heading.map((item) => (
-                <th
-                  key={item}
-                  className={`text-xs text-white md:text-sm ${
-                    item === "ลำดับ"
-                      ? "p-3 text-center font-semibold tracking-wide"
-                      : "p-3 text-center font-semibold tracking-wide"
-                  } ${item === "ชื่อโครงการวิจัย" ? "" : "w-32"}`}
-                >
-                  {item}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {feedList.total_object === 0 ? (
-            <tbody></tbody>
-          ) : (
-            <tbody className="divide-y divide-gray-50">
-              {feedList.content
-                .filter((item) => item.profile_status === true)
-                .map((item, index) => (
-                  <tr className="bg-white">
-                    <td className="p-3 text-center text-sm text-gray-700">
-                      {feedList.current_page > 1
-                        ? index + 1 + Number(feedList.current_page - 1) * 10
-                        : index + 1}
-                    </td>
-                    <td className="p-3 text-center text-sm text-gray-700">
-                      {item.project_title}
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
-                      <Link
-                        href={"/" + item.researcher_id}
-                        className="font-bold text-blue-500 hover:underline"
-                      >
-                        {item.researcher_name + "[" + item.researcher_id + "]"}
-                        {/* {item.researcher_name} */}
-                      </Link>
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      {item.university}
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      {item.explore_year}
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
-                      <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
-                        <Link href={"/edit/" + item.researcher_id}>
-                          <FeedEditButton />
-                        </Link>
-                        <FeedDeleteButton userId={Number(item.researcher_id)} />
-                      </div>
-                    </td>
-                  </tr>
+      {role === "ADMIN" ? (
+        <div className="overflow-auto rounded-lg shadow">
+          <table className="border-solid-500 w-full table-auto border-collapse border">
+            <thead className="border-b-2 border-gray-200 bg-[#0265ff] ">
+              <tr className="">
+                {main_feed_heading.map((item) => (
+                  <th
+                    key={item}
+                    className={`text-xs text-white md:text-sm ${
+                      item === "ลำดับ"
+                        ? "p-3 text-center font-semibold tracking-wide"
+                        : "p-3 text-center font-semibold tracking-wide"
+                    } ${item === "ชื่อโครงการวิจัย" ? "" : "w-32"}`}
+                  >
+                    {item}
+                  </th>
                 ))}
-            </tbody>
-          )}
-        </table>
-      </div>
+              </tr>
+            </thead>
+            {feedList.total_object === 0 ? (
+              <tbody></tbody>
+            ) : (
+              <tbody className="divide-y divide-gray-50">
+                {feedList.content
+                  .filter((item) => item.profile_status === true)
+                  .map((item, index) => (
+                    <tr className="bg-white">
+                      <td className="p-3 text-center text-sm text-gray-700">
+                        {feedList.current_page > 1
+                          ? index + 1 + Number(feedList.current_page - 1) * 10
+                          : index + 1}
+                      </td>
+                      <td className="p-3 text-center text-sm text-gray-700">
+                        {item.project_title}
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
+                        <Link
+                          href={"/" + item.researcher_id}
+                          className="font-bold text-blue-500 hover:underline"
+                        >
+                          {item.researcher_name +
+                            "[" +
+                            item.researcher_id +
+                            "]"}
+                          {/* {item.researcher_name} */}
+                        </Link>
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                        {item.university}
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                        {item.explore_year}
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                        <div className="flex flex-col place-items-center gap-2 md:flex-row lg:flex-row">
+                          <Link href={"/edit/" + item.researcher_id}>
+                            <FeedEditButton />
+                          </Link>
+                          <FeedDeleteButton
+                            userId={Number(item.researcher_id)}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            )}
+          </table>
+          {/* end1 */}
+        </div>
+      ) : (
+        <div className="overflow-auto rounded-lg shadow">
+          <table className="border-solid-500 w-full table-auto border-collapse border">
+            <thead className="border-b-2 border-gray-200 bg-[#0265ff] ">
+              <tr className="">
+                {main_feed_heading
+                  .filter((item) => item !== "จัดการข้อมูล")
+                  .map((item) => (
+                    <th
+                      key={item}
+                      className={`text-xs text-white md:text-sm ${
+                        item === "ลำดับ"
+                          ? "p-3 text-center font-semibold tracking-wide"
+                          : "p-3 text-center font-semibold tracking-wide"
+                      } ${item === "ชื่อโครงการวิจัย" ? "" : "w-32"}`}
+                    >
+                      {item}
+                    </th>
+                  ))}
+              </tr>
+            </thead>
+            {feedList.total_object === 0 ? (
+              <tbody></tbody>
+            ) : (
+              <tbody className="divide-y divide-gray-50">
+                {feedList.content
+                  .filter((item) => item.profile_status === true)
+                  .map((item, index) => (
+                    <tr className="bg-white">
+                      <td className="p-3 text-center text-sm text-gray-700">
+                        {feedList.current_page > 1
+                          ? index + 1 + Number(feedList.current_page - 1) * 10
+                          : index + 1}
+                      </td>
+                      <td className="p-3 text-center text-sm text-gray-700">
+                        {item.project_title}
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-left text-sm text-gray-700">
+                        <Link
+                          href={"/" + item.researcher_id}
+                          className="font-bold text-blue-500 hover:underline"
+                        >
+                          {item.researcher_name +
+                            "[" +
+                            item.researcher_id +
+                            "]"}
+                          {/* {item.researcher_name} */}
+                        </Link>
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                        {item.university}
+                      </td>
+                      <td className="whitespace-nowrap p-3 text-center text-sm text-gray-700">
+                        {item.explore_year}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            )}
+          </table>
+          {/* end2 */}
+        </div>
+      )}
 
       {/* PAGINATE CONTENT*/}
       <div className="flex items-center justify-between rounded-b-lg border-t border-gray-200 bg-white px-4 py-2 sm:px-6">

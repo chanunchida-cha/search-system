@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    extra_hosts:
+      - "uat-s3.universityapp.net:172.29.106.101"
     container_name: researcher-dev
     volumes:
       - ./:/app

@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 function FeedSearchBox({}: Props) {
   return (
     <>
       {/* SearchBar */}
-      <div className="relative w-2/3 md:w-2/5 lg:w-2/5">
+      <div className="relative mt-0.5 w-2/3 md:w-2/5 lg:w-2/5">
         <input
           className="focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 pl-10 text-sm leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-[#0265ff] focus:outline-none focus:ring-[#0265ff] md:text-base lg:text-lg"
           id="username"
@@ -35,4 +35,4 @@ function FeedSearchBox({}: Props) {
   );
 }
 
-export default FeedSearchBox
+export default FeedSearchBox;

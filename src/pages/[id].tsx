@@ -4,6 +4,7 @@ import React, { type ReactElement, useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
+import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
 
 type Props = {};
 
@@ -33,13 +34,44 @@ const NameFeed = observer(({}: Props) => {
     await feedStore.getAssessmentDetail(id);
   };
 
+  const setPathImage = (data: FeedDetailResponse) => {
+    let pathFile = "";
+    let autionFile = "";
+    let nameFile = "";
+    if (data.attach !== null) {
+      autionFile = String(
+        data.attach.filter((item) => item.file_action === "profile")[0]
+          ?.file_action
+          ? data.attach.filter((item) => item.file_action === "profile")[0]
+              ?.file_action
+          : ""
+      );
+      nameFile = String(
+        data.attach.filter((item) => item.file_action === "profile")[0]
+          ?.file_name
+          ? data.attach.filter((item) => item.file_action === "profile")[0]
+              ?.file_name
+          : ""
+      );
+    }
+    pathFile = autionFile + "/" + nameFile;
+    console.log("PATH FILE: ", pathFile);
+    return pathFile;
+  };
+
   useEffect(() => {
     updateToggle();
-    fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
-  }, []);
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+    getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    getAssessmentDetail();
+  }, [id]);
 
   return (
     <>
@@ -73,7 +105,10 @@ const NameFeed = observer(({}: Props) => {
         </div>
         <div>
           {type === "history" ? (
-            <FeedDetail feedDetail={feedStore.feedDetail} />
+            <FeedDetail
+              feedDetail={feedStore.feedDetail}
+              imagePath={setPathImage(feedStore.feedDetail)}
+            />
           ) : (
             <FeedAssessment assessmentDetail={feedStore.assessmentDetail} />
           )}

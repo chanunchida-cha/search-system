@@ -1,46 +1,10 @@
-import { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, Fragment, useState,useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
-import { ranks } from "~/models/const/createEdit/rankLevels";
+// import { ranks } from "~/models/const/createEdit/rankLevels";
 
-// const ranks = [
-//   {
-//     id: 1,
-//     prefix: "ศาสตราจารย์เกียรติคุณ",
-//   },
-//   {
-//     id: 2,
-//     prefix: "ศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 3,
-//     prefix: "ศาสตราจารย์",
-//   },
-//   {
-//     id: 4,
-//     prefix: "รองศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 5,
-//     prefix: "รองศาสตราจารย์",
-//   },
-//   {
-//     id: 6,
-//     prefix: "ผู้ช่วยศาสตราจารย์ ดร.",
-//   },
-//   {
-//     id: 7,
-//     prefix: "ผู้ช่วยศาสตราจารย์",
-//   },
-//   {
-//     id: 8,
-//     prefix: "อื่น ๆ เช่น ดร. /อาจารย์",
-//   },
-// ];
-
-// interface Props {}
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
@@ -51,7 +15,7 @@ const SelectRanks = observer(() => {
   //   ranks[0]!
   // );
   const {
-    selectRanks,
+    positions,
     setSelectedRank,
     historyDataResults,
     setAssessmentResult,
@@ -65,14 +29,18 @@ const SelectRanks = observer(() => {
     setAssessmentResult(newhistoryDataResults);
   };
 
-  console.log(ranks[ranks.length - 1]);
-  console.log(selectRanks);
+  useEffect(() => {
+    const fecthManage = async () => {
+      await setHistoryDataStore.getPositions();
+    };
+    fecthManage();
+  }, []);
 
   return (
     <div className="grid grid-cols-12 gap-1">
       <div className="col-span-9">
         <Listbox
-          value={selectRanks}
+          value={historyDataResults.position_name}
           onChange={(selectedRank) => {
             setSelectedRank(selectedRank);
           }}
@@ -82,7 +50,7 @@ const SelectRanks = observer(() => {
               <div className="relative ">
                 <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5  pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
                   <span className="flex items-center">
-                    <span className="ml-3 block truncate">{selectRanks}</span>
+                    <span className="ml-3 block truncate">{historyDataResults.position_name}</span>
                   </span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                     <ChevronUpDownIcon
@@ -100,7 +68,7 @@ const SelectRanks = observer(() => {
                   leaveTo="opacity-0"
                 >
                   <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                    {ranks.map((ranks, index) => (
+                    {positions.map((ranks, index) => (
                       <Listbox.Option
                         key={index}
                         className={({ active }) =>
@@ -111,7 +79,7 @@ const SelectRanks = observer(() => {
                             "relative cursor-default select-none py-2 pl-3 pr-9"
                           )
                         }
-                        value={ranks}
+                        value={ranks.position_name}
                       >
                         {({ selected, active }) => (
                           <>
@@ -122,7 +90,7 @@ const SelectRanks = observer(() => {
                                   "ml-3 block truncate"
                                 )}
                               >
-                                {ranks}
+                                {ranks.position_name}
                               </span>
                             </div>
 
@@ -153,13 +121,13 @@ const SelectRanks = observer(() => {
       <div className="col-span-3">
         <input
           // value={selectedRank}
-          value={historyDataResults.positionName}
+          value={historyDataResults.position_name}
           onChange={handleHistoryChange}
           type="text"
-          name="positionName"
-          id="positionName"
+          name="position_name"
+          id="position_name"
           className="w-48 rounded-md border border-gray-300 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          hidden={ranks[ranks.length - 1] !== selectRanks}
+          hidden={positions[positions.length - 1]?.position_name !== historyDataResults.position_name!}
         />
       </div>
     </div>

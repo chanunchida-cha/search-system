@@ -7,7 +7,6 @@ import FeedAddNewUserButton from "~/ui/main-feed/FeedAddNewUserButton";
 import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
 
-
 type Props = {};
 
 const MainFeed = observer(({}: Props) => {
@@ -19,6 +18,8 @@ const MainFeed = observer(({}: Props) => {
       await feedStore.getFeedList("", 1, 10, "");
     };
     fetchFeedList();
+    console.log("ROLE USER:", loginStore.loginData.role);
+    
   }, []);
 
   return (
@@ -42,7 +43,7 @@ const MainFeed = observer(({}: Props) => {
         {/* END OF Heading and AddUserData */}
 
         <MainFeedSearchBar />
-        <MainFeedTable feedList={feedStore.feedList} />
+        <MainFeedTable feedList={feedStore.feedList} role={loginStore.loginData.role} />
       </div>
     </>
   );

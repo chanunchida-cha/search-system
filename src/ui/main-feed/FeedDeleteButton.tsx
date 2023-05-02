@@ -24,6 +24,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
       icon: "error",
       title: "ต้องการลบข้อมูล",
       text: "โปรดตรวจสอบก่อนการยืนยัน",
+      backdrop: false
     });
     Swal.fire({
       title: "ต้องการลบข้อมูล",

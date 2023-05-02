@@ -1,22 +1,50 @@
 import React, { ChangeEvent, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import FeedAssessmentCheckbox from "./FeedAssessmentCheckbox";
 import FeedOneBoxButton from "~/ui/main-feed/FeedOneBoxButton";
 import Link from "next/link";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
+import { showImage } from "~/utils/aws-sdk/showImage";
 import { useRouter } from "next/router";
 import UploadFileInForm from "../creat-edit/create/assessmentForm/UploadFileInForm";
 
 type Props = {
   assessmentDetail: AssessmentDetailResponse;
+  imagePath: string;
 };
 
-function FeedAssessment({ assessmentDetail }: Props) {
+function FeedAssessment({ assessmentDetail, imagePath }: Props) {
   const router = useRouter();
   const edit = router.pathname.startsWith("/edit");
   useEffect(() => {
     console.log("Check", assessmentDetail.assessment_end);
   }, []);
+  const [s3url, setS3url] = useState<string>();
+  useEffect(() => {}, [imagePath]);
+  const loadImage = async () => {
+    await showImage("pdf", imagePath!, String(imagePath), setS3url);
+  };
+  const setFilePathAssessmentCheckBox = (typeCheck: string) => {
+    let pathFile = "";
+    let pathAction = "";
+    let pathName = "";
+    if (typeCheck === "Project") {
+      pathAction = assessmentDetail.Project.file_action;
+      pathName = assessmentDetail.Project.file_name;
+    } else if (typeCheck === "Progress") {
+      pathAction = assessmentDetail.Progress.file_action;
+      pathName = assessmentDetail.Progress.file_name;
+    } else if (typeCheck === "Report") {
+      pathAction = assessmentDetail.Report.file_action;
+      pathName = assessmentDetail.Report.file_name;
+    } else if (typeCheck === "Article") {
+      pathAction = assessmentDetail.Article.file_action;
+      pathName = assessmentDetail.Article.file_name;
+    }
+    pathFile = pathAction + "/" + pathName;
+    return pathFile;
+  };
   return (
     <>
       <div className="mx-auto h-full bg-gray-100 px-5 pb-10">
@@ -78,6 +106,20 @@ function FeedAssessment({ assessmentDetail }: Props) {
                 <div className="mt-3 flex w-full flex-row">
                   <div className="flex w-full items-center">
                     <p className=" text-black">เอกสารงานวิจัย : </p>
+                    <Link
+                      href={`${s3url}`}
+                      className="w-3/4"
+                      onClick={() => loadImage()}
+                    >
+                      <input
+                        type="text"
+                        name="assessmentResearchDocument"
+                        id="assessmentResearchDocument"
+                        value={assessmentDetail.assessment_file_name}
+                        className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
+                        placeholder="งานวิจัย.pdf"
+                      ></input>
+                    </Link>
                     {edit && (
                       <span className="text-xl text-red-500" aria-hidden="true">
                         *
@@ -116,6 +158,7 @@ function FeedAssessment({ assessmentDetail }: Props) {
                   checkEstimate={assessmentDetail.Project.project_estimate}
                   checkRecommend={assessmentDetail.Project.project_recommend}
                   checkPeriod={assessmentDetail.Project.period}
+                  imagePath={setFilePathAssessmentCheckBox("Project")}
                 />
                 <FeedAssessmentCheckbox
                   title={"รายงานความก้าวหน้าวิจัย"}
@@ -126,6 +169,7 @@ function FeedAssessment({ assessmentDetail }: Props) {
                   checkEstimate={assessmentDetail.Progress.progress_estimate}
                   checkRecommend={assessmentDetail.Progress.progress_recommend}
                   checkPeriod={assessmentDetail.Progress.period}
+                  imagePath={setFilePathAssessmentCheckBox("Progress")}
                 />
                 <FeedAssessmentCheckbox
                   title={"รายงานวิจัย"}
@@ -136,6 +180,7 @@ function FeedAssessment({ assessmentDetail }: Props) {
                   checkEstimate={assessmentDetail.Report.report_estimate}
                   checkRecommend={assessmentDetail.Report.report_recommend}
                   checkPeriod={assessmentDetail.Report.period}
+                  imagePath={setFilePathAssessmentCheckBox("Report")}
                 />
                 <FeedAssessmentCheckbox
                   title={"บทความวิจัย/บทความวิชาการ"}
@@ -146,6 +191,7 @@ function FeedAssessment({ assessmentDetail }: Props) {
                   checkEstimate={assessmentDetail.Article.article_estimate}
                   checkRecommend={assessmentDetail.Article.article_recommend}
                   checkPeriod={assessmentDetail.Article.period}
+                  imagePath={setFilePathAssessmentCheckBox("Article")}
                 />
               </div>
             </div>

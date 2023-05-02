@@ -21,7 +21,7 @@ function FeedDetail({ feedDetail, imagePath }: Props) {
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {
     const loadImage = async () => {
-      await showImage("image", imagePath!, setS3url);
+      await showImage("image", imagePath!, "", setS3url);
     };
     loadImage();
   }, [imagePath]);
@@ -196,7 +196,7 @@ function FeedDetail({ feedDetail, imagePath }: Props) {
                     headTitle={"อื่นๆ :"}
                     firstTitle={"เอกสารประวัติ :"}
                     firstPlaceHolder={"history.pdf"}
-                    firstClass={"w-3/5 underline underline-offset-4 "}
+                    firstClass={"w-full underline underline-offset-4 "}
                     checkListArray={true}
                     isLink={true}
                     contentList={

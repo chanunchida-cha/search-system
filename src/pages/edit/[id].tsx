@@ -206,9 +206,9 @@ const Edit = observer(({ }: Props) => {
             confirmButtonText: 'ตกลง',
             backdrop: false,
           },);
-          router.push("/")
+          router.push(`/edit/${resResearcher.profile_id!}`)
         }
-        
+       
       },);
       
     } catch (error) {

@@ -1,5 +1,5 @@
 export type ResponseHistory = {
- 
+
     profile_id: number;
     first_name: string;
     last_name: string;

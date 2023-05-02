@@ -33,6 +33,8 @@ class LoginStore {
       cookies.set("token", result.token);
       cookies.set("userID", result.user_id);
       this.loginData = result;
+      console.log("ResData Login", response.data);
+      
     } catch (err: any) {
       Swal.fire({
         icon: "error",

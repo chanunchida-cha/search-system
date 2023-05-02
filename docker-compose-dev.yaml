@@ -7,8 +7,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    extra_hosts:
-      - "sit-api.uap.universityapp.net/researcher/"
     container_name: researcher-dev
     volumes:
       - ./:/app

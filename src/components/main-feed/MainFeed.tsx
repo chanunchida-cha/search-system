@@ -23,7 +23,7 @@ const MainFeed = observer(({}: Props) => {
 
   return (
     <>
-      <div className="align-center h-screen bg-gray-100 p-5">
+      <div className="align-center   p-5 rounded-3xl bg-white shadow-xl ">
         {/* Heading and AddUserData */}
         <div className="mb-2 grid h-12 grid-cols-1 md:grid md:grid-cols-2">
           <div className="flex items-center justify-start">

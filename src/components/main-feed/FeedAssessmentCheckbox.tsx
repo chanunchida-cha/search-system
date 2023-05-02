@@ -35,7 +35,7 @@ function FeedAssessmentCheckbox({
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {}, [imagePath]);
   const loadImage = async () => {
-    await showImage("pdf", imagePath!, String(imagePath), setS3url);
+    await showImage("pdf", imagePath!, fileTitle, setS3url);
   };
   const router = useRouter();
   const edit = router.pathname.startsWith("/edit");

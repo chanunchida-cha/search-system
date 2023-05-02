@@ -22,7 +22,12 @@ function FeedAssessment({ assessmentDetail, imagePath }: Props) {
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {}, [imagePath]);
   const loadImage = async () => {
-    await showImage("pdf", imagePath!, String(imagePath), setS3url);
+    await showImage(
+      "pdf",
+      imagePath!,
+      assessmentDetail.assessment_file_name,
+      setS3url
+    );
   };
   const setFilePathAssessmentCheckBox = (typeCheck: string) => {
     let pathFile = "";

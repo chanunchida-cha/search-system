@@ -1,10 +1,11 @@
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import React from "react";
 import { ArticleResponse } from "~/models/type/main-feed/typeArticle";
 import { ProgressResponse } from "~/models/type/main-feed/typeProgress";
 import { ProjectResponse } from "~/models/type/main-feed/typeProject";
 import { ReportResponse } from "~/models/type/main-feed/typeReport";
+import { showImage } from "~/utils/aws-sdk/showImage";
 
 type Props = {
   title: string;
@@ -16,6 +17,7 @@ type Props = {
   checkEstimate: boolean;
   checkRecommend: boolean;
   checkPeriod: boolean;
+  imagePath: string;
 };
 
 function FeedAssessmentCheckbox({
@@ -28,7 +30,13 @@ function FeedAssessmentCheckbox({
   checkEstimate,
   checkRecommend,
   checkPeriod,
+  imagePath,
 }: Props) {
+  const [s3url, setS3url] = useState<string>();
+  useEffect(() => {}, [imagePath]);
+  const loadImage = async () => {
+    await showImage("pdf", imagePath!, fileTitle, setS3url);
+  };
   const router = useRouter();
   const edit = router.pathname.startsWith("/edit");
   return (
@@ -44,9 +52,11 @@ function FeedAssessmentCheckbox({
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className=" text-black">งบประมาณรายได้ / งบประมาณแผ่นดิน</p>
-            {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+            {edit && (
+              <span className="text-xl text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
             <input
               type="text"
               name="assessmentSinceYearBudget"
@@ -58,9 +68,11 @@ function FeedAssessmentCheckbox({
               placeholder="2562"
             ></input>
             <p className="ml-3  text-black">เรื่อง</p>
-            {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+            {edit && (
+              <span className="text-xl text-red-500" aria-hidden="true">
+                *
+              </span>
+            )}
             <input
               type="text"
               name="assessmentNameTitle"
@@ -81,9 +93,11 @@ function FeedAssessmentCheckbox({
       >
         <div className="flex w-full items-center">
           <p className=" text-black">คะแนน</p>
-          {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+          {edit && (
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
+          )}
           <input
             type="text"
             name="assessmentPoint"
@@ -99,16 +113,19 @@ function FeedAssessmentCheckbox({
       <div className="mt-3 flex w-full flex-row">
         <div className="flex w-full items-center">
           <p className=" text-black">เอกสารผลการประเมิน : </p>
-          {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
-          <Link href={"/"} className="w-4/5">
+
+          {edit && (
+            <span className="text-xl text-red-500" aria-hidden="true">
+              *
+            </span>
+          )}
+          <Link href={`${s3url}`} className="w-4/5" onClick={() => loadImage()}>
             <input
               type="text"
               name="assessmentResult"
               id="assessmentResult"
               value={fileTitle}
-              className="pointer-events-none ml-3 block w-3/12 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
+              className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 underline underline-offset-4 "
               placeholder="ผลการประเมิน.pdf"
             ></input>
           </Link>
@@ -131,12 +148,7 @@ function FeedAssessmentCheckbox({
           <div className="flex w-full items-center">
             {checkEstimate ? (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-               
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"
@@ -148,11 +160,7 @@ function FeedAssessmentCheckbox({
               </>
             ) : (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"
@@ -194,11 +202,7 @@ function FeedAssessmentCheckbox({
               </>
             ) : (
               <>
-                <input
-                  type="radio"
-                  name="radioHave"
-                  id="radioHave"
-                ></input>
+                <input type="radio" name="radioHave" id="radioHave"></input>
                 <p className="ml-2 text-black">มี</p>
                 <input
                   type="radio"

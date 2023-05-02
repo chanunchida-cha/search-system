@@ -11,11 +11,20 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
   const deleteUserById = async (id: number) => {
     await feedStore.deleteFeedDetailById(id);
   };
+  const fetchFeedList = async () => {
+    await feedStore.getFeedList(
+      feedStore.searchSelection,
+      0,
+      10,
+      feedStore.searchContext
+    );
+  };
   const confirmDelete = (id: number) => {
     Swal.fire({
       icon: "error",
       title: "ต้องการลบข้อมูล",
       text: "โปรดตรวจสอบก่อนการยืนยัน",
+      backdrop: false
     });
     Swal.fire({
       title: "ต้องการลบข้อมูล",
@@ -26,6 +35,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
       cancelButtonColor: "#668ff6",
       confirmButtonText: "ยกเลิก",
       cancelButtonText: "ยืนยัน",
+      backdrop: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("NOW :", feedStore.deleteUpdateStatus);
@@ -35,6 +45,7 @@ const FeedDeleteButton = observer(({ userId }: Props) => {
         if (feedStore.deleteUpdateStatus === "200") {
           Swal.fire("ลบข้อมูล", "ทำการลบข้อมูลสำเร็จ", "success");
           feedStore.setUpdateDeleteState("404");
+          fetchFeedList();
         } else {
           feedStore.setUpdateDeleteState("404");
         }

@@ -1,6 +1,8 @@
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Search } from "heroicons-react";
+import { SearchSelection } from "~/models/type/main-feed/typeSearchSelection";
 import { FeedListResponse } from "~/models/type/main-feed/typeFeedList";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
@@ -38,7 +40,7 @@ class FeedStore {
     assessment_start: "",
     assessment_end: "",
     assessment_file_name: "",
-    assessment_file_action:"",
+    assessment_file_action: "",
     Project: {
       project_id: 0,
       project_year: "",
@@ -48,7 +50,8 @@ class FeedStore {
       project_recommend: false,
       file_name: "",
       file_action: "",
-      period: false,
+      file_id: 0,
+      period: false
     },
     Progress: {
       progress_id: 0,
@@ -58,7 +61,8 @@ class FeedStore {
       progress_recommend: false,
       file_name: "",
       file_action: "",
-      period: false,
+      file_id: 0,
+      period: false
     },
     Report: {
       report_id: 0,
@@ -68,7 +72,8 @@ class FeedStore {
       report_recommend: false,
       file_name: "",
       file_action: "",
-      period: false,
+      file_id: 0,
+      period: false
     },
     Article: {
       article_id: 0,
@@ -78,11 +83,16 @@ class FeedStore {
       article_recommend: false,
       file_name: "",
       file_action: "",
-      period: false,
+      file_id: 0,
+      period: false
     },
-  };
+    profile_id: 0,
+    assessment_file_id: 0
+  }
 
-  deleteUpdateStatus = "404";
+  deleteUpdateStatus = "404"
+  searchSelection = "ชื่อผู้จัดทำ";
+  searchContext = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -105,8 +115,8 @@ class FeedStore {
           }
         );
         const result = response.data;
-        this.feedList = result.data;
-      } else if (searchType == "researcher_name") {
+        this.feedList = result.data
+      } else if (searchType == "researcher_name" || searchType == "ชื่อผู้จัดทำ") {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
@@ -116,8 +126,8 @@ class FeedStore {
           }
         );
         const result = response.data;
-        this.feedList = result.data;
-      } else if (searchType == "university") {
+        this.feedList = result.data
+      } else if (searchType == "university" || searchType == "สังกัดมหาวิทยาลัย") {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
@@ -127,8 +137,8 @@ class FeedStore {
           }
         );
         const result = response.data;
-        this.feedList = result.data;
-      } else if (searchType == "explore_year") {
+        this.feedList = result.data
+      } else if (searchType == "explore_year" || searchType == "ปีที่ตีพิมพ์") {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
@@ -138,8 +148,8 @@ class FeedStore {
           }
         );
         const result = response.data;
-        this.feedList = result.data;
-      } else if (searchType == "project_title") {
+        this.feedList = result.data
+      } else if (searchType == "project_title" || searchType == "หัวข้องานวิจัย") {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
           {
@@ -234,5 +244,17 @@ class FeedStore {
     this.deleteUpdateStatus = state;
     console.log("DELETE NOW STATE:", this.deleteUpdateStatus);
   }
+
+  setSearchSelection = (type: string) => {
+    this.searchSelection = type;
+    console.log("searchSelection:", this.searchSelection);
+    
+  };
+
+  setSearchContext = (text: string) => {
+    this.searchContext = text;
+    console.log("searchContext:", this.searchContext);
+    
+  };
 }
 export const feedStore = new FeedStore();

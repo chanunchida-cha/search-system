@@ -5,6 +5,7 @@ export type ArticleResponse = {
   article_estimate: boolean;
   article_recommend: boolean;
   file_name: string;
-  file_action:string;
+  file_action: string;
+  file_id: number;
   period: boolean;
 };

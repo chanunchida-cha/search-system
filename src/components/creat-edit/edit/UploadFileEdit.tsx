@@ -21,7 +21,7 @@ export default function UploadFileEdit({
  
   return (
     <div className="grid grid-cols-12 gap-2">
-      <div className="col-span-3 flex items-center justify-center rounded-lg bg-slate-100">
+      <div className="col-span-3 flex items-center text-gray-900 justify-center rounded-lg bg-slate-100">
         <label htmlFor={name}>Choose File</label>
 
         <input
@@ -36,7 +36,7 @@ export default function UploadFileEdit({
       <div
         className={`${
           state ? "col-span-6 " : "col-span-2"
-        }  flex items-center justify-center `}
+        }  flex items-center text-gray-900 justify-center `}
       >
         {typeof state === "string" ? state :state?.name }
       </div>

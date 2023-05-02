@@ -1,25 +1,39 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import { observer } from "mobx-react-lite";
+import { feedStore } from "~/store/main-feed/FeedStore";
 
 type Props = {
   searchType: string[];
 };
 
-function FeedSearchTypeSelection({ searchType }: Props) {
+const FeedSearchTypeSelection = observer(({ searchType }: Props) => {
+  const { searchSelection, setSearchSelection } = feedStore;
+  const fetchFeedList = async (type: string, text: string) => {
+    await feedStore.getFeedList(type, 1, 10, text);
+  };
+  const changeTypeSearch = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSearchSelection(event.target.value);
+    fetchFeedList(feedStore.searchSelection, feedStore.searchContext);
+  };
   return (
     <>
       {/* TypeSelection */}
       <div className="relative ml-3 inline-block w-2/5 md:w-1/6 lg:w-1/5 ">
-        <select className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight text-black shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg">
-          {searchType.map((item) =>
-            item === "ลำดับ" || item === "จัดการาข้อมูล" ? null : (
-              <option
-                key={item}
-                className="p-3 text-center text-sm font-semibold tracking-wide"
-              >
-                {item}
-              </option>
-            )
-          )}
+        <select
+          value={searchSelection}
+          onChange={(event) => {
+            changeTypeSearch(event);
+          }}
+          className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 text-xs leading-tight text-black shadow hover:border-gray-500 focus:outline-none md:text-base lg:text-lg"
+        >
+          {searchType.map((item) => (
+            <option
+              key={item}
+              className="p-3 text-center text-sm font-semibold tracking-wide"
+            >
+              {item}
+            </option>
+          ))}
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg
@@ -34,6 +48,6 @@ function FeedSearchTypeSelection({ searchType }: Props) {
       {/* END OF TypeSelection */}
     </>
   );
-}
+});
 
 export default FeedSearchTypeSelection;

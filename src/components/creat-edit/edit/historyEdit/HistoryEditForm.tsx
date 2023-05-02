@@ -27,7 +27,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {
     const loadImage = async () => {
-      await showImage("image", image!, setS3url);
+      await showImage("image", image!, "", setS3url);
     };
     loadImage();
   }, [image]);

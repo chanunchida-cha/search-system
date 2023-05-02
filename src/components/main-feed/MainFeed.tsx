@@ -6,13 +6,14 @@ import { observer } from "mobx-react-lite";
 import FeedAddNewUserButton from "~/ui/main-feed/FeedAddNewUserButton";
 import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
-
+import Cookie from "cookie-universal";
 
 type Props = {};
 
 const MainFeed = observer(({}: Props) => {
   const { loginData } = loginStore;
   const { username } = loginData;
+  const cookies = Cookie();
   // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
@@ -20,7 +21,6 @@ const MainFeed = observer(({}: Props) => {
     };
     fetchFeedList();
     console.log("ROLE USER:", loginStore.loginData.role);
-    
   }, []);
 
   return (
@@ -44,7 +44,10 @@ const MainFeed = observer(({}: Props) => {
         {/* END OF Heading and AddUserData */}
 
         <MainFeedSearchBar />
-        <MainFeedTable feedList={feedStore.feedList} role={loginStore.loginData.role} />
+        <MainFeedTable
+          feedList={feedStore.feedList}
+          role={cookies.get("role")}
+        />
       </div>
     </>
   );

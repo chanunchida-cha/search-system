@@ -35,9 +35,13 @@ const MainFeed = observer(({}: Props) => {
           </div>
           <div className="flex items-center justify-start md:justify-end ">
             <div className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5">
-              <Link href={`/create`}>
-                <FeedAddNewUserButton />
-              </Link>
+              {cookies.get("role") === "ADMIN" ? (
+                <Link href={`/create`}>
+                  <FeedAddNewUserButton />
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

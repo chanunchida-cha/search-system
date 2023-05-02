@@ -15,7 +15,6 @@ const UserMain = observer(({}: Props) => {
     fecthManage();
   }, []);
 
-
   return (
     <>
       <div className="align-center h-screen bg-gray-100 p-5">
@@ -26,14 +25,14 @@ const UserMain = observer(({}: Props) => {
               การจัดการบัญชีผู้ใช้
             </h1>
           </div>
-          <div
-            className="flex items-center justify-start md:justify-end "
-            onClick={() => {
-              route.push("/addUser");
-            }}
-          >
+          <div className="flex items-center justify-start md:justify-end">
             <div className="mt-2  w-auto md:w-full lg:w-4/5 xl:w-3/5">
-              <button className="flex w-full items-center justify-center rounded-lg bg-[#0265ff] p-1">
+              <button
+                className="flex w-full items-center justify-center rounded-lg bg-[#0265ff] p-1"
+                onClick={() => {
+                  route.push("/addUser");
+                }}
+              >
                 <svg
                   fill="none"
                   stroke="currentColor"

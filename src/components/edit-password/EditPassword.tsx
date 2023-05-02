@@ -13,7 +13,7 @@ function EditPassword({ }: Props) {
   const [disabled, setDisabled] = useState(true)
   console.log("oldpass",oldpassword);
   console.log("newpass",newpassword);
-  
+ 
 
   useEffect(() => {
     console.log("go to na id", route.query.user_id)
@@ -32,10 +32,7 @@ function EditPassword({ }: Props) {
   const handleOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setoldPassword(e.target.value);
     if (e.target.value.length >= 4) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+      setDisabled(true);}
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,12 +47,13 @@ function EditPassword({ }: Props) {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-white rounded-lg">
       <div className="w-full md:w-1/2 lg:w-3/4 xl:w-1/2 lg:h-full pt-10 pl-5 pr-5 lg:pt-10">/
-        <form className="bg-gray-100 shadow-md rounded-lg px-8 pt-20 pb-20 lg:pl-20 lg:pr-20 w-full " onSubmit={handleSubmit}>
+        <form className="bg-gray-100 shadow-md rounded-lg px-8 pt-20 pb-20 lg:pl-20 lg:pr-20 w-full " onSubmit={handleSubmit} >
           <div className="mb-4 mr-4 ml-4">
             <label className="block text-gray-700 font-bold mb-2">ชื่อผู้ใช้งาน</label>
             <input
               className="pointer-events-none shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder={String(route.query.username) || "ไม่มีชื่อ"}
+              value={String(route.query.username) || "ไม่มีชื่อ"}
+              autoComplete="off"
             />
           </div>
           <div className="mb-4 mr-4 ml-4">
@@ -69,6 +67,7 @@ function EditPassword({ }: Props) {
               maxLength={8}
               onChange={handleOldPassword}
               type="password"
+              autoComplete="new-password"
               required
             />
           </div>
@@ -83,6 +82,7 @@ function EditPassword({ }: Props) {
               maxLength={8}
               onChange={handleChangePassword}
               type="password"
+              autoComplete="new-password"
               required
             />
           </div>

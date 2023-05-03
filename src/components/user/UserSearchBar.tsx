@@ -38,6 +38,7 @@ const UserSearchBar = observer(({}: Props) => {
                 setSearchContext(event.target.value)
                 setSearchText(event.target.value);    
               }}
+              autoComplete="new-password"
             />
             <div className="absolute inset-y-0 left-0 flex items-center">
               <svg

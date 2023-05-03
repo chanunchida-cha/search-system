@@ -10,10 +10,10 @@ services:
     extra_hosts:
       - "uat-s3.universityapp.net:172.29.106.101"
     container_name: researcher-dev
-    volumes:
-      - ./:/app
-      - /app/node_modules
-      - /app/.next
+    # volumes:
+    #   - ./:/app
+    #   - /app/node_modules
+    #   - /app/.next
 # networks:
 #   default:
 #     external: true

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import AssessmentResultEdit from "./AssessmentResultEdit";
 import ResearchPropasalEdit from "./ResearchPropasalEdit";
 import ProgressEdit from "./ProgressEdit";
@@ -10,7 +10,7 @@ type Props = {
   feedAssesment:AssessmentDetailResponse
 }
 
-function AssessmentForm({feedAssesment}: Props): ReactElement {
+function AssessmentForm({feedAssesment}: Props){
   return (
     <>
       <div className="mx-auto h-full bg-gray-100 px-10 pb-10">

@@ -1,10 +1,4 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
-import SubjectExpertField from "~/components/creat-edit/create/historyForm/SubjectExpertField";
-import ExpforResearch from "~/components/creat-edit/create/historyForm/ExpForResearch";
-import ExpForWork from "~/components/creat-edit/create/historyForm/ExpForWork";
-import LevelsField from "~/components/creat-edit/create/historyForm/LevelsField";
-import ResearchResult from "~/components/creat-edit/create/historyForm/ResearchResult";
-import SelectRanks from "~/ui/create-edit/SelectRanks";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { previewImage } from "~/utils/PreviewImage";
 import { observer } from "mobx-react-lite";
 import { feedStore } from "~/store/main-feed/FeedStore";
@@ -27,22 +21,24 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
   const [s3url, setS3url] = useState<string>();
   useEffect(() => {
     const loadImage = async () => {
-      await showImage("image", image!, "", setS3url);
+      try {
+        await showImage("image", image, "", setS3url);
+      } catch (err) {
+        throw err;
+      }
     };
-    loadImage();
+    void loadImage();
   }, [image]);
 
   const {
     profile,
     preview,
-    oldFile,
     fileChange,
     setProfileOnChange,
     setPreview,
     setOldFile,
     setFileChange,
     historyFile,
-    setHistoryFile,
     setHistoryFileOnChang,
     orderFile,
     setOrderFileOnChange,
@@ -52,10 +48,9 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
     setIdCardFileOnChange,
   } = setFileEdit;
 
-  const {history,onChangeHistory}=setHistoryEdit
+  const { history, onChangeHistory } = setHistoryEdit;
 
   console.log(accountFile);
-  
 
   return (
     <>
@@ -90,7 +85,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           type="file"
                           className="sr-only"
                           required
-                          onChange={async (e) => {
+                          onChange={(e) => {
                             let file: File | undefined;
                             if (profile.profile instanceof File) {
                               file = profile.profile;
@@ -125,7 +120,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           name="file-upload"
                           type="file"
                           className="sr-only"
-                          onChange={async (e) => {
+                          onChange={(e) => {
                             let file: File | undefined;
                             if (profile.profile instanceof File) {
                               file = profile.profile;
@@ -184,7 +179,7 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                           name="file-upload"
                           type="file"
                           className="sr-only"
-                          onChange={async (e) => {
+                          onChange={(e) => {
                             let file: File | undefined;
                             if (profile.profile instanceof File) {
                               file = profile.profile;
@@ -464,9 +459,9 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
               </div>
               {feedDetail?.attach
                 ?.filter((file) => file.file_action !== "profile")
-                .map((file) => {
+                .map((file, index) => {
                   return (
-                    <div className="mt-3 grid grid-cols-12 gap-2">
+                    <div className="mt-3 grid grid-cols-12 gap-2" key={index}>
                       <div className="col-span-4">
                         <label
                           htmlFor="price"
@@ -498,7 +493,6 @@ const HistoryEditForm = observer(({ feedDetail }: Props) => {
                               : file.file_action === "account"
                               ? accountFile.account_file!
                               : idCardFile.idCard_file!
-                         
                           }
                           onChange={(event: ChangeEvent<HTMLInputElement>) => {
                             if (file.file_action === "history") {

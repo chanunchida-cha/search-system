@@ -1,12 +1,11 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
-import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 
-type Props = {};
 
-const ExpforResearchEdit = observer(({}: Props) => {
+
+const ExpforResearchEdit = observer(() => {
   const {
     listExpReserach,
     addListExpResearch,

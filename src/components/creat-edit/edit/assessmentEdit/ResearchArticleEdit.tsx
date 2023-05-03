@@ -2,11 +2,8 @@ import React, { ChangeEvent } from "react";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 
 import { observer } from "mobx-react-lite";
-import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
-import { setStateFile } from "~/store/create-edit/setStateFile";
 import FeedbackInForm from "../../create/assessmentForm/FeedbackInForm";
 import UploadFileEdit from "../UploadFileEdit";
-import HeaderAssessment from "../../create/assessmentForm/HeaderAssessment";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
 import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
@@ -48,7 +45,6 @@ const ResearchArticleEdit = observer(({ feedAssesment }: Props) => {
               name="researchArticles_file"
               state={
                researchArticlesFile.researchArticles_file!
-                 
               }
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setResearchArticlesFileOnchange(event);

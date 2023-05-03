@@ -1,9 +1,9 @@
 import React from "react";
 import AddUserAccount from "~/components/user/AddUserAccount";
 
-interface Props {}
 
-function addUser({}: Props) {
+
+function addUser() {
   return <AddUserAccount />;
 }
 

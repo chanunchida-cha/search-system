@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "~/models/const/main-feed/search_feed_debounce";
 import { feedStore } from "~/store/main-feed/FeedStore";
 
-type Props = {};
 
-const FeedSearchBox = observer(({}: Props) => {
+const FeedSearchBox = observer(() => {
   const { setSearchContext } = feedStore;
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 1000);
@@ -41,9 +41,9 @@ const FeedSearchBox = observer(({}: Props) => {
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>

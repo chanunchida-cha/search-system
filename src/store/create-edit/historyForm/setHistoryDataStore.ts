@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
@@ -9,10 +14,8 @@ import {
   ExpResearch,
   HistoryDataResults,
   Positions,
-  Profile,
   Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
-import { ranks } from "~/models/const/createEdit/rankLevels";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -296,7 +299,7 @@ class SetHistoryDataStore {
         `https://sit-api.uap.universityapp.net/research/researcher/positions`
       );
       const rawResult = response.data;
-      const result = rawResult.data;
+      const result:Positions[] = rawResult.data;
 
       this.positions = result;
       this.historyDataResults.position_name = this.positions[0]?.position_name!;

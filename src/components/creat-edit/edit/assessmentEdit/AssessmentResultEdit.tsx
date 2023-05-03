@@ -1,9 +1,6 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent} from "react";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
-import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
-import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
-import { setStateFile } from "~/store/create-edit/setStateFile";
 import UploadFileEdit from "../UploadFileEdit";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
@@ -51,7 +48,6 @@ const AssessmentResultEdit = observer(({ feedAssesment }: Props) => {
           </div>
           <div className="... w-20 flex-initial">
             <input
-          
               value={assessmentResults.assessment_end}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 setAssessmentResultOnchange(event)

@@ -97,22 +97,22 @@ const FromCreate = observer(({ onSubmitCreate }: Props) => {
                 onClick={() => onSubmitCreate!()}
                 hidden={type === "history"}
                 type="submit"
-                // disabled={
-                //   !(
-                //     validationAssessment &&
-                //     validationDegree &&
-                //     validationExpReserach &&
-                //     validationExperience &&
-                //     validationExplore &&
-                //     validationHistoryData &&
-                //     validationProgram &&
-                //     validationProgressReports &&
-                //     validationReports &&
-                //     validationResearchArticles &&
-                //     validationResearchPropasals &&
-                //     validationFile
-                //   )
-                // }
+                disabled={
+                  !(
+                    validationAssessment &&
+                    validationDegree &&
+                    validationExpReserach &&
+                    validationExperience &&
+                    validationExplore &&
+                    validationHistoryData &&
+                    validationProgram &&
+                    validationProgressReports &&
+                    validationReports &&
+                    validationResearchArticles &&
+                    validationResearchPropasals &&
+                    validationFile
+                  )
+                }
               >
                 บันทึก
               </button>

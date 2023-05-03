@@ -1,6 +1,8 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect } from "react";
-import Navbar from "~/components/global/Navbar";
 import SideBar from "~/components/global/Sidebar";
 import Cookie from "cookie-universal";
 
@@ -19,7 +21,7 @@ function Layout({ children }: Props): ReactElement {
     }
   },[login]);
 
-  return <>{pathLogin ? children : <SideBar children={children} />}</>;
+  return <div>{pathLogin ? children : <SideBar children={children} />}</div>;
 }
 
 export default Layout;

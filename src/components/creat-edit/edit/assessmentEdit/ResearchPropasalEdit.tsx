@@ -1,12 +1,6 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
-
-import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
-import { setStateFile } from "~/store/create-edit/setStateFile";
-import HeaderAssessment from "../../create/assessmentForm/HeaderAssessment";
-import UploadFileInForm from "../../create/assessmentForm/UploadFileInForm";
-import FeedbackInForm from "../../create/assessmentForm/FeedbackInForm";
 import UploadFileEdit from "../UploadFileEdit";
 import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";

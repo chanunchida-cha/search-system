@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
 import { HistoryType } from "~/models/type/create-edit/Edit/history/historyType";

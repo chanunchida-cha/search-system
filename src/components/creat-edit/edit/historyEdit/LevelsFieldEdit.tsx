@@ -1,29 +1,18 @@
-import { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
+import {  ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { observer } from "mobx-react-lite";
-import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { levels } from "~/models/const/degreeLevels";
 import { Degree } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 
-interface Props {}
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LevelsFieldEdit = observer(({}: Props) => {
-  //   const {
-  //     selectLevel,
-  //     listData,
-  //     setSelectedLevel,
-  //     addListData,
-  //     removeListData,
-  //     onChangeLavel,
-  //     onChangeInputDegree,
-  //   } = setHistoryDataStore;
+const LevelsFieldEdit = observer(() => {
+
 
   const {
     listLevel,
@@ -35,7 +24,7 @@ const LevelsFieldEdit = observer(({}: Props) => {
     onChangeInputDegree,
   } = setHistoryEdit;
 
-  const hidden = listLevel.length === 1;
+
 
     console.log("selec",listLevel);
 
@@ -92,7 +81,7 @@ const LevelsFieldEdit = observer(({}: Props) => {
                             }
                             value={levels}
                           >
-                            {({ selected, active }) => (
+                            {({ selected }) => (
                               <>
                                 <div className="flex items-center">
                                   <span

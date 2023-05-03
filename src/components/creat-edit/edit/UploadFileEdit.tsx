@@ -1,7 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
-import { object } from "zod";
-import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
-import index from "~/pages";
+import React, { ChangeEvent } from "react";
+
 import RemoveButton from "~/ui/create-edit/RemoveButton";
 
 type Props = {

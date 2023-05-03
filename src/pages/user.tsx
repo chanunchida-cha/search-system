@@ -1,9 +1,9 @@
 import React from 'react'
 import UserMain from '~/components/user/UserMain'
 
-type Props = {}
 
-function user({} : Props) {
+
+function user() {
     return (
         <>
           <UserMain />

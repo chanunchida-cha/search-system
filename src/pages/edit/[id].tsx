@@ -1,38 +1,29 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Swal from "sweetalert2";
-import FromCreate from "~/components/creat-edit/create/FromCreate";
-import FromCreateEdit from "~/components/creat-edit/create/FromCreate";
+
 import FormEdit from "~/components/creat-edit/edit/FormEdit";
-import FeedAssessment from "~/components/main-feed/FeedAssessment";
-import FeedDetail from "~/components/main-feed/FeedDetail";
+
 import { BodyProfile } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { BodyAssessment } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
-import { ResponseAssessment } from "~/models/type/create-edit/reposnseAssessmentType";
 import { ResponseHistory } from "~/models/type/create-edit/responseHistoryType";
-import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
-import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { setAssessmentEdit } from "~/store/edit/assessmentEdit/setAssessmentEdit";
 import { setFileEdit } from "~/store/edit/fileEdit/setFileEdit";
 import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 import { serviceEdit } from "~/store/edit/serviceEdit";
-import { feedStore } from "~/store/main-feed/FeedStore";
 
-type Props = {};
 
-const typeTab = [
-  {
-    type: "history",
-    i18n: "ประวัติผู้ทรงคุณวุฒิ",
-  },
-  {
-    type: "Assessment",
-    i18n: "ข้อมูลผลการประเมิน",
-  },
-];
 
-const Edit = observer(({ }: Props) => {
+
+
+
+const Edit = observer(() => {
   const router = useRouter();
   const {
     profile,
@@ -84,7 +75,7 @@ const Edit = observer(({ }: Props) => {
   };
 
 
-  const onSubmitEdit = async () => {
+  const onSubmitEdit =  () => {
 
     try {
       Swal.fire({
@@ -109,7 +100,7 @@ const Edit = observer(({ }: Props) => {
           console.log("bbb", bodyProfile);
     
           const bodyAsessment: BodyAssessment = {
-            profile_id: resResearcher.profile_id!,
+            profile_id: resResearcher.profile_id,
             assessment_start: assessmentResults.assessment_start,
             assessment_end: assessmentResults.assessment_end,
             project_year: researchPropasals.project_year,

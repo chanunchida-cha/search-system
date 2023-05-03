@@ -1,10 +1,4 @@
 import React, { ChangeEvent } from "react";
-import {
-  ProgressReports,
-  Reports,
-  ResearchArticles,
-  ResearchPropasals,
-} from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
 type Props = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;

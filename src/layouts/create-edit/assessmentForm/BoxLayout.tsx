@@ -1,5 +1,4 @@
 import React from "react";
-import UploadFileInForm from "~/components/creat-edit/create/assessmentForm/UploadFileInForm";
 
 type Props = {
   title: string;

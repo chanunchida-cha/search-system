@@ -27,17 +27,14 @@ function FeedDetailThirdBoxNewLineContent({
   textAreaPlaceholder,
   contentList,
 }: Props) {
-  const router = useRouter();
-  const edit = router.pathname.startsWith("/edit");
+
   return (
     <>
       <div className={`flex w-full flex-row ${mainClass}`}>
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className={`${mainTextClass} ml-3 text-black`}>{title}</p>
-            {edit && <span className="text-xl text-red-500" aria-hidden="true">
-            *
-          </span>}
+         
           </div>
         </div>
       </div>
@@ -52,9 +49,8 @@ function FeedDetailThirdBoxNewLineContent({
                     name="workExperienceSince"
                     id="workExperienceSince"
                     value={item.experience_start}
-                    className={`${
-                      edit ? "bg-white text-black" : "pointer-events-none"
-                    } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                    className={`pointer-events-none
+                     ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                     placeholder={firstPlaceHolder}
                   ></input>
                   <p className="ml-3  text-black">{firstConjunction}</p>
@@ -67,9 +63,8 @@ function FeedDetailThirdBoxNewLineContent({
                     name="workExperienceYear"
                     id="workExperienceYear"
                     value={item.experience_end}
-                    className={`${
-                      edit ? "bg-white text-black" : "pointer-events-none"
-                    } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                    className={`pointer-events-none
+                    ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                     placeholder={secondPlaceHolder}
                   ></input>
                   <p className="ml-3  text-black">{secondConjunction}</p>
@@ -82,9 +77,8 @@ function FeedDetailThirdBoxNewLineContent({
                     name="universitySection"
                     id="universitySection"
                     value={item.experience_university}
-                    className={`${
-                      edit ? "bg-white text-black" : "pointer-events-none"
-                    } ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                    className={`pointer-events-none
+                    ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                     placeholder={thirdPlaceHolder}
                   ></input>
                 </div>
@@ -98,9 +92,8 @@ function FeedDetailThirdBoxNewLineContent({
                     name="workingDetail"
                     id="workingDetail"
                     value={item.experience_remark}
-                    className={`${
-                      edit ? "bg-white text-black" : "pointer-events-none"
-                    } ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                    className={`pointer-events-none
+                     ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                     placeholder={textAreaPlaceholder}
                   ></input>
                 </div>
@@ -117,9 +110,8 @@ function FeedDetailThirdBoxNewLineContent({
                   type="text"
                   name="workExperienceSince"
                   id="workExperienceSince"
-                  className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
-                  } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                  className={`pointer-events-none
+                ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={firstPlaceHolder}
                 ></input>
                 <p className="ml-3  text-black">{firstConjunction}</p>
@@ -131,9 +123,8 @@ function FeedDetailThirdBoxNewLineContent({
                   type="text"
                   name="workExperienceYear"
                   id="workExperienceYear"
-                  className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
-                  } ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                  className={`pointer-events-none
+                  ml-3 block w-3/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={secondPlaceHolder}
                 ></input>
                 <p className="ml-3  text-black">{secondConjunction}</p>
@@ -145,9 +136,8 @@ function FeedDetailThirdBoxNewLineContent({
                   type="text"
                   name="universitySection"
                   id="universitySection"
-                  className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
-                  } ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
+                  className={`pointer-events-none
+                   ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={thirdPlaceHolder}
                 ></input>
               </div>
@@ -160,8 +150,7 @@ function FeedDetailThirdBoxNewLineContent({
                   type="text"
                   name="workingDetail"
                   id="workingDetail"
-                  className={`${
-                    edit ? "bg-white text-black" : "pointer-events-none"
+                  className={`pointer-events-none
                   } ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={textAreaPlaceholder}
                 ></input>

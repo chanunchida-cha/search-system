@@ -33,15 +33,15 @@ const SideBar = ({ children }: Props) => {
       backdrop: false
     }).then((result) => {
       if (result.isDismissed) {
-        cookies.removeAll()
-        route.push("/login")
+        cookies.removeAll();
         Swal.fire({
           icon: 'success',
           title: 'คุณออกจากระบบสำเร็จ',
           confirmButtonColor: '#0265ff',
           confirmButtonText: 'ตกลง',
           backdrop: false,
-        })
+        });
+        route.push("/login");
       }
     })
   }

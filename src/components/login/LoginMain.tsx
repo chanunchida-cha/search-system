@@ -1,28 +1,28 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { observer } from "mobx-react-lite";
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, FormEvent, RefAttributes } from "react";
 import { loginStore } from "~/store/login/LoginStore";
 import { useRouter } from "next/router";
+import { Turnstile, TurnstileProps } from '@marsidev/react-turnstile';
 
 type Props = {};
 
-const LoginMain = observer(({}: Props) => {
+const LoginMain = observer(({ }: Props) => {
   const route = useRouter();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [successCaptcha, setSuccessCaptcha] = useState(false);
+  const [disabled, setDisabled] = useState(true)
+  console.log("Check CaptCha : ",successCaptcha);
+  
+
+
 
   async function loginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     await loginStore.getLogin(userName, userPassword);
     route.push("/");
   }
-
-  // useEffect(() => {
-  //   const loginSubmit = async () => {
-  //     await loginStore.getLogin("test8229@gmail.com",bcrypt.hash("123456", 10))
-  //   };
-  //   loginSubmit();
-  // }, []);
 
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-gray-50 p-8">
@@ -32,7 +32,6 @@ const LoginMain = observer(({}: Props) => {
             ระบบสืบค้นข้อมูลวิจัย
           </p>
         </div>
-
         <form
           onSubmit={(e) => {
             loginSubmit(e);
@@ -82,12 +81,21 @@ const LoginMain = observer(({}: Props) => {
               maxLength={8}
               minLength={4}
             />
-          </div>
+            {/* <Turnstile siteKey='0x4AAAAAAAEZshiFaQQR1I5D' className="pt-3" /> */}
+            <Turnstile
+              siteKey="0x4AAAAAAAEZshiFaQQR1I5D"
+              className="pt-3"
+              onChange={ () => setSuccessCaptcha(true) }
+            />
 
+
+          </div>
           <div className="mb-10 flex justify-center">
             <button
               type="submit"
-              className="w-full rounded-3xl bg-blue-700 px-8 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:w-auto"
+              disabled={successCaptcha || disabled}
+              className={`bg-blue-700 rounded-full hover:bg-green-500 text-white font-bold py-2 px-4 w-full lg:w-36 lg:ml-2  focus:outline-none focus:shadow-outline 
+              ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               Sign in
             </button>

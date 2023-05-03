@@ -1,14 +1,12 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent} from "react";
 import AddAndRemoveButton from "../../../../ui/create-edit/AddAndRemoveButton";
-import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
+
 import { setHistoryEdit } from "~/store/edit/historyEdit/setHistoryEdit";
 
-// interface Props {}
+
 
 const SubjectExpertFieldEdit = observer(() => {
-  // const route = useRouter();
-
   const {
     listProgram,
     onChangeInputProgram,
@@ -18,8 +16,6 @@ const SubjectExpertFieldEdit = observer(() => {
 
   const hidden = listProgram.length === 1;
 
- console.log(listProgram);
- 
 
   return (
     <div className="list-data">

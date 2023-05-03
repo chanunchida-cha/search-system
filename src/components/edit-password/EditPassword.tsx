@@ -1,38 +1,37 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useRouter } from "next/router";
 import React from "react";
-import { useState, useEffect, SyntheticEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import DialogEditpass from "~/utils/dialog_editpass";
 
-type Props = {};
-
-function EditPassword({ }: Props) {
+function EditPassword() {
   const route = useRouter();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [oldpassword, setoldPassword] = useState("")
-  const [newpassword, setnewPassword] = useState("")
-  const [disabled, setDisabled] = useState(true)
-  console.log("oldpass",oldpassword);
-  console.log("newpass",newpassword);
- 
+  const [oldpassword, setoldPassword] = useState("");
+  const [newpassword, setnewPassword] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  console.log("oldpass", oldpassword);
+  console.log("newpass", newpassword);
 
   useEffect(() => {
-    console.log("go to na id", route.query.user_id)
-    console.log("go to na name", route.query.username)
-    console.log("go to na role", route.query.role)
+    console.log("go to na id", route.query.user_id);
+    console.log("go to na name", route.query.username);
+    console.log("go to na role", route.query.role);
   }, []);
 
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   const handleOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setoldPassword(e.target.value);
     if (e.target.value.length >= 4) {
-      setDisabled(true);}
+      setDisabled(true);
+    }
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,21 +44,29 @@ function EditPassword({ }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white rounded-lg">
-      <div className="w-full md:w-1/2 lg:w-3/4 xl:w-1/2 lg:h-full pt-10 pl-5 pr-5 lg:pt-10">/
-        <form className="bg-gray-100 shadow-md rounded-lg px-8 pt-20 pb-20 lg:pl-20 lg:pr-20 w-full " onSubmit={handleSubmit} >
+    <div className="flex h-screen flex-col items-center justify-center rounded-lg bg-white">
+      <div className="w-full pt-10 pl-5 pr-5 md:w-1/2 lg:h-full lg:w-3/4 lg:pt-10 xl:w-1/2">
+        /
+        <form
+          className="w-full rounded-lg bg-gray-100 px-8 pt-20 pb-20 shadow-md lg:pl-20 lg:pr-20 "
+          onSubmit={handleSubmit}
+        >
           <div className="mb-4 mr-4 ml-4">
-            <label className="block text-gray-700 font-bold mb-2">ชื่อผู้ใช้งาน</label>
+            <label className="mb-2 block font-bold text-gray-700">
+              ชื่อผู้ใช้งาน
+            </label>
             <input
-              className="pointer-events-none shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline pointer-events-none w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-400 shadow focus:outline-none"
               value={String(route.query.username) || "ไม่มีชื่อ"}
               autoComplete="off"
             />
           </div>
           <div className="mb-4 mr-4 ml-4">
-            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านเก่า <span className="text-red-500">*</span></label>
+            <label className="mb-2 block font-bold text-gray-700">
+              รหัสผ่านเก่า <span className="text-red-500">*</span>
+            </label>
             <input
-              className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               value={oldpassword}
               pattern="[a-z0-9]{1,15}"
               title="Password should be digits (0 to 9) or alphabets (a to z)."
@@ -72,9 +79,11 @@ function EditPassword({ }: Props) {
             />
           </div>
           <div className="mb-6 mr-4 ml-4">
-            <label className="block text-gray-700 font-bold mb-2">รหัสผ่านใหม่ <span className="text-red-500">*</span></label>
+            <label className="mb-2 block font-bold text-gray-700">
+              รหัสผ่านใหม่ <span className="text-red-500">*</span>
+            </label>
             <input
-              className="shadow rounded-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="focus:shadow-outline w-full appearance-none rounded-lg border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               value={newpassword}
               pattern="[a-z0-9]{1,15}"
               title="Password should be digits (0 to 9) or alphabets (a to z)."
@@ -86,7 +95,7 @@ function EditPassword({ }: Props) {
               required
             />
           </div>
-          <div className="flex flex-col items-center justify-between pt-8 mr-4 ml-4 lg:flex-row">
+          <div className="mr-4 ml-4 flex flex-col items-center justify-between pt-8 lg:flex-row">
             <DialogEditpass
               disabled={disabled}
               isOpen={dialogOpen}
@@ -97,11 +106,9 @@ function EditPassword({ }: Props) {
               new_password={newpassword}
             />
             <button
-              onClick={() => {
-                route.push("/user");
-              }}
+              onClick={() => route.push("/user") }
               type="submit"
-              className="bg-red-500 rounded-full hover:bg-gray-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full lg:w-36 lg:ml-2 mt-2 lg:mt-0"
+              className="focus:shadow-outline mt-2 w-full rounded-full bg-red-500 py-2 px-4 font-bold text-white hover:bg-gray-500 focus:outline-none lg:ml-2 lg:mt-0 lg:w-36"
             >
               ยกเลิก
             </button>
@@ -109,7 +116,6 @@ function EditPassword({ }: Props) {
         </form>
       </div>
     </div>
-
   );
 }
 

@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState, FormEvent } from "react";
 import AddUserExpertField from "./AddUserExpertField";
 import { observer } from "mobx-react-lite";
 import { registerStore } from "~/store/register/RegisterStore";
 
-type Props = {};
 
-const AddUserAccount = observer(({}: Props) => {
+const AddUserAccount = observer(() => {
   const [show, setShow] = useState(false);
   const [userName, setUserName] = useState("");
   async function userSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    handleClick();
+    void handleClick();
   }
 
   const handleClick = async () => {

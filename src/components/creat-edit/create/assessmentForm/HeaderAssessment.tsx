@@ -1,17 +1,11 @@
 import React, { ChangeEvent } from "react";
-import {
-  ProgressReports,
-  Reports,
-  ResearchArticles,
-  ResearchPropasals,
-} from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 
 type Props = {
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  year?: string;
-  title?: string;
-  name_year?:string
-  name_title?:string
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  year: string;
+  title: string;
+  name_year:string
+  name_title:string
 };
 
 
@@ -32,7 +26,7 @@ const HeaderAssessment = ({ onChange, year, title,name_year,name_title }: Props)
           name={name_year}
           id={name_year}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
           value={year}
         />
       </div>
@@ -50,7 +44,7 @@ const HeaderAssessment = ({ onChange, year, title,name_year,name_title }: Props)
           name={name_title}
           id={name_title}
           className=" w-full rounded-md border border-gray-300 px-2 py-1.5  text-gray-900  placeholder:text-gray-400 "
-          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange!(event)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event)}
           value={title}
         />
       </div>

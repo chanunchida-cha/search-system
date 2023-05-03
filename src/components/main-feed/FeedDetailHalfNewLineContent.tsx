@@ -45,8 +45,8 @@ function FeedDetailHalfNewLineContent({
         </div>
       </div>
       {contentList ? (
-        contentList.map((item) => (
-          <div className="mt-3 flex w-full flex-row">
+        contentList.map((item,index) => (
+          <div className="mt-3 flex w-full flex-row" key={index}>
             <div className="basis-6/12 ">
               <div className="flex w-full items-center">
                 {}

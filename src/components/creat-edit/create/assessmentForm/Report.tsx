@@ -7,9 +7,9 @@ import { observer } from "mobx-react-lite";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 
-type Props = {};
 
-const Report = observer(({}: Props) => {
+
+const Report = observer(() => {
   const { reports, setReports } = setStateAssessmentStore;
   const { reportFile, setReportFile, removeFileReport } = setStateFile;
   return (

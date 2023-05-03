@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { makeAutoObservable } from "mobx";
 import { ChangeEvent } from "react";
 import {

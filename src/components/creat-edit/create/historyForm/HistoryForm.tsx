@@ -1,26 +1,21 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import React, { ChangeEvent} from "react";
 import SubjectExpertField from "~/components/creat-edit/create/historyForm/SubjectExpertField";
 import ExpforResearch from "~/components/creat-edit/create/historyForm/ExpForResearch";
 import ExpForWork from "~/components/creat-edit/create/historyForm/ExpForWork";
 import LevelsField from "~/components/creat-edit/create/historyForm/LevelsField";
 import ResearchResult from "~/components/creat-edit/create/historyForm/ResearchResult";
-import SelectPrefix from "~/ui/create-edit/SelectPrefix";
 import SelectRanks from "~/ui/create-edit/SelectRanks";
 import UploadFileInForm from "../assessmentForm/UploadFileInForm";
 import { previewImage } from "~/utils/PreviewImage";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { observer } from "mobx-react-lite";
 import { setStateFile } from "~/store/create-edit/setStateFile";
-import { useRouter } from "next/router";
-import { feedStore } from "~/store/main-feed/FeedStore";
-import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
 
-interface Props {}
 
-const HistoryForm = observer(({}: Props) => {
-  const router = useRouter();
-  const edit = router.pathname.startsWith("/edit");
-  const { id } = router.query;
+
+
+const HistoryForm = observer(() => {
+
   const {
     profile,
     preview,
@@ -80,7 +75,7 @@ const HistoryForm = observer(({}: Props) => {
                         name="file-upload"
                         type="file"
                         className="sr-only"
-                        onChange={async (e) => {
+                        onChange={(e) => {
                           let file: File | undefined;
                           if (profile.profile instanceof File) {
                             file = profile.profile;
@@ -128,7 +123,7 @@ const HistoryForm = observer(({}: Props) => {
                           name="file-upload"
                           type="file"
                           className="sr-only"
-                          onChange={async (e) => {
+                          onChange={(e) => {
                             let file: File | undefined;
                             if (profile.profile instanceof File) {
                               file = profile.profile;

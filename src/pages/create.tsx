@@ -1,20 +1,24 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { observer } from "mobx-react-lite";
 import React from "react";
 import Swal from "sweetalert2";
 import FromCreate from "~/components/creat-edit/create/FromCreate";
 import { BodyProfile } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 import { BodyAssessment } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
-import { ResponseAssessment } from "~/models/type/create-edit/reposnseAssessmentType";
-import { ResponseHistory } from "~/models/type/create-edit/responseHistoryType";
+
+
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { serviceCreateEdit } from "~/store/create-edit/serviceCreateEdit";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 import { useRouter } from "next/router";
 
-type Props = {};
 
-const create = observer(({}: Props) => {
+const create = observer(() => {
   const router = useRouter();
   const {
     profile,
@@ -47,7 +51,6 @@ const create = observer(({}: Props) => {
     createDataResearcher,
     createDataAssessment,
     uploadFile,
-    responeseHistory,
   } = serviceCreateEdit;
 
   const bodyProfile: BodyProfile = {
@@ -67,7 +70,7 @@ const create = observer(({}: Props) => {
 
   const onSubmitCreate = async () => {
     try {
-      const resResearcher: ResponseHistory = await createDataResearcher(
+      const resResearcher = await createDataResearcher(
         bodyProfile
       );
       console.log("resercher", resResearcher);
@@ -86,7 +89,7 @@ const create = observer(({}: Props) => {
           
    
           const bodyAsessment: BodyAssessment = {
-            profile_id: resResearcher.profile_id!,
+            profile_id: resResearcher!.profile_id!,
             assessment_start: assessmentResults.assessment_start,
             assessment_end: assessmentResults.assessment_end,
             project_year: researchPropasals.project_year,
@@ -112,7 +115,7 @@ const create = observer(({}: Props) => {
             article_period: Boolean(researchArticles.article_period),
           };
     
-          const resAssessment: ResponseAssessment = await createDataAssessment(
+          const resAssessment = await createDataAssessment(
             bodyAsessment
           );
           console.log("assessment", resAssessment);
@@ -120,31 +123,31 @@ const create = observer(({}: Props) => {
           const fromdata = new FormData();
           fromdata.append("uploadfile", profile.profile!);
           fromdata.append("directory_file", profile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.profile_id!));
+          fromdata.append("directory_id", String(resAssessment!.profile_id!));
     
           //----------------------------------------------------------
           fromdata.append("uploadfile", historyFile.history_file!);
           fromdata.append("directory_file", historyFile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.profile_id!));
+          fromdata.append("directory_id", String(resAssessment!.profile_id!));
     
           //------------------------------------------------------
           fromdata.append("uploadfile", orderFile.order_file!);
           fromdata.append("directory_file", orderFile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.profile_id!));
+          fromdata.append("directory_id", String(resAssessment!.profile_id!));
     
           //------------------------------------------------------
           fromdata.append("uploadfile", accountFile.account_file!);
           fromdata.append("directory_file", accountFile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.profile_id!));
+          fromdata.append("directory_id", String(resAssessment!.profile_id!));
     
           //------------------------------------------------------
           fromdata.append("uploadfile", idCardFile.idCard_file!);
           fromdata.append("directory_file", idCardFile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.profile_id!));
+          fromdata.append("directory_id", String(resAssessment!.profile_id!));
           //------------------------------------------------------
           fromdata.append("uploadfile", assessmentFile.assessmentResults_file!);
           fromdata.append("directory_file", assessmentFile.directory_file!);
-          fromdata.append("directory_id", String(resAssessment.assessment_id!));
+          fromdata.append("directory_id", String(resAssessment!.assessment_id!));
           //------------------------------------------------------
           fromdata.append(
             "uploadfile",
@@ -153,27 +156,27 @@ const create = observer(({}: Props) => {
           fromdata.append("directory_file", researchPropasalsFile.directory_file!);
           fromdata.append(
             "directory_id",
-            String(resAssessment.Project.project_id!)
+            String(resAssessment!.Project.project_id!)
           );
           //------------------------------------------------------
           fromdata.append("uploadfile", progressReportFile.progressReport_file!);
           fromdata.append("directory_file", progressReportFile.directory_file);
           fromdata.append(
             "directory_id",
-            String(resAssessment.Progress.progress_id!)
+            String(resAssessment!.Progress.progress_id!)
           );
     
           //------------------------------------------------------
           fromdata.append("uploadfile", reportFile.reports_file!);
           fromdata.append("directory_file", reportFile.directory_file);
-          fromdata.append("directory_id", String(resAssessment.Report.report_id));
+          fromdata.append("directory_id", String(resAssessment!.Report.report_id));
           //------------------------------------------------------
           fromdata.append(
             "uploadfile",
             researchArticlesFile.researchArticles_file!
           );
           fromdata.append("directory_file", researchArticlesFile.directory_file);
-          fromdata.append("directory_id", String(resAssessment.Article.article_id));
+          fromdata.append("directory_id", String(resAssessment!.Article.article_id));
     
           await uploadFile(fromdata);
           Swal.fire({
@@ -183,7 +186,7 @@ const create = observer(({}: Props) => {
             confirmButtonText: 'ตกลง',
             backdrop: false,
           },);
-          router.push(`/${resResearcher.profile_id!}`)
+          router.push(`/${resResearcher!.profile_id!}`)
         }
       
       },);

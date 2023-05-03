@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React, { useEffect} from "react";
 import MainFeedSearchBar from "./MainFeedSearchBar";
 import MainFeedTable from "./MainFeedTable";
 import { feedStore } from "~/store/main-feed/FeedStore";
@@ -8,18 +9,17 @@ import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
 import Cookie from "cookie-universal";
 
-type Props = {};
 
-const MainFeed = observer(({}: Props) => {
+const MainFeed = observer(() => {
   const { loginData } = loginStore;
-  const { username } = loginData;
+
   const cookies = Cookie();
   // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
       await feedStore.getFeedList("", 1, 10, "");
     };
-    fetchFeedList();
+   void fetchFeedList();
     console.log("ROLE USER:", loginStore.loginData.role);
   }, []);
 
@@ -32,7 +32,7 @@ const MainFeed = observer(({}: Props) => {
         feedStore.searchContext
       );
     };
-    fetchFeedListRefresh();
+    void fetchFeedListRefresh();
   }, [feedStore.deleteUpdateStatus]);
 
   return (

@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import LoginMain from "~/components/login/LoginMain";
 
-interface Props {}
 
-function index({}: Props): ReactElement {
+
+function index() {
   return (
         <>
           <LoginMain />

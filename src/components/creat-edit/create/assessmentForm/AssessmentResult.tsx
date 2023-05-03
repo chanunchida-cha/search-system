@@ -1,14 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import UploadFileInForm from "./UploadFileInForm";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setStateAssessmentStore";
 import { observer } from "mobx-react-lite";
-import { AssessmentResults } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 
-type Props = {};
 
-const AssessmentResult = observer(({}: Props) => {
+
+const AssessmentResult = observer(() => {
   const { assessmentResults, setAssessmentResult } = setStateAssessmentStore;
 
   const { assessmentFile, setAssessmentFile, removeFileAssessmentResults } =

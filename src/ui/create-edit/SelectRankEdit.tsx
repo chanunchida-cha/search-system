@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { ChangeEvent, Fragment, useState,useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -29,7 +31,7 @@ console.log("rank",history.position_name);
     const fecthManage = async () => {
       await setHistoryDataStore.getPositions();
     };
-    fecthManage();
+    void fecthManage();
   }, []);
 
   return (

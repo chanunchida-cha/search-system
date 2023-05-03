@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -108,7 +112,7 @@ class FeedStore {
       // const response = await axios.get(`http://localhost:3000/api/feedApi`);
       if (searchType == "") {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/lists`,
           {
             page: page,
             limit: limit,
@@ -118,7 +122,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "researcher_name" || searchType == "ชื่อผู้จัดทำ") {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/lists`,
           {
             researcher_name: searchText,
             page: page,
@@ -129,7 +133,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "university" || searchType == "สังกัดมหาวิทยาลัย") {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/lists`,
           {
             university: searchText,
             page: page,
@@ -140,7 +144,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "explore_year" || searchType == "ปีที่ตีพิมพ์") {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/lists`,
           {
             explore_year: searchText,
             page: page,
@@ -151,7 +155,7 @@ class FeedStore {
         this.feedList = result.data
       } else if (searchType == "project_title" || searchType == "หัวข้องานวิจัย") {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/lists`,
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/lists`,
           {
             project_title: searchText,
             page: page,
@@ -177,12 +181,12 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile_detail/${researcher_id}`
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/profile_detail/${researcher_id}`
       );
       const result = response.data;
       this.feedDetail = result.data;
       console.log("feed detail store", this.feedDetail);
-      return result.data;
+      return result.data as FeedDetailResponse;
     } catch (err: any) {
       Swal.fire({
         icon: "error",
@@ -199,11 +203,11 @@ class FeedStore {
     console.log("USER ID VALUE :", researcher_id);
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/assessment_detail/${researcher_id}`
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/assessment_detail/${researcher_id}`
       );
       const result = response.data;
       this.assessmentDetail = result.data;
-      return result.data
+      return result.data as AssessmentDetailResponse
     } catch (err: any) {
       Swal.fire({
         icon: "error",
@@ -220,7 +224,7 @@ class FeedStore {
     let resultState = "";
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/v1/researcher/profile/${profile_id}`
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/v1/researcher/profile/${profile_id}`
       );
       Swal.fire(
         "ลบข้อมูลการจองเรียบร้อยแล้ว!",

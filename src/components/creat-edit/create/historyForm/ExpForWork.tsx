@@ -3,9 +3,9 @@ import React, { ChangeEvent, useState } from "react";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
 
-type Props = {};
 
-const ExpForWork = observer(({}: Props) => {
+
+const ExpForWork = observer(() => {
   const {
     listExperience,
     addListExperience,

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import BoxLayout from "~/layouts/create-edit/assessmentForm/BoxLayout";
 import HeaderAssessment from "./HeaderAssessment";
 import UploadFileInForm from "./UploadFileInForm";
@@ -7,9 +7,7 @@ import { setStateAssessmentStore } from "~/store/create-edit/assessmentForm/setS
 import { observer } from "mobx-react-lite";
 import { setStateFile } from "~/store/create-edit/setStateFile";
 
-type Props = {};
-
-const ProgressReport = observer(({}: Props) => {
+const ProgressReport = observer(() => {
   const { progressReports, setProgressReports } = setStateAssessmentStore;
 
   const {

@@ -1,12 +1,12 @@
 import React from "react";
-import { main_feed_heading } from "~/models/const/main-feed/main_feed_heading";
+
 import { search_feed_selecting } from "~/models/const/main-feed/search_feed_selecting";
 import FeedSearchBox from "~/ui/main-feed/FeedSearchBox";
 import FeedSearchTypeSelection from "~/ui/main-feed/FeedSearchTypeSelection";
 
-type Props = {};
 
-function MainFeedSearchBar({}: Props) {
+
+function MainFeedSearchBar() {
   return (
     <>
       {/* SearchBar and TypeSelection */}

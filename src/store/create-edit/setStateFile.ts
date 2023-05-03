@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import {
   AccountFile,
   HistoryFile,
@@ -37,7 +38,7 @@ class SetStateFile {
     researchArticles_file: null,
     directory_file: "article",
   };
-  preview: string = "";
+  preview:string = "";
 
   profile: Profile = {
     profile: null,

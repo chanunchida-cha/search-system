@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import { BodyProfile } from "~/models/type/create-edit/AssessmentForm/HistoryData";

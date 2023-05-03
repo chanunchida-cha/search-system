@@ -1,16 +1,11 @@
-import React, { ReactElement } from "react";
-import FeedbackInForm from "~/components/creat-edit/create/assessmentForm/FeedbackInForm";
-import UploadFileInForm from "~/components/creat-edit/create/assessmentForm/UploadFileInForm";
-import HeaderAssessment from "./HeaderAssessment";
+import React from "react";
 import AssessmentResult from "./AssessmentResult";
 import ResearchPropasal from "./ResearchPropasal";
 import ProgressReport from "./ProgressReport";
 import Report from "./Report";
 import ResearchArticle from "./ResearchArticle";
 
-interface Props {}
-
-function AssessmentForm({}: Props): ReactElement {
+function AssessmentForm() {
   return (
     <>
       <div className="mx-auto h-full bg-gray-100 px-10 pb-10">

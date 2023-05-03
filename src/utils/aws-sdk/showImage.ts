@@ -1,3 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 export const showImage = async (type:string,message:string,name:string,setS3url:(s3url:string)=>void) => {
   const AWS = require("aws-sdk");
   const bucketName = process.env.NEXT_PUBLIC_MINIO_BUCKET_NAME?.toString();
@@ -32,7 +41,7 @@ function (error: any, data: any) {
         console.log("data.Body");
         console.log(data.Body);
         if (type === "image") {
-          var asdasd = "data:image/jpeg;base64," + encode(data.Body);
+          let asdasd = "data:image/jpeg;base64," + encode(data.Body);
           setS3url(asdasd);
         } else {
           let link = document.createElement("a");

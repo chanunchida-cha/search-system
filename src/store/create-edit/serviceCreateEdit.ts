@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import { BodyProfile } from "~/models/type/create-edit/AssessmentForm/HistoryData";
@@ -27,18 +31,6 @@ class ServiceCreate {
     phone_number: "",
   };
 
-  // responseAssessment: ResponseAssessment = {
-  //   profile_id: 0,
-  //   assessment_id: 0,
-  //   assessment_start: "",
-  //   assessment_end: "",
-  //   assessment_file_name: "",
-  //   assessment_file_action: "",
-  //   project: [],
-  //   progress: [],
-  //   report: [],
-  //   article: [],
-  // };
   responseUploadFile: ResponseUploadFile = {
     data: [
       {
@@ -54,8 +46,9 @@ class ServiceCreate {
   async createDataResearcher(body: BodyProfile) {
     try {
       const res = await axios.post(`${url}/api/v1/researcher/profile`, body);
-
-      return res.data.data;
+      const rawResult = res.data;
+      const result = rawResult.data;
+      return result as ResponseHistory ;
     } catch (err) {
       console.log({ err });
     }
@@ -63,11 +56,12 @@ class ServiceCreate {
   async createDataAssessment(body: BodyAssessment) {
     try {
       const res = await axios.post(`${url}/api/v1/researcher/assessment`, body);
-      return res.data.data;
+      const rawResult = res.data
+      const result = rawResult.data
+      return result as ResponseAssessment
     } catch (err) {
       console.log({ err });
     }
-   
   }
 
   // for uploadfile have to change body is formdata ? maybe ?

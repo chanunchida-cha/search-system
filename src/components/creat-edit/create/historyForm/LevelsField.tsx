@@ -1,19 +1,18 @@
-import { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import AddAndRemoveButton from "~/ui/create-edit/AddAndRemoveButton";
+import {  ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { observer } from "mobx-react-lite";
 import { setHistoryDataStore } from "~/store/create-edit/historyForm/setHistoryDataStore";
 import { levels} from "~/models/const/degreeLevels";
 import { Degree } from "~/models/type/create-edit/AssessmentForm/HistoryData";
 
-interface Props {}
+
 
 function classNames(...classes: (false | null | undefined | string)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LevelsField = observer(({}: Props) => {
+const LevelsField = observer(() => {
   const {
     selectLevel,
     listData,
@@ -147,7 +146,7 @@ const LevelsField = observer(({}: Props) => {
           </div>
 
           <div className="grid grid-cols-12 gap-2">
-            {/* {listData.length - 1 === index && ( */}
+   
             <div className="col-span-6">
               <button
                 className="w-full rounded-md border border-blue-700 bg-blue-700 p-1.5  text-white placeholder:text-gray-400"
@@ -156,8 +155,7 @@ const LevelsField = observer(({}: Props) => {
                 +
               </button>
             </div>
-            {/* )} */}
-            {/* {listData.length > 1 && ( */}
+    
             <div className="col-span-6">
               <button
                 className="w-full rounded-md border border-red-500 bg-red-500 p-1.5 text-white placeholder:text-gray-400"
@@ -170,32 +168,7 @@ const LevelsField = observer(({}: Props) => {
             </div>
             {/* )} */}
           </div>
-          {/* <AddAndRemoveButton
-            onClickAdd={addListData}
-            onClickRemove={() => removeListData(index)}
-            hidden={hidden}
-          /> */}
 
-          {/* <div className="col-span-1">
-            {listData.length - 1 === index && (
-              <button
-                className="w-full rounded-md border border-blue-700 p-1.5 text-white  placeholder:text-gray-400 bg-blue-700"
-                onClick={handleAdd}
-              >
-                +
-              </button>
-            )}
-          </div>
-          <div className="col-span-1">
-            {listData.length > 1 && (
-              <button
-                className="w-full rounded-md border border-red-500 p-1.5 text-white  placeholder:text-gray-400 bg-red-500"
-                onClick={() => handleRemove(index)}
-              >
-                -
-              </button>
-            )}
-          </div> */}
         </div>
       ))}
     </div>

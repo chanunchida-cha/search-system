@@ -2,6 +2,7 @@ import React from "react";
 import FeedDetailOneLineContent from "./FeedDetailOneLineContent";
 import { AttachResponse } from "~/models/type/main-feed/typeAttach";
 
+
 type Props = {
   headTitle: string;
   firstTitle: string;

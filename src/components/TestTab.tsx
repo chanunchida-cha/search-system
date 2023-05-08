@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-key */
 import React, { ReactElement, useState } from "react";
-import AssessmentForm from "./creat-edit/assessmentForm/AssessmentForm";
-import HistoryForm from "./creat-edit/historyForm/HistoryForm";
+import AssessmentForm from "./creat-edit/create/assessmentForm/AssessmentForm";
+import HistoryForm from "./creat-edit/create/historyForm/HistoryForm";
 
-interface Props {}
+
 
 const typeTab = [
   {
@@ -15,7 +16,7 @@ const typeTab = [
   },
 ];
 
-function TestTab({}: Props): ReactElement {
+function TestTab(): ReactElement {
   const [type, settype] = useState("");
   return (
     <div>

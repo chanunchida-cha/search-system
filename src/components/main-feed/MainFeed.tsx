@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React, { useEffect} from "react";
 import MainFeedSearchBar from "./MainFeedSearchBar";
 import MainFeedTable from "./MainFeedTable";
 import { feedStore } from "~/store/main-feed/FeedStore";
@@ -6,25 +7,37 @@ import { observer } from "mobx-react-lite";
 import FeedAddNewUserButton from "~/ui/main-feed/FeedAddNewUserButton";
 import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
+import Cookie from "cookie-universal";
 
-type Props = {};
 
-const MainFeed = observer(({}: Props) => {
+const MainFeed = observer(() => {
   const { loginData } = loginStore;
-  const { username } = loginData;
+
+  const cookies = Cookie();
   // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
       await feedStore.getFeedList("", 1, 10, "");
     };
-    fetchFeedList();
+   void fetchFeedList();
     console.log("ROLE USER:", loginStore.loginData.role);
-    
   }, []);
+
+  useEffect(() => {
+    const fetchFeedListRefresh = async () => {
+      await feedStore.getFeedList(
+        feedStore.searchSelection,
+        feedStore.feedList.current_page,
+        10,
+        feedStore.searchContext
+      );
+    };
+    void fetchFeedListRefresh();
+  }, [feedStore.deleteUpdateStatus]);
 
   return (
     <>
-      <div className="align-center   p-5 rounded-3xl bg-white shadow-xl ">
+      <div className="align-center h-fit rounded-3xl bg-white p-5 shadow-xl">
         {/* Heading and AddUserData */}
         <div className="mb-2 grid h-12 grid-cols-1 md:grid md:grid-cols-2">
           <div className="flex items-center justify-start">
@@ -34,16 +47,23 @@ const MainFeed = observer(({}: Props) => {
           </div>
           <div className="flex items-center justify-start md:justify-end ">
             <div className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5">
-              <Link href={`/create`}>
-                <FeedAddNewUserButton />
-              </Link>
+              {cookies.get("role") === "ADMIN" ? (
+                <Link href={`/create`}>
+                  <FeedAddNewUserButton />
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>
         {/* END OF Heading and AddUserData */}
 
         <MainFeedSearchBar />
-        <MainFeedTable feedList={feedStore.feedList} role={loginStore.loginData.role} />
+        <MainFeedTable
+          feedList={feedStore.feedList}
+          role={cookies.get("role")}
+        />
       </div>
     </>
   );

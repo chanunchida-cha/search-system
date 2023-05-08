@@ -1,67 +1,87 @@
+
+
 export type HistoryDataResults = {
-  firstName: string;
-  lastName: string;
-  positionName: string;
+  first_name: string;
+  last_name: string;
+  position_name: string;
   university: string;
-  addressHome: string;
-  addressWork: string;
+  address_home: string;
+  address_work: string;
   email: string;
-  phoneNumber: string;
- 
+  phone_number: string;
 };
 
 export type Degree = {
-  degreeType: string;
-
-  degreeProgram: string;
-  degreeUniversity: string;
+  degree_type: string;
+  degree_program: string;
+  degree_university: string;
 };
 
 export type Program = {
-  programName: string;
+  program_name: string;
 };
 
 export type Experience = {
-  experienceType: string;
-  experienceStart: string;
-  experienceEnd: string;
-  experienceUniversity: string;
-  experienceRemark: string;
+  experience_type: string;
+  experience_start: string;
+  experience_end: string;
+  experience_university: string;
+  experience_remark: string;
 };
 
 export type ExpResearch = {
-  experienceType: string;
-  experienceStart: string;
-  experienceEnd: string;
-  experienceUniversity: string;
-  experienceRemark: string;
+  experience_type: string;
+  experience_start: string;
+  experience_end: string;
+  experience_university: string;
+  experience_remark: string;
 };
 
 export type Explore = {
-  exploreName: string;
-  exploreYear: string;
-  exploreDetail: string;
+  explore_name: string;
+  explore_year: string;
+  explore_detail: string;
 };
 
 export type Profile = {
-  profile: File | null;
+  profile: File | string | null;
   directory_file: string;
 };
 
 export type HistoryFile = {
-  history_file: File | null;
+  history_file: File|string | null;
   directory_file: string;
 };
 
 export type OrderFile = {
-  order_file: File | null;
+  order_file: File| string | null;
   directory_file: string;
 };
 export type AccountFile = {
-  account_file: File | null;
+  account_file: File| string | null;
   directory_file: string;
 };
 export type IdCardFile = {
-  idCard_file: File | null;
+  idCard_file: File| string | null;
   directory_file: string;
+};
+
+export type Positions = {
+  position_id: number;
+  position_name: string;
+};
+
+export type BodyProfile = {
+  first_name: string;
+  last_name: string;
+  position_name: string;
+  degree: Degree[];
+  program: Program[];
+  university: string;
+  experience: Experience[];
+  explore: Explore[];
+  address_home: string;
+  address_work: string;
+  email: string;
+  phone_number: string;
 };

@@ -1,74 +1,88 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
-import { levels,  } from "~/models/const/degreeLevels";
+import { levels } from "~/models/const/degreeLevels";
 import {
   Degree,
   Experience,
   Explore,
   ExpResearch,
   HistoryDataResults,
-  Profile,
+  Positions,
   Program,
 } from "~/models/type/create-edit/AssessmentForm/HistoryData";
-import { ranks } from "~/models/const/createEdit/rankLevels";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 class SetHistoryDataStore {
   historyDataResults: HistoryDataResults = {
-    firstName: "",
-    lastName: "",
-    positionName: "",
+    first_name: "",
+    last_name: "",
+    position_name: "",
     university: "",
-    addressHome: "",
-    addressWork: "",
+    address_home: "",
+    address_work: "",
     email: "",
-    phoneNumber: "",
+    phone_number: "",
   };
 
   listData: Degree[] = [
     {
-      degreeType: levels[0]?.key!,
-      degreeProgram: "",
-      degreeUniversity: "",
+      degree_type: levels[0]?.key!,
+      degree_program: "",
+      degree_university: "",
     },
   ];
 
   listProgram: Program[] = [
     {
-      programName: "",
+      program_name: "",
     },
   ];
 
   listExperience: Experience[] = [
     {
-      experienceType: "work",
-      experienceStart: "",
-      experienceEnd: "",
-      experienceUniversity: "",
-      experienceRemark: "",
+      experience_type: "work",
+      experience_start: "",
+      experience_end: "",
+      experience_university: "",
+      experience_remark: "",
     },
   ];
 
   listExpReserach: ExpResearch[] = [
     {
-      experienceType: "research",
-      experienceStart: "",
-      experienceEnd: "",
-      experienceUniversity: "",
-      experienceRemark: "",
+      experience_type: "research",
+      experience_start: "",
+      experience_end: "",
+      experience_university: "",
+      experience_remark: "",
     },
   ];
 
   listExplore: Explore[] = [
     {
-      exploreDetail: "",
-      exploreName: "",
-      exploreYear: "",
+      explore_detail: "",
+      explore_name: "",
+      explore_year: "",
     },
   ];
 
-  selectLevel: {key:string,i18n:string} = levels[0]!;
+  positions: Positions[] = [
+    {
+      position_id: 0,
+      position_name: "",
+    },
+  ];
 
-  selectRanks: string = ranks[0]!;
+  selectLevel: { key: string; i18n: string } = levels[0]!;
+
+  // selectRanks: { position_id: number; position_name: string } = positions[0]!;
 
   constructor() {
     makeAutoObservable(this);
@@ -77,6 +91,38 @@ class SetHistoryDataStore {
   // setPositionNameEng = (positionName : string) =>{
   //   this.historyDataResults.positionName = positionName
   // }
+
+  validationHistoryData = Object.keys(this.historyDataResults).length !== 0;
+
+  validationExplore = this.listExplore.every(
+    (item) => item.explore_detail && item.explore_name && item.explore_year
+  );
+
+  validationExpReserach = this.listExpReserach.every(
+    (item) =>
+      item.experience_type &&
+      item.experience_start &&
+      item.experience_end &&
+      item.experience_university &&
+      item.experience_remark
+  );
+
+  validationExperience = this.listExperience.every(
+    (item) =>
+      item.experience_type &&
+      item.experience_start &&
+      item.experience_end &&
+      item.experience_university &&
+      item.experience_remark
+  );
+
+  validationProgram = this.listProgram.every((item) => item.program_name);
+
+  validationDegree = this.listData.every(
+    (item) => item.degree_type && item.degree_program && item.degree_university
+  );
+
+ 
 
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
@@ -87,9 +133,9 @@ class SetHistoryDataStore {
     this.listExplore = [
       ...this.listExplore,
       {
-        exploreDetail: "",
-        exploreName: "",
-        exploreYear: "",
+        explore_detail: "",
+        explore_name: "",
+        explore_year: "",
       },
     ];
   };
@@ -98,27 +144,27 @@ class SetHistoryDataStore {
     this.listData = [
       ...this.listData,
       {
-        degreeType: levels[0]?.key!,
+        degree_type: levels[0]?.key!,
 
-        degreeProgram: "",
-        degreeUniversity: "",
+        degree_program: "",
+        degree_university: "",
       },
     ];
   };
 
   addListProgram = () => {
-    this.listProgram = [...this.listProgram, { programName: "" }];
+    this.listProgram = [...this.listProgram, { program_name: "" }];
   };
 
   addListExperience = () => {
     this.listExperience = [
       ...this.listExperience,
       {
-        experienceType: "",
-        experienceStart: "",
-        experienceEnd: "",
-        experienceUniversity: "",
-        experienceRemark: "",
+        experience_type: "",
+        experience_start: "",
+        experience_end: "",
+        experience_university: "",
+        experience_remark: "",
       },
     ];
   };
@@ -127,11 +173,11 @@ class SetHistoryDataStore {
     this.listExpReserach = [
       ...this.listExpReserach,
       {
-        experienceType: "",
-        experienceStart: "",
-        experienceEnd: "",
-        experienceUniversity: "",
-        experienceRemark: "",
+        experience_type: "",
+        experience_start: "",
+        experience_end: "",
+        experience_university: "",
+        experience_remark: "",
       },
     ];
   };
@@ -166,12 +212,12 @@ class SetHistoryDataStore {
     this.listExplore = newListData;
   };
 
-  setSelectedLevel = (level:{key:string,i18n:string}) => {
+  setSelectedLevel = (level: { key: string; i18n: string }) => {
     this.selectLevel = level;
   };
 
   setSelectedRank = (ranks: string) => {
-    this.selectRanks = ranks;
+    this.historyDataResults.position_name = ranks;
   };
 
   onChangeLavel = (index: number, selectedLevel: string) => {
@@ -179,7 +225,7 @@ class SetHistoryDataStore {
       if (index === id) {
         return {
           ...inputField,
-          degreeTypeTH: selectedLevel,
+          degree_type: selectedLevel,
         };
       }
       return inputField;
@@ -246,6 +292,28 @@ class SetHistoryDataStore {
     ] = event.target.value;
     this.listExplore = newInputFields;
   };
+
+  async getPositions() {
+    try {
+      const response = await axios.get(
+        `https://sit-api.uap.universityapp.net/research/researcher/positions`
+      );
+      const rawResult = response.data;
+      const result:Positions[] = rawResult.data;
+
+      this.positions = result;
+      this.historyDataResults.position_name = this.positions[0]?.position_name!;
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "CANNOT SERVICE 404 ERROR",
+        text: err.errorMessage,
+      });
+
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 export const setHistoryDataStore = new SetHistoryDataStore();

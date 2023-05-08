@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { observer } from "mobx-react-lite";
 import { sidebarAdmin, sidebarUser } from "~/models/const/Sidebar/sidebar";
 import Link from "next/link";
 import Cookie from "cookie-universal";
@@ -13,38 +12,47 @@ type Props = {
 const SideBar = ({ children }: Props) => {
   const route = useRouter();
   const cookies = Cookie();
-  const getrole = cookies.get("role");
+  const getrole = cookies.get("role") as string;
+  const getUsername = cookies.get("username") as string;
   const [role, setRole] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     setRole(getrole);
   }, [getrole]);
+  useEffect(() => {
+    setUsername(getUsername);
+  }, [getUsername]);
 
-  const logout = () =>{
+  const logout = () => {
     Swal.fire({
-      title: 'คุณแน่ใจว่าต้องการที่จะออกจากระบบ?',
+      title: "คุณแน่ใจว่าต้องการที่จะออกจากระบบ?",
       text: "โปรดตรวจสอบก่อนการยืนยัน",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#828282',
-      cancelButtonColor: '#0265ff',
-      confirmButtonText: 'ยกเลิก',
+      confirmButtonColor: "#828282",
+      cancelButtonColor: "#0265ff",
+      confirmButtonText: "ยกเลิก",
       cancelButtonText: "ยืนยัน",
-      backdrop: false
-    }).then((result) => {
-      if (result.isDismissed) {
-        cookies.removeAll()
-        route.push("/login")
-        Swal.fire({
-          icon: 'success',
-          title: 'คุณออกจากระบบสำเร็จ',
-          confirmButtonColor: '#0265ff',
-          confirmButtonText: 'ตกลง',
-          backdrop: false,
-        })
-      }
+      backdrop: false,
     })
-  }
+      .then(async (result) => {
+        if (result.isDismissed) {
+          cookies.removeAll();
+          await route.push("/login");
+          await Swal.fire({
+            icon: "success",
+            title: "คุณออกจากระบบสำเร็จ",
+            confirmButtonColor: "#0265ff",
+            confirmButtonText: "ตกลง",
+            backdrop: false,
+          });
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
 
   return (
     <div className="flex h-screen flex-auto flex-shrink-0 flex-col bg-white text-black antialiased dark:bg-gray-700 dark:text-white">
@@ -56,7 +64,7 @@ const SideBar = ({ children }: Props) => {
           </span>
         </div>
         <div className="fixed-top flex h-14 w-full items-center justify-end bg-white pr-10 text-base">
-          yok park
+          {username.split("@")[0]}
         </div>
       </div>
       <div className="sidebar fixed top-14 left-0 z-10 flex h-full w-14 flex-col border-none bg-white text-black transition-all duration-300 hover:w-64 dark:bg-gray-900 md:w-64">
@@ -78,8 +86,8 @@ const SideBar = ({ children }: Props) => {
                       className={`text-white-600 text-white-800 relative flex h-11 flex-row items-center  border-l-4 border-transparent pr-6 ${
                         header.type !== "head"
                           ? "hover:border-[#0066FF] hover:bg-blue-200"
-                          : null
-                      }  focus:outline-none`}
+                          : ""
+                      } focus:outline-none`}
                     >
                       <span className="ml-4 inline-flex items-center justify-center">
                         {header.icon}
@@ -103,7 +111,7 @@ const SideBar = ({ children }: Props) => {
                 logout();
               }}
               className={
-                "text-white-600 cursor-pointer text-white-800 relative flex h-11 flex-row items-center  border-l-4 border-transparent pr-6 text-black hover:border-[#0066FF] hover:bg-blue-200"
+                "text-white-600 text-white-800 relative flex h-11 cursor-pointer flex-row items-center  border-l-4 border-transparent pr-6 text-black hover:border-[#0066FF] hover:bg-blue-200"
               }
             >
               <span className="ml-4 inline-flex items-center justify-center">

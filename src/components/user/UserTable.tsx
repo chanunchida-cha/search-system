@@ -1,11 +1,12 @@
-import { type } from "os";
+/* eslint-disable react/jsx-key */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
 import { manage_heading } from "~/models/const/user-manage/manage_heading";
 import ManageEditButton from "~/ui/user-manage/ManageEditButton";
 import { UserManageResponse } from "~/models/type/user/typeUser";
-import { ContentUserManageResponse } from "~/models/type/user/typeContent";
+
 import { userStore } from "~/store/user/UserStore";
 
 type Props = {
@@ -39,7 +40,7 @@ function UserTable({ userManageList }: Props) {
           </thead>
           <tbody className="divide-y divide-gray-50">
             {userManageList?.content?.map((item, index) => (
-              <tr className="bg-white">
+              <tr className="bg-white" key={index}>
                 <td className="p-3 text-center text-sm text-gray-700">
                   {userManageList.current_page > 1
                     ? index + 1 + Number(userManageList.current_page - 1) * 10

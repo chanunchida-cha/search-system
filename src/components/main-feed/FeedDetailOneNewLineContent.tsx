@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 type Props = {
@@ -15,12 +16,14 @@ function FeedDetailOneNewLineContent({
   mainTextClass,
   textContent,
 }: Props) {
+
   return (
     <>
       <div className={`${mainClass} flex w-full flex-row`}>
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className={`ml-3 text-black ${mainTextClass}`}>{title}</p>
+           
           </div>
         </div>
       </div>
@@ -32,7 +35,8 @@ function FeedDetailOneNewLineContent({
               name="universityUnder"
               id="universityUnder"
               value={textContent}
-              className="pointer-events-none ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+              className={`pointer-events-none
+              ml-3 block w-full rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 `}
               placeholder={placeHolder}
             ></input>
           </div>

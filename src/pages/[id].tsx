@@ -1,13 +1,12 @@
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
-import React, { type ReactElement, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FeedAssessment from "~/components/main-feed/FeedAssessment";
 import FeedDetail from "~/components/main-feed/FeedDetail";
 import { feedStore } from "~/store/main-feed/FeedStore";
 import { FeedDetailResponse } from "~/models/type/main-feed/typeFeedDetail";
-import { AssessmentDetailResponse } from "~/models/type/main-feed/typeAssessmenDetail";
 
-type Props = {};
+
 
 const typeTab = [
   {
@@ -19,7 +18,7 @@ const typeTab = [
     i18n: "ข้อมูลผลการประเมิน",
   },
 ];
-const NameFeed = observer(({}: Props) => {
+const NameFeed = observer(() => {
   const router = useRouter();
   const { id } = router.query;
   const [type, settype] = useState("");
@@ -27,13 +26,7 @@ const NameFeed = observer(({}: Props) => {
     settype("history");
   };
 
-  const fetchFeedDetail = async (id: number) => {
-    await feedStore.getFeedDetail(id);
-  };
 
-  const fetchAssessmentDetail = async (id: number) => {
-    await feedStore.getAssessmentDetail(id);
-  };
 
   const setPathImage = (data: FeedDetailResponse) => {
     let pathFile = "";
@@ -72,11 +65,17 @@ const NameFeed = observer(({}: Props) => {
 
   useEffect(() => {
     updateToggle();
-    fetchFeedDetail(Number(id));
-    fetchAssessmentDetail(Number(id));
-    console.log("FEED:", feedStore.feedDetail);
-    console.log("ASSESSMENT:", feedStore.assessmentDetail);
-  }, []);
+    const getDetail = async () => {
+      await feedStore.getFeedDetail(Number(id));
+    };
+   void getDetail();
+  }, [id]);
+  useEffect(() => {
+    const getAssessmentDetail = async () => {
+      await feedStore.getAssessmentDetail(Number(id));
+    };
+    void getAssessmentDetail();
+  }, [id]);
 
   return (
     <>

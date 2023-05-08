@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { ProgramResponse } from "~/models/type/main-feed/typeProgram";
 
@@ -16,18 +17,23 @@ function FeedDetailMultiNewLineContent({
   mainClass,
   contentList,
 }: Props) {
+  const router = useRouter();
+  const edit = router.pathname.startsWith("/edit");
   return (
     <>
       <div className={`${mainClass} flex w-full flex-row`}>
         <div className="w-full">
           <div className="flex w-full items-center">
             <p className={`ml-3  text-black ${textClass}`}>{title}</p>
+            {edit && <span className="text-xl text-red-500" aria-hidden="true">
+            *
+          </span>}
           </div>
         </div>
       </div>
       {contentList ? (
-        contentList.map((item) => (
-          <div className="mt-3 flex w-full flex-row">
+        contentList.map((item,index) => (
+          <div className="mt-3 flex w-full flex-row" key={index}>
             <div className="w-full ">
               <div className="flex w-full items-center">
                 <input
@@ -35,7 +41,9 @@ function FeedDetailMultiNewLineContent({
                   name="expertMajor"
                   id="expertMajor"
                   value={item.program_name}
-                  className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                  className={`${
+                    edit ? "bg-white text-black" : "pointer-events-none"
+                  } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700`}
                   placeholder={placeHolder}
                 ></input>
               </div>
@@ -50,7 +58,9 @@ function FeedDetailMultiNewLineContent({
                 type="text"
                 name="expertMajor"
                 id="expertMajor"
-                className="pointer-events-none ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 "
+                className={`${
+                  edit ? "bg-white text-black" : "pointer-events-none"
+                } ml-3 block w-2/4 rounded border border-gray-200 bg-gray-100 py-1 px-3 text-gray-700 `}
                 placeholder={placeHolder}
               ></input>
             </div>

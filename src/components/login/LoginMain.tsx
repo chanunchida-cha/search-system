@@ -1,28 +1,24 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { observer } from "mobx-react-lite";
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { loginStore } from "~/store/login/LoginStore";
 import { useRouter } from "next/router";
 
-type Props = {};
-
-const LoginMain = observer(({}: Props) => {
+const LoginMain = observer(() => {
   const route = useRouter();
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   async function loginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await loginStore.getLogin(userName, userPassword);
-    route.push("/");
+    try {
+      await loginStore.getLogin(userName, userPassword);
+      route.push("/");
+    } catch (error) {
+      throw error;
+    }
   }
-
-  // useEffect(() => {
-  //   const loginSubmit = async () => {
-  //     await loginStore.getLogin("test8229@gmail.com",bcrypt.hash("123456", 10))
-  //   };
-  //   loginSubmit();
-  // }, []);
 
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-gray-50 p-8">
@@ -35,6 +31,7 @@ const LoginMain = observer(({}: Props) => {
 
         <form
           onSubmit={(e) => {
+            e.preventDefault();
             loginSubmit(e);
           }}
           className="mx-2 mt-5 md:mx-10"

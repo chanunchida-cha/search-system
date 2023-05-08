@@ -2,7 +2,6 @@ import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
 import {
   AssessmentResults,
-  AssessmentResultsFile,
 } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ResearchPropasals } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
 import { ProgressReports } from "~/models/type/create-edit/AssessmentForm/typeDataAssessment";
@@ -11,8 +10,8 @@ import { ResearchArticles } from "~/models/type/create-edit/AssessmentForm/typeD
 
 class SetStateAssessmentStore {
   assessmentResults: AssessmentResults = {
-    from: "",
-    to: "",
+    assessment_start: "",
+    assessment_end: "",
   };
 
   researchPropasals: ResearchPropasals = {
@@ -52,6 +51,16 @@ class SetStateAssessmentStore {
     makeAutoObservable(this);
   }
 
+  validationAssessment = Object.keys(this.assessmentResults).length !== 0
+
+  validationResearchPropasals = Object.keys(this.researchPropasals).length !== 0
+  
+  validationProgressReports = Object.keys(this.progressReports).length !== 0
+
+  validationReports= Object.keys(this.reports).length !== 0
+
+  validationResearchArticles = Object.keys(this.researchArticles).length !== 0
+
   setAssessmentResult = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -63,7 +72,7 @@ class SetStateAssessmentStore {
   };
 
   setResearchPropasals = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, files } = event.target;
+    const { name, value, } = event.target;
 
     const newResearchPropasals = {
       ...this.researchPropasals,
@@ -73,7 +82,7 @@ class SetStateAssessmentStore {
   };
 
   setProgressReports = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, files } = event.target;
+    const { name, value, } = event.target;
 
     const newProgressReports = {
       ...this.progressReports,
@@ -83,7 +92,7 @@ class SetStateAssessmentStore {
   };
 
   setReports = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, files } = event.target;
+    const { name, value, } = event.target;
 
     const newReports = {
       ...this.reports,
@@ -93,7 +102,7 @@ class SetStateAssessmentStore {
   };
 
   setResearchArticles = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, files } = event.target;
+    const { name, value, } = event.target;
 
     const newResearchArticles = {
       ...this.researchArticles,

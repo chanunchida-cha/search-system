@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { ChangeEvent } from "react";
 import { observer } from "mobx-react-lite";
 import { feedStore } from "~/store/main-feed/FeedStore";

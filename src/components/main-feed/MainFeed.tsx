@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import MainFeedSearchBar from "./MainFeedSearchBar";
 import MainFeedTable from "./MainFeedTable";
 import { feedStore } from "~/store/main-feed/FeedStore";
@@ -9,17 +9,15 @@ import Link from "next/link";
 import { loginStore } from "~/store/login/LoginStore";
 import Cookie from "cookie-universal";
 
-
 const MainFeed = observer(() => {
   const { loginData } = loginStore;
-
   const cookies = Cookie();
   // ----- useEffect ------
   useEffect(() => {
     const fetchFeedList = async () => {
       await feedStore.getFeedList("", 1, 10, "");
     };
-   void fetchFeedList();
+    void fetchFeedList();
     console.log("ROLE USER:", loginStore.loginData.role);
   }, []);
 
@@ -46,14 +44,13 @@ const MainFeed = observer(() => {
             </h1>
           </div>
           <div className="flex items-center justify-start md:justify-end ">
-            <div className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5">
-              {cookies.get("role") === "ADMIN" ? (
-                <Link href={`/create`}>
-                  <FeedAddNewUserButton />
-                </Link>
-              ) : (
-                <></>
-              )}
+            <div
+              hidden={cookies.get("role") === "ADMIN" ? false : true}
+              className="mt-0  w-auto md:w-full lg:w-4/5 xl:w-3/5"
+            >
+              <Link href={`/create`}>
+                <FeedAddNewUserButton />
+              </Link>
             </div>
           </div>
         </div>

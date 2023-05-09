@@ -52,15 +52,39 @@ class SetStateAssessmentStore {
     makeAutoObservable(this);
   }
 
-  validationAssessment = Object.keys(this.assessmentResults).length !== 0
+  validationAssessment = () => {
+    if (
+      (this.assessmentResults.assessment_end &&
+        this.assessmentResults.assessment_start) !== "" &&
+      (this.researchPropasals.project_estimate &&
+        this.researchPropasals.project_period &&
+        this.researchPropasals.project_point &&
+        this.researchPropasals.project_recommend &&
+        this.researchPropasals.project_title &&
+        this.researchPropasals.project_year) !== "" &&
+      (this.progressReports.progress_estimate &&
+        this.progressReports.progress_period &&
+        this.progressReports.progress_recommend &&
+        this.progressReports.progress_title &&
+        this.progressReports.progress_year) !== "" &&
+      (this.reports.report_estimate &&
+        this.reports.report_period &&
+        this.reports.report_recommend &&
+        this.reports.report_title &&
+        this.reports.report_year) !== "" &&
+      (this.researchArticles.article_estimate &&
+        this.researchArticles.article_period &&
+        this.researchArticles.article_recommend &&
+        this.researchArticles.article_title &&
+        this.researchArticles.article_year) !== ""
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
-  validationResearchPropasals = Object.keys(this.researchPropasals).length !== 0
-  
-  validationProgressReports = Object.keys(this.progressReports).length !== 0
-
-  validationReports= Object.keys(this.reports).length !== 0
-
-  validationResearchArticles = Object.keys(this.researchArticles).length !== 0
+  validationResearchArticles = Object.keys(this.researchArticles).length !== 0;
 
   setAssessmentResult = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;

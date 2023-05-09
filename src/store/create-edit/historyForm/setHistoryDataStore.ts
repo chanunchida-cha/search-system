@@ -1,4 +1,3 @@
-
 import { ChangeEvent } from "react";
 import { makeAutoObservable } from "mobx";
 import { levels } from "~/models/const/degreeLevels";
@@ -89,41 +88,50 @@ class SetHistoryDataStore {
   //   this.historyDataResults.positionName = positionName
   // }
 
-  validationHistoryData = Object.keys(this.historyDataResults).length !== 0;
-
-  validationExplore = this.listExplore.every(
-    (item) => item.explore_detail && item.explore_name && item.explore_year
-  );
-
-  validationExpReserach = this.listExpReserach.every(
-    (item) =>
-      item.experience_type &&
-      item.experience_start &&
-      item.experience_end &&
-      item.experience_university &&
-      item.experience_remark
-  );
-
-  validationExperience = this.listExperience.every(
-    (item) =>
-      item.experience_type &&
-      item.experience_start &&
-      item.experience_end &&
-      item.experience_university &&
-      item.experience_remark
-  );
-
-  validationProgram = this.listProgram.every((item) => item.program_name);
-
-  validationDegree = this.listData.every(
-    (item) => item.degree_type && item.degree_program && item.degree_university
-  );
-
- 
-
   setAssessmentResult = (historyDataResults: HistoryDataResults) => {
     this.historyDataResults = historyDataResults;
     console.log(this.historyDataResults);
+  };
+
+  validationHistory = () => {
+    if (
+      (this.historyDataResults.first_name &&
+        this.historyDataResults.last_name &&
+        this.historyDataResults.position_name &&
+        this.historyDataResults.university &&
+        this.historyDataResults.address_home &&
+        this.historyDataResults.address_work &&
+        this.historyDataResults.email &&
+        this.historyDataResults.phone_number) !== "" &&
+      this.listData.every(
+        (item) =>
+          item.degree_type && item.degree_program && item.degree_university
+      ) &&
+      this.listProgram.every((item) => item.program_name) &&
+      this.listExplore.every(
+        (item) => item.explore_detail && item.explore_name && item.explore_year
+      ) &&
+      this.listExpReserach.every(
+        (item) =>
+          item.experience_type &&
+          item.experience_start &&
+          item.experience_end &&
+          item.experience_university &&
+          item.experience_remark
+      ) &&
+      this.listExperience.every(
+        (item) =>
+          item.experience_type &&
+          item.experience_start &&
+          item.experience_end &&
+          item.experience_university &&
+          item.experience_remark
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   addListExplore = () => {

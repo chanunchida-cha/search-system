@@ -25,24 +25,8 @@ const typeTab = [
 
 const FromCreate = observer(({ onSubmitCreate }: Props) => {
   const { validationFile } = setStateFile;
-  const {
-    validationAssessment,
-    validationReports,
-    validationProgressReports,
-    validationResearchArticles,
-    validationResearchPropasals,
-  } = setStateAssessmentStore;
-
-  const {
-    validationDegree,
-    validationExpReserach,
-    validationExperience,
-    validationExplore,
-    validationHistoryData,
-    validationProgram,
-  } = setHistoryDataStore;
-
-  console.log(validationDegree);
+  const { validationAssessment } = setStateAssessmentStore;
+  const { validationHistory } = setHistoryDataStore;
 
   const [type, settype] = useState("history");
   return (
@@ -97,22 +81,13 @@ const FromCreate = observer(({ onSubmitCreate }: Props) => {
                 onClick={() => onSubmitCreate!()}
                 hidden={type === "history"}
                 type="submit"
-                // disabled={
-                //   !(
-                //     validationAssessment &&
-                //     validationDegree &&
-                //     validationExpReserach &&
-                //     validationExperience &&
-                //     validationExplore &&
-                //     validationHistoryData &&
-                //     validationProgram &&
-                //     validationProgressReports &&
-                //     validationReports &&
-                //     validationResearchArticles &&
-                //     validationResearchPropasals &&
-                //     validationFile
-                //   )
-                // }
+                disabled={
+                  !(
+                    validationHistory() &&
+                    validationFile() &&
+                    validationAssessment()
+                  )
+                }
               >
                 บันทึก
               </button>

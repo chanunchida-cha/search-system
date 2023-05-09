@@ -73,7 +73,8 @@ class SetStateFile {
   };
 
   validationFile = () => {
-    if (this.assessmentFile.assessmentResults_file !== null &&
+    if (
+      this.assessmentFile.assessmentResults_file !== null &&
       this.researchPropasalsFile.researchPropasals_file !== null &&
       this.progressReportFile.progressReport_file !== null &&
       this.reportFile.reports_file !== null &&
@@ -82,9 +83,10 @@ class SetStateFile {
       this.historyFile.history_file !== null &&
       this.orderFile.order_file !== null &&
       this.accountFile.account_file !== null &&
-      this.idCardFile.idCard_file !== null ) {
+      this.idCardFile.idCard_file !== null
+    ) {
       return true;
-    }else{
+    } else {
       return false;
     }
   };
